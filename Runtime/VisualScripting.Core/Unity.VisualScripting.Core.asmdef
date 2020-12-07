@@ -1,0 +1,10 @@
+{
+    "name": "Unity.VisualScripting.Core",
+    "references": [
+        "Unity.InputSystem"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

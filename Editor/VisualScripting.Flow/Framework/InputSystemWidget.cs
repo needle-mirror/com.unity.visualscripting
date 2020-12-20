@@ -1,4 +1,4 @@
-#if ENABLE_INPUT_SYSTEM
+#if PACKAGE_INPUT_SYSTEM_EXISTS
 using System;
 using JetBrains.Annotations;
 using Unity.VisualScripting.InputSystem;

@@ -137,7 +137,7 @@ namespace Unity.VisualScripting
             typeof(Ray),
             typeof(Ray2D),
             typeof(Type),
-#if ENABLE_INPUT_SYSTEM
+#if PACKAGE_INPUT_SYSTEM_EXISTS
             typeof(UnityEngine.InputSystem.InputAction),
 #endif
         };

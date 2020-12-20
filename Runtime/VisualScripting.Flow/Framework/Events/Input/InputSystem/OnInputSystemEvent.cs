@@ -1,7 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
-#if ENABLE_INPUT_SYSTEM
+#if PACKAGE_INPUT_SYSTEM_EXISTS
 using UnityEngine.InputSystem;
 
 namespace Unity.VisualScripting.InputSystem

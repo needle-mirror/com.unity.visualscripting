@@ -6,7 +6,7 @@
 
 Visual scripting supports all Unity build targets, including **ahead-of-time (AOT)** platforms like iOS, Android, WebGL, WSA and consoles.
 
-As of version 1.5.0, AOT Pre-build is an automatic pre-build step for all AOT platforms.
+As of version 1.5.1, AOT Pre-build is an automatic pre-build step for all AOT platforms.
 
 ###Universal Windows Platform
 

@@ -26,7 +26,7 @@ namespace Unity.VisualScripting
         public override string authorLabel => "Designed & Developed by ";
         public override string author => "";
         public override string copyrightHolder => "Unity";
-        public override SemanticVersion version => "1.5.0";
+        public override SemanticVersion version => "1.5.1";
         public override string publisherUrl => "";
         public override string websiteUrl => "";
         public override string supportUrl => "";

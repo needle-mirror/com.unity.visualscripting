@@ -5,8 +5,6 @@ using System.Linq;
 #if !UNITY_EDITOR && UNITY_WSA
 // For System.Reflection.TypeExtensions
 using System.Reflection;
-// For Reflection Extensions in non-win10 builds.
-using Unity.VisualScripting.Dependencies.FullSerializer.Internal;
 #endif
 
 namespace Unity.VisualScripting.FullSerializer.Internal

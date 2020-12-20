@@ -11,7 +11,7 @@ namespace Unity.VisualScripting
         public Migration_1_4_13_to_1_5_0(Plugin plugin) : base(plugin) {}
 
         public override SemanticVersion @from => "1.4.13";
-        public override SemanticVersion to => "1.5.0";
+        public override SemanticVersion to => "1.5.1";
 
         public override void Run()
         {
@@ -46,7 +46,7 @@ namespace Unity.VisualScripting
     {
         public DeprecatedSavedVersionLoader_1_4_13_to_1_5_0(Plugin plugin) : base(plugin) {}
 
-        public override SemanticVersion @from => "1.5.0";
+        public override SemanticVersion @from => "1.5.1";
 
         public override bool Run(out SemanticVersion savedVersion)
         {

@@ -3,7 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
-## [1.5.1] - 2020-12-07
+## [1.5.1-pre.5] - 2021-01-20
+### Changed
+- Removed code referring to an unused SceneManagement.PrefabStage API
+
+## [1.5.1-pre.3] - 2020-12-07
 ### Added
 - Added Visual Scripting as built-in package as of Unity 2021.1
 - Added New Input System Support. You can import the Input System package, activate the back-end and regenerate units to use.

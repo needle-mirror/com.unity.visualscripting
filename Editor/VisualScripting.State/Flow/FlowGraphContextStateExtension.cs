@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [GraphContextExtension(typeof(FlowGraphContext))]
     public sealed class FlowGraphContextStateExtension : GraphContextExtension<FlowGraphContext>
     {
-        public FlowGraphContextStateExtension(FlowGraphContext context) : base(context) {}
+        public FlowGraphContextStateExtension(FlowGraphContext context) : base(context) { }
 
         public override bool AcceptsDragAndDrop()
         {

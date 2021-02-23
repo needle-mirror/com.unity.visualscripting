@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     public class NesterStateTransitionAnalyser<TGraphNesterStateTransition> : StateTransitionAnalyser<TGraphNesterStateTransition>
         where TGraphNesterStateTransition : class, INesterStateTransition
     {
-        public NesterStateTransitionAnalyser(GraphReference reference, TGraphNesterStateTransition transition) : base(reference, transition) {}
+        public NesterStateTransitionAnalyser(GraphReference reference, TGraphNesterStateTransition transition) : base(reference, transition) { }
 
         protected override IEnumerable<Warning> Warnings()
         {

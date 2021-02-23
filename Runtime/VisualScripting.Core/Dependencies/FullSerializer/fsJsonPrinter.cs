@@ -153,42 +153,42 @@ namespace Unity.VisualScripting.FullSerializer
                     break;
 
                 case fsDataType.Object:
-                {
-                    stream.Write('{');
-                    var comma = false;
-                    foreach (var entry in data.AsDictionary)
                     {
-                        if (comma)
+                        stream.Write('{');
+                        var comma = false;
+                        foreach (var entry in data.AsDictionary)
                         {
-                            stream.Write(',');
+                            if (comma)
+                            {
+                                stream.Write(',');
+                            }
+                            comma = true;
+                            stream.Write('"');
+                            stream.Write(entry.Key);
+                            stream.Write('"');
+                            stream.Write(":");
+                            BuildCompressedString(entry.Value, stream);
                         }
-                        comma = true;
-                        stream.Write('"');
-                        stream.Write(entry.Key);
-                        stream.Write('"');
-                        stream.Write(":");
-                        BuildCompressedString(entry.Value, stream);
+                        stream.Write('}');
+                        break;
                     }
-                    stream.Write('}');
-                    break;
-                }
 
                 case fsDataType.Array:
-                {
-                    stream.Write('[');
-                    var comma = false;
-                    foreach (var entry in data.AsList)
                     {
-                        if (comma)
+                        stream.Write('[');
+                        var comma = false;
+                        foreach (var entry in data.AsList)
                         {
-                            stream.Write(',');
+                            if (comma)
+                            {
+                                stream.Write(',');
+                            }
+                            comma = true;
+                            BuildCompressedString(entry, stream);
                         }
-                        comma = true;
-                        BuildCompressedString(entry, stream);
+                        stream.Write(']');
+                        break;
                     }
-                    stream.Write(']');
-                    break;
-                }
             }
         }
 
@@ -229,30 +229,30 @@ namespace Unity.VisualScripting.FullSerializer
                     break;
 
                 case fsDataType.Object:
-                {
-                    stream.Write('{');
-                    stream.WriteLine();
-                    var comma = false;
-                    foreach (var entry in data.AsDictionary)
                     {
-                        if (comma)
+                        stream.Write('{');
+                        stream.WriteLine();
+                        var comma = false;
+                        foreach (var entry in data.AsDictionary)
                         {
-                            stream.Write(',');
-                            stream.WriteLine();
+                            if (comma)
+                            {
+                                stream.Write(',');
+                                stream.WriteLine();
+                            }
+                            comma = true;
+                            InsertSpacing(stream, depth + 1);
+                            stream.Write('"');
+                            stream.Write(entry.Key);
+                            stream.Write('"');
+                            stream.Write(": ");
+                            BuildPrettyString(entry.Value, stream, depth + 1);
                         }
-                        comma = true;
-                        InsertSpacing(stream, depth + 1);
-                        stream.Write('"');
-                        stream.Write(entry.Key);
-                        stream.Write('"');
-                        stream.Write(": ");
-                        BuildPrettyString(entry.Value, stream, depth + 1);
+                        stream.WriteLine();
+                        InsertSpacing(stream, depth);
+                        stream.Write('}');
+                        break;
                     }
-                    stream.WriteLine();
-                    InsertSpacing(stream, depth);
-                    stream.Write('}');
-                    break;
-                }
 
                 case fsDataType.Array:
                     // special case for empty lists; we don't put an empty line

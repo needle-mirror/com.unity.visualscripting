@@ -16,7 +16,7 @@ namespace Unity.VisualScripting
 
         private readonly FieldInfo fieldInfo;
 
-        public void Compile() {}
+        public void Compile() { }
 
         public object GetValue(object target)
         {

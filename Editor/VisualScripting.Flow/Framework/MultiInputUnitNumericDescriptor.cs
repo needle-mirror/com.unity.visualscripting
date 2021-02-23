@@ -4,7 +4,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(MergeLists))]
     public class MultiInputUnitNumericDescriptor : UnitDescriptor<IMultiInputUnit>
     {
-        public MultiInputUnitNumericDescriptor(IMultiInputUnit unit) : base(unit) {}
+        public MultiInputUnitNumericDescriptor(IMultiInputUnit unit) : base(unit) { }
 
         protected override void DefinedPort(IUnitPort port, UnitPortDescription description)
         {
@@ -26,9 +26,9 @@ namespace Unity.VisualScripting
     [FuzzyOption(typeof(MergeLists))]
     public class MultiInputUnitNumericOption : UnitOption<IMultiInputUnit>
     {
-        public MultiInputUnitNumericOption() : base() {}
+        public MultiInputUnitNumericOption() : base() { }
 
-        public MultiInputUnitNumericOption(IMultiInputUnit unit) : base(unit) {}
+        public MultiInputUnitNumericOption(IMultiInputUnit unit) : base(unit) { }
 
         protected override bool ShowValueInputsInFooter()
         {

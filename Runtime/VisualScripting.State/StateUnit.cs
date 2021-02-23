@@ -4,9 +4,9 @@ namespace Unity.VisualScripting
     [UnitCategory("Nesting")]
     public sealed class StateUnit : NesterUnit<StateGraph, StateGraphAsset>
     {
-        public StateUnit() : base() {}
+        public StateUnit() : base() { }
 
-        public StateUnit(StateGraphAsset macro) : base(macro) {}
+        public StateUnit(StateGraphAsset macro) : base(macro) { }
 
         /// <summary>
         /// The entry point to start the state graph.

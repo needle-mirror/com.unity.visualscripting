@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
 {
     public sealed class StaticFunctionInvoker<TParam0, TParam1, TResult> : StaticFunctionInvokerBase<TResult>
     {
-        public StaticFunctionInvoker(MethodInfo methodInfo) : base(methodInfo) {}
+        public StaticFunctionInvoker(MethodInfo methodInfo) : base(methodInfo) { }
 
         private Func<TParam0, TParam1, TResult> invoke;
 

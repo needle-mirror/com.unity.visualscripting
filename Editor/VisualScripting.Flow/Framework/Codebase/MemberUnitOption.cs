@@ -12,7 +12,7 @@ namespace Unity.VisualScripting
 
     public abstract class MemberUnitOption<TMemberUnit> : UnitOption<TMemberUnit>, IMemberUnitOption where TMemberUnit : MemberUnit
     {
-        protected MemberUnitOption() : base() {}
+        protected MemberUnitOption() : base() { }
 
         protected MemberUnitOption(TMemberUnit unit) : base(unit)
         {
@@ -73,7 +73,7 @@ namespace Unity.VisualScripting
 
         protected override string Haystack(bool human)
         {
-            return $"{targetType.SelectedName(human)}{( human ? ": " : ".")}{Label(human)}";
+            return $"{targetType.SelectedName(human)}{(human ? ": " : ".")}{Label(human)}";
         }
 
         protected override void FillFromUnit()

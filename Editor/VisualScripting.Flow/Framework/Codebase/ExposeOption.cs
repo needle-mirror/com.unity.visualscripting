@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [FuzzyOption(typeof(Expose))]
     public class ExposeOption : UnitOption<Expose>
     {
-        public ExposeOption() : base() {}
+        public ExposeOption() : base() { }
 
         public ExposeOption(Expose unit) : base(unit)
         {

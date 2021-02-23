@@ -1,4 +1,4 @@
 namespace Unity.VisualScripting
 {
-    public static class InspectorUtility {}
+    public static class InspectorUtility { }
 }

@@ -6,9 +6,9 @@ namespace Unity.VisualScripting
     [UnitSurtitle("Save")]
     public sealed class GetSavedVariable : GetVariableUnit, ISavedVariableUnit
     {
-        public GetSavedVariable() : base() {}
+        public GetSavedVariable() : base() { }
 
-        public GetSavedVariable(string defaultName) : base(defaultName) {}
+        public GetSavedVariable(string defaultName) : base(defaultName) { }
 
         protected override VariableDeclarations GetDeclarations(Flow flow)
         {

@@ -47,7 +47,7 @@ namespace Unity.VisualScripting
             savedVersion = plugin.manifest.version;
         }
 
-        public virtual void LateInitialize() {}
+        public virtual void LateInitialize() { }
 
         public Plugin plugin { get; }
 

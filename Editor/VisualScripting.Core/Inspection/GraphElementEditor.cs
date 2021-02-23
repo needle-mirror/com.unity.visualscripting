@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     [Editor(typeof(IGraphElement))]
     public class GraphElementEditor<TGraphContext> : GraphInspector<TGraphContext> where TGraphContext : class, IGraphContext
     {
-        public GraphElementEditor(Metadata metadata) : base(metadata) {}
+        public GraphElementEditor(Metadata metadata) : base(metadata) { }
 
         protected IGraphElement element => (IGraphElement)metadata.value;
 

@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
 {
     public sealed class InstanceFunctionInvoker<TTarget, TParam0, TParam1, TParam2, TParam3, TParam4, TResult> : InstanceFunctionInvokerBase<TTarget, TResult>
     {
-        public InstanceFunctionInvoker(MethodInfo methodInfo) : base(methodInfo) {}
+        public InstanceFunctionInvoker(MethodInfo methodInfo) : base(methodInfo) { }
 
         private Func<TTarget, TParam0, TParam1, TParam2, TParam3, TParam4, TResult> invoke;
 

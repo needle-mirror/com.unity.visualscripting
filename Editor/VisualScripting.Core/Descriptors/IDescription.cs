@@ -18,7 +18,7 @@ namespace Unity.VisualScripting
 
         public static GUIContent ToGUIContent(this IDescription description, int iconSize)
         {
-            return new GUIContent(description.title, description.icon ? [iconSize], description.summary);
+            return new GUIContent(description.title, description.icon?[iconSize], description.summary);
         }
     }
 }

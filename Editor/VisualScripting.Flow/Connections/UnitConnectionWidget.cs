@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     public abstract class UnitConnectionWidget<TConnection> : GraphElementWidget<FlowCanvas, TConnection>, IUnitConnectionWidget
         where TConnection : class, IUnitConnection
     {
-        protected UnitConnectionWidget(FlowCanvas canvas, TConnection connection) : base(canvas, connection) {}
+        protected UnitConnectionWidget(FlowCanvas canvas, TConnection connection) : base(canvas, connection) { }
 
 
         #region Model
@@ -64,7 +64,7 @@ namespace Unity.VisualScripting
         public override Rect position
         {
             get { return _position; }
-            set {}
+            set { }
         }
 
         public override Rect clippingPosition => _clippingPosition;

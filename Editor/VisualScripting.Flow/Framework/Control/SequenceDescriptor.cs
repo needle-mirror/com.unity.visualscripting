@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(Sequence))]
     public class SequenceDescriptor : UnitDescriptor<Sequence>
     {
-        public SequenceDescriptor(Sequence unit) : base(unit) {}
+        public SequenceDescriptor(Sequence unit) : base(unit) { }
 
         protected override void DefinedPort(IUnitPort port, UnitPortDescription description)
         {

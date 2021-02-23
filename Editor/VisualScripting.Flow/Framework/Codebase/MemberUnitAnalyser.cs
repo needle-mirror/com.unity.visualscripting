@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     [Analyser(typeof(MemberUnit))]
     public class MemberUnitAnalyser : UnitAnalyser<MemberUnit>
     {
-        public MemberUnitAnalyser(GraphReference reference, MemberUnit target) : base(reference, target) {}
+        public MemberUnitAnalyser(GraphReference reference, MemberUnit target) : base(reference, target) { }
 
         protected override IEnumerable<Warning> Warnings()
         {

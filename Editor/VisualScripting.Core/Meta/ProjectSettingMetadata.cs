@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
 {
     public sealed class ProjectSettingMetadata : PluginConfigurationItemMetadata
     {
-        public ProjectSettingMetadata(PluginConfiguration configuration, MemberInfo member, Metadata parent) : base(configuration, member, parent) {}
+        public ProjectSettingMetadata(PluginConfiguration configuration, MemberInfo member, Metadata parent) : base(configuration, member, parent) { }
 
         public override bool exists => storage != null && storage.ContainsKey(key);
 

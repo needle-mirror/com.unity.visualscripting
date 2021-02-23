@@ -6,9 +6,9 @@ namespace Unity.VisualScripting
     [UnitSurtitle("Graph")]
     public sealed class SetGraphVariable : SetVariableUnit, IGraphVariableUnit
     {
-        public SetGraphVariable() : base() {}
+        public SetGraphVariable() : base() { }
 
-        public SetGraphVariable(string defaultName) : base(defaultName) {}
+        public SetGraphVariable(string defaultName) : base(defaultName) { }
 
         protected override VariableDeclarations GetDeclarations(Flow flow)
         {

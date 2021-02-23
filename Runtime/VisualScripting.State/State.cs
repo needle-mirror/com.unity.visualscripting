@@ -191,17 +191,17 @@ namespace Unity.VisualScripting
             }
         }
 
-        protected virtual void OnEnterImplementation(Flow flow) {}
+        protected virtual void OnEnterImplementation(Flow flow) { }
 
-        protected virtual void UpdateImplementation(Flow flow) {}
+        protected virtual void UpdateImplementation(Flow flow) { }
 
-        protected virtual void FixedUpdateImplementation(Flow flow) {}
+        protected virtual void FixedUpdateImplementation(Flow flow) { }
 
-        protected virtual void LateUpdateImplementation(Flow flow) {}
+        protected virtual void LateUpdateImplementation(Flow flow) { }
 
-        protected virtual void OnExitImplementation(Flow flow) {}
+        protected virtual void OnExitImplementation(Flow flow) { }
 
-        public virtual void OnBranchTo(Flow flow, IState destination) {}
+        public virtual void OnBranchTo(Flow flow, IState destination) { }
 
         #endregion
 

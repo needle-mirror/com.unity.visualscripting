@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
 {
     public sealed class StaticActionInvoker<TParam0, TParam1, TParam2> : StaticActionInvokerBase
     {
-        public StaticActionInvoker(MethodInfo methodInfo) : base(methodInfo) {}
+        public StaticActionInvoker(MethodInfo methodInfo) : base(methodInfo) { }
 
         private Action<TParam0, TParam1, TParam2> invoke;
 

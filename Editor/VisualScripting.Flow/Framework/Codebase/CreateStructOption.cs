@@ -5,9 +5,9 @@ namespace Unity.VisualScripting
     [FuzzyOption(typeof(CreateStruct))]
     public class CreateStructOption : UnitOption<CreateStruct>
     {
-        public CreateStructOption() : base() {}
+        public CreateStructOption() : base() { }
 
-        public CreateStructOption(CreateStruct unit) : base(unit) {}
+        public CreateStructOption(CreateStruct unit) : base(unit) { }
 
         public Type structType { get; private set; }
 

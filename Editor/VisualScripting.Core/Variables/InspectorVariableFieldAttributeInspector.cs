@@ -26,7 +26,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var newValue = BoltGUI.VariableField(position, GUIContent.none, (string)metadata.value, direction);
 

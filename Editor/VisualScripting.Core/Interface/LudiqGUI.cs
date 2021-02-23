@@ -60,7 +60,7 @@ namespace Unity.VisualScripting
 
             if (icon != null)
             {
-                GUILayout.Box(new GUIContent(icon ? [(int)LudiqStyles.windowHeaderIcon.fixedWidth]), LudiqStyles.windowHeaderIcon);
+                GUILayout.Box(new GUIContent(icon?[(int)LudiqStyles.windowHeaderIcon.fixedWidth]), LudiqStyles.windowHeaderIcon);
                 LudiqGUI.Space(LudiqStyles.spaceBetweenWindowHeaderIconAndTitle);
             }
 
@@ -183,7 +183,7 @@ namespace Unity.VisualScripting
 
             if (type != null)
             {
-                popupLabel = new GUIContent(type.DisplayName(), type.Icon() ? [IconSize.Small]);
+                popupLabel = new GUIContent(type.DisplayName(), type.Icon()?[IconSize.Small]);
             }
             else
             {
@@ -591,7 +591,7 @@ namespace Unity.VisualScripting
             Dragging
         }
 
-        public static float DraggableFloatField(Rect position, float value)
+        public static float DraggableFloatField(Rect position, float value, GUIContent label = null)
         {
             var controlId = GUIUtility.GetControlID(numberDragControlIDHint, FocusType.Passive, position);
 
@@ -600,10 +600,10 @@ namespace Unity.VisualScripting
                 value = DragNumber(position, true, controlId, value);
             }
 
-            return EditorGUI.FloatField(position, value);
+            return label != null ? EditorGUI.FloatField(position, label, value) : EditorGUI.FloatField(position, value);
         }
 
-        public static int DraggableIntField(Rect position, int value)
+        public static int DraggableIntField(Rect position, int value, GUIContent label = null)
         {
             var controlId = GUIUtility.GetControlID(numberDragControlIDHint, FocusType.Passive, position);
 
@@ -612,7 +612,7 @@ namespace Unity.VisualScripting
                 value = DragNumber(position, true, controlId, value);
             }
 
-            return EditorGUI.IntField(position, value);
+            return label != null ? EditorGUI.IntField(position, label, value) : EditorGUI.IntField(position, value);
         }
 
         public static float DragNumber(Rect hotZone, bool deadZone, int controlId, float value)
@@ -638,118 +638,118 @@ namespace Unity.VisualScripting
             switch (e.GetTypeForControl(controlId))
             {
                 case EventType.MouseDown:
-                {
-                    if (!hotZone.Contains(e.mousePosition) || e.button != (int)MouseButton.Left)
                     {
+                        if (!hotZone.Contains(e.mousePosition) || e.button != (int)MouseButton.Left)
+                        {
+                            break;
+                        }
+
+                        EditorGUIUtility.editingTextField = false;
+                        GUIUtility.hotControl = controlId;
+                        GUIUtility.keyboardControl = controlId;
+
+                        if (deadZone)
+                        {
+                            numberDragState = NumberDragState.RequestedDragging;
+                        }
+                        else
+                        {
+                            numberDragState = NumberDragState.Dragging;
+                        }
+
+                        numberDragStartValueContinuous = continuousValue;
+                        numberDragStartValueDiscrete = discreteValue;
+                        numberDragStartPosition = e.mousePosition;
+
+                        if (isContinuous)
+                        {
+                            numberDragSensitivity = CalculateDragSensitivityContinuous(continuousValue);
+                        }
+                        else
+                        {
+                            numberDragSensitivity = CalculateDragSensitivityDiscrete(discreteValue);
+                        }
+
+                        e.Use();
+                        EditorGUIUtility.SetWantsMouseJumping(1);
                         break;
                     }
-
-                    EditorGUIUtility.editingTextField = false;
-                    GUIUtility.hotControl = controlId;
-                    GUIUtility.keyboardControl = controlId;
-
-                    if (deadZone)
-                    {
-                        numberDragState = NumberDragState.RequestedDragging;
-                    }
-                    else
-                    {
-                        numberDragState = NumberDragState.Dragging;
-                    }
-
-                    numberDragStartValueContinuous = continuousValue;
-                    numberDragStartValueDiscrete = discreteValue;
-                    numberDragStartPosition = e.mousePosition;
-
-                    if (isContinuous)
-                    {
-                        numberDragSensitivity = CalculateDragSensitivityContinuous(continuousValue);
-                    }
-                    else
-                    {
-                        numberDragSensitivity = CalculateDragSensitivityDiscrete(discreteValue);
-                    }
-
-                    e.Use();
-                    EditorGUIUtility.SetWantsMouseJumping(1);
-                    break;
-                }
 
                 case EventType.MouseUp:
-                {
-                    if (GUIUtility.hotControl != controlId || numberDragState == NumberDragState.NotDragging)
                     {
+                        if (GUIUtility.hotControl != controlId || numberDragState == NumberDragState.NotDragging)
+                        {
+                            break;
+                        }
+
+                        GUIUtility.hotControl = 0;
+                        numberDragState = NumberDragState.NotDragging;
+                        e.Use();
+                        EditorGUIUtility.SetWantsMouseJumping(0);
                         break;
                     }
-
-                    GUIUtility.hotControl = 0;
-                    numberDragState = NumberDragState.NotDragging;
-                    e.Use();
-                    EditorGUIUtility.SetWantsMouseJumping(0);
-                    break;
-                }
 
                 case EventType.MouseDrag:
-                {
-                    if (GUIUtility.hotControl != controlId)
                     {
+                        if (GUIUtility.hotControl != controlId)
+                        {
+                            break;
+                        }
+
+                        switch (numberDragState)
+                        {
+                            case NumberDragState.RequestedDragging:
+                                {
+                                    if ((e.mousePosition - numberDragStartPosition).sqrMagnitude > numberDragDeadZone)
+                                    {
+                                        numberDragState = NumberDragState.Dragging;
+                                        GUIUtility.keyboardControl = controlId;
+                                    }
+                                    e.Use();
+                                    break;
+                                }
+
+                            case NumberDragState.Dragging:
+                                {
+                                    if (isContinuous)
+                                    {
+                                        continuousValue = continuousValue + HandleUtility.niceMouseDelta * numberDragSensitivity;
+                                        continuousValue = RoundBasedOnMinimumDifference(continuousValue, numberDragSensitivity);
+                                    }
+                                    else
+                                    {
+                                        discreteValue = discreteValue + (long)Math.Round(HandleUtility.niceMouseDelta * numberDragSensitivity);
+                                    }
+
+                                    GUI.changed = true;
+                                    e.Use();
+                                    break;
+                                }
+                        }
+
                         break;
                     }
-
-                    switch (numberDragState)
-                    {
-                        case NumberDragState.RequestedDragging:
-                        {
-                            if ((e.mousePosition - numberDragStartPosition).sqrMagnitude > numberDragDeadZone)
-                            {
-                                numberDragState = NumberDragState.Dragging;
-                                GUIUtility.keyboardControl = controlId;
-                            }
-                            e.Use();
-                            break;
-                        }
-
-                        case NumberDragState.Dragging:
-                        {
-                            if (isContinuous)
-                            {
-                                continuousValue = continuousValue + HandleUtility.niceMouseDelta * numberDragSensitivity;
-                                continuousValue = RoundBasedOnMinimumDifference(continuousValue, numberDragSensitivity);
-                            }
-                            else
-                            {
-                                discreteValue = discreteValue + (long)Math.Round(HandleUtility.niceMouseDelta * numberDragSensitivity);
-                            }
-
-                            GUI.changed = true;
-                            e.Use();
-                            break;
-                        }
-                    }
-
-                    break;
-                }
 
                 case EventType.KeyDown:
-                {
-                    if (GUIUtility.hotControl != controlId || e.keyCode != KeyCode.Escape || numberDragState == NumberDragState.NotDragging)
                     {
+                        if (GUIUtility.hotControl != controlId || e.keyCode != KeyCode.Escape || numberDragState == NumberDragState.NotDragging)
+                        {
+                            break;
+                        }
+
+                        continuousValue = numberDragStartValueContinuous;
+                        discreteValue = numberDragStartValueDiscrete;
+                        GUI.changed = true;
+                        GUIUtility.hotControl = 0;
+                        e.Use();
                         break;
                     }
 
-                    continuousValue = numberDragStartValueContinuous;
-                    discreteValue = numberDragStartValueDiscrete;
-                    GUI.changed = true;
-                    GUIUtility.hotControl = 0;
-                    e.Use();
-                    break;
-                }
-
                 case EventType.Repaint:
-                {
-                    EditorGUIUtility.AddCursorRect(hotZone, MouseCursor.SlideArrow);
-                    break;
-                }
+                    {
+                        EditorGUIUtility.AddCursorRect(hotZone, MouseCursor.SlideArrow);
+                        break;
+                    }
             }
         }
 
@@ -936,7 +936,7 @@ namespace Unity.VisualScripting
 
         private static void OnHeaderIconGUI(EditorTexture icon, Rect iconPosition)
         {
-            GUI.DrawTexture(iconPosition, icon ? [IconSize.Medium]);
+            GUI.DrawTexture(iconPosition, icon?[IconSize.Medium]);
         }
 
         #region Static
@@ -1066,7 +1066,7 @@ namespace Unity.VisualScripting
 
         private static void OnHeaderTitleGUI(Metadata titleMetadata, Rect titlePosition)
         {
-            VisualScripting.Inspector.BeginBlock(titleMetadata, titlePosition, GUIContent.none);
+            VisualScripting.Inspector.BeginLabeledBlock(titleMetadata, titlePosition, GUIContent.none);
 
             var hidable = !StringUtility.IsNullOrWhiteSpace((string)titleMetadata.value);
 
@@ -1086,7 +1086,7 @@ namespace Unity.VisualScripting
 
         private static void OnHeaderSummaryGUI(Metadata summaryMetadata, Rect summaryPosition)
         {
-            VisualScripting.Inspector.BeginBlock(summaryMetadata, summaryPosition, GUIContent.none);
+            VisualScripting.Inspector.BeginLabeledBlock(summaryMetadata, summaryPosition, GUIContent.none);
 
             var hidable = !StringUtility.IsNullOrWhiteSpace((string)summaryMetadata.value);
 
@@ -1253,7 +1253,7 @@ namespace Unity.VisualScripting
                 {
                     callback(o);
                 }
-                catch (ExitGUIException) {}
+                catch (ExitGUIException) { }
             };
 
             if (hasOptions)
@@ -1338,7 +1338,7 @@ namespace Unity.VisualScripting
                 {
                     callback(selectedCopy);
                 }
-                catch (ExitGUIException) {}
+                catch (ExitGUIException) { }
             };
 
             // The callback when the special "Nothing" option has been selected

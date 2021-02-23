@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     public abstract class StateTransitionWidget<TStateTransition> : NodeWidget<StateCanvas, TStateTransition>, IStateTransitionWidget
         where TStateTransition : class, IStateTransition
     {
-        protected StateTransitionWidget(StateCanvas canvas, TStateTransition transition) : base(canvas, transition) {}
+        protected StateTransitionWidget(StateCanvas canvas, TStateTransition transition) : base(canvas, transition) { }
 
 
         #region Model
@@ -25,7 +25,7 @@ namespace Unity.VisualScripting
             description = transition.Description<StateTransitionDescription>();
 
             label.text = description.label;
-            label.image = description.icon ? [IconSize.Small];
+            label.image = description.icon?[IconSize.Small];
             label.tooltip = description.tooltip;
 
             if (!revealLabel)
@@ -171,7 +171,7 @@ namespace Unity.VisualScripting
         public override Rect position
         {
             get { return _position; }
-            set {}
+            set { }
         }
 
         public override Rect clippingPosition => _clippingPosition;
@@ -624,12 +624,12 @@ namespace Unity.VisualScripting
 
         protected virtual Vector2 GetDropletSize()
         {
-            return BoltFlow.Icons.valuePortConnected ? [12].Size() ?? 12 * Vector2.one;
+            return BoltFlow.Icons.valuePortConnected?[12].Size() ?? 12 * Vector2.one;
         }
 
         protected virtual void DrawDroplet(Rect position)
         {
-            GUI.DrawTexture(position, BoltFlow.Icons.valuePortConnected ? [12]);
+            GUI.DrawTexture(position, BoltFlow.Icons.valuePortConnected?[12]);
         }
 
         private void DrawDroplets()

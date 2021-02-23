@@ -20,7 +20,7 @@ For example,  you cannot connect the result of the math operation (a number) to 
 Visual scripting helps you aim more easily by automatically selecting the best compatible port on a unit, even if your cursor is not directly over it. This port is highlighted with a yellow rectangle to let you preview where the connection would be made. This means you can quickly drag the new connection directly on the unit without aiming directly on the little port handle.
 
 
-![](images/bolt-connections4.gif)
+![](images/vs-auto-connection.png)
 
 ###Color Coding
 

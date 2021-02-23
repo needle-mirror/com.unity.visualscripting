@@ -8,6 +8,8 @@ namespace Unity.VisualScripting
 {
     public static class GraphGUI
     {
+        public const float MinZoomForControls = 0.7f;
+
         public const float MinZoom = 0.25f;
 
         public const float MaxZoom = 1;
@@ -130,7 +132,7 @@ namespace Unity.VisualScripting
 
             var i = 0;
 
-            var drawMinor = zoom >= 0.75f;
+            var drawMinor = zoom >= MinZoomForControls;
 
             var width = MathfEx.HigherMultiple(position.width, Styles.minorGridSpacing * Styles.majorGridGroup);
 
@@ -274,7 +276,7 @@ namespace Unity.VisualScripting
 
         public static void DrawConnectionArrow(Color color, Vector2 start, Vector2 end, Edge startEdge, Edge endEdge, float relativeBend = 1 / 4f, float minBend = 0)
         {
-            DrawConnection(color, start, end, startEdge, endEdge, ArrowTexture(endEdge) ? [24], new Vector2(8, 8), relativeBend, minBend);
+            DrawConnection(color, start, end, startEdge, endEdge, ArrowTexture(endEdge)?[24], new Vector2(8, 8), relativeBend, minBend);
         }
 
         public static Vector2 GetPointOnConnection(float t, Vector2 start, Vector2 end, Edge startEdge, Edge? endEdge, float relativeBend = 1 / 4f, float minBend = 0)
@@ -573,7 +575,7 @@ namespace Unity.VisualScripting
 
         public static void DrawDragAndDropPreviewLabel(Vector2 position, string content, EditorTexture icon)
         {
-            DrawDragAndDropPreviewLabel(position, new GUIContent(content, icon ? [IconSize.Small]));
+            DrawDragAndDropPreviewLabel(position, new GUIContent(content, icon?[IconSize.Small]));
         }
 
         private static Texture2D AliasedBezierTexture(float width)

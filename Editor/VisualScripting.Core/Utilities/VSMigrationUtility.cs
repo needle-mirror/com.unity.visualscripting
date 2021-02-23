@@ -155,7 +155,7 @@ namespace Unity.VisualScripting
             {
                 LudiqGUI.BeginHorizontal();
 
-                GUILayout.Box(GetStateIcon(state) ? [IconSize.Small], Styles.stepIcon);
+                GUILayout.Box(GetStateIcon(state)?[IconSize.Small], Styles.stepIcon);
 
                 GUILayout.Label($"{plugin.manifest.name}: Version {migration.@from} to version {migration.to}", state == State.Idle ? Styles.stepIdleLabel : Styles.stepLabel, GUILayout.ExpandWidth(false));
 

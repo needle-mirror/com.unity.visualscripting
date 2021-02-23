@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(Literal))]
     public class LiteralDescriptor : UnitDescriptor<Literal>
     {
-        public LiteralDescriptor(Literal unit) : base(unit) {}
+        public LiteralDescriptor(Literal unit) : base(unit) { }
 
         protected override string DefinedTitle()
         {

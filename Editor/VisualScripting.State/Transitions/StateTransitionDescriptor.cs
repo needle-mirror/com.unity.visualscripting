@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     public abstract class StateTransitionDescriptor<TStateTransition> : Descriptor<TStateTransition, StateTransitionDescription>
         where TStateTransition : class, IStateTransition
     {
-        protected StateTransitionDescriptor(TStateTransition target) : base(target) {}
+        protected StateTransitionDescriptor(TStateTransition target) : base(target) { }
 
         public TStateTransition transition => target;
 

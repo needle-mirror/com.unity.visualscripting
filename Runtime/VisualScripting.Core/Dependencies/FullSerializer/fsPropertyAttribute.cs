@@ -10,7 +10,7 @@ namespace Unity.VisualScripting.FullSerializer
     public class fsPropertyAttribute : Attribute
     {
         public fsPropertyAttribute()
-            : this(string.Empty) {}
+            : this(string.Empty) { }
 
         public fsPropertyAttribute(string name)
         {

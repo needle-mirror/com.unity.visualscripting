@@ -11,9 +11,9 @@ namespace Unity.VisualScripting
             this.plugin = plugin;
         }
 
-        public virtual void Initialize() {}
+        public virtual void Initialize() { }
 
-        public virtual void LateInitialize() {}
+        public virtual void LateInitialize() { }
 
         public Plugin plugin { get; }
 

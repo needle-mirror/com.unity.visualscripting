@@ -134,13 +134,13 @@ namespace Unity.VisualScripting.ReorderableList
         }
 
         /// <inheritdoc />
-        public virtual void BeginGUI() {}
+        public virtual void BeginGUI() { }
 
         /// <inheritdoc />
-        public virtual void EndGUI() {}
+        public virtual void EndGUI() { }
 
         /// <inheritdoc />
-        public virtual void DrawItemBackground(Rect position, int index) {}
+        public virtual void DrawItemBackground(Rect position, int index) { }
 
         /// <inheritdoc />
         public virtual void DrawItem(Rect position, int index)

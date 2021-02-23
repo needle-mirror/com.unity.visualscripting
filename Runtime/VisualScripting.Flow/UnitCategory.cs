@@ -77,7 +77,7 @@ namespace Unity.VisualScripting
             return fullName;
         }
 
-        public static bool operator==(UnitCategory a, UnitCategory b)
+        public static bool operator ==(UnitCategory a, UnitCategory b)
         {
             if (ReferenceEquals(a, b))
             {
@@ -92,7 +92,7 @@ namespace Unity.VisualScripting
             return a.Equals(b);
         }
 
-        public static bool operator!=(UnitCategory a, UnitCategory b)
+        public static bool operator !=(UnitCategory a, UnitCategory b)
         {
             return !(a == b);
         }

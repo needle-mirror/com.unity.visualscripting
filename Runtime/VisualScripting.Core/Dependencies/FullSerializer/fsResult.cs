@@ -14,7 +14,7 @@ namespace Unity.VisualScripting.FullSerializer
     {
         // We cache the empty string array so we can unify some collections
         // processing code.
-        private static readonly string[] EmptyStringArray = {};
+        private static readonly string[] EmptyStringArray = { };
 
         /// <summary>
         /// Is this result successful?
@@ -131,7 +131,7 @@ namespace Unity.VisualScripting.FullSerializer
         /// <summary>
         /// Only use this as +=!
         /// </summary>
-        public static fsResult operator+(fsResult a, fsResult b)
+        public static fsResult operator +(fsResult a, fsResult b)
         {
             return a.Merge(b);
         }

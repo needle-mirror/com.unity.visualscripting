@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqCoreChangelog_1_2_3 : PluginChangelog
     {
-        public LudiqCoreChangelog_1_2_3(Plugin plugin) : base(plugin) {}
+        public LudiqCoreChangelog_1_2_3(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.2.3";
         public override DateTime date => new DateTime(2018, 01, 25);

@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(CustomEvent))]
     public class CustomEventDescriptor : EventUnitDescriptor<CustomEvent>
     {
-        public CustomEventDescriptor(CustomEvent @event) : base(@event) {}
+        public CustomEventDescriptor(CustomEvent @event) : base(@event) { }
 
         protected override string DefinedSubtitle()
         {

@@ -16,7 +16,7 @@ namespace Unity.VisualScripting
             this.list = list;
         }
 
-        public void Dispose() {}
+        public void Dispose() { }
 
         public bool MoveNext()
         {

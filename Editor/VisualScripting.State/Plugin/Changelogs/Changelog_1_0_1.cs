@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltState.ID)]
     internal class Changelog_1_0_1 : PluginChangelog
     {
-        public Changelog_1_0_1(Plugin plugin) : base(plugin) {}
+        public Changelog_1_0_1(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.0.1";
         public override DateTime date => new DateTime(2017, 08, 01);

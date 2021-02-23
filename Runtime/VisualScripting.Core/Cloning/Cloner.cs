@@ -4,7 +4,7 @@ namespace Unity.VisualScripting
 {
     public abstract class Cloner<T> : ICloner
     {
-        protected Cloner() {}
+        protected Cloner() { }
 
         public abstract bool Handles(Type type);
 
@@ -13,7 +13,7 @@ namespace Unity.VisualScripting
             BeforeClone(type, (T)original);
         }
 
-        public virtual void BeforeClone(Type type, T original) {}
+        public virtual void BeforeClone(Type type, T original) { }
 
         object ICloner.ConstructClone(Type type, object original)
         {
@@ -32,13 +32,13 @@ namespace Unity.VisualScripting
             clone = _instance;
         }
 
-        public virtual void FillClone(Type type, ref T clone, T original, CloningContext context) {}
+        public virtual void FillClone(Type type, ref T clone, T original, CloningContext context) { }
 
         void ICloner.AfterClone(Type type, object clone)
         {
             AfterClone(type, (T)clone);
         }
 
-        public virtual void AfterClone(Type type, T clone) {}
+        public virtual void AfterClone(Type type, T clone) { }
     }
 }

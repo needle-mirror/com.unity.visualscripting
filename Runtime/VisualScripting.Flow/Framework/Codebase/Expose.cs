@@ -12,7 +12,7 @@ namespace Unity.VisualScripting
     [SpecialUnit]
     public sealed class Expose : Unit, IAotStubbable
     {
-        public Expose() : base() {}
+        public Expose() : base() { }
 
         public Expose(Type type) : base()
         {

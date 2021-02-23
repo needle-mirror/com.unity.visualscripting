@@ -6,11 +6,11 @@ namespace Unity.VisualScripting
     [Inspector(typeof(Vector4))]
     public class Vector4Inspector : VectorInspector
     {
-        public Vector4Inspector(Metadata metadata) : base(metadata) {}
+        public Vector4Inspector(Metadata metadata) : base(metadata) { }
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             Vector4 newValue;
 

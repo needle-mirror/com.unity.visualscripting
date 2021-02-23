@@ -17,7 +17,7 @@ namespace Unity.VisualScripting
         }
 
         [Obsolete(Serialization.ConstructorWarning)]
-        public ValueConnection() : base() {}
+        public ValueConnection() : base() { }
 
         public ValueConnection(ValueOutput source, ValueInput destination) : base(source, destination)
         {

@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(Expose))]
     public class ExposeDescriptor : UnitDescriptor<Expose>
     {
-        public ExposeDescriptor(Expose unit) : base(unit) {}
+        public ExposeDescriptor(Expose unit) : base(unit) { }
 
         protected override string DefinedTitle()
         {

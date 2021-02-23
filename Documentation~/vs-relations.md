@@ -2,8 +2,10 @@
 
 Relations are a useful tool to understand the dependencies between each port of a unit. For example, to get the result of A + B with the Add unit, you need to provide a value for A and B. Likewise, before invoking the Log unit, you should provide a value for its Message input port.
 
+![](/Users/bryanzako/Documents/Bolt/GitBolt/com.unity.bolt/Packages/com.unity.bolt/Documentation~/images/vs-dependencies-no-relations.png)
 
-![](/Users/bryanzako/Documents/Bolt/GitBolt/com.unity.bolt/Packages/com.unity.bolt/Documentation~/images/bolt-connections12.gif)
+
+![](/Users/bryanzako/Documents/Bolt/GitBolt/com.unity.bolt/Packages/com.unity.bolt/Documentation~/images/vs-dependencies-relations.png)
 
 
 

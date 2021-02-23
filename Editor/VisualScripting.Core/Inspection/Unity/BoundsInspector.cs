@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(Bounds))]
     public class BoundsInspector : Inspector
     {
-        public BoundsInspector(Metadata metadata) : base(metadata) {}
+        public BoundsInspector(Metadata metadata) : base(metadata) { }
 
         protected override float GetHeight(float width, GUIContent label)
         {
@@ -15,7 +15,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var newValue = EditorGUI.BoundsField(position, (Bounds)metadata.value);
 

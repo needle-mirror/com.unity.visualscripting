@@ -9,9 +9,9 @@ namespace Unity.VisualScripting
     public sealed class Literal : Unit
     {
         [Obsolete(Serialization.ConstructorWarning)]
-        public Literal() : base() {}
+        public Literal() : base() { }
 
-        public Literal(Type type) : this(type, type.PseudoDefault()) {}
+        public Literal(Type type) : this(type, type.PseudoDefault()) { }
 
         public Literal(Type type, object value) : base()
         {

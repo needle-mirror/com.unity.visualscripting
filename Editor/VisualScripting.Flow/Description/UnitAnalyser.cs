@@ -9,7 +9,7 @@ namespace Unity.VisualScripting
     public class UnitAnalyser<TUnit> : Analyser<TUnit, UnitAnalysis>
         where TUnit : class, IUnit
     {
-        public UnitAnalyser(GraphReference reference, TUnit target) : base(reference, target) {}
+        public UnitAnalyser(GraphReference reference, TUnit target) : base(reference, target) { }
 
         public TUnit unit => target;
 

@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Acknowledgement_FatcowIcons : PluginAcknowledgement
     {
-        public Acknowledgement_FatcowIcons(Plugin plugin) : base(plugin) {}
+        public Acknowledgement_FatcowIcons(Plugin plugin) : base(plugin) { }
 
         public override string title => "FatCow Icons";
         public override string author => "FatCow Web Hosting";

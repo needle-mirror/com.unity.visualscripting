@@ -3,9 +3,42 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
-## [1.5.1-pre.5] - 2021-01-20
-### Changed
-- Removed code referring to an unused SceneManagement.PrefabStage API
+## [1.5.1] - 2021-02-23
+### Added
+- Warn the user when an Input System Package event is referencing an action of the wrong type for that event
+- A warning is raised when adding more than one Input unit in a SuperUnit
+- "Open" inspector button and double clicking a graph in the project browser now opens the visual scripting editor
+### Fixed
+- Fixed "Restore to Defaults" buttons in the Project Settings window
+- Fixed ThreadAbortException when entering Play Mode while searching in the Fuzzy Finder
+- Fixed Visual Scripting Preferences being searchable [BOLT-1218](https://issuetracker.unity3d.com/issues/visual-scripting-preferences-are-not-searchable-when-using-search-in-the-preferences-window)
+- Fixed ScalarAdd unit migration from 1.4.13 to 1.4.14 and above
+- Fixed Open the graph window no longer causes Unity UI stop processing mouse click [BOLT-1159](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1159),
+- Fixed Fuzzy finder no longer blinks when trying to add a node [BOLT-1157](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1157),
+- Fixed Fuzzy search no longer drops keyboard inputs and respond slowly [BOLT-1214](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1214),
+- Fixed Fuzzy finder search window no longer remains above all other windows [BOLT-1197](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1197)"
+- Fixed Dropdown icon is not clipped with TextField under "Get Variable"
+- Fixed Scale groups when zoom is not at 1x
+- Fixed graph getting corrupted when adding "Get Action Map" unit
+- Fixed node description being sometimes clipped
+- Fixed warnings overflow in the console when deleting and adding a boolean variable in the blackboard
+- Fixed warnings when entering play mode when the "Script Changes While Playing" is set to Recompile And Continue Playing
+- Fixed resize cursor rect on group when graph window is zoomed
+- Fixed VisualScripting.Generated folder is removed when removing the VisualScripting package.
+- Fixed error when executing "Fix Missing Scripts" in a HDRP project
+- Visual Scripting Preferences spacing has been adjusted to avoid overlaps
+- Fixed rendering of inactive ObjectFields
+- Fixed sidebar (graph inspector/blackboard) resize when a vertical scrollbar is needed
+- Fixed variable type reset to Enum when changing from Enum to GameObject when both Blackbaord and Variables inspector are displayed
+- Help button in the visual scripting Assets and Behaviours inspector now link to the package documentation.
+- FlowMachine type is now back in usable types.
+- Fixed GraphPointerException occurs when nesting graph within itself [BOLT-1257](https://issuetracker.unity3d.com/issues/visual-scripting-graphpointerexception-occurs-when-nesting-graph-within-itself)
+- Fixed RenamedFrom attribute does not function correctly on array references to a renamed type [BOLT-1149](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1149)
+- Fixed error message when custom inspectors are generated
+- Fixed missing succession for Cooldown. Output of Cooldown completed is treated as unentered.  [BOLT-725](https://issuetracker.unity3d.com/issues/bolt-1-output-of-cooldown-completed-is-treated-as-unentered)
+- Fixed Object Variables tabs not updated when creating a Prefab
+- Fixed console errors when deleting a Prefab with a Visual Script
+- Fixed console errors when editing nested graphs during Play Mode
 
 ## [1.5.1-pre.3] - 2020-12-07
 ### Added
@@ -47,4 +80,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fixed IL2CPP build crash on startup [BOLT-1036](https://issuetracker.unity3d.com/issues/bolt-bolt-1-il2cpp-release-build-crashes-on-startup-when-there-is-at-least-1-node-present-in-a-graph)
 - Fixed IL2CPP issue around converting certain managed types [BOLT-8](https://issuetracker.unity3d.com/issues/bolt-1-il2cpp-encountered-a-managed-type-which-it-cannot-convert-ahead-of-time)
 - Fixed deserialization issues when undoing graphs with Wait nodes [BOLT-679](https://issuetracker.unity3d.com/issues/bolt-deserialization-error-and-nodes-missing-after-pressing-undo-when-update-coroutine-with-wait-node-is-present-in-graph)
-- Fixed "SelectOnEnum" node behavior enums containing non-unique values e.g. "RuntimePlatform" [BOLT-688](https://issuetracker.unity3d.com/issues/select-on-enum-doesnt-work-with-the-runtimeplatform-enum)
+- Fixed "SelectOnEnum" node behaviour enums containing non-unique values e.g. "RuntimePlatform" [BOLT-688](https://issuetracker.unity3d.com/issues/select-on-enum-doesnt-work-with-the-runtimeplatform-enum)

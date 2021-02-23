@@ -64,7 +64,7 @@ namespace Unity.VisualScripting
                 return;
             }
 
-            label = new GUIContent(labelText, option.icon ? [IconSize.Small]);
+            label = new GUIContent(labelText, option.icon?[IconSize.Small]);
             style = option.style ?? (option.icon != null ? FuzzyWindow.Styles.optionWithIcon : FuzzyWindow.Styles.optionWithoutIcon);
             width = style.CalcSize(label).x;
             isDrawable = true;

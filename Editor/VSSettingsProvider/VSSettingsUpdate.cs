@@ -117,15 +117,15 @@ namespace Unity.VisualScripting
         {
             if (plugin.manifest.savedVersion < plugin.manifest.currentVersion)
             {
-                return new GUIContent("New version", BoltCore.Icons.upgrade ? [IconSize.Small]);
+                return new GUIContent("New version", BoltCore.Icons.upgrade?[IconSize.Small]);
             }
             else if (plugin.manifest.savedVersion == plugin.manifest.currentVersion)
             {
-                return new GUIContent("Up to date", BoltCore.Icons.upToDate ? [IconSize.Small]);
+                return new GUIContent("Up to date", BoltCore.Icons.upToDate?[IconSize.Small]);
             }
             else if (plugin.manifest.savedVersion > plugin.manifest.currentVersion)
             {
-                return new GUIContent("Downgrade", BoltCore.Icons.downgrade ? [IconSize.Small]);
+                return new GUIContent("Downgrade", BoltCore.Icons.downgrade?[IconSize.Small]);
             }
             else
             {

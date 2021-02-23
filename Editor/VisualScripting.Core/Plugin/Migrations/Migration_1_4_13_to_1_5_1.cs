@@ -8,7 +8,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Migration_1_4_13_to_1_5_0 : PluginMigration
     {
-        public Migration_1_4_13_to_1_5_0(Plugin plugin) : base(plugin) {}
+        public Migration_1_4_13_to_1_5_0(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion @from => "1.4.13";
         public override SemanticVersion to => "1.5.1";
@@ -44,7 +44,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class DeprecatedSavedVersionLoader_1_4_13_to_1_5_0 : PluginDeprecatedSavedVersionLoader
     {
-        public DeprecatedSavedVersionLoader_1_4_13_to_1_5_0(Plugin plugin) : base(plugin) {}
+        public DeprecatedSavedVersionLoader_1_4_13_to_1_5_0(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion @from => "1.5.1";
 

@@ -18,7 +18,7 @@ namespace Unity.VisualScripting
 
         private readonly MethodInfo methodInfo;
 
-        public void Compile() {}
+        public void Compile() { }
 
         public object Invoke(object target, params object[] args)
         {

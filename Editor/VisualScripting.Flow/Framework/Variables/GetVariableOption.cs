@@ -6,9 +6,9 @@ namespace Unity.VisualScripting
     public class GetVariableOption : UnifiedVariableUnitOption<GetVariable>
     {
         [Obsolete(Serialization.ConstructorWarning)]
-        public GetVariableOption() : base() {}
+        public GetVariableOption() : base() { }
 
-        public GetVariableOption(VariableKind kind, string defaultName = null) : base(kind, defaultName) {}
+        public GetVariableOption(VariableKind kind, string defaultName = null) : base(kind, defaultName) { }
 
         protected override string NamedLabel(bool human)
         {

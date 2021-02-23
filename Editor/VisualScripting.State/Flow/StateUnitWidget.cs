@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Widget(typeof(StateUnit))]
     public class StateUnitWidget : NestrerUnitWidget<StateUnit>, IDragAndDropHandler
     {
-        public StateUnitWidget(FlowCanvas canvas, StateUnit unit) : base(canvas, unit) {}
+        public StateUnitWidget(FlowCanvas canvas, StateUnit unit) : base(canvas, unit) { }
 
         public DragAndDropVisualMode dragAndDropVisualMode => DragAndDropVisualMode.Generic;
 

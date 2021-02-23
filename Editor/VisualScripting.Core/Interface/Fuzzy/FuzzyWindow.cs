@@ -35,6 +35,10 @@ namespace Unity.VisualScripting
                 {
                     childOption.OnPopulate();
                 }
+                catch (ThreadAbortException)
+                {
+                    throw;
+                }
                 catch (Exception ex)
                 {
                     Debug.LogWarning($"Failed to display {childOption.GetType()}: \n{ex}");
@@ -142,18 +146,18 @@ namespace Unity.VisualScripting
 
                 check = new GUIStyle();
                 var checkTexture = BoltCore.Resources.LoadTexture("Fuzzy/Check.png", new TextureResolution[] { 12, 24 }, CreateTextureOptions.PixelPerfect);
-                check.normal.background = checkTexture ? [12];
-                check.normal.scaledBackgrounds = new[] { checkTexture ? [24] };
+                check.normal.background = checkTexture?[12];
+                check.normal.scaledBackgrounds = new[] { checkTexture?[24] };
                 check.fixedHeight = 12;
                 check.fixedWidth = 12;
 
                 star = new GUIStyle();
                 var starOffTexture = BoltCore.Resources.LoadIcon("Fuzzy/StarOff.png");
                 var starOnTexture = BoltCore.Resources.LoadIcon("Fuzzy/StarOn.png");
-                star.normal.background = starOffTexture ? [16];
-                star.normal.scaledBackgrounds = new[] { starOffTexture ? [32] };
-                star.onNormal.background = starOnTexture ? [16];
-                star.onNormal.scaledBackgrounds = new[] { starOnTexture ? [32] };
+                star.normal.background = starOffTexture?[16];
+                star.normal.scaledBackgrounds = new[] { starOffTexture?[32] };
+                star.onNormal.background = starOnTexture?[16];
+                star.onNormal.scaledBackgrounds = new[] { starOnTexture?[32] };
                 star.fixedHeight = 16;
                 star.fixedWidth = 16;
                 favoritesIcon = starOnTexture;
@@ -216,6 +220,8 @@ namespace Unity.VisualScripting
 
         private IFuzzyOptionTree tree;
 
+        private bool requireRepaint;
+
         public static void Show(Rect activatorPosition, IFuzzyOptionTree optionTree, Action<IFuzzyOption> callback)
         {
             Ensure.That(nameof(optionTree)).IsNotNull(optionTree);
@@ -265,8 +271,6 @@ namespace Unity.VisualScripting
                 }
             }
         }
-
-        private bool requireRepaint;
 
         private void CreateWindow(Rect activatorPosition)
         {
@@ -570,6 +574,11 @@ namespace Unity.VisualScripting
 
         private void OnPositioning()
         {
+            if (Event.current.type != EventType.Repaint)
+            {
+                return;
+            }
+
             if (!initialYSet)
             {
                 initialY = this.position.y;
@@ -586,7 +595,7 @@ namespace Unity.VisualScripting
 
             if (!isAnimating && activeNode?.option != null && activeNode.option.hasFooter)
             {
-                footerHeight = activeNode.option.GetFooterHeight(totalWidth);
+                footerHeight = activeNode.option.GetFooterHeight(totalWidth - footerWidthMargin);
 
                 position.height += footerHeight;
             }
@@ -605,14 +614,22 @@ namespace Unity.VisualScripting
                 }
             }
 
-            minSize = maxSize = position.size;
-            this.position = position;
+            if (this.position != position || minSize != position.size)
+            {
+                minSize = maxSize = position.size;
+                this.position = position;
+            }
+
+            GUIUtility.ExitGUI();
         }
 
         #endregion
 
         #region GUI
 
+        //Be sure do not call any layout change while the UI is repainting or force a repaint
+        //before the layout is completed.
+        //This will probably break the UI
         private void OnGUI()
         {
             try
@@ -671,6 +688,25 @@ namespace Unity.VisualScripting
                             OnLevelGUI(anim + 1, GetLevelRelative(-1), GetLevelRelative(-2));
                         }
 
+                        if (isAnimating && e.type == EventType.Repaint)
+                        {
+                            anim = Mathf.MoveTowards(anim, animTarget, repaintDeltaTime * animationSpeed);
+
+                            if (animTarget == 0 && anim == 0)
+                            {
+                                anim = 1;
+                                animTarget = 1;
+                                stack.Pop();
+                            }
+
+                            requireRepaint = true;
+                        }
+
+                        if (e.type == EventType.Repaint)
+                        {
+                            lastRepaintTime = DateTime.Now;
+                        }
+
                         if (!activeParent.isLoading)
                         {
                             if (tree.searchable && hasSearch && !hasSufficientSearch)
@@ -687,28 +723,9 @@ namespace Unity.VisualScripting
                             {
                                 OnFooterGUI();
                             }
+
+                            OnPositioning();
                         }
-
-                        if (isAnimating && e.type == EventType.Repaint)
-                        {
-                            anim = Mathf.MoveTowards(anim, animTarget, repaintDeltaTime * animationSpeed);
-
-                            if (animTarget == 0 && anim == 0)
-                            {
-                                anim = 1;
-                                animTarget = 1;
-                                stack.Pop();
-                            }
-
-                            Repaint();
-                        }
-
-                        if (e.type == EventType.Repaint)
-                        {
-                            lastRepaintTime = DateTime.Now;
-                        }
-
-                        OnPositioning();
                     }
                 }
             }
@@ -755,7 +772,7 @@ namespace Unity.VisualScripting
         private void OnHeaderGUI(FuzzyOptionNode parent, Rect headerPosition)
         {
             EditorGUIUtility.SetIconSize(new Vector2(IconSize.Small, IconSize.Small));
-            var headerContent = new GUIContent(new GUIContent(parent.option.headerLabel, parent.option.showHeaderIcon ? parent.option.icon ? [IconSize.Small] : null));
+            var headerContent = new GUIContent(new GUIContent(parent.option.headerLabel, parent.option.showHeaderIcon ? parent.option.icon?[IconSize.Small] : null));
             headerWidth = Styles.header.CalcSize(headerContent).x;
             GUI.Label(headerPosition, headerContent, Styles.header);
             EditorGUIUtility.SetIconSize(default(Vector2));
@@ -821,20 +838,25 @@ namespace Unity.VisualScripting
                 LudiqGUI.BeginHorizontal();
                 LudiqGUI.Space(10);
                 var progressBarPosition = GUILayoutUtility.GetRect(GUIContent.none, GUIStyle.none, GUILayout.Height(19), GUILayout.ExpandWidth(true));
-                if (tree.showBackgroundWorkerProgress && BackgroundWorker.hasProgress)
+
+                if (progressBarPosition.width > 0 && progress > 0)
                 {
-                    EditorGUI.ProgressBar(progressBarPosition, BackgroundWorker.progressProportion, BackgroundWorker.progressLabel);
+                    if (tree.showBackgroundWorkerProgress && BackgroundWorker.hasProgress)
+                    {
+                        EditorGUI.ProgressBar(progressBarPosition, BackgroundWorker.progressProportion, BackgroundWorker.progressLabel);
+                    }
+                    else if (showProgress)
+                    {
+                        EditorGUI.ProgressBar(progressBarPosition, progress, progressText);
+                    }
                 }
-                else if (showProgress)
-                {
-                    EditorGUI.ProgressBar(progressBarPosition, progress, progressText);
-                }
+
                 LudiqGUI.Space(10);
                 LudiqGUI.EndHorizontal();
 
                 LudiqGUI.FlexibleSpace();
                 LudiqGUI.EndVertical();
-                Repaint();
+
                 return;
             }
 
@@ -867,7 +889,9 @@ namespace Unity.VisualScripting
                     optionPosition.Contains(e.mousePosition))
                 {
                     parent.selectedIndex = i;
-                    Repaint();
+
+                    requireRepaint = true;
+
                     lastMouseMovePosition = GUIUtility.GUIToScreenPoint(e.mousePosition);
                 }
 
@@ -960,12 +984,14 @@ namespace Unity.VisualScripting
 
                 var lastRect = GUILayoutUtility.GetLastRect();
 
+
                 if (selectedOptionPosition.yMax - lastRect.height > parent.scroll.y)
                 {
                     var scroll = parent.scroll;
                     scroll.y = selectedOptionPosition.yMax - lastRect.height;
                     parent.scroll = scroll;
-                    Repaint();
+
+                    requireRepaint = true;
                 }
 
                 if (selectedOptionPosition.y < parent.scroll.y)
@@ -973,10 +999,13 @@ namespace Unity.VisualScripting
                     var scroll = parent.scroll;
                     scroll.y = selectedOptionPosition.y;
                     parent.scroll = scroll;
-                    Repaint();
+
+                    requireRepaint = true;
                 }
             }
         }
+
+        const int footerWidthMargin = 2;
 
         private void OnFooterGUI()
         {
@@ -984,7 +1013,7 @@ namespace Unity.VisualScripting
                 (
                 1,
                 height - 1,
-                position.width - 2,
+                position.width - footerWidthMargin,
                 footerHeight
                 );
 
@@ -1084,7 +1113,8 @@ namespace Unity.VisualScripting
                 {
                     task();
                 }
-                catch (OperationCanceledException) {}
+                catch (OperationCanceledException) { }
+                catch (ThreadAbortException) { }
                 catch (Exception ex)
                 {
                     Debug.LogException(ex);

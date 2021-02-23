@@ -68,7 +68,7 @@ namespace Unity.VisualScripting
                 yield break;
             }
 
-            for (var index = 0;; index += needle.Length)
+            for (var index = 0; ; index += needle.Length)
             {
                 index = haystack.IndexOf(needle, index, StringComparison.OrdinalIgnoreCase);
 

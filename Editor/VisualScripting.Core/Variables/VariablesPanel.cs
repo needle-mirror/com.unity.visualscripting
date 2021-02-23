@@ -10,6 +10,8 @@ namespace Unity.VisualScripting
 {
     public class VariablesPanel : ISidebarPanelContent
     {
+        const string k_ObjectTabTitle = "Object Variables";
+
         public IGraphContext context { get; }
 
         public Vector2 minSize => new Vector2(335, 200);
@@ -22,7 +24,7 @@ namespace Unity.VisualScripting
         {
             this.context = context;
 
-            titleContent = new GUIContent("Blackboard", BoltCore.Icons.variablesWindow ? [IconSize.Small]);
+            titleContent = new GUIContent("Blackboard", BoltCore.Icons.variablesWindow?[IconSize.Small]);
 
             tabs.Clear();
 
@@ -42,6 +44,17 @@ namespace Unity.VisualScripting
 
             _currentTab = tabs.FirstOrDefault(t => t.enabled);
             _currentSubTabIdentifier = _currentTab?.currentSubTab?.identifier;
+
+            PrefabUtility.prefabInstanceUpdated += OnPrefabInstanceUpdated;
+        }
+
+        void OnPrefabInstanceUpdated(GameObject instance)
+        {
+            if (instance == context?.reference.gameObject)
+            {
+                var tab = tabs.Single(t => t.header.text == k_ObjectTabTitle);
+                OnObjectTabGUI(tab, instance);
+            }
         }
 
         private readonly List<Tab> tabs = new List<Tab>();
@@ -95,6 +108,30 @@ namespace Unity.VisualScripting
             for (var i = 0; i < tabs.Count; i++)
             {
                 var tab = tabs[i];
+
+                /*
+                 * TODO: This code should be optimized at some point.
+                 * Ideally, the reinitialization of the first tab should happen once the editor enters play mode.
+                 * However, at this point, the UI was not fully reloaded yet (context.reference is in invalid state)
+                 * Maybe, an async task to monitor context.reference to the point were it was ready to use again could be a good alternative
+                 */
+                if (i == 0 && UnityEngine.Application.isPlaying && tab.currentSubTab != null && string.Compare(tab.currentSubTab.identifier, "Graph.Runtime", StringComparison.Ordinal) != 0)
+                {
+                    if (context?.graph is IGraphWithVariables)
+                    {
+                        GraphPointer graphPointer = context.reference;
+
+                        if (graphPointer.hasData)
+                        {
+                            VariableDeclarations instanceVariables = graphPointer.GetGraphData<IGraphDataWithVariables>().variables;
+
+                            tab.subTabs.Clear();
+                            tab.subTabs.Add(new SubTab("Graph.Runtime", tab, VariableKind.Graph, instanceVariables, graphPointer.serializedObject, null, "Instance"));
+
+                            tab.MakeFirstSubTabCurrent();
+                        }
+                    }
+                }
 
                 var tabButtonPosition = new Rect
                     (
@@ -180,45 +217,53 @@ namespace Unity.VisualScripting
                 (
                 this,
                 "Object",
-                "Object Variables",
+                k_ObjectTabTitle,
                 "These variables are shared across the current game object.",
                 BoltCore.Icons.objectVariable
                 );
 
             if (@object != null)
             {
-                if (@object.IsConnectedPrefabInstance())
+                OnObjectTabGUI(tab, @object);
+            }
+
+            return tab;
+        }
+
+        static void OnObjectTabGUI(Tab tab, GameObject gameObject)
+        {
+            tab.subTabs.Clear();
+
+            if (gameObject.IsConnectedPrefabInstance())
+            {
+                var instanceVariables = gameObject.GetComponent<Variables>();
+                if (instanceVariables != null)
                 {
-                    var instance = @object;
-                    var definition = instance.GetPrefabDefinition();
+                    tab.subTabs.Add(new SubTab("Object.Instance", tab, VariableKind.Object, instanceVariables.declarations, instanceVariables, null, "Prefab Instance"));
+                }
 
+                var definition = gameObject.GetPrefabDefinition();
+
+                // Prefab could have been deleted
+                if (definition != null)
+                {
                     var definitionVariables = definition.GetComponent<Variables>();
-                    var instanceVariables = instance.GetComponent<Variables>();
-
-                    if (instanceVariables != null)
-                    {
-                        tab.subTabs.Add(new SubTab("Object.Instance", tab, VariableKind.Object, instanceVariables.declarations, instanceVariables, null, "Prefab Instance"));
-                    }
-
                     if (definitionVariables != null)
                     {
                         tab.subTabs.Add(new SubTab("Object.Definition", tab, VariableKind.Object, definitionVariables.declarations, definitionVariables, null, "Prefab Definition"));
                     }
                 }
-                else
+            }
+            else
+            {
+                var variables = gameObject.GetComponent<Variables>();
+                if (variables != null)
                 {
-                    var variables = @object.GetComponent<Variables>();
-
-                    if (variables != null)
-                    {
-                        tab.subTabs.Add(new SubTab("Object.Instance", tab, VariableKind.Object, variables.declarations, variables, null));
-                    }
+                    tab.subTabs.Add(new SubTab("Object.Instance", tab, VariableKind.Object, variables.declarations, variables, null));
                 }
-
-                tab.MakeFirstSubTabCurrent();
             }
 
-            return tab;
+            tab.MakeFirstSubTabCurrent();
         }
 
         private Tab Scene()
@@ -386,8 +431,8 @@ namespace Unity.VisualScripting
 
                 this.panel = panel;
 
-                header = new GUIContent(title, icon ? [IconSize.Medium], description);
-                label = new GUIContent(" " + shortTitle, icon ? [IconSize.Small]);
+                header = new GUIContent(title, icon?[IconSize.Medium], description);
+                label = new GUIContent(" " + shortTitle, icon?[IconSize.Small]);
 
                 this.subTabs = new List<SubTab>(subTabs.NotNull());
                 currentSubTab = this.subTabs.FirstOrDefault();

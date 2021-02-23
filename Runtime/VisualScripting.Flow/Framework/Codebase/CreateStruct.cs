@@ -9,7 +9,7 @@ namespace Unity.VisualScripting
     public sealed class CreateStruct : Unit
     {
         [Obsolete(Serialization.ConstructorWarning)]
-        public CreateStruct() : base() {}
+        public CreateStruct() : base() { }
 
         public CreateStruct(Type type) : base()
         {

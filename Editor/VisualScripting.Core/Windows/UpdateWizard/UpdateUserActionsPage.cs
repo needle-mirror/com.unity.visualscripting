@@ -52,7 +52,7 @@ namespace Unity.VisualScripting
                 GUILayout.BeginVertical(GUILayout.MaxWidth(300));
 
                 LudiqGUI.BeginHorizontal();
-                GUILayout.Box(BoltCore.Icons.warningMessage ? [IconSize.Small], Styles.migrationIcon);
+                GUILayout.Box(BoltCore.Icons.warningMessage?[IconSize.Small], Styles.migrationIcon);
                 GUILayout.Label($"{migration.plugin.manifest.name}, v.{migration.@from} to v.{migration.to}: ", Styles.migration);
                 LudiqGUI.EndHorizontal();
 

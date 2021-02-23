@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(VariableDeclaration))]
     public sealed class VariableDeclarationInspector : Inspector
     {
-        public VariableDeclarationInspector(Metadata metadata) : base(metadata) {}
+        public VariableDeclarationInspector(Metadata metadata) : base(metadata) { }
 
         private Metadata nameMetadata => metadata[nameof(VariableDeclaration.name)];
 
@@ -40,7 +40,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             using (LudiqGUIUtility.labelWidth.Override(Styles.labelWidth))
             {
@@ -59,7 +59,7 @@ namespace Unity.VisualScripting
 
         public void OnNameGUI(Rect namePosition)
         {
-            namePosition = BeginBlock(nameMetadata, namePosition);
+            namePosition = BeginLabeledBlock(nameMetadata, namePosition);
 
             var newName = EditorGUI.DelayedTextField(namePosition, (string)nameMetadata.value);
 

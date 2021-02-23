@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltState.ID)]
     public sealed class BoltStateManifest : PluginManifest
     {
-        private BoltStateManifest(BoltState plugin) : base(plugin) {}
+        private BoltStateManifest(BoltState plugin) : base(plugin) { }
 
         public override string name => "Bolt State";
         public override string author => "";

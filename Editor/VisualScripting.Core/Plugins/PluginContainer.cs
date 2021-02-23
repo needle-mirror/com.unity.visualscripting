@@ -55,7 +55,7 @@ namespace Unity.VisualScripting
                     }
                 }
             }
-            remove {}
+            remove { }
         }
 
         public static bool initialized { get; private set; }

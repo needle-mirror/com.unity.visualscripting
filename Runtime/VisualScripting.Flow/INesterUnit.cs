@@ -1,4 +1,4 @@
 namespace Unity.VisualScripting
 {
-    public interface INesterUnit : IUnit, IGraphNesterElement {}
+    public interface INesterUnit : IUnit, IGraphNesterElement { }
 }

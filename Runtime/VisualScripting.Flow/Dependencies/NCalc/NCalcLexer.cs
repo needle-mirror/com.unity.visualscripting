@@ -15,7 +15,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
         }
 
         public NCalcLexer(ICharStream input)
-            : this(input, null) {}
+            : this(input, null) { }
 
         public NCalcLexer(ICharStream input, RecognizerSharedState state)
             : base(input, state)
@@ -56,7 +56,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__19"
@@ -77,7 +77,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__20"
@@ -98,7 +98,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__21"
@@ -119,7 +119,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__22"
@@ -140,7 +140,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__23"
@@ -161,7 +161,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__24"
@@ -182,7 +182,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__25"
@@ -203,7 +203,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__26"
@@ -224,7 +224,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__27"
@@ -245,7 +245,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__28"
@@ -266,7 +266,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__29"
@@ -287,7 +287,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__30"
@@ -308,7 +308,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__31"
@@ -329,7 +329,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__32"
@@ -350,7 +350,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__33"
@@ -371,7 +371,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__34"
@@ -392,7 +392,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__35"
@@ -413,7 +413,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__36"
@@ -434,7 +434,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__37"
@@ -455,7 +455,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__38"
@@ -476,7 +476,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__39"
@@ -497,7 +497,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__40"
@@ -518,7 +518,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__41"
@@ -539,7 +539,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__42"
@@ -560,7 +560,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__43"
@@ -581,7 +581,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__44"
@@ -602,7 +602,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__45"
@@ -623,7 +623,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__46"
@@ -644,7 +644,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__47"
@@ -665,7 +665,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "T__48"
@@ -686,7 +686,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "TRUE"
@@ -707,7 +707,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "FALSE"
@@ -738,19 +738,19 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                         {
                             case 1:
                                 // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:
-                            {
-                                if (input.LA(1) >= '0' && input.LA(1) <= '9' || input.LA(1) >= 'A' && input.LA(1) <= 'Z' || input.LA(1) == '_' || input.LA(1) >= 'a' && input.LA(1) <= 'z')
                                 {
-                                    input.Consume();
+                                    if (input.LA(1) >= '0' && input.LA(1) <= '9' || input.LA(1) >= 'A' && input.LA(1) <= 'Z' || input.LA(1) == '_' || input.LA(1) >= 'a' && input.LA(1) <= 'z')
+                                    {
+                                        input.Consume();
+                                    }
+                                    else
+                                    {
+                                        var mse = new MismatchedSetException(null, input);
+                                        Recover(mse);
+                                        throw mse;
+                                    }
                                 }
-                                else
-                                {
-                                    var mse = new MismatchedSetException(null, input);
-                                    Recover(mse);
-                                    throw mse;
-                                }
-                            }
-                            break;
+                                break;
 
                             default:
                                 goto loop1;
@@ -765,7 +765,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "ID"
@@ -796,10 +796,10 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                         {
                             case 1:
                                 // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:249:4: DIGIT
-                            {
-                                mDIGIT();
-                            }
-                            break;
+                                {
+                                    mDIGIT();
+                                }
+                                break;
 
                             default:
                                 if (cnt2 >= 1)
@@ -821,7 +821,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "INTEGER"
@@ -840,141 +840,141 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 {
                     case 1:
                         // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:4: ( DIGIT )* '.' ( DIGIT )+ ( E )?
-                    {
-                        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:4: ( DIGIT )*
-                        do
                         {
-                            var alt3 = 2;
-                            var LA3_0 = input.LA(1);
-
-                            if (LA3_0 >= '0' && LA3_0 <= '9')
+                            // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:4: ( DIGIT )*
+                            do
                             {
-                                alt3 = 1;
-                            }
+                                var alt3 = 2;
+                                var LA3_0 = input.LA(1);
 
-                            switch (alt3)
+                                if (LA3_0 >= '0' && LA3_0 <= '9')
+                                {
+                                    alt3 = 1;
+                                }
+
+                                switch (alt3)
+                                {
+                                    case 1:
+                                        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:4: DIGIT
+                                        {
+                                            mDIGIT();
+                                        }
+                                        break;
+
+                                    default:
+                                        goto loop3;
+                                }
+                            }
+                            while (true);
+
+                        loop3:
+                            ; // Stops C# compiler whining that label 'loop3' has no statements
+
+                            Match('.');
+                            // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:15: ( DIGIT )+
+                            var cnt4 = 0;
+                            do
+                            {
+                                var alt4 = 2;
+                                var LA4_0 = input.LA(1);
+
+                                if (LA4_0 >= '0' && LA4_0 <= '9')
+                                {
+                                    alt4 = 1;
+                                }
+
+                                switch (alt4)
+                                {
+                                    case 1:
+                                        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:15: DIGIT
+                                        {
+                                            mDIGIT();
+                                        }
+                                        break;
+
+                                    default:
+                                        if (cnt4 >= 1)
+                                        {
+                                            goto loop4;
+                                        }
+                                        var eee4 =
+                                            new EarlyExitException(4, input);
+                                        throw eee4;
+                                }
+                                cnt4++;
+                            }
+                            while (true);
+
+                        loop4:
+                            ; // Stops C# compiler whining that label 'loop4' has no statements
+
+                            // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:22: ( E )?
+                            var alt5 = 2;
+                            var LA5_0 = input.LA(1);
+
+                            if (LA5_0 == 'E' || LA5_0 == 'e')
+                            {
+                                alt5 = 1;
+                            }
+                            switch (alt5)
                             {
                                 case 1:
-                                    // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:4: DIGIT
-                                {
-                                    mDIGIT();
-                                }
-                                break;
-
-                                default:
-                                    goto loop3;
-                            }
-                        }
-                        while (true);
-
-                    loop3:
-                        ; // Stops C# compiler whining that label 'loop3' has no statements
-
-                        Match('.');
-                        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:15: ( DIGIT )+
-                        var cnt4 = 0;
-                        do
-                        {
-                            var alt4 = 2;
-                            var LA4_0 = input.LA(1);
-
-                            if (LA4_0 >= '0' && LA4_0 <= '9')
-                            {
-                                alt4 = 1;
-                            }
-
-                            switch (alt4)
-                            {
-                                case 1:
-                                    // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:15: DIGIT
-                                {
-                                    mDIGIT();
-                                }
-                                break;
-
-                                default:
-                                    if (cnt4 >= 1)
+                                    // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:22: E
                                     {
-                                        goto loop4;
+                                        mE();
                                     }
-                                    var eee4 =
-                                        new EarlyExitException(4, input);
-                                    throw eee4;
+                                    break;
                             }
-                            cnt4++;
                         }
-                        while (true);
-
-                    loop4:
-                        ; // Stops C# compiler whining that label 'loop4' has no statements
-
-                        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:22: ( E )?
-                        var alt5 = 2;
-                        var LA5_0 = input.LA(1);
-
-                        if (LA5_0 == 'E' || LA5_0 == 'e')
-                        {
-                            alt5 = 1;
-                        }
-                        switch (alt5)
-                        {
-                            case 1:
-                                // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:22: E
-                            {
-                                mE();
-                            }
-                            break;
-                        }
-                    }
-                    break;
+                        break;
                     case 2:
                         // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:254:4: ( DIGIT )+ E
-                    {
-                        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:254:4: ( DIGIT )+
-                        var cnt6 = 0;
-                        do
                         {
-                            var alt6 = 2;
-                            var LA6_0 = input.LA(1);
-
-                            if (LA6_0 >= '0' && LA6_0 <= '9')
+                            // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:254:4: ( DIGIT )+
+                            var cnt6 = 0;
+                            do
                             {
-                                alt6 = 1;
-                            }
+                                var alt6 = 2;
+                                var LA6_0 = input.LA(1);
 
-                            switch (alt6)
-                            {
-                                case 1:
-                                    // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:254:4: DIGIT
+                                if (LA6_0 >= '0' && LA6_0 <= '9')
                                 {
-                                    mDIGIT();
+                                    alt6 = 1;
                                 }
-                                break;
 
-                                default:
-                                    if (cnt6 >= 1)
-                                    {
-                                        goto loop6;
-                                    }
-                                    var eee6 =
-                                        new EarlyExitException(6, input);
-                                    throw eee6;
+                                switch (alt6)
+                                {
+                                    case 1:
+                                        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:254:4: DIGIT
+                                        {
+                                            mDIGIT();
+                                        }
+                                        break;
+
+                                    default:
+                                        if (cnt6 >= 1)
+                                        {
+                                            goto loop6;
+                                        }
+                                        var eee6 =
+                                            new EarlyExitException(6, input);
+                                        throw eee6;
+                                }
+                                cnt6++;
                             }
-                            cnt6++;
+                            while (true);
+
+                        loop6:
+                            ; // Stops C# compiler whining that label 'loop6' has no statements
+
+                            mE();
                         }
-                        while (true);
-
-                    loop6:
-                        ; // Stops C# compiler whining that label 'loop6' has no statements
-
-                        mE();
-                    }
-                    break;
+                        break;
                 }
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "FLOAT"
@@ -1009,29 +1009,29 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                         {
                             case 1:
                                 // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:258:17: EscapeSequence
-                            {
-                                mEscapeSequence();
-                            }
-                            break;
+                                {
+                                    mEscapeSequence();
+                                }
+                                break;
                             case 2:
                                 // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:258:34: ( options {greedy=false; } : ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )
-                            {
-                                // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:258:34: ( options {greedy=false; } : ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )
-                                // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:258:61: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' )
                                 {
-                                    if (input.LA(1) >= ' ' && input.LA(1) <= '&' || input.LA(1) >= '(' && input.LA(1) <= '[' || input.LA(1) >= ']' && input.LA(1) <= '\uFFFF')
+                                    // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:258:34: ( options {greedy=false; } : ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )
+                                    // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:258:61: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' )
                                     {
-                                        input.Consume();
-                                    }
-                                    else
-                                    {
-                                        var mse = new MismatchedSetException(null, input);
-                                        Recover(mse);
-                                        throw mse;
+                                        if (input.LA(1) >= ' ' && input.LA(1) <= '&' || input.LA(1) >= '(' && input.LA(1) <= '[' || input.LA(1) >= ']' && input.LA(1) <= '\uFFFF')
+                                        {
+                                            input.Consume();
+                                        }
+                                        else
+                                        {
+                                            var mse = new MismatchedSetException(null, input);
+                                            Recover(mse);
+                                            throw mse;
+                                        }
                                     }
                                 }
-                            }
-                            break;
+                                break;
 
                             default:
                                 goto loop8;
@@ -1048,7 +1048,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "STRING"
@@ -1082,19 +1082,19 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                             {
                                 case 1:
                                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:262:36: ~ ( '#' )
-                                {
-                                    if (input.LA(1) >= '\u0000' && input.LA(1) <= '\"' || input.LA(1) >= '$' && input.LA(1) <= '\uFFFF')
                                     {
-                                        input.Consume();
+                                        if (input.LA(1) >= '\u0000' && input.LA(1) <= '\"' || input.LA(1) >= '$' && input.LA(1) <= '\uFFFF')
+                                        {
+                                            input.Consume();
+                                        }
+                                        else
+                                        {
+                                            var mse = new MismatchedSetException(null, input);
+                                            Recover(mse);
+                                            throw mse;
+                                        }
                                     }
-                                    else
-                                    {
-                                        var mse = new MismatchedSetException(null, input);
-                                        Recover(mse);
-                                        throw mse;
-                                    }
-                                }
-                                break;
+                                    break;
 
                                 default:
                                     goto loop9;
@@ -1112,7 +1112,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "DATETIME"
@@ -1146,19 +1146,19 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                             {
                                 case 1:
                                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:265:39: ~ ( ']' )
-                                {
-                                    if (input.LA(1) >= '\u0000' && input.LA(1) <= '\\' || input.LA(1) >= '^' && input.LA(1) <= '\uFFFF')
                                     {
-                                        input.Consume();
+                                        if (input.LA(1) >= '\u0000' && input.LA(1) <= '\\' || input.LA(1) >= '^' && input.LA(1) <= '\uFFFF')
+                                        {
+                                            input.Consume();
+                                        }
+                                        else
+                                        {
+                                            var mse = new MismatchedSetException(null, input);
+                                            Recover(mse);
+                                            throw mse;
+                                        }
                                     }
-                                    else
-                                    {
-                                        var mse = new MismatchedSetException(null, input);
-                                        Recover(mse);
-                                        throw mse;
-                                    }
-                                }
-                                break;
+                                    break;
 
                                 default:
                                     goto loop10;
@@ -1176,7 +1176,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "NAME"
@@ -1214,19 +1214,19 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                     {
                         case 1:
                             // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:
-                        {
-                            if (input.LA(1) == '+' || input.LA(1) == '-')
                             {
-                                input.Consume();
+                                if (input.LA(1) == '+' || input.LA(1) == '-')
+                                {
+                                    input.Consume();
+                                }
+                                else
+                                {
+                                    var mse = new MismatchedSetException(null, input);
+                                    Recover(mse);
+                                    throw mse;
+                                }
                             }
-                            else
-                            {
-                                var mse = new MismatchedSetException(null, input);
-                                Recover(mse);
-                                throw mse;
-                            }
-                        }
-                        break;
+                            break;
                     }
 
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:268:26: ( DIGIT )+
@@ -1245,10 +1245,10 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                         {
                             case 1:
                                 // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:268:26: DIGIT
-                            {
-                                mDIGIT();
-                            }
-                            break;
+                                {
+                                    mDIGIT();
+                                }
+                                break;
 
                             default:
                                 if (cnt12 >= 1)
@@ -1270,7 +1270,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "E"
@@ -1295,7 +1295,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                     }
                 }
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "LETTER"
@@ -1311,7 +1311,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                     MatchRange('0', '9');
                 }
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "DIGIT"
@@ -1330,35 +1330,35 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                     switch (input.LA(1))
                     {
                         case 'n':
-                        {
-                            alt13 = 1;
-                        }
-                        break;
+                            {
+                                alt13 = 1;
+                            }
+                            break;
                         case 'r':
-                        {
-                            alt13 = 2;
-                        }
-                        break;
+                            {
+                                alt13 = 2;
+                            }
+                            break;
                         case 't':
-                        {
-                            alt13 = 3;
-                        }
-                        break;
+                            {
+                                alt13 = 3;
+                            }
+                            break;
                         case '\'':
-                        {
-                            alt13 = 4;
-                        }
-                        break;
+                            {
+                                alt13 = 4;
+                            }
+                            break;
                         case '\\':
-                        {
-                            alt13 = 5;
-                        }
-                        break;
+                            {
+                                alt13 = 5;
+                            }
+                            break;
                         case 'u':
-                        {
-                            alt13 = 6;
-                        }
-                        break;
+                            {
+                                alt13 = 6;
+                            }
+                            break;
                         default:
                             var nvae_d13s0 =
                                 new NoViableAltException("", 13, 0, input);
@@ -1370,44 +1370,44 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                     {
                         case 1:
                             // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:284:5: 'n'
-                        {
-                            Match('n');
-                        }
-                        break;
+                            {
+                                Match('n');
+                            }
+                            break;
                         case 2:
                             // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:285:4: 'r'
-                        {
-                            Match('r');
-                        }
-                        break;
+                            {
+                                Match('r');
+                            }
+                            break;
                         case 3:
                             // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:286:4: 't'
-                        {
-                            Match('t');
-                        }
-                        break;
+                            {
+                                Match('t');
+                            }
+                            break;
                         case 4:
                             // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:287:4: '\\''
-                        {
-                            Match('\'');
-                        }
-                        break;
+                            {
+                                Match('\'');
+                            }
+                            break;
                         case 5:
                             // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:288:4: '\\\\'
-                        {
-                            Match('\\');
-                        }
-                        break;
+                            {
+                                Match('\\');
+                            }
+                            break;
                         case 6:
                             // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:289:4: UnicodeEscape
-                        {
-                            mUnicodeEscape();
-                        }
-                        break;
+                            {
+                                mUnicodeEscape();
+                            }
+                            break;
                     }
                 }
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "EscapeSequence"
@@ -1432,7 +1432,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                     }
                 }
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "HexDigit"
@@ -1452,7 +1452,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                     mHexDigit();
                 }
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "UnicodeEscape"
@@ -1484,7 +1484,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                 state.type = _type;
                 state.channel = _channel;
             }
-            finally {}
+            finally { }
         }
 
         // $ANTLR end "WS"
@@ -1498,244 +1498,244 @@ namespace Unity.VisualScripting.Dependencies.NCalc
             {
                 case 1:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:10: T__19
-                {
-                    mT__19();
-                }
-                break;
+                    {
+                        mT__19();
+                    }
+                    break;
                 case 2:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:16: T__20
-                {
-                    mT__20();
-                }
-                break;
+                    {
+                        mT__20();
+                    }
+                    break;
                 case 3:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:22: T__21
-                {
-                    mT__21();
-                }
-                break;
+                    {
+                        mT__21();
+                    }
+                    break;
                 case 4:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:28: T__22
-                {
-                    mT__22();
-                }
-                break;
+                    {
+                        mT__22();
+                    }
+                    break;
                 case 5:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:34: T__23
-                {
-                    mT__23();
-                }
-                break;
+                    {
+                        mT__23();
+                    }
+                    break;
                 case 6:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:40: T__24
-                {
-                    mT__24();
-                }
-                break;
+                    {
+                        mT__24();
+                    }
+                    break;
                 case 7:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:46: T__25
-                {
-                    mT__25();
-                }
-                break;
+                    {
+                        mT__25();
+                    }
+                    break;
                 case 8:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:52: T__26
-                {
-                    mT__26();
-                }
-                break;
+                    {
+                        mT__26();
+                    }
+                    break;
                 case 9:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:58: T__27
-                {
-                    mT__27();
-                }
-                break;
+                    {
+                        mT__27();
+                    }
+                    break;
                 case 10:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:64: T__28
-                {
-                    mT__28();
-                }
-                break;
+                    {
+                        mT__28();
+                    }
+                    break;
                 case 11:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:70: T__29
-                {
-                    mT__29();
-                }
-                break;
+                    {
+                        mT__29();
+                    }
+                    break;
                 case 12:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:76: T__30
-                {
-                    mT__30();
-                }
-                break;
+                    {
+                        mT__30();
+                    }
+                    break;
                 case 13:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:82: T__31
-                {
-                    mT__31();
-                }
-                break;
+                    {
+                        mT__31();
+                    }
+                    break;
                 case 14:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:88: T__32
-                {
-                    mT__32();
-                }
-                break;
+                    {
+                        mT__32();
+                    }
+                    break;
                 case 15:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:94: T__33
-                {
-                    mT__33();
-                }
-                break;
+                    {
+                        mT__33();
+                    }
+                    break;
                 case 16:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:100: T__34
-                {
-                    mT__34();
-                }
-                break;
+                    {
+                        mT__34();
+                    }
+                    break;
                 case 17:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:106: T__35
-                {
-                    mT__35();
-                }
-                break;
+                    {
+                        mT__35();
+                    }
+                    break;
                 case 18:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:112: T__36
-                {
-                    mT__36();
-                }
-                break;
+                    {
+                        mT__36();
+                    }
+                    break;
                 case 19:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:118: T__37
-                {
-                    mT__37();
-                }
-                break;
+                    {
+                        mT__37();
+                    }
+                    break;
                 case 20:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:124: T__38
-                {
-                    mT__38();
-                }
-                break;
+                    {
+                        mT__38();
+                    }
+                    break;
                 case 21:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:130: T__39
-                {
-                    mT__39();
-                }
-                break;
+                    {
+                        mT__39();
+                    }
+                    break;
                 case 22:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:136: T__40
-                {
-                    mT__40();
-                }
-                break;
+                    {
+                        mT__40();
+                    }
+                    break;
                 case 23:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:142: T__41
-                {
-                    mT__41();
-                }
-                break;
+                    {
+                        mT__41();
+                    }
+                    break;
                 case 24:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:148: T__42
-                {
-                    mT__42();
-                }
-                break;
+                    {
+                        mT__42();
+                    }
+                    break;
                 case 25:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:154: T__43
-                {
-                    mT__43();
-                }
-                break;
+                    {
+                        mT__43();
+                    }
+                    break;
                 case 26:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:160: T__44
-                {
-                    mT__44();
-                }
-                break;
+                    {
+                        mT__44();
+                    }
+                    break;
                 case 27:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:166: T__45
-                {
-                    mT__45();
-                }
-                break;
+                    {
+                        mT__45();
+                    }
+                    break;
                 case 28:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:172: T__46
-                {
-                    mT__46();
-                }
-                break;
+                    {
+                        mT__46();
+                    }
+                    break;
                 case 29:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:178: T__47
-                {
-                    mT__47();
-                }
-                break;
+                    {
+                        mT__47();
+                    }
+                    break;
                 case 30:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:184: T__48
-                {
-                    mT__48();
-                }
-                break;
+                    {
+                        mT__48();
+                    }
+                    break;
                 case 31:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:190: TRUE
-                {
-                    mTRUE();
-                }
-                break;
+                    {
+                        mTRUE();
+                    }
+                    break;
                 case 32:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:195: FALSE
-                {
-                    mFALSE();
-                }
-                break;
+                    {
+                        mFALSE();
+                    }
+                    break;
                 case 33:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:201: ID
-                {
-                    mID();
-                }
-                break;
+                    {
+                        mID();
+                    }
+                    break;
                 case 34:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:204: INTEGER
-                {
-                    mINTEGER();
-                }
-                break;
+                    {
+                        mINTEGER();
+                    }
+                    break;
                 case 35:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:212: FLOAT
-                {
-                    mFLOAT();
-                }
-                break;
+                    {
+                        mFLOAT();
+                    }
+                    break;
                 case 36:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:218: STRING
-                {
-                    mSTRING();
-                }
-                break;
+                    {
+                        mSTRING();
+                    }
+                    break;
                 case 37:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:225: DATETIME
-                {
-                    mDATETIME();
-                }
-                break;
+                    {
+                        mDATETIME();
+                    }
+                    break;
                 case 38:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:234: NAME
-                {
-                    mNAME();
-                }
-                break;
+                    {
+                        mNAME();
+                    }
+                    break;
                 case 39:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:239: E
-                {
-                    mE();
-                }
-                break;
+                    {
+                        mE();
+                    }
+                    break;
                 case 40:
                     // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:1:241: WS
-                {
-                    mWS();
-                }
-                break;
+                    {
+                        mWS();
+                    }
+                    break;
             }
         }
 

@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(Namespace))]
     public class NamespaceInspector : Inspector
     {
-        public NamespaceInspector(Metadata metadata) : base(metadata) {}
+        public NamespaceInspector(Metadata metadata) : base(metadata) { }
 
         protected override float GetHeight(float width, GUIContent label)
         {
@@ -15,7 +15,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var newValue = (Namespace)EditorGUI.TextField(position, ((Namespace)metadata.value)?.FullName);
 

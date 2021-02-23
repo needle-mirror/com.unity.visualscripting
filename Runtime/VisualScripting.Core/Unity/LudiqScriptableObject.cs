@@ -60,15 +60,15 @@ namespace Unity.VisualScripting
             Serialization.isUnitySerializing = false;
         }
 
-        protected virtual void OnBeforeSerialize() {}
+        protected virtual void OnBeforeSerialize() { }
 
-        protected virtual void OnAfterSerialize() {}
+        protected virtual void OnAfterSerialize() { }
 
-        protected virtual void OnBeforeDeserialize() {}
+        protected virtual void OnBeforeDeserialize() { }
 
-        protected virtual void OnAfterDeserialize() {}
+        protected virtual void OnAfterDeserialize() { }
 
-        protected virtual void OnPostDeserializeInEditor() {}
+        protected virtual void OnPostDeserializeInEditor() { }
 
         protected virtual void ShowData()
         {

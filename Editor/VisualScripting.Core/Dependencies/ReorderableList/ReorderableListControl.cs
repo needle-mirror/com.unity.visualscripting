@@ -815,7 +815,7 @@ namespace Unity.VisualScripting.ReorderableList
         private void DrawListItem(Rect position, IReorderableListAdaptor adaptor, int itemIndex)
         {
             var isRepainting = Event.current.type == EventType.Repaint;
-            var isVisible = (position.y<_visibleRect.yMax && position.yMax> _visibleRect.y);
+            var isVisible = (position.y < _visibleRect.yMax && position.yMax > _visibleRect.y);
             var isDraggable = _allowReordering && adaptor.CanDrag(itemIndex);
 
             var itemContentPosition = position;
@@ -1191,15 +1191,15 @@ namespace Unity.VisualScripting.ReorderableList
                                 }
                             }
                             break;
-/* DEBUG
-                        case EventType.Repaint:
-                            GUI.color = Color.red;
-                            GUI.DrawTexture(new Rect(0, lastMidPoint, 10, 1), EditorGUIUtility.whiteTexture);
-                            GUI.color = Color.yellow;
-                            GUI.DrawTexture(new Rect(5, itemPosition.y + itemPosition.height / 2f, 10, 1), EditorGUIUtility.whiteTexture);
-                            GUI.color = Color.white;
-                            break;
-//*/
+                            /* DEBUG
+                                                    case EventType.Repaint:
+                                                        GUI.color = Color.red;
+                                                        GUI.DrawTexture(new Rect(0, lastMidPoint, 10, 1), EditorGUIUtility.whiteTexture);
+                                                        GUI.color = Color.yellow;
+                                                        GUI.DrawTexture(new Rect(5, itemPosition.y + itemPosition.height / 2f, 10, 1), EditorGUIUtility.whiteTexture);
+                                                        GUI.color = Color.white;
+                                                        break;
+                            //*/
                     }
                 }
             }
@@ -1237,13 +1237,13 @@ namespace Unity.VisualScripting.ReorderableList
                 }
 
                 DrawFloatingListItem(adaptor, targetSlotPosition);
-/* DEBUG
-                if (eventType == EventType.Repaint) {
-                    GUI.color = Color.blue;
-                    GUI.DrawTexture(new Rect(100, lastMidPoint, 20, 1), EditorGUIUtility.whiteTexture);
-                    GUI.color = Color.white;
-                }
-//*/
+                /* DEBUG
+                                if (eventType == EventType.Repaint) {
+                                    GUI.color = Color.blue;
+                                    GUI.DrawTexture(new Rect(100, lastMidPoint, 20, 1), EditorGUIUtility.whiteTexture);
+                                    GUI.color = Color.white;
+                                }
+                //*/
             }
             else
             {

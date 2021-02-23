@@ -28,7 +28,7 @@ namespace Unity.VisualScripting
 
         public static class Styles
         {
-            static Styles() {}
+            static Styles() { }
 
             public static readonly float invocationSpacing = 7;
             public static readonly float addButtonWidth = 29;

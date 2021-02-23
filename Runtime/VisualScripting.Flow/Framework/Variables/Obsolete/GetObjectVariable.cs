@@ -8,9 +8,9 @@ namespace Unity.VisualScripting
     [UnitSurtitle("Object")]
     public sealed class GetObjectVariable : GetVariableUnit, IObjectVariableUnit
     {
-        public GetObjectVariable() : base() {}
+        public GetObjectVariable() : base() { }
 
-        public GetObjectVariable(string name) : base(name) {}
+        public GetObjectVariable(string name) : base(name) { }
 
         /// <summary>
         /// The source of the variable.

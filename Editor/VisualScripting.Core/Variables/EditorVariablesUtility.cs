@@ -50,40 +50,40 @@ namespace Unity.VisualScripting
                     break;
 
                 case VariableKind.Graph:
-                {
-                    source = Variables.Graph(reference);
-                    break;
-                }
+                    {
+                        source = Variables.Graph(reference);
+                        break;
+                    }
 
                 case VariableKind.Object:
-                {
-                    if (reference.gameObject != null)
                     {
-                        source = Variables.Object(reference.gameObject);
+                        if (reference.gameObject != null)
+                        {
+                            source = Variables.Object(reference.gameObject);
+                        }
+                        break;
                     }
-                    break;
-                }
 
                 case VariableKind.Scene:
-                {
-                    if (reference.scene != null && Variables.ExistInScene(reference.scene))
                     {
-                        source = Variables.Scene(reference.scene);
+                        if (reference.scene != null && Variables.ExistInScene(reference.scene))
+                        {
+                            source = Variables.Scene(reference.scene);
+                        }
+                        break;
                     }
-                    break;
-                }
 
                 case VariableKind.Application:
-                {
-                    source = Variables.Application;
-                    break;
-                }
+                    {
+                        source = Variables.Application;
+                        break;
+                    }
 
                 case VariableKind.Saved:
-                {
-                    source = Variables.Saved;
-                    break;
-                }
+                    {
+                        source = Variables.Saved;
+                        break;
+                    }
 
                 default:
                     throw new UnexpectedEnumValueException<VariableKind>(kind);

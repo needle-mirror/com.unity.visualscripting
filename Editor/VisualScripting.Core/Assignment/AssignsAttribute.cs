@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public sealed class AssignsAttribute : Attribute
     {
-        public AssignsAttribute() {}
+        public AssignsAttribute() { }
 
         public AssignsAttribute(string memberName)
         {

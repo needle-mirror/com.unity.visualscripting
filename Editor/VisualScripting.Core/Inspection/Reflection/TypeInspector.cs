@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(Type))]
     public sealed class TypeInspector : Inspector
     {
-        public TypeInspector(Metadata metadata) : base(metadata) {}
+        public TypeInspector(Metadata metadata) : base(metadata) { }
 
         public override void Initialize()
         {
@@ -35,7 +35,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var fieldPosition = new Rect
                 (

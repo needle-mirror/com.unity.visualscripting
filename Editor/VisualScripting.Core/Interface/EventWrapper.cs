@@ -17,9 +17,9 @@ namespace Unity.VisualScripting
             this.controlHint = controlHint;
         }
 
-        public EventWrapper(object controlHint) : this(controlHint?.GetHashCode() ?? 0) {}
+        public EventWrapper(object controlHint) : this(controlHint?.GetHashCode() ?? 0) { }
 
-        public EventWrapper() : this("EventWrapper") {}
+        public EventWrapper() : this("EventWrapper") { }
 
         public event Action mouseCaptured;
 

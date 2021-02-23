@@ -9,9 +9,9 @@ namespace Unity.VisualScripting
 
     public abstract class VariableUnitOption<TVariableUnit> : UnitOption<TVariableUnit>, IVariableUnitOption where TVariableUnit : VariableUnit
     {
-        protected VariableUnitOption() : base() {}
+        protected VariableUnitOption() : base() { }
 
-        protected VariableUnitOption(TVariableUnit unit) : base(unit) {}
+        protected VariableUnitOption(TVariableUnit unit) : base(unit) { }
 
         protected bool hasDefaultName => !string.IsNullOrEmpty(unit.defaultName);
 

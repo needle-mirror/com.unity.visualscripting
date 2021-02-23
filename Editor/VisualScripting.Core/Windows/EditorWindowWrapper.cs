@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
 {
     public abstract class EditorWindowWrapper
     {
-        protected EditorWindowWrapper() {}
+        protected EditorWindowWrapper() { }
 
         public WrappedEditorWindow window { get; private set; }
 
@@ -24,7 +24,7 @@ namespace Unity.VisualScripting
             OnShow(); // HACK: Can't use WrappedEditorWindow.Awake/OnEnable, because it's called before we set the wrapper.
         }
 
-        protected virtual void ConfigureWindow() {}
+        protected virtual void ConfigureWindow() { }
 
         public void Close()
         {
@@ -41,12 +41,12 @@ namespace Unity.VisualScripting
             window = null;
         }
 
-        public virtual void OnShow() {}
-        public virtual void Update() {}
-        public virtual void OnGUI() {}
-        public virtual void OnClose() {}
-        public virtual void OnFocus() {}
-        public virtual void OnLostFocus() {}
+        public virtual void OnShow() { }
+        public virtual void Update() { }
+        public virtual void OnGUI() { }
+        public virtual void OnClose() { }
+        public virtual void OnFocus() { }
+        public virtual void OnLostFocus() { }
 
         protected void Show()
         {

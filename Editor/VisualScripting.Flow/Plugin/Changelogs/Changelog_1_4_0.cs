@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltFlow.ID)]
     internal class Changelog_1_4_0 : PluginChangelog
     {
-        public Changelog_1_4_0(Plugin plugin) : base(plugin) {}
+        public Changelog_1_4_0(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0";
         public override DateTime date => new DateTime(2018, 07, 13);
@@ -52,7 +52,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltFlow.ID)]
     internal class Changelog_1_4_0f4 : PluginChangelog
     {
-        public Changelog_1_4_0f4(Plugin plugin) : base(plugin) {}
+        public Changelog_1_4_0f4(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f4";
         public override DateTime date => new DateTime(2018, 08, 02);
@@ -71,7 +71,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltFlow.ID)]
     internal class Changelog_1_4_0f5 : PluginChangelog
     {
-        public Changelog_1_4_0f5(Plugin plugin) : base(plugin) {}
+        public Changelog_1_4_0f5(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f5";
         public override DateTime date => new DateTime(2018, 08, 14);
@@ -88,7 +88,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltFlow.ID)]
     internal class Changelog_1_4_0f6 : PluginChangelog
     {
-        public Changelog_1_4_0f6(Plugin plugin) : base(plugin) {}
+        public Changelog_1_4_0f6(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f6";
         public override DateTime date => new DateTime(2018, 09, 06);
@@ -109,7 +109,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltFlow.ID)]
     internal class Changelog_1_4_0f10 : PluginChangelog
     {
-        public Changelog_1_4_0f10(Plugin plugin) : base(plugin) {}
+        public Changelog_1_4_0f10(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f10";
         public override DateTime date => new DateTime(2018, 10, 29);
@@ -129,7 +129,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltFlow.ID)]
     internal class Changelog_1_4_0f11 : PluginChangelog
     {
-        public Changelog_1_4_0f11(Plugin plugin) : base(plugin) {}
+        public Changelog_1_4_0f11(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f11";
         public override DateTime date => new DateTime(2018, 11, 08);

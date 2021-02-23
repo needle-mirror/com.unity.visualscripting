@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Analyser(typeof(INesterUnit))]
     public class NesterUnitAnalyser<TNesterUnit> : UnitAnalyser<TNesterUnit> where TNesterUnit : class, INesterUnit
     {
-        public NesterUnitAnalyser(GraphReference reference, TNesterUnit unit) : base(reference, unit) {}
+        public NesterUnitAnalyser(GraphReference reference, TNesterUnit unit) : base(reference, unit) { }
 
         protected override IEnumerable<Warning> Warnings()
         {

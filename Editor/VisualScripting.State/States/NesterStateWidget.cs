@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     public abstract class NesterStateWidget<TNesterState> : StateWidget<TNesterState>
         where TNesterState : class, INesterState
     {
-        protected NesterStateWidget(StateCanvas canvas, TNesterState state) : base(canvas, state) {}
+        protected NesterStateWidget(StateCanvas canvas, TNesterState state) : base(canvas, state) { }
 
         protected override IEnumerable<DropdownOption> contextOptions
         {

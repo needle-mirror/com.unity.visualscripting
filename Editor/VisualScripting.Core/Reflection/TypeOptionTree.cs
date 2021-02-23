@@ -14,7 +14,7 @@ namespace Unity.VisualScripting
             Namespaces
         }
 
-        private TypeOptionTree() : base(new GUIContent("Type")) {}
+        private TypeOptionTree() : base(new GUIContent("Type")) { }
 
         public override IFuzzyOption Option(object item)
         {

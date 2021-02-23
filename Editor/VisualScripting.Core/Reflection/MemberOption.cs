@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [FuzzyOption(typeof(Member))]
     public sealed class MemberOption : DocumentedOption<Member>
     {
-        public MemberOption(Member member) : this(member, ActionDirection.Any, false) {}
+        public MemberOption(Member member) : this(member, ActionDirection.Any, false) { }
 
         public MemberOption(Member member, ActionDirection direction, bool expectingBoolean)
         {

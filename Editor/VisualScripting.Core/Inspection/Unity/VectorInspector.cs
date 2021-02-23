@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
 {
     public abstract class VectorInspector : Inspector
     {
-        protected VectorInspector(Metadata metadata) : base(metadata) {}
+        protected VectorInspector(Metadata metadata) : base(metadata) { }
 
         protected override float GetHeight(float width, GUIContent label)
         {

@@ -16,7 +16,7 @@ namespace Unity.VisualScripting
 
         private readonly PropertyInfo propertyInfo;
 
-        public void Compile() {}
+        public void Compile() { }
 
         public object GetValue(object target)
         {

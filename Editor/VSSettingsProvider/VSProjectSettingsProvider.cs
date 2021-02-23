@@ -3,12 +3,12 @@ using UnityEditor;
 
 namespace Unity.VisualScripting
 {
-    public class VSSettingsProviderEditor : Editor
+    public class VSProjectSettingsProvider : Editor
     {
         [SettingsProvider]
         public static SettingsProvider CreateProjectSettingProvider()
         {
-            return new VSSettingsProvider();
+            return new VSProjectSettingsProviderView();
         }
     }
 }

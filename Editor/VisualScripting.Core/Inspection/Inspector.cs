@@ -3,13 +3,33 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Callbacks;
 using UnityEngine;
+
 using Debug = UnityEngine.Debug;
+using UnityObject = UnityEngine.Object;
 
 namespace Unity.VisualScripting
 {
     public abstract class Inspector : IDisposable
     {
+        [OnOpenAsset(Int32.MinValue)]
+        public static bool OnOpenVFX(int instanceID, int line)
+        {
+            UnityObject obj = EditorUtility.InstanceIDToObject(instanceID);
+            GraphReference reference = null;
+            if (obj is IMacro macro)
+                reference = GraphReference.New(macro, true);
+            else if (obj is IGraphRoot root)
+                reference = GraphReference.New(root, false);
+            if (obj is IGraphNesterElement nesterElement)
+                reference = LudiqGraphsEditorUtility.editedContext.value.reference.ChildReference(nesterElement, false);
+            if (reference == null)
+                return false;
+            GraphWindow.OpenActive(reference);
+            return true;
+        }
+
         protected Inspector(Metadata metadata)
         {
             Ensure.That(nameof(metadata)).IsNotNull(metadata);
@@ -26,7 +46,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        public virtual void Initialize() {}  // For more flexibility in call order
+        public virtual void Initialize() { }  // For more flexibility in call order
         private Exception failure;
 
         protected float y;
@@ -38,7 +58,7 @@ namespace Unity.VisualScripting
 
         protected virtual bool indent => true;
 
-        public virtual void Dispose() {}
+        public virtual void Dispose() { }
 
         protected abstract float GetHeight(float width, GUIContent label);
 
@@ -99,10 +119,21 @@ namespace Unity.VisualScripting
 
                     EditorGUI.BeginDisabledGroup(editLocked);
 
-                    BeginProfiling("OnGUI");
+
                     y = drawerPosition.y;
-                    OnGUI(drawerPosition, ProcessLabel(metadata, label));
-                    EndProfiling("OnGUI");
+
+                    if (metadata.HasAttribute<EditorPrefAttribute>())
+                    {
+                        BeginProfiling("OnEditorPrefGUI");
+                        OnEditorPrefGUI(drawerPosition, ProcessLabel(metadata, label));
+                        EndProfiling("OnEditorPrefGUI");
+                    }
+                    else
+                    {
+                        BeginProfiling("OnGUI");
+                        OnGUI(drawerPosition, ProcessLabel(metadata, label));
+                        EndProfiling("OnGUI");
+                    }
 
                     EditorGUI.EndDisabledGroup();
 
@@ -156,6 +187,11 @@ namespace Unity.VisualScripting
         }
 
         protected abstract void OnGUI(Rect position, GUIContent label);
+
+        protected virtual void OnEditorPrefGUI(Rect position, GUIContent label)
+        {
+            throw new NotImplementedException($"The Inspector for the EditorPref of type {metadata.definedType} did not override OnEditorPrefGUI");
+        }
 
         internal static Stack<InspectorBlock> blockStack { get; private set; }
 
@@ -527,7 +563,7 @@ namespace Unity.VisualScripting
             return remainingPosition;
         }
 
-        private static void BeginBlock(Metadata metadata, Rect position)
+        public static void BeginBlock(Metadata metadata, Rect position)
         {
             EditorGUI.BeginChangeCheck();
             EditorGUI.BeginDisabledGroup(!metadata.isEditable);
@@ -535,7 +571,7 @@ namespace Unity.VisualScripting
             blockStack.Push(new InspectorBlock(metadata, position));
         }
 
-        public static Rect BeginBlock(Metadata metadata, Rect position, GUIContent label = null, GUIStyle labelStyle = null)
+        public static Rect BeginLabeledBlock(Metadata metadata, Rect position, GUIContent label = null, GUIStyle labelStyle = null)
         {
             BeginBlock(metadata, position);
             return PrefixLabel(metadata, position, label, labelStyle);

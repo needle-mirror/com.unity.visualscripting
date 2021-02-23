@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     public sealed class ControlConnection : UnitConnection<ControlOutput, ControlInput>, IUnitConnection
     {
         [Obsolete(Serialization.ConstructorWarning)]
-        public ControlConnection() : base() {}
+        public ControlConnection() : base() { }
 
         public ControlConnection(ControlOutput source, ControlInput destination) : base(source, destination)
         {

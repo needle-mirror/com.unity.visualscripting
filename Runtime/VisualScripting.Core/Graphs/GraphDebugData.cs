@@ -10,7 +10,7 @@ namespace Unity.VisualScripting
 
         IEnumerable<IGraphElementDebugData> IGraphDebugData.elementsData => elementsData.Values;
 
-        public GraphDebugData(IGraph definition) {}
+        public GraphDebugData(IGraph definition) { }
 
         public IGraphElementDebugData GetOrCreateElementData(IGraphElementWithDebugData element)
         {

@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Widget(typeof(FlowStateTransition))]
     public sealed class FlowStateTransitionWidget : NesterStateTransitionWidget<FlowStateTransition>, IDragAndDropHandler
     {
-        public FlowStateTransitionWidget(StateCanvas canvas, FlowStateTransition transition) : base(canvas, transition) {}
+        public FlowStateTransitionWidget(StateCanvas canvas, FlowStateTransition transition) : base(canvas, transition) { }
 
         #region Drag & Drop
 

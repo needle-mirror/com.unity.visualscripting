@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
 {
     public class UnknownInspector : Inspector
     {
-        public UnknownInspector(Metadata metadata) : base(metadata) {}
+        public UnknownInspector(Metadata metadata) : base(metadata) { }
 
         private string GetMessage(GUIContent label)
         {

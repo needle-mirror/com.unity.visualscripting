@@ -35,7 +35,7 @@ If a custom title is not assigned for the transition, the name and description o
 
 By default, transition labels are always visible. If this takes up too much screen real-estate in the graph,  change the display trigger under **Unity** > **Preferences** **&gt; Visual Scripting** &gt; **State Graphs** &gt; **Transitions Reveal**.
 
-![](images/bolt-transitions9.gif)
+![](images/vs-state-graphs-transitions-reveal.png)
 
 ###Self transitions for a state
 

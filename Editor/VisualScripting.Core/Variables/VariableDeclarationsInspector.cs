@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(VariableDeclarations))]
     public class VariableDeclarationsInspector : Inspector
     {
-        public VariableDeclarationsInspector(Metadata metadata) : base(metadata) {}
+        public VariableDeclarationsInspector(Metadata metadata) : base(metadata) { }
 
         public override void Initialize()
         {

@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(LayerMask))]
     public class LayerMaskInspector : Inspector
     {
-        public LayerMaskInspector(Metadata metadata) : base(metadata) {}
+        public LayerMaskInspector(Metadata metadata) : base(metadata) { }
 
         protected override float GetHeight(float width, GUIContent label)
         {
@@ -45,7 +45,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var newValue = InternalEditorUtility.ConcatenatedLayersMaskToLayerMask(EditorGUI.MaskField
                 (

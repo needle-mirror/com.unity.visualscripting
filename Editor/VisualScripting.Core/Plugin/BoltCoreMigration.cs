@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal abstract class BoltCoreMigration : PluginMigration
     {
-        protected BoltCoreMigration(Plugin plugin) : base(plugin) {}
+        protected BoltCoreMigration(Plugin plugin) : base(plugin) { }
 
         protected void AddDefaultTypeOption(Type typeOption)
         {

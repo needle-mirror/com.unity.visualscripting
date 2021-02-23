@@ -37,7 +37,7 @@ namespace Unity.VisualScripting
             DestroyRuntimeDeclarations(); // Required because assemblies don't reload on play mode exit
         }
 
-        public static void OnExitEditMode() {}
+        public static void OnExitEditMode() { }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void OnEnterPlayMode()
@@ -45,7 +45,7 @@ namespace Unity.VisualScripting
             CreateRuntimeDeclarations();
         }
 
-        internal static void OnExitPlayMode() {}
+        internal static void OnExitPlayMode() { }
 
         private static void CreateRuntimeDeclarations()
         {

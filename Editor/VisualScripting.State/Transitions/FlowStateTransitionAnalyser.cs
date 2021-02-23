@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Analyser(typeof(FlowStateTransition))]
     public class FlowStateTransitionAnalyser : NesterStateTransitionAnalyser<FlowStateTransition>
     {
-        public FlowStateTransitionAnalyser(GraphReference reference, FlowStateTransition transition) : base(reference, transition) {}
+        public FlowStateTransitionAnalyser(GraphReference reference, FlowStateTransition transition) : base(reference, transition) { }
 
         protected override bool IsTraversed()
         {

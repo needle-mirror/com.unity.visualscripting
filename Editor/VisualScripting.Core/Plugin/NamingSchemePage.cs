@@ -37,10 +37,10 @@ namespace Unity.VisualScripting
 
             LudiqGUI.Space(-1);
             GUILayout.BeginVertical(Styles.modeBox);
-            GUILayout.Label(new GUIContent(" Transform: Get Position", typeof(Transform).Icon() ? [IconSize.Small]), Styles.example);
-            GUILayout.Label(new GUIContent(" Integer", typeof(int).Icon() ? [IconSize.Small]), Styles.example);
-            GUILayout.Label(new GUIContent(" List of Game Object", typeof(List<GameObject>).Icon() ? [IconSize.Small]), Styles.example);
-            GUILayout.Label(new GUIContent(" Rigidbody: Add Force (Force)", typeof(Rigidbody).Icon() ? [IconSize.Small]), Styles.example);
+            GUILayout.Label(new GUIContent(" Transform: Get Position", typeof(Transform).Icon()?[IconSize.Small]), Styles.example);
+            GUILayout.Label(new GUIContent(" Integer", typeof(int).Icon()?[IconSize.Small]), Styles.example);
+            GUILayout.Label(new GUIContent(" List of Game Object", typeof(List<GameObject>).Icon()?[IconSize.Small]), Styles.example);
+            GUILayout.Label(new GUIContent(" Rigidbody: Add Force (Force)", typeof(Rigidbody).Icon()?[IconSize.Small]), Styles.example);
             LudiqGUI.EndVertical();
             LudiqGUI.EndVertical();
 
@@ -57,10 +57,10 @@ namespace Unity.VisualScripting
 
             LudiqGUI.Space(-1);
             GUILayout.BeginVertical(Styles.modeBox);
-            GUILayout.Label(new GUIContent(" Transform.position (Get)", typeof(Transform).Icon() ? [IconSize.Small]), Styles.example);
-            GUILayout.Label(new GUIContent(" int", typeof(int).Icon() ? [IconSize.Small]), Styles.example);
-            GUILayout.Label(new GUIContent(" List<GameObject>", typeof(List<GameObject>).Icon() ? [IconSize.Small]), Styles.example);
-            GUILayout.Label(new GUIContent(" Rigidbody.AddForce(force)", typeof(Rigidbody).Icon() ? [IconSize.Small]), Styles.example);
+            GUILayout.Label(new GUIContent(" Transform.position (Get)", typeof(Transform).Icon()?[IconSize.Small]), Styles.example);
+            GUILayout.Label(new GUIContent(" int", typeof(int).Icon()?[IconSize.Small]), Styles.example);
+            GUILayout.Label(new GUIContent(" List<GameObject>", typeof(List<GameObject>).Icon()?[IconSize.Small]), Styles.example);
+            GUILayout.Label(new GUIContent(" Rigidbody.AddForce(force)", typeof(Rigidbody).Icon()?[IconSize.Small]), Styles.example);
             LudiqGUI.EndVertical();
             LudiqGUI.EndVertical();
 

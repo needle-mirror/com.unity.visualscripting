@@ -4,7 +4,7 @@ namespace Unity.VisualScripting
         where TTarget : class
         where TDescription : class, IDescription, new()
     {
-        protected Descriptor(TTarget target) : base(target, new TDescription()) {}
+        protected Descriptor(TTarget target) : base(target, new TDescription()) { }
 
         public override void ValueChanged()
         {

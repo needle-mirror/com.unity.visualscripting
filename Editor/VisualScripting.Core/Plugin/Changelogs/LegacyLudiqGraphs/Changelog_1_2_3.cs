@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqGraphsChangelog_1_2_3 : PluginChangelog
     {
-        public LudiqGraphsChangelog_1_2_3(Plugin plugin) : base(plugin) {}
+        public LudiqGraphsChangelog_1_2_3(Plugin plugin) : base(plugin) { }
 
         public override string description => null;
         public override SemanticVersion version => "1.2.3";

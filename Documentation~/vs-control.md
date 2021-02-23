@@ -21,7 +21,7 @@ Branch on the value of an enum, a string, or an integer. These units are called 
 
 To switch on an enum, decide on the type of the enum. The branch output ports appears.
 
-![](images/bolt-control2.gif)
+![](images/vs-rendering-path.png)
 
 To switch on a string or number, create each branch option in the graph inspector.
 
@@ -79,7 +79,7 @@ For example, the following graph outputs three messages to the console:
 To access the key and value from dictionaries in the loop, check the Dictionary box.
 
 
-![](images/bolt-controls8.gif)
+![](images/vs-dictionary-enabled.png)
 
 ####For Loop
 

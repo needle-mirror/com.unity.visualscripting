@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
 {
     public abstract class AccessorInfoStubWriter<TAccessor> : MemberInfoStubWriter<TAccessor> where TAccessor : MemberInfo
     {
-        protected AccessorInfoStubWriter(TAccessor accessorInfo) : base(accessorInfo) {}
+        protected AccessorInfoStubWriter(TAccessor accessorInfo) : base(accessorInfo) { }
 
         protected abstract IOptimizedAccessor GetOptimizedAccessor(TAccessor accessorInfo);
 

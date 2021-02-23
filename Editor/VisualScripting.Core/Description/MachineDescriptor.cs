@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
         where TMachine : UnityObject, IMachine
         where TMachineDescription : class, IMachineDescription, new()
     {
-        protected MachineDescriptor(TMachine target) : base(target) {}
+        protected MachineDescriptor(TMachine target) : base(target) { }
 
         protected TMachine machine => target;
 

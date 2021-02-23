@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     [Widget(typeof(ValueConnection))]
     public sealed class ValueConnectionWidget : UnitConnectionWidget<ValueConnection>
     {
-        public ValueConnectionWidget(FlowCanvas canvas, ValueConnection connection) : base(canvas, connection) {}
+        public ValueConnectionWidget(FlowCanvas canvas, ValueConnection connection) : base(canvas, connection) { }
 
         private new ValueConnection.DebugData ConnectionDebugData => GetDebugData<ValueConnection.DebugData>();
 
@@ -43,7 +43,7 @@ namespace Unity.VisualScripting
                         value = Flow.Predict(connection.source, reference);
                     }
 
-                    var label = new GUIContent(value.ToShortString(), Icons.Type(value?.GetType()) ? [IconSize.Small]);
+                    var label = new GUIContent(value.ToShortString(), Icons.Type(value?.GetType())?[IconSize.Small]);
                     var labelSize = Styles.prediction.CalcSize(label);
                     var labelPosition = new Rect(position.position - labelSize / 2, labelSize);
 
@@ -117,14 +117,14 @@ namespace Unity.VisualScripting
 
         protected override Vector2 GetDropletSize()
         {
-            return BoltFlow.Icons.valuePortConnected ? [12].Size() ?? 12 * Vector3.one;
+            return BoltFlow.Icons.valuePortConnected?[12].Size() ?? 12 * Vector3.one;
         }
 
         protected override void DrawDroplet(Rect position)
         {
             if (BoltFlow.Icons.valuePortConnected != null)
             {
-                GUI.DrawTexture(position, BoltFlow.Icons.valuePortConnected ? [12]);
+                GUI.DrawTexture(position, BoltFlow.Icons.valuePortConnected?[12]);
             }
         }
 

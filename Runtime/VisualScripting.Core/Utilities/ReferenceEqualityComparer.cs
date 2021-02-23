@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     // http://source.roslyn.io/#microsoft.codeanalysis/InternalUtilities/ReferenceEqualityComparer.cs
     public class ReferenceEqualityComparer : IEqualityComparer<object>
     {
-        private ReferenceEqualityComparer() {}
+        private ReferenceEqualityComparer() { }
 
         bool IEqualityComparer<object>.Equals(object a, object b)
         {
@@ -29,7 +29,7 @@ namespace Unity.VisualScripting
 
     public class ReferenceEqualityComparer<T> : IEqualityComparer<T>
     {
-        private ReferenceEqualityComparer() {}
+        private ReferenceEqualityComparer() { }
 
         bool IEqualityComparer<T>.Equals(T a, T b)
         {

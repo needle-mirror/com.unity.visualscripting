@@ -8,7 +8,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(Formula))]
     public class MultiInputUnitAlphabeticDescriptor : UnitDescriptor<IMultiInputUnit>
     {
-        public MultiInputUnitAlphabeticDescriptor(IMultiInputUnit unit) : base(unit) {}
+        public MultiInputUnitAlphabeticDescriptor(IMultiInputUnit unit) : base(unit) { }
 
         protected override void DefinedPort(IUnitPort port, UnitPortDescription description)
         {
@@ -34,9 +34,9 @@ namespace Unity.VisualScripting
     [FuzzyOption(typeof(Formula))]
     public class MultiInputUnitAlphabeticOption : UnitOption<IMultiInputUnit>
     {
-        public MultiInputUnitAlphabeticOption() : base() {}
+        public MultiInputUnitAlphabeticOption() : base() { }
 
-        public MultiInputUnitAlphabeticOption(IMultiInputUnit unit) : base(unit) {}
+        public MultiInputUnitAlphabeticOption(IMultiInputUnit unit) : base(unit) { }
 
         protected override bool ShowValueInputsInFooter()
         {

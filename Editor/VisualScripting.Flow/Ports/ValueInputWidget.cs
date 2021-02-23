@@ -16,9 +16,9 @@ namespace Unity.VisualScripting
 
         public override Color color { get; }
 
-        protected override Texture handleTextureConnected => BoltFlow.Icons.valuePortConnected ? [12];
+        protected override Texture handleTextureConnected => BoltFlow.Icons.valuePortConnected?[12];
 
-        protected override Texture handleTextureUnconnected => BoltFlow.Icons.valuePortUnconnected ? [12];
+        protected override Texture handleTextureUnconnected => BoltFlow.Icons.valuePortUnconnected?[12];
 
         public override Metadata FetchInspectorMetadata()
         {

@@ -1,4 +1,4 @@
 namespace Unity.VisualScripting
 {
-    public class GraphDescription : Description, IGraphDescription {}
+    public class GraphDescription : Description, IGraphDescription { }
 }

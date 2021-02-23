@@ -194,32 +194,32 @@ namespace Unity.VisualScripting
             return HashUtility.GetHashCode(major, minor, patch);
         }
 
-        public static bool operator==(SemanticVersion a, SemanticVersion b)
+        public static bool operator ==(SemanticVersion a, SemanticVersion b)
         {
             return a.Equals(b);
         }
 
-        public static bool operator!=(SemanticVersion a, SemanticVersion b)
+        public static bool operator !=(SemanticVersion a, SemanticVersion b)
         {
             return !(a == b);
         }
 
-        public static bool operator<(SemanticVersion a, SemanticVersion b)
+        public static bool operator <(SemanticVersion a, SemanticVersion b)
         {
             return a.CompareTo(b) < 0;
         }
 
-        public static bool operator>(SemanticVersion a, SemanticVersion b)
+        public static bool operator >(SemanticVersion a, SemanticVersion b)
         {
             return a.CompareTo(b) > 0;
         }
 
-        public static bool operator<=(SemanticVersion a, SemanticVersion b)
+        public static bool operator <=(SemanticVersion a, SemanticVersion b)
         {
             return a.CompareTo(b) <= 0;
         }
 
-        public static bool operator>=(SemanticVersion a, SemanticVersion b)
+        public static bool operator >=(SemanticVersion a, SemanticVersion b)
         {
             return a.CompareTo(b) >= 0;
         }

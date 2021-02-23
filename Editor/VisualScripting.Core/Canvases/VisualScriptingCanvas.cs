@@ -169,7 +169,7 @@ namespace Unity.VisualScripting
 
         #region Lifecycle
 
-        public virtual void Open() {}
+        public virtual void Open() { }
 
         public virtual void Close()
         {
@@ -307,7 +307,7 @@ namespace Unity.VisualScripting
             e.HandleCapture(isMouseOverBackground, isMouseOver);
         }
 
-        protected virtual void HandleHighPriorityInput() {}
+        protected virtual void HandleHighPriorityInput() { }
 
         protected void HandleWidgetInput()
         {
@@ -1068,7 +1068,7 @@ namespace Unity.VisualScripting
 
         #region Clipboard
 
-        public virtual void ShrinkCopyGroup(HashSet<IGraphElement> copyGroup) {}
+        public virtual void ShrinkCopyGroup(HashSet<IGraphElement> copyGroup) { }
 
         private DateTime lastPasteTime;
 
@@ -1178,7 +1178,7 @@ namespace Unity.VisualScripting
                 LudiqGUI.Dropdown
                     (
                         e.mousePosition,
-                        delegate(object _action)
+                        delegate (object _action)
                         {
                             delayCall += () =>
                             {
@@ -1214,7 +1214,17 @@ namespace Unity.VisualScripting
 
         public IEnumerable<IGraphElementWidget> alignableAndDistributable
         {
-            get { return selection.Select(element => this.Widget(element)).Where(element => element.canAlignAndDistribute); }
+            get
+            {
+                // [BOLT-1112]
+                // Filter elements with a null graph reference as deserialization may occurs while parsing the list.
+                // After deserialization elements are cleaned up before rebuilding the graph.
+                // see Graph.OnAfterDependenciesDeserialized
+                return selection
+                    .Where(element => element.graph != null)
+                    .Select(this.Widget)
+                    .Where(element => element.canAlignAndDistribute);
+            }
         }
 
         public void Align(AlignOperation operation)
@@ -1574,13 +1584,13 @@ namespace Unity.VisualScripting
             return false;
         }
 
-        public virtual void PerformDragAndDrop() {}
+        public virtual void PerformDragAndDrop() { }
 
-        public virtual void UpdateDragAndDrop() {}
+        public virtual void UpdateDragAndDrop() { }
 
-        public virtual void DrawDragAndDropPreview() {}
+        public virtual void DrawDragAndDropPreview() { }
 
-        public virtual void ExitDragAndDrop() {}
+        public virtual void ExitDragAndDrop() { }
 
         #endregion
 
@@ -1682,7 +1692,7 @@ namespace Unity.VisualScripting
                     delayedCalls.Enqueue(value);
                 }
             }
-            remove {}
+            remove { }
         }
 
         #endregion

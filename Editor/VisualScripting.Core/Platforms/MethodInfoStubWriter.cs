@@ -8,7 +8,7 @@ namespace Unity.VisualScripting
     [AotStubWriter(typeof(MethodInfo))]
     public class MethodInfoStubWriter : MethodBaseStubWriter<MethodInfo>
     {
-        public MethodInfoStubWriter(MethodInfo methodInfo) : base(methodInfo) {}
+        public MethodInfoStubWriter(MethodInfo methodInfo) : base(methodInfo) { }
 
         public override IEnumerable<CodeStatement> GetStubStatements()
         {

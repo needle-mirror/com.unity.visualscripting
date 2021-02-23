@@ -5,9 +5,9 @@ namespace Unity.VisualScripting
     [UnitShortTitle("Is Variable Defined")]
     public abstract class IsVariableDefinedUnit : VariableUnit
     {
-        protected IsVariableDefinedUnit() : base() {}
+        protected IsVariableDefinedUnit() : base() { }
 
-        protected IsVariableDefinedUnit(string defaultName) : base(defaultName) {}
+        protected IsVariableDefinedUnit(string defaultName) : base(defaultName) { }
 
         /// <summary>
         /// Whether the variable is defined.

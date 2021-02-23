@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(SelectOnEnum))]
     public class SelectOnEnumDescriptor : UnitDescriptor<SelectOnEnum>
     {
-        public SelectOnEnumDescriptor(SelectOnEnum unit) : base(unit) {}
+        public SelectOnEnumDescriptor(SelectOnEnum unit) : base(unit) { }
 
         protected override void DefinedPort(IUnitPort port, UnitPortDescription description)
         {

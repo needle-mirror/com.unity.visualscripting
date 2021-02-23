@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     [AotStubWriter(typeof(ConstructorInfo))]
     public class ConstructorInfoStubWriter : MethodBaseStubWriter<ConstructorInfo>
     {
-        public ConstructorInfoStubWriter(ConstructorInfo constructorInfo) : base(constructorInfo) {}
+        public ConstructorInfoStubWriter(ConstructorInfo constructorInfo) : base(constructorInfo) { }
 
         public override IEnumerable<CodeStatement> GetStubStatements()
         {

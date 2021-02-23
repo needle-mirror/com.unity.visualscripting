@@ -6,9 +6,9 @@ namespace Unity.VisualScripting
     [UnitSurtitle("Graph")]
     public sealed class IsGraphVariableDefined : IsVariableDefinedUnit, IGraphVariableUnit
     {
-        public IsGraphVariableDefined() : base() {}
+        public IsGraphVariableDefined() : base() { }
 
-        public IsGraphVariableDefined(string defaultName) : base(defaultName) {}
+        public IsGraphVariableDefined(string defaultName) : base(defaultName) { }
 
         protected override VariableDeclarations GetDeclarations(Flow flow)
         {

@@ -3,9 +3,9 @@ namespace Unity.VisualScripting
     [FuzzyOption(typeof(SetVariableUnit))]
     public class SetVariableUnitOption<TVariableUnit> : VariableUnitOption<TVariableUnit> where TVariableUnit : SetVariableUnit
     {
-        public SetVariableUnitOption() : base() {}
+        public SetVariableUnitOption() : base() { }
 
-        public SetVariableUnitOption(TVariableUnit unit) : base(unit) {}
+        public SetVariableUnitOption(TVariableUnit unit) : base(unit) { }
 
         public override string Kind()
         {

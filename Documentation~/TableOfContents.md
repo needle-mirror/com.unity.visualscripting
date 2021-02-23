@@ -10,7 +10,7 @@
 
 ​      *[Building for Mobile / Consoles](vs-aot.md)
 
-* [Basic Concepts in visual scripting](vs-concepts.md)
+* [Basic concepts in visual scripting](vs-concepts.md)
 
 ​      *[Units](vs-understanding-units.md)
 
@@ -18,7 +18,7 @@
 
 ​      *[Variables](vs-variables.md)
 
-​         *[Adding Variables](vs-adding-variables.md)
+​         *[Adding variables](vs-adding-variables.md)
 
 ​      *[Creating graphs](vs-creating-macro.md)
 
@@ -40,13 +40,13 @@
 
 ​      *[Using relations to debug](vs-relations.md)
 
-​      *[Predictive and Live Debugging](vs-debugging.md)
+​      *[Predictive and live debugging](vs-debugging.md)
 
 ​      *[Re-using scripts with super units](vs-super-units.md)
 
 ​         *[Creating a super unit](vs-creating-super-unit.md)
 
-​      *[Live Editing](vs-live.md)
+​      *[Live editing](vs-live.md)
 
 ​      *[Refactoring the script](vs-refactoring.md)
 
@@ -60,7 +60,7 @@
 
 ​         *[Creating a state unit](vs-creating-state-unit.md)
 
-* [Unit Reference](vs-units-reference.md)
+* [Unit reference](vs-units-reference.md)
 
 ​      *[This unit](vs-self.md)
 
@@ -74,4 +74,7 @@
 
 ​      *[Nulls unit](vs-nulls.md)
 
-​      *[Formula unit](vs-formula.md)
+​      *[Formula unit](vs-formula.md)     
+
+* [Developer's guide](vs-developers-guide.md)
+

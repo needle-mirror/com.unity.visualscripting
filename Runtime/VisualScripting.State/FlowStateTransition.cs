@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [SerializationVersion("A")]
     public sealed class FlowStateTransition : NesterStateTransition<FlowGraph, ScriptGraphAsset>, IGraphEventListener
     {
-        public FlowStateTransition() : base() {}
+        public FlowStateTransition() : base() { }
 
         public FlowStateTransition(IState source, IState destination) : base(source, destination)
         {

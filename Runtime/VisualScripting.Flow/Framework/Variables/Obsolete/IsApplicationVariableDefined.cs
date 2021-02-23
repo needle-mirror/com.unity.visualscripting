@@ -6,9 +6,9 @@ namespace Unity.VisualScripting
     [UnitSurtitle("Application")]
     public sealed class IsApplicationVariableDefined : IsVariableDefinedUnit, IApplicationVariableUnit
     {
-        public IsApplicationVariableDefined() : base() {}
+        public IsApplicationVariableDefined() : base() { }
 
-        public IsApplicationVariableDefined(string defaultName) : base(defaultName) {}
+        public IsApplicationVariableDefined(string defaultName) : base(defaultName) { }
 
         protected override VariableDeclarations GetDeclarations(Flow flow)
         {

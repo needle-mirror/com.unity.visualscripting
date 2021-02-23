@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
 {
     public sealed class InvalidInput : UnitPort<IUnitOutputPort, IUnitOutputPort, InvalidConnection>, IUnitInvalidPort, IUnitInputPort
     {
-        public InvalidInput(string key) : base(key) {}
+        public InvalidInput(string key) : base(key) { }
 
         public override IEnumerable<InvalidConnection> validConnections => unit?.graph?.invalidConnections.WithDestination(this) ?? Enumerable.Empty<InvalidConnection>();
 

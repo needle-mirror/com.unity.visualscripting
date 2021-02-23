@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     public abstract class BinaryOperatorHandler : OperatorHandler
     {
         protected BinaryOperatorHandler(string name, string verb, string symbol, string customMethodName)
-            : base(name, verb, symbol, customMethodName) {}
+            : base(name, verb, symbol, customMethodName) { }
 
         private readonly Dictionary<OperatorQuery, Func<object, object, object>> handlers = new Dictionary<OperatorQuery, Func<object, object, object>>();
         private readonly Dictionary<OperatorQuery, IOptimizedInvoker> userDefinedOperators = new Dictionary<OperatorQuery, IOptimizedInvoker>();

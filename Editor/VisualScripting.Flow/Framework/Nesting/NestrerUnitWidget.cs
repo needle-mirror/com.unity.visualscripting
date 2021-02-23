@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     public class NestrerUnitWidget<TNesterUnit> : UnitWidget<TNesterUnit>
         where TNesterUnit : class, INesterUnit
     {
-        public NestrerUnitWidget(FlowCanvas canvas, TNesterUnit unit) : base(canvas, unit) {}
+        public NestrerUnitWidget(FlowCanvas canvas, TNesterUnit unit) : base(canvas, unit) { }
 
         protected override IEnumerable<DropdownOption> contextOptions
         {

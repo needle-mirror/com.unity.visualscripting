@@ -2,7 +2,7 @@ namespace Unity.VisualScripting
 {
     public class SelectUnitDescriptor<T> : UnitDescriptor<SelectUnit<T>>
     {
-        public SelectUnitDescriptor(SelectUnit<T> unit) : base(unit) {}
+        public SelectUnitDescriptor(SelectUnit<T> unit) : base(unit) { }
 
         protected virtual string GetLabelForOption(T option)
         {

@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Widget(typeof(SuperState))]
     public sealed class SuperStateWidget : NesterStateWidget<SuperState>, IDragAndDropHandler
     {
-        public SuperStateWidget(StateCanvas canvas, SuperState state) : base(canvas, state) {}
+        public SuperStateWidget(StateCanvas canvas, SuperState state) : base(canvas, state) { }
 
         #region Drag & Drop
 

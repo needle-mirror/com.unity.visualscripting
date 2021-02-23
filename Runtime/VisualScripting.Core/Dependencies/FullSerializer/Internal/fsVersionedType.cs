@@ -32,12 +32,12 @@ namespace Unity.VisualScripting.FullSerializer.Internal
             return "fsVersionedType [ModelType=" + ModelType + ", VersionString=" + VersionString + ", Ancestors.Length=" + Ancestors.Length + "]";
         }
 
-        public static bool operator==(fsVersionedType a, fsVersionedType b)
+        public static bool operator ==(fsVersionedType a, fsVersionedType b)
         {
             return a.ModelType == b.ModelType;
         }
 
-        public static bool operator!=(fsVersionedType a, fsVersionedType b)
+        public static bool operator !=(fsVersionedType a, fsVersionedType b)
         {
             return a.ModelType != b.ModelType;
         }

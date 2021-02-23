@@ -3,9 +3,9 @@ namespace Unity.VisualScripting
     [FuzzyOption(typeof(InvokeMember))]
     public class InvokeMemberOption : MemberUnitOption<InvokeMember>
     {
-        public InvokeMemberOption() : base() {}
+        public InvokeMemberOption() : base() { }
 
-        public InvokeMemberOption(InvokeMember unit) : base(unit) {}
+        public InvokeMemberOption(InvokeMember unit) : base(unit) { }
 
         protected override ActionDirection direction => ActionDirection.Any;
 

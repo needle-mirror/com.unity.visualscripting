@@ -5,9 +5,9 @@ namespace Unity.VisualScripting
     [UnitShortTitle("Get Variable")]
     public abstract class GetVariableUnit : VariableUnit
     {
-        protected GetVariableUnit() : base() {}
+        protected GetVariableUnit() : base() { }
 
-        protected GetVariableUnit(string defaultName) : base(defaultName) {}
+        protected GetVariableUnit(string defaultName) : base(defaultName) { }
 
         /// <summary>
         /// The value of the variable.

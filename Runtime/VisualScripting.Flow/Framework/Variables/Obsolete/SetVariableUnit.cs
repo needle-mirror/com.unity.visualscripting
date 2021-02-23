@@ -5,9 +5,9 @@ namespace Unity.VisualScripting
     [UnitShortTitle("Set Variable")]
     public abstract class SetVariableUnit : VariableUnit
     {
-        protected SetVariableUnit() : base() {}
+        protected SetVariableUnit() : base() { }
 
-        protected SetVariableUnit(string defaultName) : base(defaultName) {}
+        protected SetVariableUnit(string defaultName) : base(defaultName) { }
 
         /// <summary>
         /// The entry point to assign the variable reference.

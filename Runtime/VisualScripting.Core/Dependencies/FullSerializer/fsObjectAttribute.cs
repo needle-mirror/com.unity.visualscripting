@@ -9,7 +9,7 @@ namespace Unity.VisualScripting.FullSerializer
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
     public class fsObjectAttribute : Attribute
     {
-        public fsObjectAttribute() {}
+        public fsObjectAttribute() { }
 
         public fsObjectAttribute(string versionString, params Type[] previousModels)
         {

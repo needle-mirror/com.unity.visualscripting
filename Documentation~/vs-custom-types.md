@@ -10,6 +10,4 @@ To use a non-Unity type in your graphs, add it from **Tools** &gt; **Bolt** &gt;
 
 For example, to use low-level graphics API calls, add the Unity Engine GL class, then click **Generate**.
 
-![](images/bolt-custom-types1.gif)
-
 To use a custom type from a custom assembly (like a third-party plugin), first add in the **Assembly Options**.

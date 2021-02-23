@@ -208,7 +208,6 @@ namespace Unity.VisualScripting
 
             if (wantedScriptChangesDuringPlay)
             {
-                Debug.LogWarning("Your Unity preferences are set to reload scripts during play mode. This causes instability in Visual Scripting plugins.\nPlease use: Preferences > General > Script Changes While Playing > Recompile After Finished Playing.");
                 LockReloadAssemblies();
             }
         }
@@ -230,7 +229,7 @@ namespace Unity.VisualScripting
 
         internal static void BeforeInitializeAfterPlugins()
         {
-            EditorApplication.pauseStateChanged += delegate(PauseState pauseState)
+            EditorApplication.pauseStateChanged += delegate (PauseState pauseState)
             {
                 switch (pauseState)
                 {
@@ -245,7 +244,7 @@ namespace Unity.VisualScripting
                 OnPauseChange();
             };
 
-            EditorApplication.playModeStateChanged += delegate(PlayModeStateChange stateChange)
+            EditorApplication.playModeStateChanged += delegate (PlayModeStateChange stateChange)
             {
                 switch (stateChange)
                 {

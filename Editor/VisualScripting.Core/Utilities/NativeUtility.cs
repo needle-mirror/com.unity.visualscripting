@@ -97,7 +97,7 @@ namespace Unity.VisualScripting
                     {
                         UnityEngine.Debug.Log($"Unloading module {name}.\n");
 
-                        do {}
+                        do { }
                         while (FreeLibrary(module.BaseAddress));
 
                         unloaded = true;

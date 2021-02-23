@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Editor(typeof(IMacro))]
     public class MacroEditor : Inspector
     {
-        public MacroEditor(Metadata metadata) : base(metadata) {}
+        public MacroEditor(Metadata metadata) : base(metadata) { }
 
         protected override float GetHeight(float width, GUIContent label)
         {
@@ -19,7 +19,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, GUIContent.none);
+            position = BeginLabeledBlock(metadata, position, GUIContent.none);
 
             y += EditorGUIUtility.standardVerticalSpacing;
 

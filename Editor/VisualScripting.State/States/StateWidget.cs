@@ -43,7 +43,7 @@ namespace Unity.VisualScripting
             summary = description.summary;
 
             titleContent.text = " " + title;
-            titleContent.image = description.icon ? [IconSize.Small];
+            titleContent.image = description.icon?[IconSize.Small];
             summaryContent.text = summary;
 
             Reposition();
@@ -445,7 +445,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        protected virtual void DrawContent() {}
+        protected virtual void DrawContent() { }
 
         #endregion
 

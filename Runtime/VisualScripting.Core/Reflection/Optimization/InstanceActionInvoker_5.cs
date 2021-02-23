@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
 {
     public sealed class InstanceActionInvoker<TTarget, TParam0, TParam1, TParam2, TParam3, TParam4> : InstanceActionInvokerBase<TTarget>
     {
-        public InstanceActionInvoker(MethodInfo methodInfo) : base(methodInfo) {}
+        public InstanceActionInvoker(MethodInfo methodInfo) : base(methodInfo) { }
 
         private Action<TTarget, TParam0, TParam1, TParam2, TParam3, TParam4> invoke;
 

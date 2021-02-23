@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Changelog_1_4_0 : PluginChangelog
     {
-        public Changelog_1_4_0(Plugin plugin) : base(plugin) {}
+        public Changelog_1_4_0(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0";
         public override DateTime date => new DateTime(2018, 05, 16);
@@ -24,7 +24,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Changelog_1_4_0f2 : PluginChangelog
     {
-        public Changelog_1_4_0f2(Plugin plugin) : base(plugin) {}
+        public Changelog_1_4_0f2(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f2";
         public override DateTime date => new DateTime(2018, 07, 13);
@@ -46,7 +46,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Changelog_1_4_0f3 : PluginChangelog
     {
-        public Changelog_1_4_0f3(Plugin plugin) : base(plugin) {}
+        public Changelog_1_4_0f3(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f3";
         public override DateTime date => new DateTime(2018, 07, 31);
@@ -64,7 +64,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Changelog_1_4_0f6 : PluginChangelog
     {
-        public Changelog_1_4_0f6(Plugin plugin) : base(plugin) {}
+        public Changelog_1_4_0f6(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f6";
         public override DateTime date => new DateTime(2018, 09, 06);
@@ -81,7 +81,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Changelog_1_4_0f7 : PluginChangelog
     {
-        public Changelog_1_4_0f7(Plugin plugin) : base(plugin) {}
+        public Changelog_1_4_0f7(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f7";
         public override DateTime date => new DateTime(2018, 09, 25);

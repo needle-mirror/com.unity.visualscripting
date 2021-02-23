@@ -85,7 +85,7 @@ namespace Unity.VisualScripting
 
                 if (GraphWindow.active != null)
                 {
-                    GraphWindow.active.titleContent.image = window ? [IconSize.Small];
+                    GraphWindow.active.titleContent.image = window?[IconSize.Small];
                 }
 
                 empty = EditorTexture.Single(ColorPalette.transparent.GetPixel());
@@ -125,7 +125,7 @@ namespace Unity.VisualScripting
             {
                 switch (kind)
                 {
-                    case VisualScripting.VariableKind.Flow : return flowVariable;
+                    case VisualScripting.VariableKind.Flow: return flowVariable;
                     case VisualScripting.VariableKind.Graph: return graphVariable;
                     case VisualScripting.VariableKind.Object: return objectVariable;
                     case VisualScripting.VariableKind.Scene: return sceneVariable;

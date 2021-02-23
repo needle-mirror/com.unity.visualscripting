@@ -48,7 +48,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        public virtual void LateInitialize() {}
+        public virtual void LateInitialize() { }
 
         public Plugin plugin { get; }
 

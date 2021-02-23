@@ -8,9 +8,9 @@ namespace Unity.VisualScripting
     [UnitSurtitle("Object")]
     public sealed class SetObjectVariable : SetVariableUnit, IObjectVariableUnit
     {
-        public SetObjectVariable() : base() {}
+        public SetObjectVariable() : base() { }
 
-        public SetObjectVariable(string name) : base(name) {}
+        public SetObjectVariable(string name) : base(name) { }
 
         /// <summary>
         /// The source of the variable.

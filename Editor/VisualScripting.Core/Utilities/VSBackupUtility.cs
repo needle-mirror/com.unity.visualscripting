@@ -3,23 +3,30 @@ using System.Collections.Generic;
 using UnityEditor;
 using Ionic.Zip;
 using System.IO;
+using UnityEngine;
 
 namespace Unity.VisualScripting
 {
     public class VSBackupUtility
     {
-        private const string MESSAGE_NO_BOLT_GENERATED_FOLDER = "The " + PluginPaths.FOLDER_BOLT_GENERATED + " folder was not found.";
-
         public static void Backup()
         {
-            if (IsGeneratedFolderPresent())
+            if (!IsGeneratedFolderPresent())
             {
-                BackupAssetsFolder(DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss"));
+                Debug.Log($"Creating the Visual Scripting Generated folder for backup: '{PluginPaths.ASSETS_FOLDER_BOLT_GENERATED}'");
+
+                try
+                {
+                    Directory.CreateDirectory(PluginPaths.ASSETS_FOLDER_BOLT_GENERATED);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogException(e);
+                    return;
+                }
             }
-            else
-            {
-                EditorUtility.DisplayDialog("Visual Script", MESSAGE_NO_BOLT_GENERATED_FOLDER, "OK");
-            }
+
+            BackupAssetsFolder(DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss"));
         }
 
         private static bool IsGeneratedFolderPresent()

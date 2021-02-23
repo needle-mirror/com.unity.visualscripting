@@ -81,7 +81,7 @@ namespace Unity.VisualScripting
 
         public new static class Styles
         {
-            static Styles() {}
+            static Styles() { }
 
             public static readonly float logoHeight = 80;
         }

@@ -21,9 +21,9 @@ namespace Unity.VisualScripting
         public string completeLabel { get; set; }
         private bool shouldComplete;
 
-        protected virtual void OnShow() {}
+        protected virtual void OnShow() { }
 
-        public virtual void Update() {}
+        public virtual void Update() { }
 
         public bool CompleteSwitch()
         {
@@ -46,7 +46,7 @@ namespace Unity.VisualScripting
 
         protected abstract void OnContentGUI();
 
-        protected virtual void OnClose() {}
+        protected virtual void OnClose() { }
 
         public void Show()
         {
@@ -76,9 +76,9 @@ namespace Unity.VisualScripting
             shouldComplete = true;
         }
 
-        public virtual void OnFocus() {}
+        public virtual void OnFocus() { }
 
-        public virtual void OnLostFocus() {}
+        public virtual void OnLostFocus() { }
 
         protected static GUIEvent e => GUIEvent.current;
     }

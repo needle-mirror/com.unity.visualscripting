@@ -1,4 +1,4 @@
 namespace Unity.VisualScripting
 {
-    public interface IUnitInputPortDefinition : IUnitPortDefinition {}
+    public interface IUnitInputPortDefinition : IUnitPortDefinition { }
 }

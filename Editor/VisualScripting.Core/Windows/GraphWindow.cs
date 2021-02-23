@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 using GUIEvent = UnityEngine.Event;
 using Object = UnityEngine.Object;
@@ -63,39 +64,42 @@ namespace Unity.VisualScripting
         [DoNotSerialize]
         private GraphReference _reference;
 
+        // TODO When in C#8 mark the set accessor as Obsolete and use SetReference instead.
         [DoNotSerialize]
         public GraphReference reference
         {
             get => _reference;
-            set
+            set => SetReference(value, true);
+        }
+
+        void SetReference(GraphReference value, bool exitGUI)
+        {
+            if (value == reference)
             {
-                if (value == reference)
-                {
-                    return;
-                }
+                return;
+            }
 
-                value?.EnsureValid();
+            value?.EnsureValid();
 
-                context?.canvas.Close();
+            context?.canvas.Close();
 
-                _reference = value;
+            _reference = value;
 
-                // Only preserve the last valid reference
-                // This is needed because the window revalidates before exiting playmode
-                referenceData = GraphPointerData.FromPointer(reference) ?? referenceData;
+            // Only preserve the last valid reference
+            // This is needed because the window revalidates before exiting playmode
+            referenceData = GraphPointerData.FromPointer(reference) ?? referenceData;
 
-                context = reference?.Context();
+            context = reference?.Context();
 
-                context?.canvas.Open();
+            context?.canvas.Open();
 
-                OnContextChange();
+            OnContextChange();
 
-                CheckForActiveContextChange();
+            CheckForActiveContextChange();
 
-                if (isActive && LudiqGUIUtility.isWithinGUI)
-                {
-                    GUIUtility.ExitGUI();
-                }
+            if (exitGUI && isActive && LudiqGUIUtility.isWithinGUI)
+            {
+                GUIUtility.ExitGUI();
             }
         }
 
@@ -158,7 +162,11 @@ namespace Unity.VisualScripting
 
                 if (rootWasEmpty || (rootChanged && (rootIsMacro || (rootIsMachine && rootGameObjectChanged))))
                 {
-                    reference = GraphReference.New(newRoot, false);
+                    var newRef = GraphReference.New(newRoot, false);
+                    if (newRef != null && !newRef.isValid)
+                        reference = null;
+                    else
+                        reference = newRef;
                 }
             }
             else if (BoltCore.Configuration.clearGraphSelection)
@@ -242,6 +250,8 @@ namespace Unity.VisualScripting
 
         #region Lifecycle
 
+        private readonly FrameLimiterUtility _frameLimiter = new FrameLimiterUtility(60);
+
         private void _OnSelectionChange()
         {
             Validate();
@@ -264,7 +274,7 @@ namespace Unity.VisualScripting
 
         private void _OnModeChange()
         {
-            reference = referenceData?.ToReference(false);
+            SetReference(referenceData?.ToReference(false), false);
             Validate();
             MatchSelection();
         }
@@ -300,17 +310,42 @@ namespace Unity.VisualScripting
             {
                 PluginContainer.ImportUnits();
 
-                titleContent = new GUIContent(defaultTitle, BoltCore.Icons.window ? [IconSize.Small]);
+                titleContent = new GUIContent(defaultTitle, BoltCore.Icons.window?[IconSize.Small]);
 
                 try
                 {
                     reference = referenceData?.ToReference(false);
                 }
-                catch (ExitGUIException) {}
+                catch (ExitGUIException) { }
 
                 Validate();
                 MatchSelection();
+
+                ValidateReloadScriptSettings();
             };
+        }
+
+        private void ValidateReloadScriptSettings()
+        {
+            bool checkReloadScriptSettings = !EditorPrefs.GetBool("DoNotCheckReloadScriptSettings");
+
+            if (EditorApplicationUtility.WantsScriptChangesDuringPlay() && checkReloadScriptSettings)
+            {
+                bool result = EditorUtility.DisplayDialog("Warning", "Your Unity preferences are set to reload scripts during play mode." +
+                                                                                "\nThis causes instability in Visual Scripting plugins." +
+                                                                                "\nPlease use: Preferences > General > Script Changes While Playing > Stop Playing and Recompile." +
+                                                                                "\nWould you like to change it now?",
+                                                                                "Change now", "I will change later");
+
+                if (result)
+                {
+                    EditorPrefs.SetInt("ScriptCompilationDuringPlay", 2);
+                }
+                else
+                {
+                    EditorPrefs.SetBool("DoNotCheckReloadScriptSettings", true);
+                }
+            }
         }
 
         private void OnFocus()
@@ -339,7 +374,7 @@ namespace Unity.VisualScripting
         {
             context?.DescribeAndAnalyze();
 
-            titleContent = new GUIContent(context?.windowTitle ?? defaultTitle, BoltCore.Icons.window ? [IconSize.Small]);
+            titleContent = new GUIContent(context?.windowTitle ?? defaultTitle, BoltCore.Icons.window?[IconSize.Small]);
 
             if (context != null && context.isPrefabInstance)
             {
@@ -373,6 +408,12 @@ namespace Unity.VisualScripting
 
         protected override void Update()
         {
+            // If the Unity application is minimized or not focused, we shouldn't need to update our graph rendering
+            if (!InternalEditorUtility.isApplicationActive) return;
+
+            // Limiting our render frame-rate
+            if (!_frameLimiter.IsWithinFPSLimit()) return;
+
             base.Update();
 
             FixActive();
@@ -383,6 +424,9 @@ namespace Unity.VisualScripting
 
             Repaint();
         }
+
+        private Vector2 m_TabOffset;
+        private Vector2 m_Scroll;
 
         protected override void OnGUI()
         {
@@ -449,8 +493,8 @@ namespace Unity.VisualScripting
 
                 if (showSidebars)
                 {
-                    graphInspectorEnabled = GUILayout.Toggle(graphInspectorEnabled, BoltCore.Icons.inspectorWindow ? [IconSize.Small], LudiqStyles.toolbarButton);
-                    variablesInspectorEnabled = GUILayout.Toggle(variablesInspectorEnabled, BoltCore.Icons.variablesWindow ? [IconSize.Small], LudiqStyles.toolbarButton);
+                    graphInspectorEnabled = GUILayout.Toggle(graphInspectorEnabled, BoltCore.Icons.inspectorWindow?[IconSize.Small], LudiqStyles.toolbarButton);
+                    variablesInspectorEnabled = GUILayout.Toggle(variablesInspectorEnabled, BoltCore.Icons.variablesWindow?[IconSize.Small], LudiqStyles.toolbarButton);
 
                     ToggleInspector<GraphInspectorPanel>(!graphInspectorEnabled);
                     ToggleInspector<VariablesPanel>(!variablesInspectorEnabled);
@@ -586,7 +630,6 @@ namespace Unity.VisualScripting
                     // from the top of the graph window by the tab offset, also multiplied
                     // by the zoom factor.
 
-                    Vector2 tabOffset;
                     var unclippedWindow = false;
 
                     if (LudiqGUIUtility.clipDepth > 0)
@@ -598,12 +641,12 @@ namespace Unity.VisualScripting
 
                         // Determine the offset that the tab represented
                         var originOutsideTab = GUIUtility.GUIToScreenPoint(Vector2.zero);
-                        tabOffset = originInsideTab - originOutsideTab;
+                        m_TabOffset = originInsideTab - originOutsideTab;
                         unclippedWindow = true;
                     }
                     else
                     {
-                        tabOffset = Vector2.zero;
+                        m_TabOffset = Vector2.zero;
                     }
 
                     // Update the pan and zoom values with tweening if need be
@@ -614,15 +657,15 @@ namespace Unity.VisualScripting
                     var canvasArea = canvasContainer;
                     canvasArea.size /= canvas.zoom;
                     canvasArea.position /= canvas.zoom;
-                    canvasArea.position += tabOffset / canvas.zoom;
+                    canvasArea.position += m_TabOffset / canvas.zoom;
 
                     // Calculate the canvas' viewport
                     var size = canvasArea.size;
-                    var scroll = canvas.pan - size / 2;
-                    canvas.viewport = new Rect(scroll, size);
+                    m_Scroll = canvas.pan - size / 2;
+                    canvas.viewport = new Rect(m_Scroll, size);
 
                     // Make the scroll pixel perfect to avoid blurriness
-                    scroll = scroll.PixelPerfect();
+                    m_Scroll = m_Scroll.PixelPerfect();
 
                     using (LudiqGUI.matrix.Override(Matrix4x4.Scale(canvas.zoom * Vector3.one)))
                     {
@@ -631,13 +674,13 @@ namespace Unity.VisualScripting
                             GUI.BeginClip(canvasArea);
                             {
                                 BeginDisabledGroup();
-                                GraphGUI.DrawGrid(scroll, new Rect(Vector2.zero, canvasArea.size), canvas.zoom);
+                                GraphGUI.DrawGrid(m_Scroll, new Rect(Vector2.zero, canvasArea.size), canvas.zoom);
                                 EndDisabledGroup();
                             }
                             GUI.EndClip();
                         }
 
-                        GUI.BeginClip(canvasArea, -scroll, Vector2.zero, false);
+                        GUI.BeginClip(canvasArea, -m_Scroll, Vector2.zero, false);
                         {
                             context.BeginEdit();
                             canvas.OnGUI();
@@ -645,6 +688,15 @@ namespace Unity.VisualScripting
                         }
                         GUI.EndClip();
                     }
+
+                    foreach (var rect in m_RectList)
+                    {
+                        Rect r = rect.rect;
+                        r.position += canvasArea.position * canvas.zoom;
+                        EditorGUIUtility.AddCursorRect(r, rect.cursor);
+                    }
+
+                    m_RectList.Clear();
 
                     // Show a warning if we're editing a prefab instance
                     if (context.isPrefabInstance)
@@ -655,7 +707,7 @@ namespace Unity.VisualScripting
                     if (unclippedWindow)
                     {
                         // Restore the window stack
-                        GUI.BeginClip(new Rect(tabOffset, new Vector2(Screen.width, Screen.height)));
+                        GUI.BeginClip(new Rect(m_TabOffset, new Vector2(Screen.width, Screen.height)));
                     }
 
                     // Delayed calls are useful for any code that requires GUIClip.Unclip,
@@ -688,6 +740,23 @@ namespace Unity.VisualScripting
             }
 
             LudiqGUI.EndHorizontal();
+        }
+
+        struct CursorRect
+        {
+            public Rect rect;
+            public MouseCursor cursor;
+        }
+
+        List<CursorRect> m_RectList = new List<CursorRect>();
+
+        public void AddCursorRect(Rect rect, MouseCursor cursor)
+        {
+            rect.position -= m_Scroll;
+            rect.position *= canvas.zoom;
+            rect.size *= canvas.zoom;
+
+            m_RectList.Add(new CursorRect() { rect = rect, cursor = cursor });
         }
 
         void ToggleInspector<T>(bool hidden) where T : ISidebarPanelContent
@@ -763,7 +832,11 @@ namespace Unity.VisualScripting
                 prefabGraphPointer.graph.pan = context.graph.pan;
                 prefabGraphPointer.graph.zoom = context.graph.zoom;
                 Selection.activeObject = prefabGraphPointer.rootObject;
-                reference = prefabGraphPointer;
+
+                // Same graph but different reference pointer so data remains the same.
+                // So no need to call GUIUtility.ExitGUI() in this case when setting the reference
+                // And by doing that we avoid ExitGUIException GUIClip stack popping
+                SetReference(prefabGraphPointer, false);
             }
         }
 

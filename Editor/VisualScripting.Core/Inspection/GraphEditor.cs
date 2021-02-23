@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Editor(typeof(IGraph))]
     public class GraphEditor : Inspector
     {
-        public GraphEditor(Metadata metadata) : base(metadata) {}
+        public GraphEditor(Metadata metadata) : base(metadata) { }
 
         private Metadata titleMetadata => metadata[nameof(IGraph.title)];
 

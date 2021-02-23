@@ -6,11 +6,11 @@ namespace Unity.VisualScripting
 {
     public abstract class ContinuousNumberInspector<T> : Inspector
     {
-        protected ContinuousNumberInspector(Metadata metadata) : base(metadata) {}
+        protected ContinuousNumberInspector(Metadata metadata) : base(metadata) { }
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             T newValue;
             var oldValue = Convert.ToSingle(metadata.value);
@@ -32,6 +32,39 @@ namespace Unity.VisualScripting
             else
             {
                 newValue = (T)Convert.ChangeType(LudiqGUI.DraggableFloatField(fieldPosition, oldValue), typeof(T));
+            }
+
+            if (EndBlock(metadata))
+            {
+                metadata.RecordUndo();
+                metadata.value = newValue;
+            }
+        }
+
+        protected override void OnEditorPrefGUI(Rect position, GUIContent label)
+        {
+            BeginBlock(metadata, position);
+
+            T newValue;
+            var oldValue = Convert.ToSingle(metadata.value);
+
+            var fieldPosition = new Rect
+                (
+                position.x,
+                position.y,
+                position.width,
+                EditorGUIUtility.singleLineHeight - 2
+                );
+
+            if (metadata.HasAttribute<InspectorRangeAttribute>())
+            {
+                var rangeAttribute = metadata.GetAttribute<InspectorRangeAttribute>();
+
+                newValue = (T)Convert.ChangeType(EditorGUI.Slider(fieldPosition, label, oldValue, rangeAttribute.min, rangeAttribute.max), typeof(T));
+            }
+            else
+            {
+                newValue = (T)Convert.ChangeType(LudiqGUI.DraggableFloatField(fieldPosition, oldValue, label), typeof(T));
             }
 
             if (EndBlock(metadata))

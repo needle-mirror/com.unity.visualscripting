@@ -50,10 +50,16 @@ namespace Unity.VisualScripting
         [DoNotSerialize]
         UnityObject IGraphParent.serializedObject => this;
 
+        [DoNotSerialize]
+        private GraphReference _reference = null;
+
+        [DoNotSerialize]
+        protected GraphReference reference => _reference == null ? GraphReference.New(this, false) : _reference;
+
         public bool isDescriptionValid
         {
             get => true;
-            set {}
+            set { }
         }
 
         protected override void OnBeforeDeserialize()
@@ -100,6 +106,11 @@ namespace Unity.VisualScripting
         protected virtual void OnDisable()
         {
             Serialization.NotifyDependencyUnavailable(this);
+        }
+
+        public GraphPointer GetReference()
+        {
+            return reference;
         }
     }
 }

@@ -60,7 +60,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        public virtual void ValueChanged() {}
+        public virtual void ValueChanged() { }
 
         public Assignment[] assignments => _assignments[GetType()];
         public Assignment[] transientAssignments => _transientAssignments[GetType()];

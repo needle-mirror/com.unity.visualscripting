@@ -1,4 +1,4 @@
 namespace Unity.VisualScripting
 {
-    public interface IGraphVariableUnit : IVariableUnit {}
+    public interface IGraphVariableUnit : IVariableUnit { }
 }

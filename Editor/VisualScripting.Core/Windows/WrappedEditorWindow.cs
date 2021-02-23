@@ -10,9 +10,9 @@ namespace Unity.VisualScripting
         // this window is open.
         public EditorWindowWrapper wrapper { get; set; }
 
-        private void Awake() {}
+        private void Awake() { }
 
-        private void OnDestroy() {}
+        private void OnDestroy() { }
 
         private void OnEnable()
         {
@@ -50,7 +50,7 @@ namespace Unity.VisualScripting
             {
                 wrapper?.OnGUI();
             }
-            catch (ExitGUIException) {}
+            catch (ExitGUIException) { }
             catch (WindowClose)
             {
                 Close();

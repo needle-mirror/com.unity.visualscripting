@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     public sealed class VariableDeclaration
     {
         [Obsolete(Serialization.ConstructorWarning)]
-        public VariableDeclaration() {}
+        public VariableDeclaration() { }
 
         public VariableDeclaration(string name, object value)
         {

@@ -6,9 +6,9 @@ namespace Unity.VisualScripting
     public class IsVariableDefinedOption : UnifiedVariableUnitOption<IsVariableDefined>
     {
         [Obsolete(Serialization.ConstructorWarning)]
-        public IsVariableDefinedOption() : base() {}
+        public IsVariableDefinedOption() : base() { }
 
-        public IsVariableDefinedOption(VariableKind kind, string defaultName = null) : base(kind, defaultName) {}
+        public IsVariableDefinedOption(VariableKind kind, string defaultName = null) : base(kind, defaultName) { }
 
         protected override string NamedLabel(bool human)
         {

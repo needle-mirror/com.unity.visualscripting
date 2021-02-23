@@ -6,14 +6,14 @@ namespace Unity.VisualScripting
 {
     public class SystemObjectInspector : Inspector
     {
-        public SystemObjectInspector(Metadata metadata) : base(metadata) {}
+        public SystemObjectInspector(Metadata metadata) : base(metadata) { }
 
         public override void Initialize()
         {
             base.Initialize();
 
             typeFilter = metadata.GetAttribute<TypeFilter>() ?? TypeFilter.Any;
-            metadata.valueChanged += (previousType) => InferType();
+            metadata.valueChanged += InferType;
         }
 
         private TypeFilter _typeFilter;
@@ -45,12 +45,20 @@ namespace Unity.VisualScripting
             return new TypeOptionTree(Codebase.GetTypeSetFromAttribute(metadata), typeFilter);
         }
 
-        private void InferType()
+        private void InferType(object previousValue)
         {
             var value = metadata.value;
 
             if (value == null)
             {
+                // Fix a bug when 2 SystemObjectInspectors are open.
+                // If one inspector change its type to any reference type (default == null), the other one needs
+                // to set its type to null in order to not reset the first inspector to its previous type by
+                // the OnGUI method which calls EnforceType.
+                if (previousValue != null && previousValue.GetType() == type)
+                {
+                    type = null;
+                }
                 return;
             }
 
@@ -103,7 +111,7 @@ namespace Unity.VisualScripting
 
             var showLabels = !adaptiveWidth && position.width >= 120;
 
-            BeginBlock(metadata, position, GUIContent.none);
+            BeginLabeledBlock(metadata, position, GUIContent.none);
 
             if (chooseType)
             {

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using UnityEditor;
 
 namespace Unity.VisualScripting
@@ -10,7 +9,7 @@ namespace Unity.VisualScripting
     [Product(ID)]
     public sealed class BoltProduct : Product
     {
-        public BoltProduct() {}
+        public BoltProduct() { }
 
         public override void Initialize()
         {
@@ -35,30 +34,17 @@ namespace Unity.VisualScripting
 
         public const string ID = "Bolt";
 
+#if VISUAL_SCRIPT_INTERNAL
         public const int ToolsMenuPriority = -990000;
         public const int DeveloperToolsMenuPriority = ToolsMenuPriority + 1000;
+#endif
 
         public static BoltProduct instance => (BoltProduct)ProductContainer.GetProduct(ID);
 
         [SettingsProvider]
         private static SettingsProvider BoltSettingsProvider()
         {
-            var provider = new SettingsProvider("Preferences/Visual Scripting", SettingsScope.User)
-            {
-                label = "Visual Scripting",
-                guiHandler = (searchContext) =>
-                {
-                    if (EditorApplication.isCompiling)
-                    {
-                        LudiqGUI.CenterLoader();
-                        return;
-                    }
-
-                    instance.configurationPanel.PreferenceItem();
-                }
-            };
-
-            return provider;
+            return new VSEditorSettingsProviderView();
         }
 
         private static bool PrepareForRelease()

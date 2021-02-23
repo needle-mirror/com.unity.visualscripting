@@ -122,6 +122,12 @@ namespace Unity.VisualScripting
                 Styles.background.Draw(position, false, false, false, false);
             }
 
+            if (anchor == SidebarAnchor.Left)
+            {
+                // leave space for scrolling after the potential scrollbar
+                position.width -= Styles.resizeGrip;
+            }
+
             LudiqGUIUtility.BeginScrollablePanel(position, width => GetHeight(position.height), out Rect sidebarScrolledPosition, ref scroll);
 
             var y = sidebarScrolledPosition.y;
@@ -187,7 +193,7 @@ namespace Unity.VisualScripting
                     throw new UnexpectedEnumValueException<SidebarAnchor>(anchor);
             }
 
-            EditorGUIUtility.AddCursorRect(resizeArea, MouseCursor.ResizeHorizontal);
+            EditorGUIUtility.AddCursorRect(resizeArea, MouseCursor.SplitResizeLeftRight);
 
             e.HandleCapture(resizeArea.Contains(e.mousePosition), false);
 
@@ -269,7 +275,7 @@ namespace Unity.VisualScripting
         {
             public static readonly GUIStyle background;
             public static readonly GUIStyle separator;
-            public static readonly float resizeGrip = 14f;
+            public static readonly float resizeGrip = 2f;
 
             static Styles()
             {

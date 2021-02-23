@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Analyser(typeof(GraphOutput))]
     public class GraphOutputAnalyser : UnitAnalyser<GraphOutput>
     {
-        public GraphOutputAnalyser(GraphReference reference, GraphOutput unit) : base(reference, unit) {}
+        public GraphOutputAnalyser(GraphReference reference, GraphOutput unit) : base(reference, unit) { }
 
         protected override IEnumerable<Warning> Warnings()
         {

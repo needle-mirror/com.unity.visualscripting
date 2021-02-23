@@ -117,7 +117,7 @@ namespace Unity.VisualScripting
             {
                 Schedule(value);
             }
-            remove {}
+            remove { }
         }
 
         public static string progressLabel { get; private set; }

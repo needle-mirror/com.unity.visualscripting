@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltFlow.ID)]
     public sealed class BoltFlowConfiguration : PluginConfiguration
     {
-        private BoltFlowConfiguration(BoltFlow plugin) : base(plugin) {}
+        private BoltFlowConfiguration(BoltFlow plugin) : base(plugin) { }
 
         public override string header => "Script Graphs";
 

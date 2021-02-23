@@ -1,4 +1,4 @@
 namespace Unity.VisualScripting
 {
-    public interface IMachineDescription : IDescription {}
+    public interface IMachineDescription : IDescription { }
 }

@@ -1,4 +1,4 @@
 namespace Unity.VisualScripting
 {
-    public sealed class ControlOutputDefinition : ControlPortDefinition, IUnitOutputPortDefinition {}
+    public sealed class ControlOutputDefinition : ControlPortDefinition, IUnitOutputPortDefinition { }
 }

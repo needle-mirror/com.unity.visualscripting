@@ -67,6 +67,18 @@ namespace Unity.VisualScripting
                     {
                         throw new MissingMemberException(typeof(PrefabUtility).ToString(), "IsDisconnectedFromPrefabAsset");
                     }
+
+                    PrefabStageUtilityType =
+#if UNITY_2021_2_OR_NEWER
+                        Assembly.GetAssembly(typeof(Editor)).GetType("UnityEditor.SceneManagement.PrefabStageUtility", false) ??
+#endif
+                        Assembly.GetAssembly(typeof(Editor)).GetType("UnityEditor.Experimental.SceneManagement.PrefabStageUtility", true);
+                    PrefabStageUtility_GetPrefabStage = PrefabStageUtilityType.GetMethod("GetPrefabStage", BindingFlags.Public | BindingFlags.Static);
+
+                    if (PrefabStageUtility_GetPrefabStage == null)
+                    {
+                        throw new MissingMemberException(PrefabStageUtilityType.ToString(), "GetPrefabStage");
+                    }
                 }
 #endif
             }
@@ -98,6 +110,9 @@ namespace Unity.VisualScripting
         #region Prefabs
 
 #if UNITY_2018_3_OR_NEWER
+        // public class UnityEditor.SceneManagement.PrefabStageUtility (or UnityEditor.Experimental.SceneManagement.PrefabStageUtility if < 2021.2)
+        internal static readonly Type PrefabStageUtilityType;
+        internal static readonly MethodInfo PrefabStageUtility_GetPrefabStage;
         private static readonly MethodInfo PrefabUtility_GetCorrespondingObjectFromSource;
         private static readonly MethodInfo PrefabUtility_GetPrefabInstanceHandle;
         private static readonly MethodInfo PrefabUtility_IsPartOfPrefabAsset;
@@ -166,7 +181,9 @@ namespace Unity.VisualScripting
             try
             {
                 // https://forum.unity.com/threads/editorgui-objectfield-allowsceneobjects-in-isolation-mode.610564/
-                return (bool)PrefabUtility_IsPartOfPrefabAsset.InvokeOptimized(null, uo);
+                return
+                    (bool)PrefabUtility_IsPartOfPrefabAsset.InvokeOptimized(null, uo);// ||
+                                                                                      // PrefabStageUtility_GetPrefabStage.InvokeOptimized(null, uo.GameObject()) != null;
             }
             catch (Exception ex)
             {

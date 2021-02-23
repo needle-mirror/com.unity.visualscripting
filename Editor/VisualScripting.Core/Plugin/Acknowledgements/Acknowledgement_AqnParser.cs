@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Acknowledgement_AqnParser : PluginAcknowledgement
     {
-        public Acknowledgement_AqnParser(Plugin plugin) : base(plugin) {}
+        public Acknowledgement_AqnParser(Plugin plugin) : base(plugin) { }
 
         public override string title => "AQN Parser";
         public override string author => "Christophe Bertrand";

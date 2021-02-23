@@ -68,7 +68,7 @@ namespace Unity.VisualScripting
             {
                 return float.MinValue;
             }
-            set {}
+            set { }
         }
 
         public override Rect position
@@ -82,8 +82,6 @@ namespace Unity.VisualScripting
                 group.position = value;
             }
         }
-
-        public Rect headerPosition { get; private set; }
 
         public Rect labelPosition { get; private set; }
 
@@ -127,12 +125,17 @@ namespace Unity.VisualScripting
 
         #region Drawing
 
+
         public override void DrawForeground()
         {
             AdjustLabelFontSize();
+            window.AddCursorRect(labelPosition, MouseCursor.Text);
 
-            EditorGUIUtility.AddCursorRect(labelPosition, MouseCursor.Text);
-            EditorGUIUtility.AddCursorRect(hotArea, MouseCursor.MoveArrow);
+
+            if (isMouseOverHeaderArea)
+            {
+                window.AddCursorRect(hotArea, MouseCursor.MoveArrow);
+            }
 
             //GUI.SetNextControlName(group.guid + ".LabelField");
             //var labelFieldId = GUIUtility.GetControlID(FocusType.Keyboard) + 1;

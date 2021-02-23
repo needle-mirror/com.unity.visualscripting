@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
 {
     public sealed class UnityObjectInspector : Inspector
     {
-        public UnityObjectInspector(Metadata metadata) : base(metadata) {}
+        public UnityObjectInspector(Metadata metadata) : base(metadata) { }
 
         public override void Initialize()
         {
@@ -24,7 +24,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var fieldPosition = new Rect
                 (
@@ -48,7 +48,11 @@ namespace Unity.VisualScripting
                     fieldPosition.height - 2 - 2
                     );
 
-                GUI.Label(selfPatchPosition, "Self", Styles.selfPatch);
+                Color tmp = GUI.color;
+                GUI.color = Color.white; // Force white to prevent Self label beeing transparent and ObjectField None (Object) appearing under
+
+                GUI.Label(selfPatchPosition, "Self", tmp.a > 0 && tmp.a < 1 ? Styles.selfPatchTransparent : Styles.selfPatch);
+                GUI.color = tmp;
             }
 
             if (EndBlock(metadata))
@@ -99,9 +103,14 @@ namespace Unity.VisualScripting
                 selfPatch.normal.background = ColorPalette.unityBackgroundLight.GetPixel();
                 selfPatch.padding = new RectOffset(1, 0, -1, 0);
                 selfPatch.margin = new RectOffset(0, 0, 0, 0);
+
+                selfPatchTransparent = new GUIStyle(selfPatch);
+                selfPatchTransparent.normal.textColor = new Color(selfPatch.normal.textColor.r, selfPatch.normal.textColor.g,
+                    selfPatch.normal.textColor.b, 0.3f);
             }
 
             public static readonly GUIStyle selfPatch;
+            public static readonly GUIStyle selfPatchTransparent;
         }
     }
 }

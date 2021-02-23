@@ -2,7 +2,7 @@ namespace Unity.VisualScripting
 {
     public class SwitchUnitDescriptor<T> : UnitDescriptor<SwitchUnit<T>>
     {
-        public SwitchUnitDescriptor(SwitchUnit<T> unit) : base(unit) {}
+        public SwitchUnitDescriptor(SwitchUnit<T> unit) : base(unit) { }
 
         protected virtual string GetLabelForOption(T option)
         {

@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
 {
     public sealed class EditorPrefMetadata : PluginConfigurationItemMetadata
     {
-        public EditorPrefMetadata(PluginConfiguration configuration, MemberInfo member, Metadata parent) : base(configuration, member, parent) {}
+        public EditorPrefMetadata(PluginConfiguration configuration, MemberInfo member, Metadata parent) : base(configuration, member, parent) { }
 
         public string namespacedKey => GetNamespacedKey(configuration.plugin.id, key);
 

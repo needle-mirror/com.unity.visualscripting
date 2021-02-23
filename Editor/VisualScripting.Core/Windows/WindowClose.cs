@@ -4,6 +4,6 @@ namespace Unity.VisualScripting
 {
     public class WindowClose : Exception
     {
-        public WindowClose() {}
+        public WindowClose() { }
     }
 }

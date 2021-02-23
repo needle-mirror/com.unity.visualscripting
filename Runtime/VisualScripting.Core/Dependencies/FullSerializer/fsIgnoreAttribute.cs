@@ -7,5 +7,5 @@ namespace Unity.VisualScripting.FullSerializer
     /// serialized.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class fsIgnoreAttribute : Attribute {}
+    public sealed class fsIgnoreAttribute : Attribute { }
 }

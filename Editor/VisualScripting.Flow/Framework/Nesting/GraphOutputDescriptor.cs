@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(GraphOutput))]
     public class GraphOutputDescriptor : UnitDescriptor<GraphOutput>
     {
-        public GraphOutputDescriptor(GraphOutput unit) : base(unit) {}
+        public GraphOutputDescriptor(GraphOutput unit) : base(unit) { }
 
         protected override void DefinedPort(IUnitPort port, UnitPortDescription description)
         {

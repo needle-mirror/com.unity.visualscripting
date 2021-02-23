@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(VariableUnit))]
     public class VariableUnitDescriptor<TVariableUnit> : UnitDescriptor<TVariableUnit> where TVariableUnit : VariableUnit
     {
-        public VariableUnitDescriptor(TVariableUnit unit) : base(unit) {}
+        public VariableUnitDescriptor(TVariableUnit unit) : base(unit) { }
 
         protected bool hasDefaultName => !string.IsNullOrEmpty(unit.defaultName);
 

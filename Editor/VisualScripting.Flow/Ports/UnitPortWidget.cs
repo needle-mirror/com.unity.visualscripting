@@ -8,7 +8,7 @@ namespace Unity.VisualScripting
     [Widget(typeof(IUnitPort))]
     public abstract class UnitPortWidget<TPort> : Widget<FlowCanvas, TPort>, IUnitPortWidget where TPort : class, IUnitPort
     {
-        protected UnitPortWidget(FlowCanvas canvas, TPort port) : base(canvas, port) {}
+        protected UnitPortWidget(FlowCanvas canvas, TPort port) : base(canvas, port) { }
 
 
         #region Model
@@ -247,7 +247,7 @@ namespace Unity.VisualScripting
         public override Rect position
         {
             get { return _position; }
-            set {}
+            set { }
         }
 
         public Rect handlePosition { get; private set; }
@@ -491,7 +491,7 @@ namespace Unity.VisualScripting
         public override float zIndex
         {
             get { return unitWidget.zIndex + 0.5f; }
-            set {}
+            set { }
         }
 
         #endregion
@@ -535,7 +535,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        public override void DrawBackground() {}
+        public override void DrawBackground() { }
 
         public override void DrawForeground()
         {
@@ -808,7 +808,7 @@ namespace Unity.VisualScripting
 
         private void DrawIcon()
         {
-            GUI.DrawTexture(iconPosition, description.icon ? [Styles.iconSize]);
+            GUI.DrawTexture(iconPosition, description.icon?[Styles.iconSize]);
         }
 
         private void DrawLabel()

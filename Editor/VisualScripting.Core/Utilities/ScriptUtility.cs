@@ -43,8 +43,8 @@ namespace Unity.VisualScripting
                         {
                             if (!AssetDatabase.TryGetGUIDAndLocalFileIdentifier(script, out var guid, out long localId))
                             {
-                                Debug.LogWarning("Failed to get GUID for script: " + script);
-                                ;
+                                Debug.LogWarning($"Failed to get GUID for script {script.GetClass()}: {script}");
+                                continue;
                             }
 
                             guids.Add(guid);

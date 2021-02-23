@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEngine;
 
 namespace Unity.VisualScripting
 {
@@ -11,6 +12,9 @@ namespace Unity.VisualScripting
         bool graphInspectorEnabled { get; set; }
 
         bool variablesInspectorEnabled { get; set; }
+
+
+        void AddCursorRect(Rect rect, MouseCursor cursor);
     }
 
     public static class XCanvasWindow

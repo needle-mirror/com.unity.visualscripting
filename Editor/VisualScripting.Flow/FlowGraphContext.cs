@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [GraphContext(typeof(FlowGraph))]
     public class FlowGraphContext : GraphContext<FlowGraph, FlowCanvas>
     {
-        public FlowGraphContext(GraphReference reference) : base(reference) {}
+        public FlowGraphContext(GraphReference reference) : base(reference) { }
 
         public override string windowTitle => "Script Graph";
 

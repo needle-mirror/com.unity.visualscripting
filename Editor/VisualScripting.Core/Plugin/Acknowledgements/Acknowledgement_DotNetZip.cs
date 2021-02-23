@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Acknowledgement_DotNetZip : PluginAcknowledgement
     {
-        public Acknowledgement_DotNetZip(Plugin plugin) : base(plugin) {}
+        public Acknowledgement_DotNetZip(Plugin plugin) : base(plugin) { }
 
         public override string title => "DotNetZip";
         public override string author => "Ionic";

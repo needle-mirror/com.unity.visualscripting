@@ -1,4 +1,4 @@
-#Live Editing
+#Live editing
 
 | **Note**                                                     |
 | :----------------------------------------------------------- |
@@ -19,7 +19,7 @@ Tip: To preserve the changes made to a component graph, copy the modified units 
 
 When in live mode, visual scripting is displayed the flow as droplets on connections.
 
-![](images/bolt-live1.gif)
+![](images/vs-live-droplets.png)
 
 To disable these animations on either the value connections, the control connections, or both,  uncheck the **Animate Control Connections** or the **Animate Value Connections** from the editor preferences window (**Unity** > **Preferences** > **Visual Scripting** > **Script Graphs**).
 

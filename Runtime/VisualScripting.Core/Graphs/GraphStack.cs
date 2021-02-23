@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     {
         #region Lifecycle
 
-        private GraphStack() {}
+        private GraphStack() { }
 
         private void InitializeNoAlloc(IGraphRoot root, List<IGraphParentElement> parentElements, bool ensureValid)
         {

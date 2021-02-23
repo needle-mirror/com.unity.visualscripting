@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Editor(typeof(DictionaryAsset))]
     public sealed class DictionaryAssetEditor : Inspector
     {
-        public DictionaryAssetEditor(Metadata metadata) : base(metadata) {}
+        public DictionaryAssetEditor(Metadata metadata) : base(metadata) { }
 
         private Metadata dictionaryMetadata => metadata[nameof(DictionaryAsset.dictionary)];
 

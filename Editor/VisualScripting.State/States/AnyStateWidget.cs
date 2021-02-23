@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Widget(typeof(AnyState))]
     public class AnyStateWidget : StateWidget<AnyState>
     {
-        public AnyStateWidget(StateCanvas canvas, AnyState state) : base(canvas, state) {}
+        public AnyStateWidget(StateCanvas canvas, AnyState state) : base(canvas, state) { }
 
         protected override NodeColorMix color => NodeColorMix.TealReadable;
 

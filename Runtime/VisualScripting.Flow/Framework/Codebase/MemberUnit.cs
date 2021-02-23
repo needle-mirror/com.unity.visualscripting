@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     [SpecialUnit]
     public abstract class MemberUnit : Unit, IAotStubbable
     {
-        protected MemberUnit() : base() {}
+        protected MemberUnit() : base() { }
 
         protected MemberUnit(Member member) : this()
         {

@@ -5,9 +5,9 @@ namespace Unity.VisualScripting
     /// </summary>
     public sealed class GetMember : MemberUnit
     {
-        public GetMember() {}
+        public GetMember() { }
 
-        public GetMember(Member member) : base(member) {}
+        public GetMember(Member member) : base(member) { }
 
         [DoNotSerialize]
         [MemberFilter(Fields = true, Properties = true, WriteOnly = false)]

@@ -137,7 +137,7 @@ namespace Unity.VisualScripting
 
     public sealed class Recursion : Recursion<object>
     {
-        private Recursion() : base() {}
+        private Recursion() : base() { }
 
         public static int defaultMaxDepth { get; set; } = 100;
 

@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(string))]
     public class StringInspector : Inspector
     {
-        public StringInspector(Metadata metadata) : base(metadata) {}
+        public StringInspector(Metadata metadata) : base(metadata) { }
 
         protected override bool cacheHeight => !metadata.HasAttribute<InspectorTextAreaAttribute>();
 
@@ -47,7 +47,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var fieldPosition = position.VerticalSection(ref y, GetFieldHeight(position.width, GUIContent.none));
 

@@ -3,7 +3,7 @@ using UnityEditor;
 
 namespace Unity.VisualScripting
 {
-    class VSSettingsProvider : SettingsProvider
+    class VSProjectSettingsProviderView : SettingsProvider
     {
         private const string path = "Project/Visual Scripting";
         private const string title = "Visual Scripting";
@@ -16,7 +16,7 @@ namespace Unity.VisualScripting
         VSSettingsScriptReferenceResolver vsSettingsScriptReferenceResolver;
 
         VSSettingsUpdate vsSettingsUpdate;
-        public VSSettingsProvider() : base(path, SettingsScope.Project)
+        public VSProjectSettingsProviderView() : base(path, SettingsScope.Project)
         {
             label = title;
         }

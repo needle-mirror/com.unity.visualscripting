@@ -37,7 +37,7 @@ namespace Unity.VisualScripting.FullSerializer
         /// The field/property type that is storing the instance.
         /// </param>
         /// <param name="instance">The type of the instance.</param>
-        public virtual void OnBeforeSerialize(Type storageType, object instance) {}
+        public virtual void OnBeforeSerialize(Type storageType, object instance) { }
 
         /// <summary>
         /// Called after serialization.
@@ -47,7 +47,7 @@ namespace Unity.VisualScripting.FullSerializer
         /// </param>
         /// <param name="instance">The type of the instance.</param>
         /// <param name="data">The data that was serialized.</param>
-        public virtual void OnAfterSerialize(Type storageType, object instance, ref fsData data) {}
+        public virtual void OnAfterSerialize(Type storageType, object instance, ref fsData data) { }
 
         /// <summary>
         /// Called before deserialization.
@@ -58,7 +58,7 @@ namespace Unity.VisualScripting.FullSerializer
         /// <param name="data">
         /// The data that will be used for deserialization.
         /// </param>
-        public virtual void OnBeforeDeserialize(Type storageType, ref fsData data) {}
+        public virtual void OnBeforeDeserialize(Type storageType, ref fsData data) { }
 
         /// <summary>
         /// Called before deserialization has begun but *after* the object
@@ -83,7 +83,7 @@ namespace Unity.VisualScripting.FullSerializer
         /// <param name="data">
         /// The data that will be used for deserialization.
         /// </param>
-        public virtual void OnBeforeDeserializeAfterInstanceCreation(Type storageType, object instance, ref fsData data) {}
+        public virtual void OnBeforeDeserializeAfterInstanceCreation(Type storageType, object instance, ref fsData data) { }
 
         /// <summary>
         /// Called after deserialization.
@@ -92,6 +92,6 @@ namespace Unity.VisualScripting.FullSerializer
         /// The field/property type that is storing the instance.
         /// </param>
         /// <param name="instance">The type of the instance.</param>
-        public virtual void OnAfterDeserialize(Type storageType, object instance) {}
+        public virtual void OnAfterDeserialize(Type storageType, object instance) { }
     }
 }

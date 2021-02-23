@@ -41,21 +41,20 @@ namespace Unity.VisualScripting
 
             key = attribute.key ?? member.Name;
 
-            if (member is FieldInfo)
+            if (member is FieldInfo info)
             {
                 mode = Mode.Field;
-                fieldInfo = (FieldInfo)member;
+                fieldInfo = info;
                 definedType = fieldInfo.FieldType;
-                defaultValue = value;
             }
             else // if (memberInfo is PropertyInfo)
             {
                 mode = Mode.Property;
                 propertyInfo = (PropertyInfo)member;
                 definedType = propertyInfo.PropertyType;
-                defaultValue = value;
             }
 
+            defaultValue = Clone(value);
             label = new GUIContent(member.HumanName(), member.Summary());
 
             XmlDocumentation.loadComplete += () =>
@@ -69,8 +68,14 @@ namespace Unity.VisualScripting
             }
             else
             {
-                value = defaultValue;
+                value = Clone(defaultValue);
             }
+        }
+
+        static object Clone(object source)
+        {
+            var cloner = Cloning.GetCloner(source, source.GetType());
+            return cloner == null ? source : source.Clone(cloner, true);
         }
 
         public MemberInfo member { get; }
@@ -90,11 +95,8 @@ namespace Unity.VisualScripting
 
         public override bool isEditable
         {
-            get
-            {
-                return enabled;
-            }
-            set {}
+            get => enabled;
+            set { }
         }
 
         public abstract bool exists { get; }
@@ -180,7 +182,7 @@ namespace Unity.VisualScripting
                 return;
             }
 
-            value = defaultValue;
+            value = Clone(defaultValue);
         }
 
         public override Attribute[] GetCustomAttributes(bool inherit = true)

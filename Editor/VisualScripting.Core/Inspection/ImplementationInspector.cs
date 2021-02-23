@@ -8,7 +8,7 @@ namespace Unity.VisualScripting
 {
     public class ImplementationInspector<T> : Inspector where T : class
     {
-        public ImplementationInspector(Metadata metadata) : base(metadata) {}
+        public ImplementationInspector(Metadata metadata) : base(metadata) { }
 
         private bool compactSelector = false;
 
@@ -20,7 +20,7 @@ namespace Unity.VisualScripting
 
         protected virtual GUIContent nullSelectorLabel { get; } = new GUIContent("(Nothing)");
 
-        protected virtual GUIContent selectorLabel => new GUIContent(" " + metadata.value, metadata.valueType.Icon() ? [IconSize.Small]);
+        protected virtual GUIContent selectorLabel => new GUIContent(" " + metadata.value, metadata.valueType.Icon()?[IconSize.Small]);
 
         protected virtual EditorTexture typeSelectorIcon => implementationMetadata.definedType.Icon();
 
@@ -77,7 +77,7 @@ namespace Unity.VisualScripting
         {
             if (metadata.value == null)
             {
-                position = BeginBlock(metadata, position, label);
+                position = BeginLabeledBlock(metadata, position, label);
 
                 var nullSelectorPosition = new Rect
                     (
@@ -91,13 +91,13 @@ namespace Unity.VisualScripting
             }
             else if (hideSelector)
             {
-                position = BeginBlock(metadata, position, label);
+                position = BeginLabeledBlock(metadata, position, label);
 
                 OnImplementationGUI(position);
             }
             else if (compactSelector)
             {
-                position = BeginBlock(metadata, position, label);
+                position = BeginLabeledBlock(metadata, position, label);
 
                 var implementationWidth = GetCompactedImplementationWidth(position.width);
 
@@ -125,11 +125,11 @@ namespace Unity.VisualScripting
             {
                 if (indentImplementation)
                 {
-                    position = BeginBlock(metadata, position, label);
+                    position = BeginLabeledBlock(metadata, position, label);
                 }
                 else
                 {
-                    position = BeginBlock(metadata, position, GUIContent.none);
+                    position = BeginLabeledBlock(metadata, position, GUIContent.none);
                 }
 
                 var selectorPosition = position.VerticalSection(ref y, GetSelectorHeight(position.width));
@@ -201,7 +201,7 @@ namespace Unity.VisualScripting
                     selectorPosition,
                     GetImplementationOptions,
                     null,
-                    Styles.showCompactSelectorIcon ? new GUIContent(typeSelectorIcon ? [IconSize.Small]) : Styles.compactSelectorWithoutIconContent,
+                    Styles.showCompactSelectorIcon ? new GUIContent(typeSelectorIcon?[IconSize.Small]) : Styles.compactSelectorWithoutIconContent,
                         Styles.compactSelector
                 );
 
@@ -260,7 +260,7 @@ namespace Unity.VisualScripting
                     fixedHeight = EditorGUIUtility.singleLineHeight
                 };
 
-                compactSelectorWithoutIconContent = new GUIContent(BoltCore.Resources.LoadTexture("TypeSelector/TypeSelector.png", new TextureResolution[] { 9, 18 }, CreateTextureOptions.PixelPerfect) ? [9]);
+                compactSelectorWithoutIconContent = new GUIContent(BoltCore.Resources.LoadTexture("TypeSelector/TypeSelector.png", new TextureResolution[] { 9, 18 }, CreateTextureOptions.PixelPerfect)?[9]);
 
                 compactSelectorWithIcon = new GUIStyle
                 {

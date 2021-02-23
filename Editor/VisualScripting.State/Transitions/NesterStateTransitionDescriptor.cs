@@ -4,7 +4,7 @@ namespace Unity.VisualScripting
     public class NesterStateTransitionDescriptor<TNesterStateTransition> : StateTransitionDescriptor<TNesterStateTransition>
         where TNesterStateTransition : class, INesterStateTransition
     {
-        public NesterStateTransitionDescriptor(TNesterStateTransition transition) : base(transition) {}
+        public NesterStateTransitionDescriptor(TNesterStateTransition transition) : base(transition) { }
 
         [RequiresUnityAPI]
         public override string Title()

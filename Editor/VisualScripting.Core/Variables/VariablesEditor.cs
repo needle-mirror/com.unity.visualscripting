@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Editor(typeof(Variables))]
     public sealed class VariablesEditor : Inspector
     {
-        public VariablesEditor(Metadata metadata) : base(metadata) {}
+        public VariablesEditor(Metadata metadata) : base(metadata) { }
 
         private Metadata declarationsMetadata => metadata[nameof(Variables.declarations)];
 

@@ -4,7 +4,7 @@ namespace Unity.VisualScripting
 {
     public abstract class SinglePageWindow<TPage> : EditorWindowWrapper where TPage : Page
     {
-        protected SinglePageWindow() {}
+        protected SinglePageWindow() { }
 
         private TPage _page;
 
@@ -32,7 +32,7 @@ namespace Unity.VisualScripting
 
         protected override void ConfigureWindow()
         {
-            window.titleContent = new GUIContent(page.title, page.icon ? [IconSize.Small]);
+            window.titleContent = new GUIContent(page.title, page.icon?[IconSize.Small]);
         }
 
         public override void OnShow()

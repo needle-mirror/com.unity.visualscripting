@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Editor(typeof(IState))]
     public class StateEditor : GraphElementEditor<StateGraphContext>
     {
-        public StateEditor(Metadata metadata) : base(metadata) {}
+        public StateEditor(Metadata metadata) : base(metadata) { }
 
         protected IState state => (IState)element;
 

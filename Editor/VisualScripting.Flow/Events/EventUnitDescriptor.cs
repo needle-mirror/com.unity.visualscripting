@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     public class EventUnitDescriptor<TEvent> : UnitDescriptor<TEvent>
         where TEvent : class, IEventUnit
     {
-        public EventUnitDescriptor(TEvent @event) : base(@event) {}
+        public EventUnitDescriptor(TEvent @event) : base(@event) { }
 
         protected override string DefinedSubtitle()
         {

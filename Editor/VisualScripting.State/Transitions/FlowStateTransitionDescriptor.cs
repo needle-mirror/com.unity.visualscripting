@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(FlowStateTransition))]
     public class FlowStateTransitionDescriptor : NesterStateTransitionDescriptor<FlowStateTransition>
     {
-        public FlowStateTransitionDescriptor(FlowStateTransition transition) : base(transition) {}
+        public FlowStateTransitionDescriptor(FlowStateTransition transition) : base(transition) { }
 
         public override string Title()
         {

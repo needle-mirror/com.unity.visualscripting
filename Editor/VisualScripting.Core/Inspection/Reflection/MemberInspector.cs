@@ -8,7 +8,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(Member))]
     public sealed class MemberInspector : Inspector
     {
-        public MemberInspector(Metadata metadata) : base(metadata) {}
+        public MemberInspector(Metadata metadata) : base(metadata) { }
 
         public override void Initialize()
         {
@@ -73,7 +73,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var popupLabel = new GUIContent("(Nothing)");
             var popupStyle = EditorStyles.popup;
@@ -90,7 +90,7 @@ namespace Unity.VisualScripting
                 try
                 {
                     var member = ((Member)metadata.value);
-                    popupLabel.image = member.pseudoDeclaringType.Icon() ? [IconSize.Small];
+                    popupLabel.image = member.pseudoDeclaringType.Icon()?[IconSize.Small];
                     popupLabel.text = member.info.DisplayName(direction, expectingBoolean);
                 }
                 catch

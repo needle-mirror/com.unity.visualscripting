@@ -5,9 +5,9 @@ namespace Unity.VisualScripting
     /// </summary>
     public sealed class SetMember : MemberUnit
     {
-        public SetMember() : base() {}
+        public SetMember() : base() { }
 
-        public SetMember(Member member) : base(member) {}
+        public SetMember(Member member) : base(member) { }
 
         /// <summary>
         /// Whether the target should be output to allow for chaining.

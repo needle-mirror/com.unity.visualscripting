@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Changelog_1_4_13 : PluginChangelog
     {
-        public Changelog_1_4_13(Plugin plugin) : base(plugin) {}
+        public Changelog_1_4_13(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.13";
 

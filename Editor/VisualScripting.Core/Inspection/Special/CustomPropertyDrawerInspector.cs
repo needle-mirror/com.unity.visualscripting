@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
 {
     public class CustomPropertyDrawerInspector : Inspector
     {
-        public CustomPropertyDrawerInspector(Metadata metadata) : base(metadata) {}
+        public CustomPropertyDrawerInspector(Metadata metadata) : base(metadata) { }
 
         public override void Initialize()
         {

@@ -4,7 +4,7 @@ namespace Unity.VisualScripting
     public class NesterStateDescriptor<TNesterState> : StateDescriptor<TNesterState>
         where TNesterState : class, INesterState
     {
-        public NesterStateDescriptor(TNesterState state) : base(state) {}
+        public NesterStateDescriptor(TNesterState state) : base(state) { }
 
         [RequiresUnityAPI]
         public override string Title()

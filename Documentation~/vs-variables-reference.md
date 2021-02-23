@@ -68,7 +68,9 @@ For example, the Get Variable unit gets the value of the health variable on the 
 
 The kind and the name dropdowns can quickly configure the variable units. The name suggestions are contextual and are based on the existing variables of this kind and on the other variable units in the current graph.
 
-![](images/bolt-variables-ref6.gif)
+![](images/vs-get-variable-object.png)
+
+![](images/vs-get-variable-mana.png)
 
 ###Drag and Drop
 

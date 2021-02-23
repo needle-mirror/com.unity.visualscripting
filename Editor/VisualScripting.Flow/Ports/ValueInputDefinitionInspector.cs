@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(ValueInputDefinition))]
     public sealed class ValueInputDefinitionInspector : ValuePortDefinitionInspector
     {
-        public ValueInputDefinitionInspector(Metadata metadata) : base(metadata) {}
+        public ValueInputDefinitionInspector(Metadata metadata) : base(metadata) { }
 
         private Metadata hasDefaultValueMetadata => metadata[nameof(ValueInputDefinition.hasDefaultValue)];
         private Metadata defaultValueMetadata => metadata[nameof(ValueInputDefinition.defaultValue)];

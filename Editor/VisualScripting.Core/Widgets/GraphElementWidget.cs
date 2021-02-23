@@ -9,7 +9,8 @@ namespace Unity.VisualScripting
         where TCanvas : class, ICanvas
         where TElement : class, IGraphElement
     {
-        protected GraphElementWidget(TCanvas canvas, TElement element) : base(canvas, element) {}
+        protected GraphElementWidget(TCanvas canvas, TElement element) : base(canvas, element) { }
+        protected Rect headerPosition { get; set; }
 
         public override string ToString()
         {
@@ -344,6 +345,19 @@ namespace Unity.VisualScripting
             }
         }
 
+        protected bool isMouseOverHeaderArea
+        {
+            get
+            {
+                if (canDrag && !isMouseOverResizeArea)
+                {
+                    return headerPosition == Rect.zero || headerPosition.Contains(mousePosition);
+                }
+
+                return false;
+            }
+        }
+
         private bool isMouseOverResizeArea
         {
             get
@@ -380,7 +394,7 @@ namespace Unity.VisualScripting
         }
 
         private bool canStartResize => canResize &&
-        canvas.zoom == 1 &&
+        canvas.zoom >= GraphGUI.MinZoomForControls &&
         !canvas.isDragging &&
         isMouseOverResizeArea;
 
@@ -511,26 +525,31 @@ namespace Unity.VisualScripting
             }
         }
 
+        public void AddCursorRect(Rect rect, MouseCursor cursor)
+        {
+            window.AddCursorRect(rect, cursor);
+        }
+
         private void AddResizeCursorRects()
         {
             if (canResizeHorizontal)
             {
-                EditorGUIUtility.AddCursorRect(resizeLeftArea, MouseCursor.ResizeHorizontal);
-                EditorGUIUtility.AddCursorRect(resizeRightArea, MouseCursor.ResizeHorizontal);
+                AddCursorRect(resizeLeftArea, MouseCursor.ResizeHorizontal);
+                AddCursorRect(resizeRightArea, MouseCursor.ResizeHorizontal);
             }
 
             if (canResizeVertical)
             {
-                EditorGUIUtility.AddCursorRect(resizeTopArea, MouseCursor.ResizeVertical);
-                EditorGUIUtility.AddCursorRect(resizeBottomArea, MouseCursor.ResizeVertical);
+                AddCursorRect(resizeTopArea, MouseCursor.ResizeVertical);
+                AddCursorRect(resizeBottomArea, MouseCursor.ResizeVertical);
             }
 
             if (canResizeHorizontal && canResizeVertical)
             {
-                EditorGUIUtility.AddCursorRect(resizeTopLeftArea, MouseCursor.ResizeUpLeft);
-                EditorGUIUtility.AddCursorRect(resizeTopRightArea, MouseCursor.ResizeUpRight);
-                EditorGUIUtility.AddCursorRect(resizeBottomLeftArea, MouseCursor.ResizeUpRight);
-                EditorGUIUtility.AddCursorRect(resizeBottomRightArea, MouseCursor.ResizeUpLeft);
+                AddCursorRect(resizeTopLeftArea, MouseCursor.ResizeUpLeft);
+                AddCursorRect(resizeTopRightArea, MouseCursor.ResizeUpRight);
+                AddCursorRect(resizeBottomLeftArea, MouseCursor.ResizeUpRight);
+                AddCursorRect(resizeBottomRightArea, MouseCursor.ResizeUpLeft);
             }
         }
 
@@ -549,7 +568,7 @@ namespace Unity.VisualScripting
 
         private void RelayDragEvents()
         {
-            if (!canDrag)
+            if ((!canDrag || !isMouseOverHeaderArea) && !canvas.isDragging)
             {
                 return;
             }
@@ -618,7 +637,7 @@ namespace Unity.VisualScripting
             dragLockOrigin = position;
         }
 
-        public virtual void ExpandDragGroup(HashSet<IGraphElement> dragGroup) {}
+        public virtual void ExpandDragGroup(HashSet<IGraphElement> dragGroup) { }
 
         #endregion
 
@@ -658,7 +677,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        public virtual void ExpandDeleteGroup(HashSet<IGraphElement> deleteGroup) {}
+        public virtual void ExpandDeleteGroup(HashSet<IGraphElement> deleteGroup) { }
 
         #endregion
 
@@ -682,7 +701,7 @@ namespace Unity.VisualScripting
 
         public virtual bool canCopy => true;
 
-        public virtual void ExpandCopyGroup(HashSet<IGraphElement> copyGroup) {}
+        public virtual void ExpandCopyGroup(HashSet<IGraphElement> copyGroup) { }
 
         #endregion
     }

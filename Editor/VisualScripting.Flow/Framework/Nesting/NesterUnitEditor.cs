@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Editor(typeof(INesterUnit))]
     public class NesterUnitEditor : UnitEditor
     {
-        public NesterUnitEditor(Metadata metadata) : base(metadata) {}
+        public NesterUnitEditor(Metadata metadata) : base(metadata) { }
 
         private Metadata nestMetadata => metadata[nameof(INesterUnit.nest)];
 

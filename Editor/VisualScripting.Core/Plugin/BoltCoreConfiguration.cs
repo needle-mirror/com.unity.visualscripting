@@ -14,7 +14,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     public sealed class BoltCoreConfiguration : PluginConfiguration
     {
-        private BoltCoreConfiguration(BoltCore plugin) : base(plugin) {}
+        private BoltCoreConfiguration(BoltCore plugin) : base(plugin) { }
 
         public override string header => "Core";
 
@@ -25,6 +25,11 @@ namespace Unity.VisualScripting
             // Add all plugin runtime assemblies to the option list
 
             var missingPluginAssemblies = new List<LooseAssemblyName>();
+            var missingPluginAssembliesFromDefault = new List<LooseAssemblyName>();
+
+            var assemblyOptionsMetadata = projectSettings.Single(metadata => metadata.key == nameof(assemblyOptions));
+
+            var defaultAssemblies = (List<LooseAssemblyName>)assemblyOptionsMetadata.defaultValue;
 
             foreach (var pluginAssembly in PluginContainer.plugins.SelectMany(plugin => plugin.GetType().GetAttributes<PluginRuntimeAssemblyAttribute>().Select(a => a.assemblyName)).Distinct())
             {
@@ -32,14 +37,21 @@ namespace Unity.VisualScripting
                 {
                     missingPluginAssemblies.Add(pluginAssembly);
                 }
+
+                if (!defaultAssemblies.Contains(pluginAssembly))
+                {
+                    missingPluginAssembliesFromDefault.Add(pluginAssembly);
+                }
             }
 
             if (missingPluginAssemblies.Any())
             {
-                var assemblyOptionsMetadata = projectSettings.Single(metadata => metadata.key == nameof(assemblyOptions));
-
                 assemblyOptions.AddRange(missingPluginAssemblies);
-                assemblyOptionsMetadata.defaultValue = ((List<LooseAssemblyName>)assemblyOptionsMetadata.defaultValue).Concat(missingPluginAssemblies).ToList();
+            }
+
+            if (missingPluginAssembliesFromDefault.Any())
+            {
+                assemblyOptionsMetadata.defaultValue = defaultAssemblies.Concat(missingPluginAssembliesFromDefault).ToList();
             }
 
             Codebase.UpdateSettings();

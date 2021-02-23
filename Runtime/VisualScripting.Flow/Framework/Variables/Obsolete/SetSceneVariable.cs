@@ -6,9 +6,9 @@ namespace Unity.VisualScripting
     [UnitSurtitle("Scene")]
     public sealed class SetSceneVariable : SetVariableUnit, ISceneVariableUnit
     {
-        public SetSceneVariable() : base() {}
+        public SetSceneVariable() : base() { }
 
-        public SetSceneVariable(string defaultName) : base(defaultName) {}
+        public SetSceneVariable(string defaultName) : base(defaultName) { }
 
         protected override VariableDeclarations GetDeclarations(Flow flow)
         {

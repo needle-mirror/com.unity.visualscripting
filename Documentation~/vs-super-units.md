@@ -4,7 +4,7 @@
 | :----------------------------------------------------------- |
 | For versions 2019/2020 LTS, download the visual scripting solution from the [Unity Asset Store](https://assetstore.unity.com/packages/tools/visual-bolt-163802). |
 
-Super Units are script graphs that are nested in a parent script graph as a single unit. They are a powerful feature that provides for re-use and graph organization.
+Super Units are script graphs that are nested as a single unit in a parent script graph. They are a powerful feature that provides for re-use and graph organization.
 
 ###Input Output units
 

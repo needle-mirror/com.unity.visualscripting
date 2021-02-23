@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [FuzzyOption(typeof(Literal))]
     public class LiteralOption : UnitOption<Literal>
     {
-        public LiteralOption() : base() {}
+        public LiteralOption() : base() { }
 
         public LiteralOption(Literal unit) : base(unit)
         {

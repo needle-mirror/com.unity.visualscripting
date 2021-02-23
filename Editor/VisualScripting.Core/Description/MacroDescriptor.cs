@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
         where TMacro : UnityObject, IMacro
         where TMacroDescription : class, IMacroDescription, new()
     {
-        protected MacroDescriptor(TMacro target) : base(target) {}
+        protected MacroDescriptor(TMacro target) : base(target) { }
 
         protected TMacro macro => target;
 

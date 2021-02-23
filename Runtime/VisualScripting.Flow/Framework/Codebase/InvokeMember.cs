@@ -9,9 +9,9 @@ namespace Unity.VisualScripting
     /// </summary>
     public sealed class InvokeMember : MemberUnit
     {
-        public InvokeMember() : base() {}
+        public InvokeMember() : base() { }
 
-        public InvokeMember(Member member) : base(member) {}
+        public InvokeMember(Member member) : base(member) { }
 
         private bool useExpandedParameters;
 

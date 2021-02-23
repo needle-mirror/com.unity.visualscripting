@@ -150,7 +150,7 @@ namespace Unity.VisualScripting
 
         private void OnCollisionStay(Collision collision)
         {
-            EventBus.Trigger(EventHooks.OnCollisionStay, gameObject, collision);;
+            EventBus.Trigger(EventHooks.OnCollisionStay, gameObject, collision); ;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

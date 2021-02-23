@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(Color))]
     public class ColorInspector : Inspector
     {
-        public ColorInspector(Metadata metadata) : base(metadata) {}
+        public ColorInspector(Metadata metadata) : base(metadata) { }
 
         protected override float GetHeight(float width, GUIContent label)
         {
@@ -15,7 +15,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var newValue = EditorGUI.ColorField(position, (Color)metadata.value);
 

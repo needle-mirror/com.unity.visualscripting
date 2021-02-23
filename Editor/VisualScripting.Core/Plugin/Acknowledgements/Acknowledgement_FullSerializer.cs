@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Acknowledgement_FullSerializer : PluginAcknowledgement
     {
-        public Acknowledgement_FullSerializer(Plugin plugin) : base(plugin) {}
+        public Acknowledgement_FullSerializer(Plugin plugin) : base(plugin) { }
 
         public override string title => "Full Serializer";
         public override string author => "Jacob Dufault";

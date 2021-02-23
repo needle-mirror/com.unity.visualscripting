@@ -398,7 +398,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        protected virtual void OnParentValueChange(object previousValue) {}
+        protected virtual void OnParentValueChange(object previousValue) { }
 
         private event Action<object> _valueChanged;
 
@@ -532,7 +532,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        protected virtual void OnParentValueTypeChange(Type previousType) {}
+        protected virtual void OnParentValueTypeChange(Type previousType) { }
 
         private event Action<Type> _valueTypeChanged;
 
@@ -687,7 +687,9 @@ namespace Unity.VisualScripting
 
             if (unityObject.IsConnectedPrefabInstance())
             {
-                prefabDefinition = Root().StaticObject(unityObject.GetPrefabDefinition());
+                var definition = unityObject.GetPrefabDefinition();
+                // Prefab could have been deleted
+                prefabDefinition = definition != null ? Root().StaticObject(definition) : null;
             }
         }
 
@@ -1312,7 +1314,7 @@ namespace Unity.VisualScripting
             protected T @delegate;
         }
 
-        private abstract class NoAllocDig<T> : NoAllocDelegate<Func<Metadata, T>> where T : Metadata {}
+        private abstract class NoAllocDig<T> : NoAllocDelegate<Func<Metadata, T>> where T : Metadata { }
 
         private class DigMember : NoAllocDig<MemberMetadata>
         {

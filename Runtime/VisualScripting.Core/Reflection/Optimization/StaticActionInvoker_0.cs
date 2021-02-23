@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
 {
     public sealed class StaticActionInvoker : StaticActionInvokerBase
     {
-        public StaticActionInvoker(MethodInfo methodInfo) : base(methodInfo) {}
+        public StaticActionInvoker(MethodInfo methodInfo) : base(methodInfo) { }
 
         private Action invoke;
 

@@ -78,7 +78,7 @@ namespace Unity.VisualScripting
                 position.x += Styles.zoomSize + Styles.zoomSpacing;
                 position.width -= Styles.zoomSize + Styles.zoomSpacing;
 
-                GUI.DrawTexture(zoomPosition, icon ? [IconSize.Medium]);
+                GUI.DrawTexture(zoomPosition, icon?[IconSize.Medium]);
             }
 
             var y = position.y;
@@ -182,7 +182,7 @@ namespace Unity.VisualScripting
 
             if (type != null)
             {
-                var icon = type.Icon() ? [IconSize.Small];
+                var icon = type.Icon()?[IconSize.Small];
 
                 if (icon != null)
                 {

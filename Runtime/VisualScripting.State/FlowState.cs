@@ -6,9 +6,9 @@ namespace Unity.VisualScripting
     [TypeIcon(typeof(FlowGraph))]
     public sealed class FlowState : NesterState<FlowGraph, ScriptGraphAsset>, IGraphEventListener
     {
-        public FlowState() {}
+        public FlowState() { }
 
-        public FlowState(ScriptGraphAsset macro) : base(macro) {}
+        public FlowState(ScriptGraphAsset macro) : base(macro) { }
 
 
         #region Lifecycle

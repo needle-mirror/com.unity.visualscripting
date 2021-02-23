@@ -38,7 +38,7 @@ namespace Unity.VisualScripting
 #endif
         }
 
-        public SerializationData(string json, params UnityObject[] objectReferences) : this(json, ((IEnumerable<UnityObject>)objectReferences)) {}
+        public SerializationData(string json, params UnityObject[] objectReferences) : this(json, ((IEnumerable<UnityObject>)objectReferences)) { }
 
         public string ToString(string title)
         {

@@ -195,7 +195,7 @@ namespace Unity.VisualScripting.FullSerializer
             // read until we get to a separator
             while (
                 TryMoveNext() &&
-                (HasValue() && IsSeparator(Character()) == false)) {}
+                (HasValue() && IsSeparator(Character()) == false)) { }
 
             // try to parse the value
             var numberString = _input.Substring(start, _start - start);
@@ -447,17 +447,17 @@ namespace Unity.VisualScripting.FullSerializer
                 case '9':
                     return TryParseNumber(out data);
                 case '"':
-                {
-                    string str;
-                    var fail = TryParseString(out str);
-                    if (fail.Failed)
                     {
-                        data = null;
-                        return fail;
+                        string str;
+                        var fail = TryParseString(out str);
+                        if (fail.Failed)
+                        {
+                            data = null;
+                            return fail;
+                        }
+                        data = new fsData(str);
+                        return fsResult.Success;
                     }
-                    data = new fsData(str);
-                    return fsResult.Success;
-                }
                 case '[':
                     return TryParseArray(out data);
                 case '{':

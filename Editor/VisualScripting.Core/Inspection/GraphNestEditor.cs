@@ -9,7 +9,7 @@ namespace Unity.VisualScripting
     [Editor(typeof(IGraphNest))]
     public class GraphNestEditor : Inspector
     {
-        public GraphNestEditor(Metadata metadata) : base(metadata) {}
+        public GraphNestEditor(Metadata metadata) : base(metadata) { }
 
         private bool warnComponentPrefab => (GraphSource)sourceMetadata.value == GraphSource.Embed && (LudiqEditorUtility.editedObject.value?.IsConnectedPrefabInstance() ?? false);
 
@@ -111,7 +111,7 @@ namespace Unity.VisualScripting
 
             var source = (GraphSource)sourceMetadata.value;
 
-            if (source == GraphSource.Embed) {}
+            if (source == GraphSource.Embed) { }
             else if (source == GraphSource.Macro)
             {
                 height += EditorGUIUtility.standardVerticalSpacing;
@@ -142,7 +142,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, GUIContent.none);
+            position = BeginLabeledBlock(metadata, position, GUIContent.none);
 
             y += EditorGUIUtility.standardVerticalSpacing;
 
@@ -186,7 +186,7 @@ namespace Unity.VisualScripting
                 EditorGUI.EndDisabledGroup();
             }
 
-            if (source == GraphSource.Embed) {}
+            if (source == GraphSource.Embed) { }
             else if (source == GraphSource.Macro)
             {
                 y += EditorGUIUtility.standardVerticalSpacing;
@@ -325,7 +325,7 @@ namespace Unity.VisualScripting
 
         private void OnSourceGUI(Rect position)
         {
-            position = BeginBlock(sourceMetadata, position, GUIContent.none);
+            position = BeginLabeledBlock(sourceMetadata, position, GUIContent.none);
 
             var previousSource = (GraphSource)sourceMetadata.value;
             var newSource = (GraphSource)EditorGUI.EnumPopup(position, (Enum)sourceMetadata.value);

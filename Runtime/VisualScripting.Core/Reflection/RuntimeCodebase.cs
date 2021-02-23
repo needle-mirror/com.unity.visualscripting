@@ -168,6 +168,27 @@ namespace Unity.VisualScripting
             return false;
         }
 
+        private static bool TrySystemTypeLookup(TypeName typeName, out Type type)
+        {
+            // Can't retrieve an array with the ToLooseString format so use the type Name and compare Assemblies
+            if (typeName.IsArray)
+            {
+                foreach (var assembly in _assemblies.Where(a => typeName.AssemblyName == a.GetName().Name))
+                {
+                    type = assembly.GetType(typeName.Name);
+                    if (type != null)
+                    {
+                        return true;
+                    }
+                }
+
+                type = null;
+                return false;
+            }
+
+            return TrySystemTypeLookup(typeName.ToLooseString(), out type);
+        }
+
         private static bool TryRenamedTypeLookup(string previousTypeName, out Type type)
         {
             // Try for an exact match in our renamed types dictionary.
@@ -198,10 +219,8 @@ namespace Unity.VisualScripting
                     parsedTypeName.ReplaceAssembly(renamedAssembly.Key, renamedAssembly.Value);
                 }
 
-                var newTypeName = parsedTypeName.ToLooseString();
-
                 // Run the system lookup
-                if (TrySystemTypeLookup(newTypeName, out type))
+                if (TrySystemTypeLookup(parsedTypeName, out type))
                 {
                     return true;
                 }

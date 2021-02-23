@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(SuperUnit))]
     public class SuperUnitDescriptor : NesterUnitDescriptor<SuperUnit>
     {
-        public SuperUnitDescriptor(SuperUnit unit) : base(unit) {}
+        public SuperUnitDescriptor(SuperUnit unit) : base(unit) { }
 
         protected override void DefinedPort(IUnitPort port, UnitPortDescription description)
         {

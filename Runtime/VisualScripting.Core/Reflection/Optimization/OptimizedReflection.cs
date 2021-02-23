@@ -355,15 +355,15 @@ namespace Unity.VisualScripting
                                 }
                                 else if (parameters.Length == 3)
                                 {
-                                    invokerType = typeof(StaticActionInvoker<, ,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType);
+                                    invokerType = typeof(StaticActionInvoker<,,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType);
                                 }
                                 else if (parameters.Length == 4)
                                 {
-                                    invokerType = typeof(StaticActionInvoker<, , ,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType);
+                                    invokerType = typeof(StaticActionInvoker<,,,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType);
                                 }
                                 else if (parameters.Length == 5)
                                 {
-                                    invokerType = typeof(StaticActionInvoker<, , , ,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType, parameters[4].ParameterType);
+                                    invokerType = typeof(StaticActionInvoker<,,,,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType, parameters[4].ParameterType);
                                 }
                                 else
                                 {
@@ -382,19 +382,19 @@ namespace Unity.VisualScripting
                                 }
                                 else if (parameters.Length == 2)
                                 {
-                                    invokerType = typeof(InstanceActionInvoker<, ,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType);
+                                    invokerType = typeof(InstanceActionInvoker<,,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType);
                                 }
                                 else if (parameters.Length == 3)
                                 {
-                                    invokerType = typeof(InstanceActionInvoker<, , ,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType);
+                                    invokerType = typeof(InstanceActionInvoker<,,,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType);
                                 }
                                 else if (parameters.Length == 4)
                                 {
-                                    invokerType = typeof(InstanceActionInvoker<, , , ,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType);
+                                    invokerType = typeof(InstanceActionInvoker<,,,,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType);
                                 }
                                 else if (parameters.Length == 5)
                                 {
-                                    invokerType = typeof(InstanceActionInvoker<, , , , ,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType, parameters[4].ParameterType);
+                                    invokerType = typeof(InstanceActionInvoker<,,,,,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType, parameters[4].ParameterType);
                                 }
                                 else
                                 {
@@ -416,19 +416,19 @@ namespace Unity.VisualScripting
                                 }
                                 else if (parameters.Length == 2)
                                 {
-                                    invokerType = typeof(StaticFunctionInvoker<, ,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, methodInfo.ReturnType);
+                                    invokerType = typeof(StaticFunctionInvoker<,,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, methodInfo.ReturnType);
                                 }
                                 else if (parameters.Length == 3)
                                 {
-                                    invokerType = typeof(StaticFunctionInvoker<, , ,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, methodInfo.ReturnType);
+                                    invokerType = typeof(StaticFunctionInvoker<,,,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, methodInfo.ReturnType);
                                 }
                                 else if (parameters.Length == 4)
                                 {
-                                    invokerType = typeof(StaticFunctionInvoker<, , , ,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType, methodInfo.ReturnType);
+                                    invokerType = typeof(StaticFunctionInvoker<,,,,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType, methodInfo.ReturnType);
                                 }
                                 else if (parameters.Length == 5)
                                 {
-                                    invokerType = typeof(StaticFunctionInvoker<, , , , ,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType, parameters[4].ParameterType, methodInfo.ReturnType);
+                                    invokerType = typeof(StaticFunctionInvoker<,,,,,>).MakeGenericType(parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType, parameters[4].ParameterType, methodInfo.ReturnType);
                                 }
                                 else
                                 {
@@ -443,23 +443,23 @@ namespace Unity.VisualScripting
                                 }
                                 else if (parameters.Length == 1)
                                 {
-                                    invokerType = typeof(InstanceFunctionInvoker<, ,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, methodInfo.ReturnType);
+                                    invokerType = typeof(InstanceFunctionInvoker<,,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, methodInfo.ReturnType);
                                 }
                                 else if (parameters.Length == 2)
                                 {
-                                    invokerType = typeof(InstanceFunctionInvoker<, , ,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, methodInfo.ReturnType);
+                                    invokerType = typeof(InstanceFunctionInvoker<,,,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, methodInfo.ReturnType);
                                 }
                                 else if (parameters.Length == 3)
                                 {
-                                    invokerType = typeof(InstanceFunctionInvoker<, , , ,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, methodInfo.ReturnType);
+                                    invokerType = typeof(InstanceFunctionInvoker<,,,,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, methodInfo.ReturnType);
                                 }
                                 else if (parameters.Length == 4)
                                 {
-                                    invokerType = typeof(InstanceFunctionInvoker<, , , , ,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType, methodInfo.ReturnType);
+                                    invokerType = typeof(InstanceFunctionInvoker<,,,,,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType, methodInfo.ReturnType);
                                 }
                                 else if (parameters.Length == 5)
                                 {
-                                    invokerType = typeof(InstanceFunctionInvoker<, , , , , ,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType, parameters[4].ParameterType, methodInfo.ReturnType);
+                                    invokerType = typeof(InstanceFunctionInvoker<,,,,,,>).MakeGenericType(methodInfo.DeclaringType, parameters[0].ParameterType, parameters[1].ParameterType, parameters[2].ParameterType, parameters[3].ParameterType, parameters[4].ParameterType, methodInfo.ReturnType);
                                 }
                                 else
                                 {

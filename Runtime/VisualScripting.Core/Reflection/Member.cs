@@ -21,7 +21,7 @@ namespace Unity.VisualScripting
         }
 
         [Obsolete(Serialization.ConstructorWarning)]
-        public Member() {}
+        public Member() { }
 
         public Member(Type targetType, string name, Type[] parameterTypes = null)
         {
@@ -520,7 +520,7 @@ namespace Unity.VisualScripting
 
         public bool allowsNull => isSettable && ((type.IsReferenceType() && info.HasAttribute<AllowsNullAttribute>()) || Nullable.GetUnderlyingType(type) != null);
 
-        void ISerializationCallbackReceiver.OnBeforeSerialize() {}
+        void ISerializationCallbackReceiver.OnBeforeSerialize() { }
 
         void ISerializationCallbackReceiver.OnAfterDeserialize()
         {
@@ -536,7 +536,7 @@ namespace Unity.VisualScripting
                 {
                     targetType = RuntimeCodebase.DeserializeType(_targetTypeName);
                 }
-                catch {}
+                catch { }
             }
         }
 
@@ -1168,7 +1168,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        public static bool operator==(Member a, Member b)
+        public static bool operator ==(Member a, Member b)
         {
             if (ReferenceEquals(a, b))
             {
@@ -1183,7 +1183,7 @@ namespace Unity.VisualScripting
             return a.Equals(b);
         }
 
-        public static bool operator!=(Member a, Member b)
+        public static bool operator !=(Member a, Member b)
         {
             return !(a == b);
         }

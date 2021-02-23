@@ -130,7 +130,7 @@ namespace Unity.VisualScripting
             return @namespace.FullName;
         }
 
-        public static bool operator==(Namespace a, Namespace b)
+        public static bool operator ==(Namespace a, Namespace b)
         {
             if (ReferenceEquals(a, b))
             {
@@ -145,7 +145,7 @@ namespace Unity.VisualScripting
             return a.Equals(b);
         }
 
-        public static bool operator!=(Namespace a, Namespace b)
+        public static bool operator !=(Namespace a, Namespace b)
         {
             return !(a == b);
         }

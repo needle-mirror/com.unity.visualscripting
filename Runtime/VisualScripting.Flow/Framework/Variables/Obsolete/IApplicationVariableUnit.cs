@@ -1,5 +1,5 @@
 namespace Unity.VisualScripting
 {
     [TypeIconPriority]
-    public interface IApplicationVariableUnit : IVariableUnit {}
+    public interface IApplicationVariableUnit : IVariableUnit { }
 }

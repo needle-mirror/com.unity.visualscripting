@@ -55,7 +55,7 @@ namespace Unity.VisualScripting.FullSerializer.Internal
     /// </summary>
     public static class fsPortableReflection
     {
-        public static Type[] EmptyTypes = {};
+        public static Type[] EmptyTypes = { };
 
         #region Attribute Queries
 

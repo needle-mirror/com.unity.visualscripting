@@ -1,4 +1,4 @@
 namespace Unity.VisualScripting
 {
-    public interface IGraphNesterElement : IGraphParentElement, IGraphNester {}
+    public interface IGraphNesterElement : IGraphParentElement, IGraphNester { }
 }

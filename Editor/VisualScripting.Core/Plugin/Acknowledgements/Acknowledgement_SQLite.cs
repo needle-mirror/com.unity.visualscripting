@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Acknowledgement_SQLite : PluginAcknowledgement
     {
-        public Acknowledgement_SQLite(Plugin plugin) : base(plugin) {}
+        public Acknowledgement_SQLite(Plugin plugin) : base(plugin) { }
 
         public override string title => "SQLite .NET";
         public override string author => "Roberto Huertas";

@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(CreateStruct))]
     public class CreateStructDescriptor : UnitDescriptor<CreateStruct>
     {
-        public CreateStructDescriptor(CreateStruct unit) : base(unit) {}
+        public CreateStructDescriptor(CreateStruct unit) : base(unit) { }
 
         protected override string DefinedTitle()
         {

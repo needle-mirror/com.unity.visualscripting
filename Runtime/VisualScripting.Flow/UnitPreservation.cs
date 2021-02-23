@@ -91,7 +91,7 @@ namespace Unity.VisualScripting
             outputConnections.Clear();
         }
 
-        private UnitPreservation() {}
+        private UnitPreservation() { }
 
         public static UnitPreservation Preserve(IUnit unit)
         {

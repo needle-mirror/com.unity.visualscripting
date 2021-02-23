@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
 {
     public sealed class ControlOutput : UnitPort<ControlInput, IUnitInputPort, ControlConnection>, IUnitControlPort, IUnitOutputPort
     {
-        public ControlOutput(string key) : base(key) {}
+        public ControlOutput(string key) : base(key) { }
 
         public override IEnumerable<ControlConnection> validConnections => unit?.graph?.controlConnections.WithSource(this) ?? Enumerable.Empty<ControlConnection>();
 

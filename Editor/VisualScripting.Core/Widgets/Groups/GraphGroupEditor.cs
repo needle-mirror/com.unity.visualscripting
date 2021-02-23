@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Editor(typeof(GraphGroup))]
     public sealed class GraphGroupEditor : Inspector
     {
-        public GraphGroupEditor(Metadata metadata) : base(metadata) {}
+        public GraphGroupEditor(Metadata metadata) : base(metadata) { }
 
         private Metadata labelMetadata => metadata[nameof(GraphGroup.label)];
 

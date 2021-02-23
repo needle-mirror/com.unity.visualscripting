@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(InvokeMember))]
     public class InvokeMemberDescriptor : MemberUnitDescriptor<InvokeMember>
     {
-        public InvokeMemberDescriptor(InvokeMember unit) : base(unit) {}
+        public InvokeMemberDescriptor(InvokeMember unit) : base(unit) { }
 
         protected override ActionDirection direction => ActionDirection.Any;
 

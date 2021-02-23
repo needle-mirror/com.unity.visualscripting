@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(SelectOnFlow))]
     public class SelectOnFlowDescriptor : UnitDescriptor<SelectOnFlow>
     {
-        public SelectOnFlowDescriptor(SelectOnFlow unit) : base(unit) {}
+        public SelectOnFlowDescriptor(SelectOnFlow unit) : base(unit) { }
 
         protected override void DefinedPort(IUnitPort port, UnitPortDescription description)
         {

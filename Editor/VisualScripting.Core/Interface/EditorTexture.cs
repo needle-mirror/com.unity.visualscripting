@@ -23,7 +23,7 @@ namespace Unity.VisualScripting
             personal.Add(texture.width, texture);
         }
 
-        private EditorTexture(Texture texture) : this((Texture2D)texture) {}
+        private EditorTexture(Texture texture) : this((Texture2D)texture) { }
 
         public static EditorTexture Single(Texture2D texture)
         {

@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Acknowledgement_ReorderableList : PluginAcknowledgement
     {
-        public Acknowledgement_ReorderableList(Plugin plugin) : base(plugin) {}
+        public Acknowledgement_ReorderableList(Plugin plugin) : base(plugin) { }
 
         public override string title => "Reorderable List";
         public override string author => "Rotorz Limited";

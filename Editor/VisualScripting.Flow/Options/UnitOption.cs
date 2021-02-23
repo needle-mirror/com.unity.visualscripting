@@ -39,7 +39,7 @@ namespace Unity.VisualScripting
 
                 if (_unit == null)
                 {
-                    _unit = (TUnit) new SerializationData(source.unit).Deserialize();
+                    _unit = (TUnit)new SerializationData(source.unit).Deserialize();
                 }
 
                 return _unit;
@@ -190,7 +190,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        public virtual void Prewarm() {}
+        public virtual void Prewarm() { }
 
 
         #region Configuration
@@ -515,7 +515,7 @@ namespace Unity.VisualScripting
                         GetFooterSummaryHeight(summaryWidth)
                         );
 
-                    GUI.DrawTexture(iconPosition, icon ? [FooterStyles.unitIconSize]);
+                    GUI.DrawTexture(iconPosition, icon?[FooterStyles.unitIconSize]);
 
                     OnFooterSummaryGUI(summaryPosition);
 
@@ -632,7 +632,7 @@ namespace Unity.VisualScripting
 
             var portDescription = PortDescription(port);
 
-            var icon = portDescription.icon ? [FooterStyles.portIconSize];
+            var icon = portDescription.icon?[FooterStyles.portIconSize];
 
             if (icon != null)
             {

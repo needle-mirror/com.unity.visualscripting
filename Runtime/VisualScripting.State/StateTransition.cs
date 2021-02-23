@@ -13,7 +13,7 @@ namespace Unity.VisualScripting
             public float lastBranchTime { get; set; }
         }
 
-        protected StateTransition() {}
+        protected StateTransition() { }
 
         protected StateTransition(IState source, IState destination)
         {

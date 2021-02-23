@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(IUnitPortDefinition))]
     public class UnitPortDefinitionInspector : Inspector
     {
-        public UnitPortDefinitionInspector(Metadata metadata) : base(metadata) {}
+        public UnitPortDefinitionInspector(Metadata metadata) : base(metadata) { }
 
         public override void Initialize()
         {
@@ -100,7 +100,7 @@ namespace Unity.VisualScripting
 
         protected sealed override void OnGUI(Rect position, GUIContent label)
         {
-            BeginBlock(metadata, position, label);
+            BeginLabeledBlock(metadata, position, label);
 
             OnFieldsGUI(position);
 

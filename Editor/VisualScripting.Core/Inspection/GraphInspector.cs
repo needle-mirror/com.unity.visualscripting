@@ -2,7 +2,7 @@ namespace Unity.VisualScripting
 {
     public abstract class GraphInspector<TGraphContext> : Inspector where TGraphContext : IGraphContext
     {
-        protected GraphInspector(Metadata metadata) : base(metadata) {}
+        protected GraphInspector(Metadata metadata) : base(metadata) { }
 
         #region Context Shortcuts
 

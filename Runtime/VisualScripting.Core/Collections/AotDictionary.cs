@@ -11,10 +11,10 @@ namespace Unity.VisualScripting
 
     public sealed class AotDictionary : OrderedDictionary
     {
-        public AotDictionary() : base() {}
-        public AotDictionary(IEqualityComparer comparer) : base(comparer) {}
-        public AotDictionary(int capacity) : base(capacity) {}
-        public AotDictionary(int capacity, IEqualityComparer comparer) : base(capacity, comparer) {}
+        public AotDictionary() : base() { }
+        public AotDictionary(IEqualityComparer comparer) : base(comparer) { }
+        public AotDictionary(int capacity) : base(capacity) { }
+        public AotDictionary(int capacity, IEqualityComparer comparer) : base(capacity, comparer) { }
 
         [Preserve]
         public static void AotStubs()

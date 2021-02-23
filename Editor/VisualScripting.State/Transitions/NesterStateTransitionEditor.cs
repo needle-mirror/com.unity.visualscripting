@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Editor(typeof(INesterStateTransition))]
     public class NesterStateTransitionEditor : StateTransitionEditor
     {
-        public NesterStateTransitionEditor(Metadata metadata) : base(metadata) {}
+        public NesterStateTransitionEditor(Metadata metadata) : base(metadata) { }
 
         private Metadata nestMetadata => metadata[nameof(INesterStateTransition.nest)];
 

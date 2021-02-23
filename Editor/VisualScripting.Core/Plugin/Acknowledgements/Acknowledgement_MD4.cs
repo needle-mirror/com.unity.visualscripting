@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Acknowledgement_MD4 : PluginAcknowledgement
     {
-        public Acknowledgement_MD4(Plugin plugin) : base(plugin) {}
+        public Acknowledgement_MD4(Plugin plugin) : base(plugin) { }
 
         public override string title => "MD4 Managed Implementation";
         public override string author => "Motus Technologies Inc., Novell, Inc";

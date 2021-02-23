@@ -77,7 +77,7 @@ namespace Unity.VisualScripting.ReorderableList
         /// Initializes a new instance of <see cref="SerializedPropertyAdaptor" />.
         /// </summary>
         /// <param name="arrayProperty">Serialized property for entire array.</param>
-        public SerializedPropertyAdaptor(SerializedProperty arrayProperty) : this(arrayProperty, 0f) {}
+        public SerializedPropertyAdaptor(SerializedProperty arrayProperty) : this(arrayProperty, 0f) { }
 
         #endregion
 
@@ -149,13 +149,13 @@ namespace Unity.VisualScripting.ReorderableList
         }
 
         /// <inheritdoc />
-        public virtual void BeginGUI() {}
+        public virtual void BeginGUI() { }
 
         /// <inheritdoc />
-        public virtual void EndGUI() {}
+        public virtual void EndGUI() { }
 
         /// <inheritdoc />
-        public virtual void DrawItemBackground(Rect position, int index) {}
+        public virtual void DrawItemBackground(Rect position, int index) { }
 
         /// <inheritdoc />
         public virtual void DrawItem(Rect position, int index)

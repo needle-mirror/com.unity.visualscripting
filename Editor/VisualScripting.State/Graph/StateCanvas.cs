@@ -9,7 +9,7 @@ namespace Unity.VisualScripting
     [Canvas(typeof(StateGraph))]
     public sealed class StateCanvas : VisualScriptingCanvas<StateGraph>
     {
-        public StateCanvas(StateGraph graph) : base(graph) {}
+        public StateCanvas(StateGraph graph) : base(graph) { }
 
 
         #region View

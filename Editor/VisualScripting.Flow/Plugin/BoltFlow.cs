@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Plugin(ID)]
     [PluginDependency(BoltCore.ID)]
     [Product(BoltProduct.ID)]
-    [PluginRuntimeAssembly(ID)]
+    [PluginRuntimeAssembly("Unity." + ID)]
     public sealed class BoltFlow : Plugin
     {
         public BoltFlow()

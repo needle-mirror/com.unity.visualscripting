@@ -1,4 +1,4 @@
 namespace Unity.VisualScripting
 {
-    public interface IMacroDescription : IDescription {}
+    public interface IMacroDescription : IDescription { }
 }

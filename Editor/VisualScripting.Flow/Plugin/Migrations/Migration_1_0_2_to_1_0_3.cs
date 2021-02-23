@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltFlow.ID)]
     internal class Migration_1_0_2_to_1_0_3 : PluginMigration
     {
-        public Migration_1_0_2_to_1_0_3(Plugin plugin) : base(plugin) {}
+        public Migration_1_0_2_to_1_0_3(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion @from => "1.0.2";
         public override SemanticVersion to => "1.0.3";

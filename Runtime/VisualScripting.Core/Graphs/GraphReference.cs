@@ -15,7 +15,7 @@ namespace Unity.VisualScripting
 
         #region Lifecycle
 
-        private GraphReference() {}
+        private GraphReference() { }
 
         public static GraphReference New(IGraphRoot root, bool ensureValid)
         {
@@ -193,7 +193,7 @@ namespace Unity.VisualScripting
             return hashCode;
         }
 
-        public static bool operator==(GraphReference x, GraphReference y)
+        public static bool operator ==(GraphReference x, GraphReference y)
         {
             if (ReferenceEquals(x, y))
             {
@@ -208,7 +208,7 @@ namespace Unity.VisualScripting
             return x.Equals(y);
         }
 
-        public static bool operator!=(GraphReference x, GraphReference y)
+        public static bool operator !=(GraphReference x, GraphReference y)
         {
             return !(x == y);
         }

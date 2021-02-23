@@ -35,7 +35,7 @@ Just like units in script graphs, the new state is dimmed as it is never entered
 
 Select the state the graph begins at by selecting one or more **Start State(s)**. To do so, right-click the state and choose **Toggle Start**. Start states are highlighted in green.
 
-![](/Users/bryanzako/Documents/Bolt/GitBolt/com.unity.bolt/Packages/com.unity.bolt/Documentation~/images/bolt-states3.gif)
+![](/Users/bryanzako/Documents/Bolt/GitBolt/com.unity.bolt/Packages/com.unity.bolt/Documentation~/images/vs-start-state-toggle-start.png)
 
 Unlike most finite state machine (FSM) tools, visual scripting supports multiple start states. You can have parallel FSM's running in the same graph or joining at some point. Normally you'll only need a single start state.
 

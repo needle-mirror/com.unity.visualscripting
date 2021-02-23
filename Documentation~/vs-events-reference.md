@@ -36,11 +36,11 @@ The value outputs on events are arguments that are passed from the event, giving
 
 There is a special type of event, the Custom Event that triggers custom events across graphs, along with their custom arguments.
 
-For example, to create a custom event called On Damage that gets called to make the character lose health, the event should have one integer argument that indicates the amount of damage to inflict. Listen to the event by creating a Custom Event unit (under Events). Its name is set to On Damage. The field below the name is the argument count, which is set to 1.
+For example, to create a custom event called On Damage that gets called so the character loses health, the event should have one integer argument that indicates the amount of damage to inflict. Listen to the event by creating a Custom Event unit (under Events). Set the name to On Damage. The set the argument count,  below the name, to 1.
 
 
 
-![](images/bolt-events4.gif)
+![](images/vs-custom-event-on-damage.png)
 
 Note: Indices are zero-based, so the first argument is labeled Arg. 0.  
 
@@ -63,7 +63,7 @@ Custom events do not require a receiver and do not cause an error if there isn't
 Use animation events to trigger Bolt graphs when you reach a certain point in your animation. Select an object with a machine and an animator. Then, from the animation window, add an animation event.
 
 
-![](images/bolt-events7.gif)
+![](images/vs-animation-events-add-event.png)
 
 With the event selected, choose TriggerAnimationEvent as the function from the inspector.
 

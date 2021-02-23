@@ -165,7 +165,7 @@ namespace Unity.VisualScripting
                 listsEnumerator = merged.lists.GetEnumerator();
             }
 
-            public void Dispose() {}
+            public void Dispose() { }
 
             public bool MoveNext()
             {

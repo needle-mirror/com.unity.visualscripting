@@ -96,13 +96,13 @@ namespace Unity.VisualScripting
 
         #region Lifecycle
 
-        private Flow() {}
+        private Flow() { }
 
         public static Flow New(GraphReference reference)
         {
             Ensure.That(nameof(reference)).IsNotNull(reference);
 
-            var flow = GenericPool<Flow>.New(() => new Flow());;
+            var flow = GenericPool<Flow>.New(() => new Flow()); ;
             flow.stack = reference.ToStackPooled();
 
             return flow;

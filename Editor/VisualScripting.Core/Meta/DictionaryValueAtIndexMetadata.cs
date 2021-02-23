@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
 {
     public sealed class DictionaryValueAtIndexMetadata : DictionaryIndexMetadata
     {
-        public DictionaryValueAtIndexMetadata(int index, Metadata parent) : base(SubpathPrefix, index, parent) {}
+        public DictionaryValueAtIndexMetadata(int index, Metadata parent) : base(SubpathPrefix, index, parent) { }
 
         protected override object rawValue
         {

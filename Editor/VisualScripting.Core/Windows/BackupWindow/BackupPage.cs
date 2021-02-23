@@ -67,7 +67,7 @@ namespace Unity.VisualScripting
 
             if (createdBackup)
             {
-                GUILayout.Label(new GUIContent(" Backup created", BoltCore.Icons.successState ? [IconSize.Small]), Styles.backupCreatedLabel);
+                GUILayout.Label(new GUIContent(" Backup created", BoltCore.Icons.successState?[IconSize.Small]), Styles.backupCreatedLabel);
             }
             else
             {

@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(Ray2D))]
     public class Ray2DInspector : Inspector
     {
-        public Ray2DInspector(Metadata metadata) : base(metadata) {}
+        public Ray2DInspector(Metadata metadata) : base(metadata) { }
 
         protected override float GetHeight(float width, GUIContent label)
         {
@@ -15,7 +15,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var originPosition = new Rect
                 (

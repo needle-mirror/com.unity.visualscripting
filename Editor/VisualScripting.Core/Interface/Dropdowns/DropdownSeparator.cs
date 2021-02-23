@@ -2,7 +2,7 @@ namespace Unity.VisualScripting
 {
     public class DropdownSeparator : DropdownOption
     {
-        public DropdownSeparator() : this(string.Empty) {}
+        public DropdownSeparator() : this(string.Empty) { }
 
         public DropdownSeparator(string path) : base(null, null)
         {

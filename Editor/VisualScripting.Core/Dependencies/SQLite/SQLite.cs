@@ -77,8 +77,8 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
             if (mapping != null && obj != null)
             {
                 this.Columns = from c in mapping.Columns
-                    where c.IsNullable == false && c.GetValue(obj) == null
-                    select c;
+                               where c.IsNullable == false && c.GetValue(obj) == null
+                               select c;
             }
         }
 
@@ -263,7 +263,7 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
         /// Gets the synchronous object, to be lock the database file for updating.
         /// </summary>
         /// <value>The sync object.</value>
-        public object SyncObject { get { return syncObjects[DatabasePath];} }
+        public object SyncObject { get { return syncObjects[DatabasePath]; } }
 
         public void EnableLoadExtension(int onoff)
         {
@@ -287,9 +287,9 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
         /// Used to list some code that we want the MonoTouch linker
         /// to see, but that we never want to actually execute.
         /// </summary>
-        #pragma warning disable 649
+#pragma warning disable 649
         static bool _preserveDuringLinkMagic;
-        #pragma warning restore 649
+#pragma warning restore 649
 
         /// <summary>
         /// Sets a busy handler to sleep the specified amount of time when a table is locked.
@@ -477,7 +477,8 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
                 }
                 else
                 {
-                    index.Columns.Sort((lhs, rhs) => {
+                    index.Columns.Sort((lhs, rhs) =>
+                    {
                         return lhs.Order - rhs.Order;
                     });
                     for (int i = 0, end = index.Columns.Count; i < end; ++i)
@@ -573,19 +574,19 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
 
         public class ColumnInfo
         {
-//          public int cid { get; set; }
+            //          public int cid { get; set; }
 
             [Column("name")]
             public string Name { get; set; }
 
-//          [Column ("type")]
-//          public string ColumnType { get; set; }
+            //          [Column ("type")]
+            //          public string ColumnType { get; set; }
 
             public int notnull { get; set; }
 
-//          public string dflt_value { get; set; }
+            //          public string dflt_value { get; set; }
 
-//          public int pk { get; set; }
+            //          public int pk { get; set; }
 
             public override string ToString()
             {
@@ -1154,7 +1155,8 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
         {
             try
             {
-                lock (syncObjects[DatabasePath]) {
+                lock (syncObjects[DatabasePath])
+                {
                     var savePoint = SaveTransactionPoint();
                     action();
                     Release(savePoint);
@@ -1175,7 +1177,8 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
         /// </param>
         public void RunInDatabaseLock(Action action)
         {
-            lock (syncObjects[DatabasePath]) {
+            lock (syncObjects[DatabasePath])
+            {
                 action();
             }
         }
@@ -1192,7 +1195,8 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
         public int InsertAll(System.Collections.IEnumerable objects)
         {
             var c = 0;
-            RunInTransaction(() => {
+            RunInTransaction(() =>
+            {
                 foreach (var r in objects)
                 {
                     c += Insert(r);
@@ -1216,7 +1220,8 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
         public int InsertAll(System.Collections.IEnumerable objects, string extra)
         {
             var c = 0;
-            RunInTransaction(() => {
+            RunInTransaction(() =>
+            {
                 foreach (var r in objects)
                 {
                     c += Insert(r, extra);
@@ -1240,7 +1245,8 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
         public int InsertAll(System.Collections.IEnumerable objects, Type objType)
         {
             var c = 0;
-            RunInTransaction(() => {
+            RunInTransaction(() =>
+            {
                 foreach (var r in objects)
                 {
                     c += Insert(r, objType);
@@ -1500,14 +1506,14 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
             }
 
             var cols = from p in map.Columns
-                where p != pk
-                select p;
+                       where p != pk
+                       select p;
             var vals = from c in cols
-                select c.GetValue(obj);
+                       select c.GetValue(obj);
             var ps = new List<object>(vals);
             ps.Add(pk.GetValue(obj));
             var q = string.Format("update \"{0}\" set {1} where {2} = ? ", map.TableName, string.Join(",", (from c in cols
-                select "\"" + c.Name + "\" = ? ").ToArray()), pk.Name);
+                                                                                                            select "\"" + c.Name + "\" = ? ").ToArray()), pk.Name);
 
             try
             {
@@ -1538,7 +1544,8 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
         public int UpdateAll(System.Collections.IEnumerable objects)
         {
             var c = 0;
-            RunInTransaction(() => {
+            RunInTransaction(() =>
+            {
                 foreach (var r in objects)
                 {
                     c += Update(r);
@@ -1932,9 +1939,9 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
 
                 insertSql = string.Format("insert {3} into \"{0}\"({1}) values ({2})", TableName,
                     string.Join(",", (from c in cols
-                        select "\"" + c.Name + "\"").ToArray()),
+                                      select "\"" + c.Name + "\"").ToArray()),
                     string.Join(",", (from c in cols
-                        select "?").ToArray()), extra);
+                                      select "?").ToArray()), extra);
             }
 
             var insertCommand = new PreparedSqlLiteInsertCommand(conn);
@@ -2207,7 +2214,8 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
             }
 
             var r = SQLite3.Result.OK;
-            lock (_conn.SyncObject) {
+            lock (_conn.SyncObject)
+            {
                 var stmt = Prepare();
                 r = SQLite3.Step(stmt);
                 Finalize(stmt);
@@ -2273,7 +2281,8 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
                 _conn.InvokeTrace("Executing Query: " + this);
             }
 
-            lock (_conn.SyncObject) {
+            lock (_conn.SyncObject)
+            {
                 var stmt = Prepare();
                 try
                 {
@@ -2316,7 +2325,8 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
 
             T val = default(T);
 
-            lock (_conn.SyncObject) {
+            lock (_conn.SyncObject)
+            {
                 var stmt = Prepare();
 
                 try

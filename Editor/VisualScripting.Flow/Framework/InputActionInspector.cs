@@ -1,5 +1,6 @@
 #if PACKAGE_INPUT_SYSTEM_EXISTS
 using System.Linq;
+using JetBrains.Annotations;
 using Unity.VisualScripting.FullSerializer;
 using Unity.VisualScripting.InputSystem;
 using UnityEditor;
@@ -20,6 +21,12 @@ namespace Unity.VisualScripting
             m_InputSystemUnit = inputSystemUnit;
         }
 
+        // Called by reflection from TypeUtility.Instantiate
+        [UsedImplicitly]
+        public InputActionInspector(Metadata metadata) : base(metadata)
+        {
+        }
+
         protected override float GetHeight(float width, GUIContent label) => EditorGUIUtility.singleLineHeight;
         public override float GetAdaptiveWidth()
         {
@@ -30,12 +37,17 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var togglePosition = position.VerticalSection(ref y, EditorGUIUtility.singleLineHeight);
 
-            var inputActionAsset = Flow.Predict<PlayerInput>(m_InputSystemUnit.Target, m_Reference)?.actions;
+            if (m_InputSystemUnit == null)
+            {
+                EndBlock(metadata);
+                return;
+            }
 
+            var inputActionAsset = Flow.Predict<PlayerInput>(m_InputSystemUnit.Target, m_Reference)?.actions;
             if (!inputActionAsset)
                 EditorGUI.LabelField(togglePosition, "No Actions found");
             else
@@ -58,25 +70,39 @@ namespace Unity.VisualScripting
                 }
 
                 var displayedOptions = Enumerable.Repeat(new GUIContent("<None>"), 1).Concat(inputActionAsset.Select(a => new GUIContent(a.name))).ToArray();
-                currentIndex = EditorGUI.Popup(togglePosition, currentIndex + 1, displayedOptions);
-                if (EndBlock(metadata))
+                var newIndex = EditorGUI.Popup(togglePosition, currentIndex + 1, displayedOptions);
+                if (EndBlock(metadata) || ActionTypeHasChanged(currentIndex, value))
                 {
                     metadata.RecordUndo();
-                    if (currentIndex == 0)
+                    if (newIndex == 0)
                         metadata.value = default;
                     else
                     {
-                        var inputAction = inputActionAsset.ElementAt(currentIndex - 1);
+                        var inputAction = inputActionAsset.ElementAt(newIndex - 1);
 
                         metadata.value =
                             InputAction_DirectConverter.MakeInputActionWithId(inputAction.id.ToString(),
-                                inputAction.name, inputAction.expectedControlType);
+                                inputAction.name, inputAction.expectedControlType, inputAction.type);
+                        m_InputSystemUnit.Analyser(m_Reference).isDirty = true;
                     }
                 }
                 return;
             }
 
             EndBlock(metadata);
+
+            bool ActionTypeHasChanged(int currentIndex, InputAction value)
+            {
+                try
+                {
+                    // getting the total action count would be expensive, as it would need to be computed everytime
+                    return value?.type != inputActionAsset.ElementAt(currentIndex)?.type;
+                }
+                catch
+                {
+                    return true;
+                }
+            }
         }
     }
 }

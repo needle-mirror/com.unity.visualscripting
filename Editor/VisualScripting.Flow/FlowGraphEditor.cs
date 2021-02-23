@@ -8,7 +8,7 @@ namespace Unity.VisualScripting
     [Editor(typeof(FlowGraph))]
     public class FlowGraphEditor : GraphEditor
     {
-        public FlowGraphEditor(Metadata metadata) : base(metadata) {}
+        public FlowGraphEditor(Metadata metadata) : base(metadata) { }
 
         private new FlowGraph graph => (FlowGraph)base.graph;
 
@@ -54,7 +54,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            BeginBlock(metadata, position, label);
+            BeginLabeledBlock(metadata, position, label);
 
             OnHeaderGUI(position);
 

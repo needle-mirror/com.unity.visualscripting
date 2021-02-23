@@ -4,7 +4,7 @@ namespace Unity.VisualScripting
     public class StateDescriptor<TState> : Descriptor<TState, StateDescription>
         where TState : class, IState
     {
-        public StateDescriptor(TState target) : base(target) {}
+        public StateDescriptor(TState target) : base(target) { }
 
         public TState state => target;
 

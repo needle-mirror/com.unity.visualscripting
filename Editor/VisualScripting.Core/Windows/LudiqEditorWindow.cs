@@ -68,9 +68,9 @@ namespace Unity.VisualScripting
             Serialization.isUnitySerializing = false;
         }
 
-        protected virtual void OnBeforeSerialize() {}
+        protected virtual void OnBeforeSerialize() { }
 
-        protected virtual void OnAfterDeserialize() {}
+        protected virtual void OnAfterDeserialize() { }
 
         protected virtual void Update()
         {
@@ -86,7 +86,10 @@ namespace Unity.VisualScripting
 
         public void AddItemsToMenu(GenericMenu menu)
         {
-            menu.AddItem(new GUIContent("Show Data..."), false, () => { _data.ShowString(ToString()); });
+            if (_data.json != null && _data.objectReferences != null)
+                menu.AddItem(new GUIContent("Show Data..."), false, () => { _data.ShowString(ToString()); });
+            else
+                menu.AddDisabledItem(new GUIContent("Show Data..."), false);
         }
 
         public override string ToString()

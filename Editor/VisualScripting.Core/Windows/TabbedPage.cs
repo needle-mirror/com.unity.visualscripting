@@ -80,7 +80,7 @@ namespace Unity.VisualScripting
 
             if (currentPage?.icon != null)
             {
-                GUILayout.Box(new GUIContent(currentPage.icon ? [(int)LudiqStyles.windowHeaderIcon.fixedWidth]), LudiqStyles.windowHeaderIcon);
+                GUILayout.Box(new GUIContent(currentPage.icon?[(int)LudiqStyles.windowHeaderIcon.fixedWidth]), LudiqStyles.windowHeaderIcon);
                 LudiqGUI.Space(LudiqStyles.spaceBetweenWindowHeaderIconAndTitle);
             }
 

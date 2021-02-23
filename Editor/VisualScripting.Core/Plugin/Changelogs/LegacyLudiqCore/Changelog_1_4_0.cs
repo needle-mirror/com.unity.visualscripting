@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqCoreChangelog_1_4_0 : PluginChangelog
     {
-        public LudiqCoreChangelog_1_4_0(Plugin plugin) : base(plugin) {}
+        public LudiqCoreChangelog_1_4_0(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0";
         public override DateTime date => new DateTime(2018, 06, 12);
@@ -36,7 +36,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqCoreChangelog_1_4_0f2 : PluginChangelog
     {
-        public LudiqCoreChangelog_1_4_0f2(Plugin plugin) : base(plugin) {}
+        public LudiqCoreChangelog_1_4_0f2(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f2";
         public override DateTime date => new DateTime(2018, 07, 13);
@@ -53,7 +53,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqCoreChangelog_1_4_0f3 : PluginChangelog
     {
-        public LudiqCoreChangelog_1_4_0f3(Plugin plugin) : base(plugin) {}
+        public LudiqCoreChangelog_1_4_0f3(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f3";
         public override DateTime date => new DateTime(2018, 07, 31);
@@ -70,7 +70,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqCoreChangelog_1_4_0f5 : PluginChangelog
     {
-        public LudiqCoreChangelog_1_4_0f5(Plugin plugin) : base(plugin) {}
+        public LudiqCoreChangelog_1_4_0f5(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f5";
         public override DateTime date => new DateTime(2018, 08, 14);
@@ -90,7 +90,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqCoreChangelog_1_4_0f6 : PluginChangelog
     {
-        public LudiqCoreChangelog_1_4_0f6(Plugin plugin) : base(plugin) {}
+        public LudiqCoreChangelog_1_4_0f6(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f6";
         public override DateTime date => new DateTime(2018, 09, 06);
@@ -114,7 +114,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqCoreChangelog_1_4_0f7 : PluginChangelog
     {
-        public LudiqCoreChangelog_1_4_0f7(Plugin plugin) : base(plugin) {}
+        public LudiqCoreChangelog_1_4_0f7(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f7";
         public override DateTime date => new DateTime(2018, 09, 25);
@@ -132,7 +132,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqCoreChangelog_1_4_0f9 : PluginChangelog
     {
-        public LudiqCoreChangelog_1_4_0f9(Plugin plugin) : base(plugin) {}
+        public LudiqCoreChangelog_1_4_0f9(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f9";
         public override DateTime date => new DateTime(2018, 10, 11);
@@ -149,7 +149,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqCoreChangelog_1_4_0f10 : PluginChangelog
     {
-        public LudiqCoreChangelog_1_4_0f10(Plugin plugin) : base(plugin) {}
+        public LudiqCoreChangelog_1_4_0f10(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f10";
         public override DateTime date => new DateTime(2018, 10, 29);
@@ -171,7 +171,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqCoreChangelog_1_4_0f11 : PluginChangelog
     {
-        public LudiqCoreChangelog_1_4_0f11(Plugin plugin) : base(plugin) {}
+        public LudiqCoreChangelog_1_4_0f11(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.0f11";
         public override DateTime date => new DateTime(2018, 11, 08);

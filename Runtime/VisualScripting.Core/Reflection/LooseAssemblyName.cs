@@ -32,12 +32,12 @@ namespace Unity.VisualScripting
             return HashUtility.GetHashCode(name);
         }
 
-        public static bool operator==(LooseAssemblyName a, LooseAssemblyName b)
+        public static bool operator ==(LooseAssemblyName a, LooseAssemblyName b)
         {
             return a.Equals(b);
         }
 
-        public static bool operator!=(LooseAssemblyName a, LooseAssemblyName b)
+        public static bool operator !=(LooseAssemblyName a, LooseAssemblyName b)
         {
             return !(a == b);
         }

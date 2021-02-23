@@ -27,7 +27,7 @@ namespace Unity.VisualScripting
                 12
                 );
 
-            GUI.DrawTexture(iconPosition, BoltCore.Icons.variable ? [IconSize.Small]);
+            GUI.DrawTexture(iconPosition, BoltCore.Icons.variable?[IconSize.Small]);
 
             if (direction != ActionDirection.Any)
             {

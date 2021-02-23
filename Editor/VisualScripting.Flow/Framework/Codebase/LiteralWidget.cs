@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Widget(typeof(Literal))]
     public sealed class LiteralWidget : UnitWidget<Literal>
     {
-        public LiteralWidget(FlowCanvas canvas, Literal unit) : base(canvas, unit) {}
+        public LiteralWidget(FlowCanvas canvas, Literal unit) : base(canvas, unit) { }
 
         protected override bool showHeaderAddon => unit.isDefined;
 

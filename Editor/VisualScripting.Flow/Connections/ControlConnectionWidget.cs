@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Widget(typeof(ControlConnection))]
     public sealed class ControlConnectionWidget : UnitConnectionWidget<ControlConnection>
     {
-        public ControlConnectionWidget(FlowCanvas canvas, ControlConnection connection) : base(canvas, connection) {}
+        public ControlConnectionWidget(FlowCanvas canvas, ControlConnection connection) : base(canvas, connection) { }
 
 
         #region Drawing
@@ -23,7 +23,7 @@ namespace Unity.VisualScripting
 
         protected override Vector2 GetDropletSize()
         {
-            return BoltFlow.Icons.valuePortConnected ? [12].Size() ?? 12 * Vector2.one;
+            return BoltFlow.Icons.valuePortConnected?[12].Size() ?? 12 * Vector2.one;
         }
 
         protected override void DrawDroplet(Rect position)

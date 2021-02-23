@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
         where TGraph : class, IGraph
         where TGraphDescription : class, IGraphDescription, new()
     {
-        protected GraphDescriptor(TGraph target) : base(target) {}
+        protected GraphDescriptor(TGraph target) : base(target) { }
 
         protected TGraph graph => target;
 

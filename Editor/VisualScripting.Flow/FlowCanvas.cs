@@ -10,7 +10,7 @@ namespace Unity.VisualScripting
     [Canvas(typeof(FlowGraph))]
     public sealed class FlowCanvas : VisualScriptingCanvas<FlowGraph>
     {
-        public FlowCanvas(FlowGraph graph) : base(graph) {}
+        public FlowCanvas(FlowGraph graph) : base(graph) { }
 
 
         #region Clipboard
@@ -115,10 +115,12 @@ namespace Unity.VisualScripting
 
         public void NewUnitContextual()
         {
+            var filter = UnitOptionFilter.Any;
+            filter.GraphHashCode = graph.GetHashCode();
+
             if (connectionSource is ValueInput)
             {
                 var valueInput = (ValueInput)connectionSource;
-                var filter = UnitOptionFilter.Any;
                 filter.CompatibleOutputType = valueInput.type;
                 filter.Expose = false;
                 NewUnit(mousePosition, GetNewUnitOptions(filter), (unit) => CompleteContextualConnection(valueInput, unit.CompatibleValueOutput(valueInput.type)));
@@ -126,21 +128,18 @@ namespace Unity.VisualScripting
             else if (connectionSource is ValueOutput)
             {
                 var valueOutput = (ValueOutput)connectionSource;
-                var filter = UnitOptionFilter.Any;
                 filter.CompatibleInputType = valueOutput.type;
                 NewUnit(mousePosition, GetNewUnitOptions(filter), (unit) => CompleteContextualConnection(valueOutput, unit.CompatibleValueInput(valueOutput.type)));
             }
             else if (connectionSource is ControlInput)
             {
                 var controlInput = (ControlInput)connectionSource;
-                var filter = UnitOptionFilter.Any;
                 filter.NoControlOutput = false;
                 NewUnit(mousePosition, GetNewUnitOptions(filter), (unit) => CompleteContextualConnection(controlInput, unit.controlOutputs.First()));
             }
             else if (connectionSource is ControlOutput)
             {
                 var controlOutput = (ControlOutput)connectionSource;
-                var filter = UnitOptionFilter.Any;
                 filter.NoControlInput = false;
                 NewUnit(mousePosition, GetNewUnitOptions(filter), (unit) => CompleteContextualConnection(controlOutput, unit.controlInputs.First()));
             }
@@ -167,7 +166,7 @@ namespace Unity.VisualScripting
                 }
                 else
                 {
-                    NewUnit(mousePosition, GetNewUnitOptions(UnitOptionFilter.Any));
+                    NewUnit(mousePosition);
                 }
             }
         }
@@ -209,7 +208,9 @@ namespace Unity.VisualScripting
 
         private void NewUnit(Vector2 position)
         {
-            NewUnit(position, GetNewUnitOptions(UnitOptionFilter.Any));
+            var filter = UnitOptionFilter.Any;
+            filter.GraphHashCode = graph.GetHashCode();
+            NewUnit(position, GetNewUnitOptions(filter));
         }
 
         private void NewUnit(Vector2 unitPosition, UnitOptionTree options, Action<IUnit> then = null)
@@ -225,7 +226,7 @@ namespace Unity.VisualScripting
                         activatorPosition,
                         options,
                         null,
-                        delegate(object _option)
+                        delegate (object _option)
                         {
                             context.BeginEdit();
 
@@ -273,9 +274,13 @@ namespace Unity.VisualScripting
 
         public override bool AcceptsDragAndDrop()
         {
-            return DragAndDropUtility.Is<ScriptGraphAsset>() ||
-                (DragAndDropUtility.Is<UnityObject>() && !DragAndDropUtility.Is<IMacro>() && CanDetermineDraggedInput(DragAndDropUtility.Get<UnityObject>())) ||
-                EditorVariablesUtility.isDraggingVariable;
+            if (DragAndDropUtility.Is<ScriptGraphAsset>())
+            {
+                return FlowDragAndDropUtility.AcceptsScript(graph);
+            }
+
+            return DragAndDropUtility.Is<UnityObject>() && !DragAndDropUtility.Is<IMacro>() && CanDetermineDraggedInput(DragAndDropUtility.Get<UnityObject>())
+                || EditorVariablesUtility.isDraggingVariable;
         }
 
         public override void PerformDragAndDrop()

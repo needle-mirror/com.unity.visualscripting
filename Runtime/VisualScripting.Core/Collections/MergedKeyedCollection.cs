@@ -233,7 +233,7 @@ namespace Unity.VisualScripting
                 collectionsEnumerator = merged.collections.GetEnumerator();
             }
 
-            public void Dispose() {}
+            public void Dispose() { }
 
             public bool MoveNext()
             {

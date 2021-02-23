@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(GetMember))]
     public class GetMemberDescriptor : MemberUnitDescriptor<GetMember>
     {
-        public GetMemberDescriptor(GetMember unit) : base(unit) {}
+        public GetMemberDescriptor(GetMember unit) : base(unit) { }
 
         protected override ActionDirection direction => ActionDirection.Get;
 

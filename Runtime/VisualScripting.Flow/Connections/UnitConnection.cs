@@ -29,7 +29,7 @@ namespace Unity.VisualScripting
         where TDestinationPort : class, IUnitInputPort
     {
         [Obsolete(Serialization.ConstructorWarning)]
-        protected UnitConnection() {}
+        protected UnitConnection() { }
 
         protected UnitConnection(TSourcePort source, TDestinationPort destination)
         {

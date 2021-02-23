@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltState.ID)]
     public sealed class BoltStateConfiguration : PluginConfiguration
     {
-        private BoltStateConfiguration(BoltState plugin) : base(plugin) {}
+        private BoltStateConfiguration(BoltState plugin) : base(plugin) { }
 
         public override string header => "State Graphs";
 

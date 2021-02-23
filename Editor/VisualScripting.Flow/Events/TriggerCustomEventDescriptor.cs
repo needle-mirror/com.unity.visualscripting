@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(TriggerCustomEvent))]
     public class TriggerCustomEventDescriptor : UnitDescriptor<TriggerCustomEvent>
     {
-        public TriggerCustomEventDescriptor(TriggerCustomEvent trigger) : base(trigger) {}
+        public TriggerCustomEventDescriptor(TriggerCustomEvent trigger) : base(trigger) { }
 
         protected override void DefinedPort(IUnitPort port, UnitPortDescription description)
         {

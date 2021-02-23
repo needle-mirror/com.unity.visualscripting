@@ -32,7 +32,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var fieldPosition = position.VerticalSection(ref y, GetFieldHeight(position.width, GUIContent.none));
 
@@ -94,7 +94,7 @@ namespace Unity.VisualScripting
                 textField = new GUIStyle(EditorStyles.textField);
 
                 popup = new GUIStyle("TextFieldDropDown");
-                popup.fixedWidth = 12;
+                popup.fixedWidth = 18;
                 popup.clipping = TextClipping.Clip;
                 popup.normal.textColor = ColorPalette.transparent;
                 popup.active.textColor = ColorPalette.transparent;

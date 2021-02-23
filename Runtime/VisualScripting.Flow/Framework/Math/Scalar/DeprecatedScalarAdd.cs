@@ -8,6 +8,7 @@ namespace Unity.VisualScripting
     [UnitCategory("Math/Scalar")]
     [UnitTitle("Add")]
     [Obsolete("Use the new \"Add (Math/Scalar)\" unit instead.")]
+    [RenamedFrom("Bolt.ScalarAdd")]
     [RenamedFrom("Unity.VisualScripting.ScalarAdd")]
     public sealed class DeprecatedScalarAdd : Add<float>
     {

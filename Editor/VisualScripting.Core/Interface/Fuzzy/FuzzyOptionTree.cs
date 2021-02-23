@@ -8,7 +8,7 @@ namespace Unity.VisualScripting
 {
     public abstract class FuzzyOptionTree : IFuzzyOptionTree
     {
-        protected FuzzyOptionTree() {}
+        protected FuzzyOptionTree() { }
 
         protected FuzzyOptionTree(GUIContent header) : this()
         {
@@ -21,7 +21,7 @@ namespace Unity.VisualScripting
 
         public bool showBackgroundWorkerProgress { get; protected set; }
 
-        public virtual void Prewarm() {}
+        public virtual void Prewarm() { }
 
         public virtual IFuzzyOption Option(object item)
         {
@@ -87,7 +87,7 @@ namespace Unity.VisualScripting
             throw new NotSupportedException();
         }
 
-        public virtual void OnFavoritesChange() {}
+        public virtual void OnFavoritesChange() { }
 
         #endregion
     }

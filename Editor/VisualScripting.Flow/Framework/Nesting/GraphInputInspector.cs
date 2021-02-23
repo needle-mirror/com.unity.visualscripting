@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(GraphInput))]
     public class GraphInputInspector : Inspector
     {
-        public GraphInputInspector(Metadata metadata) : base(metadata) {}
+        public GraphInputInspector(Metadata metadata) : base(metadata) { }
 
         private Metadata graphMetadata => metadata[nameof(GraphInput.graph)];
         private Metadata controlInputDefinitionsMetadata => graphMetadata[nameof(FlowGraph.controlInputDefinitions)];
@@ -30,7 +30,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            BeginBlock(metadata, position, label);
+            BeginLabeledBlock(metadata, position, label);
 
             if (graphMetadata.value != null)
             {

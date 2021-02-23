@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     public abstract class StateTransitionAnalyser<TStateTransition> : Analyser<TStateTransition, StateTransitionAnalysis>
         where TStateTransition : IStateTransition
     {
-        protected StateTransitionAnalyser(GraphReference reference, TStateTransition target) : base(reference, target) {}
+        protected StateTransitionAnalyser(GraphReference reference, TStateTransition target) : base(reference, target) { }
 
         public TStateTransition transition => target;
 

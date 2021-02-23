@@ -80,7 +80,7 @@ namespace Unity.VisualScripting
         public bool isDescriptionValid
         {
             get => true;
-            set {}
+            set { }
         }
 
         protected virtual void Awake()
@@ -134,6 +134,11 @@ namespace Unity.VisualScripting
         protected virtual void OnValidate()
         {
             threadSafeGameObject = gameObject;
+        }
+
+        public GraphPointer GetReference()
+        {
+            return reference;
         }
 
         private void CacheReference()

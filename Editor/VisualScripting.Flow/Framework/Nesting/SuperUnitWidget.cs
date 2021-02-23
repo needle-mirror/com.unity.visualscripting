@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     [Widget(typeof(SuperUnit))]
     public class SuperUnitWidget : NestrerUnitWidget<SuperUnit>, IDragAndDropHandler
     {
-        public SuperUnitWidget(FlowCanvas canvas, SuperUnit unit) : base(canvas, unit) {}
+        public SuperUnitWidget(FlowCanvas canvas, SuperUnit unit) : base(canvas, unit) { }
 
         protected override NodeColorMix baseColor
         {
@@ -30,7 +30,7 @@ namespace Unity.VisualScripting
 
         public bool AcceptsDragAndDrop()
         {
-            return DragAndDropUtility.Is<ScriptGraphAsset>();
+            return DragAndDropUtility.Is<ScriptGraphAsset>() && FlowDragAndDropUtility.AcceptsScript(graph);
         }
 
         public void PerformDragAndDrop()

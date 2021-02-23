@@ -8,9 +8,9 @@ namespace Unity.VisualScripting
     [UnitSurtitle("Object")]
     public sealed class IsObjectVariableDefined : IsVariableDefinedUnit, IObjectVariableUnit
     {
-        public IsObjectVariableDefined() : base() {}
+        public IsObjectVariableDefined() : base() { }
 
-        public IsObjectVariableDefined(string name) : base(name) {}
+        public IsObjectVariableDefined(string name) : base(name) { }
 
         /// <summary>
         /// The source of the variable.

@@ -16,9 +16,9 @@ namespace Unity.VisualScripting
             return new Data();
         }
 
-        public SuperUnit() : base() {}
+        public SuperUnit() : base() { }
 
-        public SuperUnit(ScriptGraphAsset macro) : base(macro) {}
+        public SuperUnit(ScriptGraphAsset macro) : base(macro) { }
 
         public static SuperUnit WithInputOutput()
         {

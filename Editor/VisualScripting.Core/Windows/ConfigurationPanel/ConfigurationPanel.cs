@@ -25,12 +25,30 @@ namespace Unity.VisualScripting
 
         public void PreferenceItem()
         {
+            EditorGUIUtility.labelWidth = 220;
             OnGUI();
         }
 
         public void Show()
         {
             Show(label);
+        }
+
+        public IEnumerable<string> GetSearchKeywords()
+        {
+            List<string> keywords = new List<string>();
+            foreach (var configuration in configurations)
+            {
+                if (configuration.Any(i => i.visible))
+                {
+                    foreach (var item in configuration.Where(i => i.visible))
+                    {
+                        keywords.Add(item.member.HumanName());
+                    }
+                }
+            }
+
+            return keywords;
         }
 
         static ConfigurationPanel()

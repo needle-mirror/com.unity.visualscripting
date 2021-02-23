@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     public class StateAnalyser<TState> : Analyser<TState, StateAnalysis>
         where TState : class, IState
     {
-        public StateAnalyser(GraphReference reference, TState target) : base(reference, target) {}
+        public StateAnalyser(GraphReference reference, TState target) : base(reference, target) { }
 
         public TState state => target;
 

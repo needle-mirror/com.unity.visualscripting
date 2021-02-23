@@ -158,14 +158,14 @@ namespace Unity.VisualScripting
             GUI.changed = true;
         }
 
-        public void UpdateDragAndDrop() {}
+        public void UpdateDragAndDrop() { }
 
         public void DrawDragAndDropPreview()
         {
             GraphGUI.DrawDragAndDropPreviewLabel(new Vector2(edgePosition.x, outerPosition.yMax), "Replace with: " + DragAndDropUtility.Get<ScriptGraphAsset>().name, typeof(ScriptGraphAsset).Icon());
         }
 
-        public void ExitDragAndDrop() {}
+        public void ExitDragAndDrop() { }
 
         #endregion
 
@@ -189,7 +189,7 @@ namespace Unity.VisualScripting
         {
             public EventLine(Type eventType)
             {
-                content = new GUIContent(BoltFlowNameUtility.UnitTitle(eventType, false, true), eventType.Icon() ? [IconSize.Small]);
+                content = new GUIContent(BoltFlowNameUtility.UnitTitle(eventType, false, true), eventType.Icon()?[IconSize.Small]);
             }
 
             public GUIContent content { get; }

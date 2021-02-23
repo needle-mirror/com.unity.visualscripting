@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
     public sealed class InspectorWideAttribute : Attribute
     {
-        public InspectorWideAttribute() {}
+        public InspectorWideAttribute() { }
 
         public InspectorWideAttribute(bool toEdge)
         {

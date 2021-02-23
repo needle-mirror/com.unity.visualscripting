@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Widget(typeof(InvalidConnection))]
     public sealed class InvalidConnectionWidget : UnitConnectionWidget<InvalidConnection>
     {
-        public InvalidConnectionWidget(FlowCanvas canvas, InvalidConnection connection) : base(canvas, connection) {}
+        public InvalidConnectionWidget(FlowCanvas canvas, InvalidConnection connection) : base(canvas, connection) { }
 
 
         #region Drawing
@@ -21,7 +21,7 @@ namespace Unity.VisualScripting
 
         protected override Vector2 GetDropletSize() => Vector2.zero;
 
-        protected override void DrawDroplet(Rect position) {}
+        protected override void DrawDroplet(Rect position) { }
 
         #endregion
     }

@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     public abstract class UnaryOperatorHandler : OperatorHandler
     {
         protected UnaryOperatorHandler(string name, string verb, string symbol, string customMethodName)
-            : base(name, verb, symbol, customMethodName) {}
+            : base(name, verb, symbol, customMethodName) { }
 
         private readonly Dictionary<Type, Func<object, object>> manualHandlers = new Dictionary<Type, Func<object, object>>();
         private readonly Dictionary<Type, IOptimizedInvoker> userDefinedOperators = new Dictionary<Type, IOptimizedInvoker>();

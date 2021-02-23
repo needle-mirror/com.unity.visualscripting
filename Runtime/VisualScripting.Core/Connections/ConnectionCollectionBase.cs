@@ -203,10 +203,10 @@ namespace Unity.VisualScripting
             return true;
         }
 
-        protected virtual void BeforeAdd(TConnection item) {}
-        protected virtual void AfterAdd(TConnection item) {}
-        protected virtual void BeforeRemove(TConnection item) {}
-        protected virtual void AfterRemove(TConnection item) {}
+        protected virtual void BeforeAdd(TConnection item) { }
+        protected virtual void AfterAdd(TConnection item) { }
+        protected virtual void BeforeRemove(TConnection item) { }
+        protected virtual void AfterRemove(TConnection item) { }
 
         private void AddToDictionaries(TConnection item)
         {

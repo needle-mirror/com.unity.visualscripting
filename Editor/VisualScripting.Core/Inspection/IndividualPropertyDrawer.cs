@@ -19,6 +19,6 @@ namespace Unity.VisualScripting
 
         public abstract void OnGUI(Rect drawerPosition, GUIContent label);
 
-        public virtual void Dispose() {}
+        public virtual void Dispose() { }
     }
 }

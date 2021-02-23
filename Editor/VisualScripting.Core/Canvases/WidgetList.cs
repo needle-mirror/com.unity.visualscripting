@@ -77,7 +77,7 @@ namespace Unity.VisualScripting
                 graph = list.canvas.graph;
             }
 
-            public void Dispose() {}
+            public void Dispose() { }
 
             public bool MoveNext()
             {

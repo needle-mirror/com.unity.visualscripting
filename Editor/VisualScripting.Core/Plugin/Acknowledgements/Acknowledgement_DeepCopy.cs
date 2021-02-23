@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Acknowledgement_DeepCopy : PluginAcknowledgement
     {
-        public Acknowledgement_DeepCopy(Plugin plugin) : base(plugin) {}
+        public Acknowledgement_DeepCopy(Plugin plugin) : base(plugin) { }
 
         public override string title => "Deep Copy";
         public override string author => "Alexey Burtsev";

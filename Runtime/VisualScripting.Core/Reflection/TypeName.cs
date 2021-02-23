@@ -27,6 +27,8 @@ namespace Unity.VisualScripting
 
         public string Name { get; private set; }
 
+        public bool IsArray => Name.EndsWith("[]");
+
         public string LastName => names[names.Count - 1];
 
         public static TypeName Parse(string s)
@@ -280,9 +282,9 @@ namespace Unity.VisualScripting
         {
             for (var i = 0; i < names.Count; i++)
             {
-                if (names[i] == oldTypeName)
+                if (ToElementTypeName(names[i]) == oldTypeName)
                 {
-                    names[i] = newTypeName;
+                    names[i] = ToArrayOrType(names[i], newTypeName);
 
                     if (newAssemblyName != null)
                     {
@@ -297,6 +299,23 @@ namespace Unity.VisualScripting
             }
 
             UpdateName();
+        }
+
+        // We never compare Arrays but just ElementTypes, so remove the square brackets from the old type
+        static string ToElementTypeName(string s)
+        {
+            return s.EndsWith("[]") ? s.Replace("[]", string.Empty) : s;
+        }
+
+        // If the old type was an array, then set the new type as an array
+        static string ToArrayOrType(string oldType, string newType)
+        {
+            if (oldType.EndsWith("[]"))
+            {
+                newType += "[]";
+            }
+
+            return newType;
         }
 
         public void SetAssemblyName(AssemblyName newAssemblyName)

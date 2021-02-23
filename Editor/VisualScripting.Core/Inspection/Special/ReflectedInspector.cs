@@ -8,7 +8,7 @@ namespace Unity.VisualScripting
 {
     public class ReflectedInspector : Inspector
     {
-        public ReflectedInspector(Metadata metadata) : base(metadata) {}
+        public ReflectedInspector(Metadata metadata) : base(metadata) { }
 
         public override void Initialize()
         {
@@ -89,7 +89,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            BeginBlock(metadata, position, label);
+            BeginLabeledBlock(metadata, position, label);
 
             foreach (var member in inspectedMembers)
             {

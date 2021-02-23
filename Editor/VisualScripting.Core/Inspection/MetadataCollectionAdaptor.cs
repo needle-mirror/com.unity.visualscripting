@@ -73,11 +73,11 @@ namespace Unity.VisualScripting
 
         #region Drawing
 
-        public virtual void BeginGUI() {}
+        public virtual void BeginGUI() { }
 
-        public virtual void EndGUI() {}
+        public virtual void EndGUI() { }
 
-        public virtual void DrawItemBackground(Rect position, int index) {}
+        public virtual void DrawItemBackground(Rect position, int index) { }
 
         protected virtual float GetTitleHeight(float width, GUIContent title)
         {
@@ -161,7 +161,7 @@ namespace Unity.VisualScripting
 
             if (widthMode == WidthMode.Thin)
             {
-                position = Inspector.BeginBlock(metadata, position, label);
+                position = Inspector.BeginLabeledBlock(metadata, position, label);
             }
             else
             {
@@ -171,7 +171,7 @@ namespace Unity.VisualScripting
                     position.width = LudiqGUIUtility.currentInspectorWidthWithoutScrollbar;
                 }
 
-                Inspector.BeginBlock(metadata, position, GUIContent.none);
+                Inspector.BeginLabeledBlock(metadata, position, GUIContent.none);
             }
 
             position.height += 10; // Restore default padding

@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Editor(typeof(IMachine))]
     public class MachineEditor : Inspector
     {
-        public MachineEditor(Metadata metadata) : base(metadata) {}
+        public MachineEditor(Metadata metadata) : base(metadata) { }
 
         private Metadata nestMetadata => metadata[nameof(IMachine.nest)];
 
@@ -40,7 +40,7 @@ namespace Unity.VisualScripting
 
         protected sealed override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, GUIContent.none);
+            position = BeginLabeledBlock(metadata, position, GUIContent.none);
 
             if (showHeader)
             {

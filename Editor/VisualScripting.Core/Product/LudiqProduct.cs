@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Product(ID)]
     public sealed class LudiqProduct : Product
     {
-        public LudiqProduct() {}
+        public LudiqProduct() { }
 
         public override string configurationPanelLabel => "";
 

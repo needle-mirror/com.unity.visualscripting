@@ -6,9 +6,9 @@ namespace Unity.VisualScripting
     [UnitSurtitle("Application")]
     public sealed class SetApplicationVariable : SetVariableUnit, IApplicationVariableUnit
     {
-        public SetApplicationVariable() : base() {}
+        public SetApplicationVariable() : base() { }
 
-        public SetApplicationVariable(string defaultName) : base(defaultName) {}
+        public SetApplicationVariable(string defaultName) : base(defaultName) { }
 
         protected override VariableDeclarations GetDeclarations(Flow flow)
         {

@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
         where TCanvas : class, ICanvas
         where TNode : class, IGraphElement
     {
-        protected NodeWidget(TCanvas canvas, TNode node) : base(canvas, node) {}
+        protected NodeWidget(TCanvas canvas, TNode node) : base(canvas, node) { }
 
 
         #region Positioning

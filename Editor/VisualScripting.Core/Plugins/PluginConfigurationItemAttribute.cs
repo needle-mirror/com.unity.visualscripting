@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public abstract class PluginConfigurationItemAttribute : Attribute
     {
-        protected PluginConfigurationItemAttribute() {}
+        protected PluginConfigurationItemAttribute() { }
 
         protected PluginConfigurationItemAttribute(string key)
         {

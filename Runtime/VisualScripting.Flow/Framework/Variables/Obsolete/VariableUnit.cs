@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Obsolete("Use the new unified variable units instead.")]
     public abstract class VariableUnit : Unit, IVariableUnit
     {
-        protected VariableUnit() : base() {}
+        protected VariableUnit() : base() { }
 
         protected VariableUnit(string defaultName)
         {

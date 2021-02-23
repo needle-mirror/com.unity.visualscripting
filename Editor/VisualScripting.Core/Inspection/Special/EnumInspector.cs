@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
 {
     public class EnumInspector : Inspector
     {
-        public EnumInspector(Metadata metadata) : base(metadata) {}
+        public EnumInspector(Metadata metadata) : base(metadata) { }
 
         public override void Initialize()
         {
@@ -22,7 +22,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var fieldPosition = new Rect
                 (
@@ -50,6 +50,36 @@ namespace Unity.VisualScripting
                 metadata.RecordUndo();
                 metadata.value = newValue;
             }
+        }
+
+        protected override void OnEditorPrefGUI(Rect position, GUIContent label)
+        {
+            BeginBlock(metadata, position);
+
+            var fieldPosition = new Rect
+                (
+                position.x,
+                position.y,
+                position.width,
+                EditorGUIUtility.singleLineHeight
+                );
+
+            var enumType = metadata.value.GetType();
+
+            Enum newValue;
+
+            if (enumType.HasAttribute<FlagsAttribute>(false))
+            {
+                newValue = EditorGUI.EnumFlagsField(fieldPosition, label, (Enum)metadata.value);
+            }
+            else
+            {
+                newValue = EditorGUI.EnumPopup(fieldPosition, label, (Enum)metadata.value);
+            }
+
+            if (EndBlock(metadata))
+                metadata.RecordUndo();
+            metadata.value = newValue;
         }
 
         public override float GetAdaptiveWidth()

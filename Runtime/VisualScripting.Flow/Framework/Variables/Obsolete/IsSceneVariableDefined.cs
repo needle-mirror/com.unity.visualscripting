@@ -6,9 +6,9 @@ namespace Unity.VisualScripting
     [UnitSurtitle("Scene")]
     public sealed class IsSceneVariableDefined : IsVariableDefinedUnit, ISceneVariableUnit
     {
-        public IsSceneVariableDefined() : base() {}
+        public IsSceneVariableDefined() : base() { }
 
-        public IsSceneVariableDefined(string defaultName) : base(defaultName) {}
+        public IsSceneVariableDefined(string defaultName) : base(defaultName) { }
 
         protected override VariableDeclarations GetDeclarations(Flow flow)
         {

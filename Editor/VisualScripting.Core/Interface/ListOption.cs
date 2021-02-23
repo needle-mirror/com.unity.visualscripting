@@ -16,7 +16,7 @@ namespace Unity.VisualScripting
             this.label = label;
         }
 
-        public ListOption(object value, string label) : this(value, new GUIContent(label)) {}
+        public ListOption(object value, string label) : this(value, new GUIContent(label)) { }
 
         public object value { get; set; }
         public GUIContent label { get; set; }

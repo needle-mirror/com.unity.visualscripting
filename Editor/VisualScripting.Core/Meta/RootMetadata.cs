@@ -4,7 +4,7 @@ namespace Unity.VisualScripting
 {
     public sealed class RootMetadata : Metadata
     {
-        public RootMetadata() : base("Root", null) {}
+        public RootMetadata() : base("Root", null) { }
 
         protected override bool isRoot => true;
 
@@ -14,7 +14,7 @@ namespace Unity.VisualScripting
             {
                 return null;
             }
-            set {}
+            set { }
         }
 
         public override Attribute[] GetCustomAttributes(bool inherit = true)

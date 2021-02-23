@@ -1,4 +1,4 @@
-#Basic Concepts in visual scripting
+#Basic concepts in visual scripting
 
 | **Note**                                                     |
 | :----------------------------------------------------------- |

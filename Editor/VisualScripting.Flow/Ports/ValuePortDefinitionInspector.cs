@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(ValuePortDefinition))]
     public class ValuePortDefinitionInspector : UnitPortDefinitionInspector
     {
-        public ValuePortDefinitionInspector(Metadata metadata) : base(metadata) {}
+        public ValuePortDefinitionInspector(Metadata metadata) : base(metadata) { }
 
         protected Metadata typeMetadata => metadata[nameof(ValueInputDefinition.type)];
 

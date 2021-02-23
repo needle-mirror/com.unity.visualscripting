@@ -3,9 +3,9 @@ namespace Unity.VisualScripting
     [TypeIcon(typeof(StateGraph))]
     public sealed class SuperState : NesterState<StateGraph, StateGraphAsset>, IGraphEventListener
     {
-        public SuperState() : base() {}
+        public SuperState() : base() { }
 
-        public SuperState(StateGraphAsset macro) : base(macro) {}
+        public SuperState(StateGraphAsset macro) : base(macro) { }
 
         public static SuperState WithStart()
         {

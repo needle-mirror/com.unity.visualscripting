@@ -18,6 +18,6 @@ namespace Unity.VisualScripting
 
         public abstract void OnGUI();
 
-        public virtual void Dispose() {}
+        public virtual void Dispose() { }
     }
 }

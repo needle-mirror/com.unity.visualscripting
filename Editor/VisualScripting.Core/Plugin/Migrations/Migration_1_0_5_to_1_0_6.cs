@@ -11,7 +11,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Migration_1_0_5_to_1_0_6 : BoltCoreMigration
     {
-        public Migration_1_0_5_to_1_0_6(Plugin plugin) : base(plugin) {}
+        public Migration_1_0_5_to_1_0_6(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion @from => "1.0.5";
         public override SemanticVersion to => "1.0.6";

@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(GraphInput))]
     public class GraphInputDescriptor : UnitDescriptor<GraphInput>
     {
-        public GraphInputDescriptor(GraphInput unit) : base(unit) {}
+        public GraphInputDescriptor(GraphInput unit) : base(unit) { }
 
         protected override void DefinedPort(IUnitPort port, UnitPortDescription description)
         {

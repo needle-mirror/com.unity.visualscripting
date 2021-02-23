@@ -378,7 +378,7 @@ namespace Unity.VisualScripting.FullSerializer
         /// <summary>
         /// Returns true iff a == b.
         /// </summary>
-        public static bool operator==(fsData a, fsData b)
+        public static bool operator ==(fsData a, fsData b)
         {
             // If both are null, or both are same instance, return true.
             if (ReferenceEquals(a, b))
@@ -403,7 +403,7 @@ namespace Unity.VisualScripting.FullSerializer
         /// <summary>
         /// Returns true iff a != b.
         /// </summary>
-        public static bool operator!=(fsData a, fsData b)
+        public static bool operator !=(fsData a, fsData b)
         {
             return !(a == b);
         }

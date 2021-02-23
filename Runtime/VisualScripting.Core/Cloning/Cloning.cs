@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
 using UnityObject = UnityEngine.Object;
 
 namespace Unity.VisualScripting
@@ -95,20 +97,23 @@ namespace Unity.VisualScripting
             context.clonings[original] = clone; // In case the reference changed, for example in arrays
         }
 
-        private static ICloner GetCloner(object original, Type type, ICloner fallbackCloner)
+        [CanBeNull]
+        public static ICloner GetCloner(object original, Type type)
         {
             if (original is ISpecifiesCloner cloneableVia)
             {
                 return cloneableVia.cloner;
             }
 
-            foreach (var cloner in cloners)
-            {
-                if (cloner.Handles(type))
-                {
-                    return cloner;
-                }
-            }
+            return cloners.FirstOrDefault(cloner => cloner.Handles(type));
+        }
+
+        private static ICloner GetCloner(object original, Type type, ICloner fallbackCloner)
+        {
+            var cloner = GetCloner(original, type);
+
+            if (cloner != null)
+                return cloner;
 
             Ensure.That(nameof(fallbackCloner)).IsNotNull(fallbackCloner);
 

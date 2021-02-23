@@ -1,4 +1,4 @@
 namespace Unity.VisualScripting
 {
-    public interface IObjectVariableUnit : IVariableUnit {}
+    public interface IObjectVariableUnit : IVariableUnit { }
 }

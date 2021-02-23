@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     public abstract class NesterStateTransitionWidget<TNesterStateTransition> : StateTransitionWidget<TNesterStateTransition>
         where TNesterStateTransition : class, INesterStateTransition
     {
-        protected NesterStateTransitionWidget(StateCanvas canvas, TNesterStateTransition transition) : base(canvas, transition) {}
+        protected NesterStateTransitionWidget(StateCanvas canvas, TNesterStateTransition transition) : base(canvas, transition) { }
 
         protected override IEnumerable<DropdownOption> contextOptions
         {

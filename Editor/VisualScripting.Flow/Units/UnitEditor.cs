@@ -9,7 +9,7 @@ namespace Unity.VisualScripting
     [Editor(typeof(IUnit))]
     public class UnitEditor : GraphElementEditor<FlowGraphContext>
     {
-        public UnitEditor(Metadata metadata) : base(metadata) {}
+        public UnitEditor(Metadata metadata) : base(metadata) { }
 
         protected IUnit unit => (IUnit)element;
 
@@ -220,7 +220,7 @@ namespace Unity.VisualScripting
                 Styles.portIcon.fixedHeight
                 );
 
-            var icon = portDescription.icon ? [IconSize.Small];
+            var icon = portDescription.icon?[IconSize.Small];
 
             if (icon != null)
             {

@@ -42,6 +42,6 @@ namespace Unity.VisualScripting
             }
         }
 
-        public virtual void RunAction() {}
+        public virtual void RunAction() { }
     }
 }

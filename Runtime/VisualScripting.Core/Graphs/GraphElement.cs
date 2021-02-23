@@ -60,7 +60,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        public virtual void BeforeAdd() {}
+        public virtual void BeforeAdd() { }
 
         public virtual void AfterAdd()
         {
@@ -88,9 +88,9 @@ namespace Unity.VisualScripting
             Dispose();
         }
 
-        public virtual void AfterRemove() {}
+        public virtual void AfterRemove() { }
 
-        public virtual void Dispose() {}
+        public virtual void Dispose() { }
 
         protected void InstantiateNest()
         {
@@ -158,9 +158,9 @@ namespace Unity.VisualScripting
 
         public virtual IEnumerable<object> aotStubs => Enumerable.Empty<object>();
 
-        public virtual void Prewarm() {}
+        public virtual void Prewarm() { }
 
-        protected void CopyFrom(GraphElement<TGraph> source) {}
+        protected void CopyFrom(GraphElement<TGraph> source) { }
 
         public override string ToString()
         {

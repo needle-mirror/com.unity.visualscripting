@@ -32,6 +32,7 @@ namespace Unity.VisualScripting
             Nesters = @default;
             Expose = @default;
             Obsolete = false;
+            AllowSelfNestedGraph = false;
         }
 
         public bool NoControlInput { get; set; }
@@ -59,9 +60,12 @@ namespace Unity.VisualScripting
         public bool Nesters { get; set; }
         public bool Expose { get; set; }
         public bool Obsolete { get; set; }
+        public bool AllowSelfNestedGraph { get; set; }
 
         public Type CompatibleInputType { get; set; }
         public Type CompatibleOutputType { get; set; }
+
+        public int GraphHashCode { get; set; }
 
         object ICloneable.Clone()
         {
@@ -94,7 +98,9 @@ namespace Unity.VisualScripting
                 Expose = Expose,
                 Obsolete = Obsolete,
                 CompatibleInputType = CompatibleInputType,
-                CompatibleOutputType = CompatibleOutputType
+                CompatibleOutputType = CompatibleOutputType,
+                AllowSelfNestedGraph = AllowSelfNestedGraph,
+                GraphHashCode = GraphHashCode
             };
         }
 
@@ -129,7 +135,9 @@ namespace Unity.VisualScripting
                 Expose == other.Expose &&
                 Obsolete == other.Obsolete &&
                 CompatibleInputType == other.CompatibleInputType &&
-                CompatibleOutputType == other.CompatibleOutputType;
+                CompatibleOutputType == other.CompatibleOutputType &&
+                AllowSelfNestedGraph == other.AllowSelfNestedGraph &&
+                GraphHashCode == other.GraphHashCode;
         }
 
         public override int GetHashCode()
@@ -162,9 +170,12 @@ namespace Unity.VisualScripting
                 hash = hash * 23 + Nesters.GetHashCode();
                 hash = hash * 23 + Expose.GetHashCode();
                 hash = hash * 23 + Obsolete.GetHashCode();
+                hash = hash * 23 + AllowSelfNestedGraph.GetHashCode();
 
                 hash = hash * 23 + (CompatibleInputType?.GetHashCode() ?? 0);
                 hash = hash * 23 + (CompatibleOutputType?.GetHashCode() ?? 0);
+
+                hash = hash * 23 + GraphHashCode;
 
                 return hash;
             }
@@ -283,6 +294,14 @@ namespace Unity.VisualScripting
                 return false;
             }
 
+            if (!AllowSelfNestedGraph && option.UnitIs<SuperUnit>())
+            {
+                if (((SuperUnit)option.unit).nest.graph.GetHashCode() == GraphHashCode)
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
 
@@ -314,6 +333,8 @@ namespace Unity.VisualScripting
             sb.AppendLine($"Nesters: {Nesters}");
             sb.AppendLine($"Expose: {Expose}");
             sb.AppendLine($"Obsolete: {Obsolete}");
+            sb.AppendLine($"AllowSelfNestedGraph: {AllowSelfNestedGraph}");
+            sb.AppendLine($"GraphHashCode: {GraphHashCode}");
 
             return sb.ToString();
         }

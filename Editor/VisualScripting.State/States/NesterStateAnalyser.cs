@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     public class NesterStateAnalyser<TNesterState> : StateAnalyser<TNesterState>
         where TNesterState : class, INesterState
     {
-        public NesterStateAnalyser(GraphReference reference, TNesterState state) : base(reference, state) {}
+        public NesterStateAnalyser(GraphReference reference, TNesterState state) : base(reference, state) { }
 
         protected override IEnumerable<Warning> Warnings()
         {

@@ -1,4 +1,4 @@
 namespace Unity.VisualScripting
 {
-    public interface IGraphElementData {}
+    public interface IGraphElementData { }
 }

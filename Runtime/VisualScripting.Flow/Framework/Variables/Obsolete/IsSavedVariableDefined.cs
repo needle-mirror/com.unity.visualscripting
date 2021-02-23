@@ -6,9 +6,9 @@ namespace Unity.VisualScripting
     [UnitSurtitle("Save")]
     public sealed class IsSavedVariableDefined : IsVariableDefinedUnit, ISavedVariableUnit
     {
-        public IsSavedVariableDefined() : base() {}
+        public IsSavedVariableDefined() : base() { }
 
-        public IsSavedVariableDefined(string defaultName) : base(defaultName) {}
+        public IsSavedVariableDefined(string defaultName) : base(defaultName) { }
 
         protected override VariableDeclarations GetDeclarations(Flow flow)
         {

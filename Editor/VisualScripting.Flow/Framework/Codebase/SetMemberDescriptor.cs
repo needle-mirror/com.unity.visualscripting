@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(SetMember))]
     public class SetMemberDescriptor : MemberUnitDescriptor<SetMember>
     {
-        public SetMemberDescriptor(SetMember unit) : base(unit) {}
+        public SetMemberDescriptor(SetMember unit) : base(unit) { }
 
         protected override ActionDirection direction => ActionDirection.Set;
 

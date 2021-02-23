@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(ForEach))]
     public class ForEachDescriptor : UnitDescriptor<ForEach>
     {
-        public ForEachDescriptor(ForEach unit) : base(unit) {}
+        public ForEachDescriptor(ForEach unit) : base(unit) { }
 
         protected override void DefinedPort(IUnitPort port, UnitPortDescription description)
         {

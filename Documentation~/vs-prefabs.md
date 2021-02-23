@@ -19,6 +19,6 @@ Note: When adding a machine to a prefab, use a graph instead of an embed.
 
 ###Prefab Overrides
 
-Visual scripting uses a custom serialization engine, [FullSerializer](https://github.com/jacobdufault/fullserializer), rather than Unity's default serialization. For this reason, prefabs are handled a little differently.
+Visual scripting uses a custom serialization engine, [FullSerializer](https://github.com/jacobdufault/fullserializer), rather than Unity's default serialization to satisfy it's requirements on nesting, extensibility and coverage.
 
 Note: When bolding inspector labels and values, the prefab indicates differentiation rather than override. For example, an inspector field on a prefab instance is never be bolded if it has the same value as the prefab definition, even if it has overridden this value.

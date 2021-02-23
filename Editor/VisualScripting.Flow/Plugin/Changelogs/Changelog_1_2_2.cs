@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltFlow.ID)]
     internal class Changelog_1_2_2 : PluginChangelog
     {
-        public Changelog_1_2_2(Plugin plugin) : base(plugin) {}
+        public Changelog_1_2_2(Plugin plugin) : base(plugin) { }
 
         public override string description => null;
         public override SemanticVersion version => "1.2.2";

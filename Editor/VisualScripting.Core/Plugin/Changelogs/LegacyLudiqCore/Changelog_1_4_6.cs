@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqCoreChangelog_1_4_6 : PluginChangelog
     {
-        public LudiqCoreChangelog_1_4_6(Plugin plugin) : base(plugin) {}
+        public LudiqCoreChangelog_1_4_6(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.6";
 
@@ -30,7 +30,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqCoreChangelog_1_4_6f2 : PluginChangelog
     {
-        public LudiqCoreChangelog_1_4_6f2(Plugin plugin) : base(plugin) {}
+        public LudiqCoreChangelog_1_4_6f2(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.6f2";
 
@@ -48,7 +48,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class LudiqCoreChangelog_1_4_6f3 : PluginChangelog
     {
-        public LudiqCoreChangelog_1_4_6f3(Plugin plugin) : base(plugin) {}
+        public LudiqCoreChangelog_1_4_6f3(Plugin plugin) : base(plugin) { }
 
         public override SemanticVersion version => "1.4.6f3";
 

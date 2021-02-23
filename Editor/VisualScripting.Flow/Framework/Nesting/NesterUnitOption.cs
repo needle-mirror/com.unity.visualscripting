@@ -5,9 +5,9 @@ namespace Unity.VisualScripting
     [FuzzyOption(typeof(INesterUnit))]
     public class NesterUnitOption<TNesterUnit> : UnitOption<TNesterUnit> where TNesterUnit : INesterUnit
     {
-        public NesterUnitOption() : base() {}
+        public NesterUnitOption() : base() { }
 
-        public NesterUnitOption(TNesterUnit unit) : base(unit) {}
+        public NesterUnitOption(TNesterUnit unit) : base(unit) { }
 
         // TODO: Favoritable
         public override bool favoritable => false;

@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [GraphContext(typeof(StateGraph))]
     public class StateGraphContext : GraphContext<StateGraph, StateCanvas>
     {
-        public StateGraphContext(GraphReference reference) : base(reference) {}
+        public StateGraphContext(GraphReference reference) : base(reference) { }
 
         public override string windowTitle => "State Graph";
 

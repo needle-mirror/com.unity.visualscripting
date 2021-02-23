@@ -27,8 +27,8 @@ namespace Unity.VisualScripting
             return 0;
         }
 
-        public virtual void OnFooterGUI(Rect position) {}
+        public virtual void OnFooterGUI(Rect position) { }
 
-        public virtual void OnPopulate() {}
+        public virtual void OnPopulate() { }
     }
 }

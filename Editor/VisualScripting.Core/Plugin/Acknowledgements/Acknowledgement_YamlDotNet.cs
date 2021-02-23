@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltCore.ID)]
     internal class Acknowledgement_YamlDotNet : PluginAcknowledgement
     {
-        public Acknowledgement_YamlDotNet(Plugin plugin) : base(plugin) {}
+        public Acknowledgement_YamlDotNet(Plugin plugin) : base(plugin) { }
 
         public override string title => "YamlDotNet";
         public override string author => "Antoine Aubry";

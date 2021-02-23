@@ -1,10 +1,10 @@
-#About Visual Scripting
+#About visual scripting
 
 | **Note**                                                     |
 | :----------------------------------------------------------- |
 | For versions 2019/2020 LTS, download the visual scripting solution from the [Unity Asset Store](https://assetstore.unity.com/packages/tools/visual-bolt-163802). |
 
-Visual scripting enables you to create logic for games or applications without writing code. Visual scripting has visual, unit-based graphs that both programmers and non-programmers use to design final logic or to quickly create prototypes. Visual scripting also features an API that programmers use for more advanced tasks or to create custom units that can be used by other team members. 
+Visual scripting enables you to create logic for games or applications without writing code. Visual scripting has visual, unit-based graphs that both programmers and non-programmers use to design final logic or to quickly create prototypes. Visual scripting also features an API that programmers use for more advanced tasks or to create custom units that can be used by other team members.
 
 Visual scripting is based on the concept of using graphical elements, which represent functions, operators or variables, and to connect units from their ports by using edges. Instead of having to write code line by line, you do everything visually.
 

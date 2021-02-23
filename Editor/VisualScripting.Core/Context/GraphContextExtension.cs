@@ -33,13 +33,13 @@ namespace Unity.VisualScripting
 
         public virtual bool AcceptsDragAndDrop() => false;
 
-        public virtual void PerformDragAndDrop() {}
+        public virtual void PerformDragAndDrop() { }
 
-        public virtual void UpdateDragAndDrop() {}
+        public virtual void UpdateDragAndDrop() { }
 
-        public virtual void DrawDragAndDropPreview() {}
+        public virtual void DrawDragAndDropPreview() { }
 
-        public virtual void ExitDragAndDrop() {}
+        public virtual void ExitDragAndDrop() { }
 
         protected static Event e => Event.current;
     }

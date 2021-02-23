@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(Literal))]
     public sealed class LiteralInspector : Inspector
     {
-        public LiteralInspector(Metadata metadata) : base(metadata) {}
+        public LiteralInspector(Metadata metadata) : base(metadata) { }
 
         private Metadata typeMetadata => metadata[nameof(Literal.type)];
         private Metadata valueMetadata => metadata[nameof(Literal.value)];

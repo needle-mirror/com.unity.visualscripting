@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Plugin(BoltFlow.ID)]
     public sealed class BoltFlowManifest : PluginManifest
     {
-        private BoltFlowManifest(BoltFlow plugin) : base(plugin) {}
+        private BoltFlowManifest(BoltFlow plugin) : base(plugin) { }
 
         public override string name => "Bolt Flow";
         public override string author => "";

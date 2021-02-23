@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
 {
     public sealed class InstanceFunctionInvoker<TTarget, TResult> : InstanceFunctionInvokerBase<TTarget, TResult>
     {
-        public InstanceFunctionInvoker(MethodInfo methodInfo) : base(methodInfo) {}
+        public InstanceFunctionInvoker(MethodInfo methodInfo) : base(methodInfo) { }
 
         private Func<TTarget, TResult> invoke;
 

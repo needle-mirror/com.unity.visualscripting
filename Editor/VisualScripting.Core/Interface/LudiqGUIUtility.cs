@@ -964,6 +964,8 @@ namespace Unity.VisualScripting
         public static void ShowAsDropDownWithKeyboardFocus(this EditorWindow window, Rect buttonRect, Vector2 windowSize)
         {
             window.ShowAsDropDown(buttonRect, windowSize);
+
+            GUIUtility.ExitGUI();
         }
 
         #endregion

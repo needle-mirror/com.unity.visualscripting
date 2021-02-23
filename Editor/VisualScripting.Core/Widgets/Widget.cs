@@ -124,9 +124,9 @@ namespace Unity.VisualScripting
             }
         }
 
-        protected virtual void CacheMetadata() {}
+        protected virtual void CacheMetadata() { }
 
-        protected virtual void CacheDescription() {}
+        protected virtual void CacheDescription() { }
 
         #endregion
 
@@ -166,7 +166,7 @@ namespace Unity.VisualScripting
             e.HandleRelease();
         }
 
-        public virtual void Update() {}
+        public virtual void Update() { }
 
         #endregion
 
@@ -195,9 +195,9 @@ namespace Unity.VisualScripting
             }
         }
 
-        public virtual void CachePositionFirstPass() {}
+        public virtual void CachePositionFirstPass() { }
 
-        public virtual void CachePosition() {}
+        public virtual void CachePosition() { }
 
         public void BringToFront()
         {
@@ -228,7 +228,7 @@ namespace Unity.VisualScripting
 
         public virtual Rect clippingPosition => position;
 
-        public virtual void OnViewportChange() {}
+        public virtual void OnViewportChange() { }
 
         public bool isVisible { get; set; }
 

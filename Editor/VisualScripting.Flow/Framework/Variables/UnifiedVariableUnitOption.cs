@@ -11,7 +11,7 @@ namespace Unity.VisualScripting
     public abstract class UnifiedVariableUnitOption<TVariableUnit> : UnitOption<TVariableUnit>, IUnifiedVariableUnitOption where TVariableUnit : UnifiedVariableUnit
     {
         [Obsolete(Serialization.ConstructorWarning)]
-        protected UnifiedVariableUnitOption() : base() {}
+        protected UnifiedVariableUnitOption() : base() { }
 
         protected UnifiedVariableUnitOption(VariableKind kind, string defaultName = null) : base()
         {

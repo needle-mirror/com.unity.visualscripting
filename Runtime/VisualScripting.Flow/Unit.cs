@@ -96,9 +96,9 @@ namespace Unity.VisualScripting
 
         protected abstract void Definition();
 
-        protected virtual void AfterDefine() {}
+        protected virtual void AfterDefine() { }
 
-        protected virtual void BeforeUndefine() {}
+        protected virtual void BeforeUndefine() { }
 
         private void Undefine()
         {

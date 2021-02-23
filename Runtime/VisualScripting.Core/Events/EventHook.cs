@@ -37,12 +37,12 @@ namespace Unity.VisualScripting
             return HashUtility.GetHashCode(name, target, tag);
         }
 
-        public static bool operator==(EventHook a, EventHook b)
+        public static bool operator ==(EventHook a, EventHook b)
         {
             return a.Equals(b);
         }
 
-        public static bool operator!=(EventHook a, EventHook b)
+        public static bool operator !=(EventHook a, EventHook b)
         {
             return !(a == b);
         }

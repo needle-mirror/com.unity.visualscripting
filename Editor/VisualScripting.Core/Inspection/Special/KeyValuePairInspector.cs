@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(KeyValuePair<,>))]
     public sealed class KeyValuePairInspector : Inspector
     {
-        public KeyValuePairInspector(Metadata metadata) : base(metadata) {}
+        public KeyValuePairInspector(Metadata metadata) : base(metadata) { }
 
         protected override float GetHeight(float width, GUIContent label)
         {
@@ -26,7 +26,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var keyPosition = new Rect
                 (

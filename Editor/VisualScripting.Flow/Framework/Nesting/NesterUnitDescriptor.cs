@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(INesterUnit))]
     public class NesterUnitDescriptor<TNesterUnit> : UnitDescriptor<TNesterUnit> where TNesterUnit : class, INesterUnit
     {
-        public NesterUnitDescriptor(TNesterUnit unit) : base(unit) {}
+        public NesterUnitDescriptor(TNesterUnit unit) : base(unit) { }
 
         [RequiresUnityAPI]
         protected override string DefinedTitle()

@@ -39,11 +39,11 @@ namespace Unity.VisualScripting
             Obsolete = false;
         }
 
-        public TypeFilter(TypesMatching matching, params Type[] types) : this(matching, (IEnumerable<Type>)types) {}
+        public TypeFilter(TypesMatching matching, params Type[] types) : this(matching, (IEnumerable<Type>)types) { }
 
-        public TypeFilter(IEnumerable<Type> types) : this(TypesMatching.ConvertibleToAny, types) {}
+        public TypeFilter(IEnumerable<Type> types) : this(TypesMatching.ConvertibleToAny, types) { }
 
-        public TypeFilter(params Type[] types) : this(TypesMatching.ConvertibleToAny, types) {}
+        public TypeFilter(params Type[] types) : this(TypesMatching.ConvertibleToAny, types) { }
 
         private readonly HashSet<Type> types;
 

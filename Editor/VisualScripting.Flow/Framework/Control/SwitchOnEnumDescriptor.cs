@@ -3,7 +3,7 @@ namespace Unity.VisualScripting
     [Descriptor(typeof(SwitchOnEnum))]
     public class SwitchOnEnumDescriptor : UnitDescriptor<SwitchOnEnum>
     {
-        public SwitchOnEnumDescriptor(SwitchOnEnum unit) : base(unit) {}
+        public SwitchOnEnumDescriptor(SwitchOnEnum unit) : base(unit) { }
 
         protected override void DefinedPort(IUnitPort port, UnitPortDescription description)
         {

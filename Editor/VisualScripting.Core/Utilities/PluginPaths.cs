@@ -21,7 +21,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        public virtual void LateInitialize() {}
+        public virtual void LateInitialize() { }
 
         public Plugin plugin { get; }
 
@@ -42,7 +42,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        public const string FOLDER_BOLT_GENERATED = "Bolt.Generated";
+        public const string FOLDER_BOLT_GENERATED = "Unity.VisualScripting.Generated";
         public static string ASSETS_FOLDER_BOLT_GENERATED = Path.Combine("Assets", FOLDER_BOLT_GENERATED);
 
         public bool isFirstPass => package.Contains("/Plugins/") || package.Contains("/Standard Assets/") || package.Contains("/Pro Standard Assets/");
@@ -51,7 +51,7 @@ namespace Unity.VisualScripting
 
         public string resourcesBundle => Path.Combine(package, $"Editor/{plugin.id}/Resources.assetbundle");
 
-        public static string generated => Path.Combine(Paths.assets, "Bolt.Generated");
+        public static string generated => Path.Combine(Paths.assets, FOLDER_BOLT_GENERATED);
 
         public string persistentGenerated => Path.Combine(generated, plugin.id);
 

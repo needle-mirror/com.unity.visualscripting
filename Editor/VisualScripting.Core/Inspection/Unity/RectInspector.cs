@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     [Inspector(typeof(Rect))]
     public class RectInspector : Inspector
     {
-        public RectInspector(Metadata metadata) : base(metadata) {}
+        public RectInspector(Metadata metadata) : base(metadata) { }
 
         protected override float GetHeight(float width, GUIContent label)
         {
@@ -15,7 +15,7 @@ namespace Unity.VisualScripting
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
-            position = BeginBlock(metadata, position, label);
+            position = BeginLabeledBlock(metadata, position, label);
 
             var newValue = EditorGUI.RectField(position, GUIContent.none, (Rect)metadata.value);
 

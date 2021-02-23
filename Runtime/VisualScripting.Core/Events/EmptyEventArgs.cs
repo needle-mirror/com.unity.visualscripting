@@ -1,4 +1,4 @@
 namespace Unity.VisualScripting
 {
-    public struct EmptyEventArgs {}
+    public struct EmptyEventArgs { }
 }

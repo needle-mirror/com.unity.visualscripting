@@ -790,7 +790,7 @@ namespace Unity.VisualScripting
                 var icon = description.icons[i];
                 var position = iconsPositions[i];
 
-                GUI.DrawTexture(position, icon ? [(int)position.width]);
+                GUI.DrawTexture(position, icon?[(int)position.width]);
             }
         }
 
@@ -843,7 +843,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        protected virtual void DrawHeaderAddon() {}
+        protected virtual void DrawHeaderAddon() { }
 
         protected void DrawPortsBackground()
         {
@@ -978,7 +978,7 @@ namespace Unity.VisualScripting
                     activatorPosition,
                     options,
                     null,
-                    delegate(object _option)
+                    delegate (object _option)
                     {
                         var option = (IUnitOption)_option;
 

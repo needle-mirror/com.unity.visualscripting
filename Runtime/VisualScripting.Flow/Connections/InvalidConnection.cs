@@ -6,9 +6,9 @@ namespace Unity.VisualScripting
     public sealed class InvalidConnection : UnitConnection<IUnitOutputPort, IUnitInputPort>, IUnitConnection
     {
         [Obsolete(Serialization.ConstructorWarning)]
-        public InvalidConnection() : base() {}
+        public InvalidConnection() : base() { }
 
-        public InvalidConnection(IUnitOutputPort source, IUnitInputPort destination) : base(source, destination) {}
+        public InvalidConnection(IUnitOutputPort source, IUnitInputPort destination) : base(source, destination) { }
 
         public override void AfterRemove()
         {

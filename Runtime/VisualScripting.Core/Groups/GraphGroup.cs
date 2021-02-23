@@ -8,7 +8,7 @@ namespace Unity.VisualScripting
         [DoNotSerialize]
         public static readonly Color defaultColor = new Color(0, 0, 0);
 
-        public GraphGroup() : base() {}
+        public GraphGroup() : base() { }
 
         [Serialize]
         public Rect position { get; set; }

@@ -105,7 +105,7 @@ namespace Unity.VisualScripting
             {
                 try
                 {
-                    saved = (VariableDeclarations) new SerializationData(PlayerPrefs.GetString(playerPrefsKey)).Deserialize();
+                    saved = (VariableDeclarations)new SerializationData(PlayerPrefs.GetString(playerPrefsKey)).Deserialize();
                 }
                 catch (Exception ex)
                 {

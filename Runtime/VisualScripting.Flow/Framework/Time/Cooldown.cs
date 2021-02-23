@@ -113,6 +113,8 @@ namespace Unity.VisualScripting
             Requirement(unscaledTime, enter);
             Succession(enter, exitReady);
             Succession(enter, exitNotReady);
+            Succession(enter, tick);
+            Succession(enter, becameReady);
             Assignment(enter, remainingSeconds);
             Assignment(enter, remainingRatio);
         }

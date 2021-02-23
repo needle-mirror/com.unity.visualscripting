@@ -22,7 +22,7 @@ namespace Unity.VisualScripting
             return rootObject != null && (rootObject as IGraphRoot)?.childGraph != null;
         }
 
-        internal GraphPointer() {}
+        internal GraphPointer() { }
 
         protected void Initialize(IGraphRoot root)
         {

@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
 {
     public class UnknownEditor : Inspector
     {
-        public UnknownEditor(Metadata metadata) : base(metadata) {}
+        public UnknownEditor(Metadata metadata) : base(metadata) { }
 
         private string message => $"No inspector for '{metadata.definedType.DisplayName()}'.";
 

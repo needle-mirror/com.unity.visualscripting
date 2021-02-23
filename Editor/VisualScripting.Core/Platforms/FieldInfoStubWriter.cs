@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     [AotStubWriter(typeof(FieldInfo))]
     public class FieldInfoStubWriter : AccessorInfoStubWriter<FieldInfo>
     {
-        public FieldInfoStubWriter(FieldInfo fieldInfo) : base(fieldInfo) {}
+        public FieldInfoStubWriter(FieldInfo fieldInfo) : base(fieldInfo) { }
 
         protected override IOptimizedAccessor GetOptimizedAccessor(FieldInfo fieldInfo)
         {

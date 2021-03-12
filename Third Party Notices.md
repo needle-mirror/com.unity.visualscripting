@@ -200,33 +200,6 @@ The above copyright notice and this permission notice shall beincluded in all co
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OFMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE ANDNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BELIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTIONOF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTIONWITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ---------
-Component Name: MiscUtil Version 1.0
-
-License Type: "Miscellaneous Utility Library" Software Licence
-
-Copyright (c) 2004-2008 Jon Skeet and Marc Gravell. All rights reserved
-
-https://jonskeet.uk/csharp/miscutil/
-
-Redistribution and use in source and binary forms, with or withoutmodification, are permitted provided that the following conditionsare met:
-
-1. Redistributions of source code must retain the above copyrightnotice, this list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyrightnotice, this list of conditions and the following disclaimer in thedocumentation and/or other materials provided with the distribution.
-
-3. The end-user documentation included with the redistribution, ifany, must include the following acknowledgment:
-
-"This product includes software developed by Jon Skeetand Marc Gravell. Contact skeet@pobox.com, or see http://www.pobox.com/~skeet/)."
-
-Alternately, this acknowledgment may appear in the software itself,if and wherever such third-party acknowledgments normally appear.
-
-4. The name "Miscellaneous Utility Library" must not be used to endorse or promote products derived from this software without prior written permission. For written permission, please contact skeet@pobox.com.
-
-5. Products derived from this software may not be called "Miscellaneous Utility Library", nor may "Miscellaneous Utility Library"appear in their name, without prior written permission of Jon Skeet.
-
-THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIEDWARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OFMERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.IN NO EVENT SHALL JON SKEET BE LIABLE FOR ANY DIRECT, INDIRECT,INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVERCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICTLIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING INANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THEPOSSIBILITY OF SUCH DAMAGE.
-
----------
 Component Name: Reorderable List
 
 License Type: MIT

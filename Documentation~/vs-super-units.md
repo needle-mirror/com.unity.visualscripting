@@ -32,7 +32,7 @@ The inspector warns you if you do not meet these criteria.
 
 To use a script graph as a super unit, either drag and drop the script graph from the project window into the graph or add it from the **Graphs** category in the fuzzy finder.
 
-
+![](images/VS-SuperUnitCreation.png)
 
 
 

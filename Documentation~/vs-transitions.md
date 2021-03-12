@@ -25,6 +25,8 @@ For example, to transition to the chase state only when an object with the Playe
 
 Finally, to customize the label the transition has in the parent state graph, deselect all units and edit the graph's title in the graph inspector.
 
+![](images/bolt-transitions7.png)
+
 Going back to the parent state, the transition appears as:
 
 ![](images/VS-Transitions2.png)
@@ -55,6 +57,6 @@ In the parent state graph, this would appear as:
 
 ###Adding multiple transitions to a state
 
-There is no limit to the number of transitions that can be added to a state. However, there is no notion of priority between transitions. Use conditions to select the appropriate transition.
+There is no limit to the number of transitions that can be added to a state. However, there is no notion of priority between transitions. Use conditions to select the appropriate transtion.
 
 ![](images/bolt-transitions13.png)

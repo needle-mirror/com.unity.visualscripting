@@ -21,14 +21,14 @@ namespace Unity.VisualScripting
             }
             catch (Exception)
             {
-                Debug.LogWarning($"Failed to deserialize editor pref '{configuration.plugin.id}.{key}', reverting to default.");
+                Debug.LogWarning($"Failed to deserialize editor pref '{configuration.plugin.id}.{key}', reverting to default.\nYou can set it again by going to Edit -> Preferences -> Visual Scripting.");
                 value = defaultValue;
                 Save();
             }
 
             if (!definedType.IsAssignableFrom(valueType))
             {
-                Debug.LogWarning($"Failed to deserialize editor pref '{configuration.plugin.id}.{key}' as '{definedType.CSharpName()}', reverting to default.");
+                Debug.LogWarning($"Failed to deserialize editor pref '{configuration.plugin.id}.{key}' as '{definedType.CSharpName()}', reverting to default.\nYou can set it again by going to Edit -> Preferences -> Visual Scripting.");
                 value = defaultValue;
                 Save();
             }

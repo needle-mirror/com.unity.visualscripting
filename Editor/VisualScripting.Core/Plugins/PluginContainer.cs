@@ -6,6 +6,9 @@ using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
+#if UNITY_2020_2_OR_NEWER
+using UnityEditor.MPE;
+#endif
 
 namespace Unity.VisualScripting
 {
@@ -14,6 +17,18 @@ namespace Unity.VisualScripting
     {
         static PluginContainer()
         {
+            // Fixes console errors shown in Standalone Profiler window (Bolt-1289).
+            // Note: MPE as a whole (including Standalone Profiler) is going away, will need to remove this
+            // when it does. See: https://unity.slack.com/archives/CHVTMBEF5/p1613683381195300
+#if UNITY_2020_2_OR_NEWER
+#if UNITY_2021_1_OR_NEWER
+            if (ProcessService.level != ProcessLevel.Main)
+#else
+            if (ProcessService.level != ProcessLevel.Master)
+#endif
+                return;
+#endif
+
             if (EditorApplication.isPlayingOrWillChangePlaymode)
             {
                 Initialize();
@@ -287,9 +302,16 @@ namespace Unity.VisualScripting
 
         private static void PerformUpdate()
         {
-            VSBackupUtility.Backup();
-
-            (new VSMigrationUtility()).OnUpdate();
+            if (plugins.Any(plugin => plugin.manifest.savedVersion != plugin.manifest.currentVersion))
+            {
+#if VISUAL_SCRIPT_DEBUG_MIGRATION
+                foreach (var plugin in plugins)
+                {
+                    Debug.Log($"plugin {plugin.id} saved version is {plugin.manifest.savedVersion} compared to current {plugin.manifest.currentVersion}");
+                }
+#endif
+                (new VSMigrationUtility()).OnUpdate();
+            }
         }
 
         public static void ImportUnits()

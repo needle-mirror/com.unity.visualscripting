@@ -123,7 +123,6 @@ namespace Unity.VisualScripting
 
         public override void Insert(int index)
         {
-            return;
         }
 
         public override void Remove(int index)
@@ -135,12 +134,10 @@ namespace Unity.VisualScripting
 
         public override void Move(int sourceIndex, int destinationIndex)
         {
-            return;
         }
 
         public override void Duplicate(int index)
         {
-            return;
         }
 
         protected bool CanAdd()

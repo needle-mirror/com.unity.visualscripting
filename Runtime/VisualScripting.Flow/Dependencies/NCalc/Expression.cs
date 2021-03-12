@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
-using Antlr.Runtime;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 namespace Unity.VisualScripting.Dependencies.NCalc

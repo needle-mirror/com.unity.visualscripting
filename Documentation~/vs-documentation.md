@@ -7,7 +7,7 @@
 Visual scripting automatically displays Unity and .NET documentation from within the editor. It can do the same with custom scripts and third party plugins, as long as they provide [standardized XML 
 documentation](https://msdn.microsoft.com/en-CA/library/b2s063f7(v=vs.100).aspx).
 
-The setup wizard prompts you to generate this documentation. Note: you need to update your documentation if you make a change in your scripts. To do so, open **Unity** > **Prefer Tools** &gt; **Ludiq &gt;Generate Documentation**  and click **Generate** **Documentation**.
+The setup wizard prompts you to generate this documentation. Note: you need to update your documentation if you make a change in your scripts. To do so, open Unity > Prefer **Tools** &gt; **Ludiq &gt;Generate Documentation**  and click **Generate** **Documentation**.
 
 
 ![](images/bolt-documentation.png)

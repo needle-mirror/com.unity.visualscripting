@@ -9,15 +9,14 @@ Relations are a useful tool to understand the dependencies between each port of 
 
 
 
+
 Visual scripting uses this information in the background for Predictive Debugging. For example, if you tried to get the value of A + B without providing a value for A, the node would show up as orange to indicate that it fails in play mode.
 
-![](images/bolt-connections13.png)
+
+![](/Users/bryanzako/Documents/Bolt/GitBolt/com.unity.bolt/Packages/com.unity.bolt/Documentation~/images/bolt-connections13.png)
 
 
-
-
-
-When that happens, you can use the warnings shown in the Graph Inspector to know what is missing.
+When that happens, you can use the warnings shown in the graph inspector to know what is missing.
 
 
 ![](images/VS-AisMissing.png)

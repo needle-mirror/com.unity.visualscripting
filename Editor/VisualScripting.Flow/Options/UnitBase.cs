@@ -168,7 +168,7 @@ namespace Unity.VisualScripting
         {
             if (!IsUnitOptionsBuilt())
             {
-                var progressTitle = "Building unit database...";
+                var progressTitle = "Visual Scripting: Building unit database...";
 
                 lock (@lock)
                 {

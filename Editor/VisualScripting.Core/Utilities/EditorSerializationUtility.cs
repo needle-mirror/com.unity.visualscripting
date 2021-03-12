@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using UnityEditor;
 using UnityEngine;
-using YamlDotNet.RepresentationModel;
+using Unity.VisualScripting.YamlDotNet.RepresentationModel;
 using UnityObject = UnityEngine.Object;
 
 namespace Unity.VisualScripting

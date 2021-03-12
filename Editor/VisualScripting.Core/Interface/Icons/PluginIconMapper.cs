@@ -1,5 +1,5 @@
 using UnityEditor;
-using YamlDotNet.RepresentationModel;
+using Unity.VisualScripting.YamlDotNet.RepresentationModel;
 using UnityObject = UnityEngine.Object;
 
 namespace Unity.VisualScripting

@@ -19,6 +19,9 @@ namespace Unity.VisualScripting
         public abstract SemanticVersion from { get; }
         public abstract SemanticVersion to { get; }
 
+        // migrations are ordered by this order (is optional) starting from 1 -> n
+        public int order { get; protected set; } = 1;
+
         private List<string> _requiredActions { get; }
 
         public ReadOnlyCollection<string> requiredActions { get; private set; }

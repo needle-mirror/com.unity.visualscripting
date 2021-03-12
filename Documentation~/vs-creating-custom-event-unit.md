@@ -37,6 +37,6 @@ In a script graph:
 
 
 
-Note: The sender and receiver units must have the same number of arguments. Also, when you trigger the event, there need to be values associated with the arguments, even if the values are not used. All arguments through data ports need to be connected to another unit or you receive error messages.
+Note: The sender and receiver units must have the same number of arguments. Alsol, when you trigger the event, there need to be values associated with the arguments, even if the values are not used. All arguments through data ports need to be connected to another unit or you receive error messages.
 
 

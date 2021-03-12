@@ -51,7 +51,7 @@ namespace Unity.VisualScripting
                 Color tmp = GUI.color;
                 GUI.color = Color.white; // Force white to prevent Self label beeing transparent and ObjectField None (Object) appearing under
 
-                GUI.Label(selfPatchPosition, "Self", tmp.a > 0 && tmp.a < 1 ? Styles.selfPatchTransparent : Styles.selfPatch);
+                GUI.Label(selfPatchPosition, "This", tmp.a > 0 && tmp.a < 1 ? Styles.selfPatchTransparent : Styles.selfPatch);
                 GUI.color = tmp;
             }
 
@@ -71,7 +71,7 @@ namespace Unity.VisualScripting
             {
                 if (nullMeansSelf)
                 {
-                    label = "Self";
+                    label = "This";
                 }
                 else
                 {

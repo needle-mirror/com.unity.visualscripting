@@ -91,7 +91,17 @@ namespace Unity.VisualScripting
         public static void Run()
         {
             EnsureDefaultReplacementsRegistered();
+#if VISUAL_SCRIPT_DEBUG_MIGRATION
             Run(GetAllReplacementPaths(), replacements, Mode.Dialog);
+#else
+            Run(GetAllReplacementPaths(), replacements, Mode.Silent);
+#endif
+        }
+
+        public static void Run(Mode mode)
+        {
+            EnsureDefaultReplacementsRegistered();
+            Run(GetAllReplacementPaths(), replacements, mode);
         }
 
 #if VISUAL_SCRIPT_INTERNAL
@@ -241,8 +251,6 @@ namespace Unity.VisualScripting
                     {
                         Debug.Log($"Missing script references have been replaced in {newContents.Count} file{(newContents.Count > 1 ? "s" : "")}.\nRestarting Unity is recommended.\n{fileList}\n");
                     }
-
-                    AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
                 }
             }
             else

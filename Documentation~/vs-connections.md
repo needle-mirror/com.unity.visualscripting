@@ -30,7 +30,7 @@ Control connections are always white, whereas value connections are color-coded 
 
 When the Values toggle is enabled in the toolbar, visual scripting shows the last value that traversed this connection during runtime.
 
-When **Unity** >  **Preferences** > **Visual Scripting** > **Script Graphs** > **Predict Potential Missing Components** is enabled, visual scripting tries to predict the values before you enter play mode.
+When **Unity** >  **Preferences** > **Visual Scripting** > **Flow Graphs** > **Predict Potential Missing Connections** is enabled, visual scripting tries to predict the values before you enter play mode.
 
 
 ![](images/VS-PredictMissingConnections.png)

@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using Ionic.Zip;
+using Unity.VisualScripting.IonicZip;
 using UnityEditor;
 
 namespace Unity.VisualScripting

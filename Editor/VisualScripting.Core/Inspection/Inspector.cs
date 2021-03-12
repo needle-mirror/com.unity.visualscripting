@@ -46,7 +46,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        public virtual void Initialize() { }   // For more flexibility in call order
+        public virtual void Initialize() { }  // For more flexibility in call order
         private Exception failure;
 
         protected float y;

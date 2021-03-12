@@ -22,6 +22,28 @@ namespace Unity.VisualScripting
 
         public static IEnumerable<Assembly> assemblies => _assemblies;
 
+        /* (disallowedAssemblies)
+           This is a hack to force our RuntimeCodebase to use the RenamedTypeLookup for certain types when we deserialize them.
+           When we migrate from asset store to package assemblies (With new names), we want to deserialize our types
+           to the new types with new namespaces that exist in our new assemblies 
+           (Ex: Unity.VisualScripting.SuperUnit instead of Bolt.SuperUnit).
+        
+           Problem arises because we're migrating via script. Deleting the old assembly files on the disk doesn't remove 
+           them from our AppDomain, and we can't unload specific assemblies.
+           Reloading the whole AppDomain would reload the migration scripts too, which would re-trigger the whole 
+           migration flow and be bad UX.
+           
+           So to avoid this problem, we don't reload the AppDomain (old assemblies still loaded) but just avoid them when
+           trying to deserialize types temporarily. When we Domain Reload at the end, it's cleaned up.
+           
+           Without this, we get deserialization errors on migration to do with trying to instantiate a new type from an 
+           old interface type.
+           
+           This shouldn't cause much of a perf difference for most use because all our types are cached anyway, 
+           and logic to do with this sits beyond the cached types layer.
+        */
+        public static HashSet<string> disallowedAssemblies = new HashSet<string>();
+
         private static readonly Dictionary<string, Type> typeSerializations = new Dictionary<string, Type>();
 
         private static Dictionary<string, Type> _renamedTypes = null;
@@ -147,6 +169,11 @@ namespace Unity.VisualScripting
             return type;
         }
 
+        public static void ClearCachedTypes()
+        {
+            typeSerializations.Clear();
+        }
+
         private static bool TryCachedTypeLookup(string typeName, out Type type)
         {
             return typeSerializations.TryGetValue(typeName, out type);
@@ -156,6 +183,9 @@ namespace Unity.VisualScripting
         {
             foreach (var assembly in _assemblies)
             {
+                if (disallowedAssemblies.Contains(assembly.GetName().Name))
+                    continue;
+
                 type = assembly.GetType(typeName);
 
                 if (type != null)
@@ -170,6 +200,12 @@ namespace Unity.VisualScripting
 
         private static bool TrySystemTypeLookup(TypeName typeName, out Type type)
         {
+            if (disallowedAssemblies.Contains(typeName.AssemblyName))
+            {
+                type = null;
+                return false;
+            }
+
             // Can't retrieve an array with the ToLooseString format so use the type Name and compare Assemblies
             if (typeName.IsArray)
             {

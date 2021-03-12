@@ -88,8 +88,6 @@
 
 ​         *[Creating a custom event unit](vs-creating-custom-event-unit.md)
 
-​         *[Creating a custom visual script event unit](vs-creating-custom-visual-script-event-unit.md)
-
 ​      *[Variable unit](vs-variables-reference.md)
 
 ​      *[Nulls unit](vs-nulls.md)

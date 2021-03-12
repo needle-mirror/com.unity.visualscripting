@@ -13,6 +13,8 @@ To use the input system you must first install the new input system package.
 
    ![](images/vs-capturing-player-inputs-new-1-unit-registry.png)
 
+   
+
 3. In the package list, select **Input System.**</br>
    The Input System tab appears.
 
@@ -39,6 +41,8 @@ Note: Only complete the following task once you have the new input system instal
 
 1. Open the Project Settings window by selecting **Edit** > **Project Settings**.
 2. Click on the Player item in the list and go to **Active Input Handling**. Set the input system to **Input System Package (New)** or **Both**. </br>
+
+
    ![](images/vs-capturing-player-inputs-new-4-input-player-settings.png)</br>
    The Unity Editor restarts to change the input system in use. 
 3. To enable the new input system nodes, you need to regenerate the Units. In the Project Settings window, select **Visual Scripting** and select the **Regenerate Units** button.</br>
@@ -69,7 +73,9 @@ The first step is to add a Player Input component, after which you can add playe
 1. In the **Hierarchy**, select a GameObject that has the input.
 2. Select **Add Component**.
 3. Select **Player Input**.</br>
-   If you do not have any input Actions files, select the **Create Actions** button and save a new input file. </br>      
+   If you do not have any input Actions files, select the **Create Actions** button and save a new input file. </br>
+   
+   
    ![](images/vs-capturing-player-inputs-new-6-create-action.png)
 4. Select the **Actions** selector. </br>
    The Select InputActionAsset window appears.
@@ -96,9 +102,14 @@ You can now interact with the input scheme and enter player input event units.
    - On Input System Event Float
    - On Input System Event Vector 2</br>
 
+   
+     ![](images/vs-capturing-player-inputs-new-8-first.png)</br>
+     ![](images/vs-capturing-player-inputs-new-9-second.png)</br>
+     ![](images/vs-capturing-player-inputs-new-10-third.png)</br>
      The selected input system event units appear.</br>
      ![](images/vs-capturing-player-inputs-new-11-onpressed.png)
 4. Select the **Input Action** to define the event to trigger.</br>
+
 
    ![](images/vs-capturing-player-inputs-new-12-fire.png)</br>
    Note: If the Input Actions list does not appear, you did not complete a previous step successfully
@@ -112,5 +123,7 @@ As an example of successfully installing and setting up the system and using one
 
 
 This result appears when the application runs and the user clicks the mouse button. That is, the successful data setup happens if you see the Input Action list with data in it.
+
+![](images/vs-capturing-player-inputs-new-14-console.png)
 
 

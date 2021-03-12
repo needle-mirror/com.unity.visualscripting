@@ -15,7 +15,6 @@ namespace Unity.VisualScripting
         VSSettingsBackup vsSettingsBackup;
         VSSettingsScriptReferenceResolver vsSettingsScriptReferenceResolver;
 
-        VSSettingsUpdate vsSettingsUpdate;
         public VSProjectSettingsProviderView() : base(path, SettingsScope.Project)
         {
             label = title;
@@ -46,11 +45,6 @@ namespace Unity.VisualScripting
             if (vsSettingsScriptReferenceResolver == null)
             {
                 vsSettingsScriptReferenceResolver = new VSSettingsScriptReferenceResolver();
-            }
-
-            if (vsSettingsUpdate == null)
-            {
-                vsSettingsUpdate = new VSSettingsUpdate();
             }
         }
 
@@ -88,10 +82,6 @@ namespace Unity.VisualScripting
             GUILayout.Space(10f);
 
             vsSettingsScriptReferenceResolver.OnGUI();
-
-            GUILayout.Space(10f);
-
-            vsSettingsUpdate.OnGUI();
         }
     }
 }

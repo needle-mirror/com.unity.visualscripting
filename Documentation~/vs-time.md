@@ -1,4 +1,4 @@
-# Time units
+#Time units
 
 | **Note**                                                     |
 | :----------------------------------------------------------- |
@@ -6,7 +6,7 @@
 
 Time units include timer, cooldown and wait units.
 
-### Wait
+###Wait
 
 Wait units delay the execution of the rest of the script. The delay can be a set amount of seconds or a condition that must be fulfilled before moving on.
 
@@ -20,38 +20,36 @@ If the coroutine checkbox is not enabled, an error at runtime indicates a port '
 
 All wait units are also used inside loops and sequences.
 
-### Wait For Seconds
+###Wait For Seconds
 
 The Wait For Seconds unit is the simplest and most common wait unit. It delays the execution by a certain number of seconds.
 
 
 ![](images/bolt-time2.png)
 
-### Wait Until
+###Wait Until
 
 The Wait Until unit stops execution until a given condition is met. For example, you could wait until an object is close enough.
 
 
 ![](images/bolt-time3.png)
 
-### Wait While
+###Wait While
 
 The Wait While unit is the opposite of the Wait Until unit: it stops execution as long as a given condition is met. For example, you can wait while an object is out of range.
 
 
 ![](images/bolt-time4.png)
 
-### Wait For Frame
+###Wait For Frame
 
 As the name implies, Wait For End Of Frame and Wait For Next Frame units delays execution until a specific point in Unity's update loop is met. For more information, see: [Execution Order of Events](https://docs.unity3d.com/Manual/ExecutionOrder.html).
 
-### Wait For Script
+###Wait For Script
 
 The Wait For Script unit delays execution until all input scripts have been entered at least once. It's a useful way of grouping conditions that occur over multiple events or frames. In other languages, this concept is sometimes called "promises".
 
-### Cooldown
-
-
+###Cooldown
 
 
 ![](images/bolt-time5.png)
@@ -76,9 +74,7 @@ For example, a simple cooldown firing mechanic with a masked sprite and text tha
 
 ![](images/bolt-time6.png)
 
-### Timer
-
-
+###Timer
 
 
 ![](images/bolt-time7.png)

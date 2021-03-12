@@ -1,6 +1,6 @@
 // $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g 2009-11-11 17:56:42
 
-using Antlr.Runtime;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 namespace Unity.VisualScripting.Dependencies.NCalc
 {

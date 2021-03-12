@@ -18,7 +18,7 @@ namespace Unity.VisualScripting
 
             if (GUILayout.Button(buttonLabel, Styles.defaultsButton))
             {
-                ScriptReferenceResolver.Run();
+                ScriptReferenceResolver.Run(ScriptReferenceResolver.Mode.Dialog);
             }
         }
 

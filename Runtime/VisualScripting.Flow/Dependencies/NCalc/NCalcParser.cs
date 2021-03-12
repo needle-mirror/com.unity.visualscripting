@@ -5,8 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using Antlr.Runtime;
-using Antlr.Runtime.Tree;
+using Unity.VisualScripting.Antlr3.Runtime;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
 namespace Unity.VisualScripting.Dependencies.NCalc
 {

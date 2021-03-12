@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 
 namespace Unity.VisualScripting
@@ -84,18 +85,21 @@ namespace Unity.VisualScripting
         {
             var loop = Start(flow, out int currentIndex, out int lastIndex, out bool ascending);
 
-            var stack = flow.PreserveStack();
-
-            while (flow.LoopIsNotBroken(loop) && CanMoveNext(currentIndex, lastIndex, ascending))
+            if (!IsStepValueZero())
             {
-                flow.Invoke(body);
+                var stack = flow.PreserveStack();
 
-                flow.RestoreStack(stack);
+                while (flow.LoopIsNotBroken(loop) && CanMoveNext(currentIndex, lastIndex, ascending))
+                {
+                    flow.Invoke(body);
 
-                MoveNext(flow, ref currentIndex);
+                    flow.RestoreStack(stack);
+
+                    MoveNext(flow, ref currentIndex);
+                }
+
+                flow.DisposePreservedStack(stack);
             }
-
-            flow.DisposePreservedStack(stack);
 
             flow.ExitLoop(loop);
 
@@ -122,6 +126,22 @@ namespace Unity.VisualScripting
             flow.ExitLoop(loop);
 
             yield return exit;
+        }
+
+        public bool IsStepValueZero()
+        {
+            var isDefaultZero = !step.hasValidConnection && (int)defaultValues[step.key] == 0;
+            var isConnectedToLiteralZero = false;
+
+            if (step.hasValidConnection && step.connection.source.unit is Literal literal)
+            {
+                if (Convert.ToInt32(literal.value) == 0)
+                {
+                    isConnectedToLiteralZero = true;
+                }
+            }
+
+            return isDefaultZero || isConnectedToLiteralZero;
         }
     }
 }

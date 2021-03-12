@@ -77,13 +77,12 @@ namespace Unity.VisualScripting
 
         public static SerializationData Serialize(this object value, bool forceReflected = false)
         {
+            var operation = StartOperation();
             try
             {
-                var operation = StartOperation();
                 var json = SerializeJson(operation.serializer, value, forceReflected);
                 var objectReferences = operation.objectReferences.ToArray();
                 var data = new SerializationData(json, objectReferences);
-                EndOperation(operation);
 
 #if DEBUG_SERIALIZATION
                 Debug.Log(data.ToString($"<color=#88FF00>Serialized: <b>{value?.GetType().Name ?? "null"} [{value?.GetHashCode().ToString() ?? "N/A"}]</b></color>"));
@@ -93,7 +92,12 @@ namespace Unity.VisualScripting
             }
             catch (Exception ex)
             {
-                throw new SerializationException($"Serialization of '{value?.GetType().ToString() ?? "null"}' failed.", ex);
+                throw new SerializationException($"Serialization of '{value?.GetType().ToString() ?? "null"}' failed.",
+                    ex);
+            }
+            finally
+            {
+                EndOperation(operation);
             }
         }
 
@@ -112,9 +116,15 @@ namespace Unity.VisualScripting
 #endif
 
                 var operation = StartOperation();
-                operation.objectReferences.AddRange(data.objectReferences);
-                DeserializeJson(operation.serializer, data.json, ref instance, forceReflected);
-                EndOperation(operation);
+                try
+                {
+                    operation.objectReferences.AddRange(data.objectReferences);
+                    DeserializeJson(operation.serializer, data.json, ref instance, forceReflected);
+                }
+                finally
+                {
+                    EndOperation(operation);
+                }
             }
             catch (Exception ex)
             {

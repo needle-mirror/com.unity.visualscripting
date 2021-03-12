@@ -776,7 +776,9 @@ namespace Unity.VisualScripting
         private void OnHeaderGUI(FuzzyOptionNode parent, Rect headerPosition)
         {
             EditorGUIUtility.SetIconSize(new Vector2(IconSize.Small, IconSize.Small));
+
             var headerContent = new GUIContent(parent.option.headerLabel, parent.option.showHeaderIcon ? parent.option.icon?[IconSize.Small] : null);
+
             headerWidth = Styles.header.CalcSize(headerContent).x;
 
             if (e.type == EventType.Repaint)

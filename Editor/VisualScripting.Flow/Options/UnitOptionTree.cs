@@ -85,7 +85,7 @@ namespace Unity.VisualScripting
         #region Hierarchy
 
         private readonly FuzzyGroup enumsGroup = new FuzzyGroup("(Enums)", typeof(Enum).Icon());
-        private readonly FuzzyGroup selfGroup = new FuzzyGroup("Self", typeof(GameObject).Icon());
+        private readonly FuzzyGroup selfGroup = new FuzzyGroup("This", typeof(GameObject).Icon());
 
         private IEnumerable<UnitCategory> SpecialCategories()
         {

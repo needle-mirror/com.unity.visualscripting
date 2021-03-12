@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEditor;
-using Ionic.Zip;
+using Unity.VisualScripting.IonicZip;
 using System.IO;
 using UnityEngine;
 
@@ -11,29 +11,7 @@ namespace Unity.VisualScripting
     {
         public static void Backup()
         {
-            if (!IsGeneratedFolderPresent())
-            {
-                Debug.Log($"Creating the Visual Scripting Generated folder for backup: '{PluginPaths.ASSETS_FOLDER_BOLT_GENERATED}'");
-
-                try
-                {
-                    Directory.CreateDirectory(PluginPaths.ASSETS_FOLDER_BOLT_GENERATED);
-                }
-                catch (Exception e)
-                {
-                    Debug.LogException(e);
-                    return;
-                }
-            }
-
             BackupAssetsFolder(DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss"));
-        }
-
-        private static bool IsGeneratedFolderPresent()
-        {
-            string[] result = AssetDatabase.GetSubFolders(PluginPaths.ASSETS_FOLDER_BOLT_GENERATED);
-
-            return result.Length > 0;
         }
 
         public static List<string> Find<T>() where T : UnityEngine.Object
@@ -82,6 +60,8 @@ namespace Unity.VisualScripting
                 VersionControlUtility.Unlock(zipPath);
 
                 zip.Save(zipPath);
+
+                Debug.Log($"Visual Scripting Migration: A backup of all Bolt related assets has been created at {zipPath}");
 
                 EditorUtility.ClearProgressBar();
             }

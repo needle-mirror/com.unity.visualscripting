@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEditor;
+using UnityEditor.PackageManager;
 using UnityEditorInternal;
 using UnityEngine;
 
@@ -11,7 +13,6 @@ namespace Unity.VisualScripting
     {
         private readonly List<Plugin> plugins;
         private readonly List<MigrationStep> steps;
-        private readonly Queue<MigrationStep> queue;
 
         public VSMigrationUtility()
         {
@@ -20,48 +21,53 @@ namespace Unity.VisualScripting
             plugins = allPlugins.OrderByDependencies().ToList();
 
             steps = this.plugins
-                .SelectMany(plugin => plugin.resources.pendingMigrations.Select(migration => new MigrationStep(plugin, migration)))
+                .SelectMany(plugin =>
+                    plugin.resources.pendingMigrations.Select(migration => new MigrationStep(plugin, migration)))
+                .OrderBy(step => step.migration.order)
                 .ToList();
-
-            queue = new Queue<MigrationStep>();
-        }
-
-        private void Update()
-        {
-            foreach (var query in steps)
-            {
-                query.Update();
-            }
-
-            if (queue.Count > 0 &&
-                queue.Peek().state == MigrationStep.State.Success)
-            {
-                queue.Dequeue();
-
-                if (queue.Count > 0)
-                {
-                    queue.Peek().Run();
-                }
-            }
         }
 
         public void OnUpdate()
         {
-            if (steps.Count > 0)
+            if (EditorSettings.serializationMode != SerializationMode.ForceText)
             {
-                foreach (var step in steps)
+                EditorUtility.DisplayDialog("Unity Visual Scripting Upgrade",
+                    "We've detected an older version of Unity Visual Scripting (Bolt).\n\n" +
+                    "We can't migrate your project unless you use ForceText as your serialization mode. Go to Edit -> Project Settings -> Editor -> Asset Serialization -> Mode to set it.\n\nRe-initiate the migration by installing the package.",
+                    "OK / Uninstall");
+
+                Client.Remove("com.unity.visualscripting");
+                return;
+            }
+
+            var ok = EditorUtility.DisplayDialog("Unity Visual Scripting Upgrade",
+                "We've detected an older version of Unity Visual Scripting (Bolt).\n\n" +
+                "Your project and bolt assets will be backed up and migrated to work with the newest version. This can take a few minutes.",
+                "Migrate My Project", "Cancel / Uninstall");
+
+            if (!ok)
+            {
+                Client.Remove("com.unity.visualscripting");
+                return;
+            }
+
+            VSBackupUtility.Backup();
+
+            // ClearLog();
+
+            foreach (var step in steps)
+            {
+                step.Reset();
+                step.Run();
+
+                if (step.state == MigrationStep.State.Failure)
                 {
-                    step.Reset();
+                    Debug.LogWarning(
+                        $"VisualScripting - A migration step for {step.plugin.id} failed! Your project might be in an invalid state, restore your backup and try again...");
+#if VISUAL_SCRIPT_DEBUG_MIGRATION
+                    throw step.exception;
+#endif
                 }
-
-                foreach (var step in steps)
-                {
-                    queue.Enqueue(step);
-                }
-
-                queue.Peek().Run();
-
-                Update();
             }
 
             Complete();
@@ -79,9 +85,20 @@ namespace Unity.VisualScripting
             }
 
             AssetDatabase.SaveAssets();
+
+            var ok = EditorUtility.DisplayDialog("Unity Visual Scripting Upgrade",
+                "Migration complete!", "OK");
         }
 
-        public class MigrationStep
+        private static void ClearLog()
+        {
+            var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+            var type = assembly.GetType("UnityEditor.LogEntries");
+            var method = type.GetMethod("Clear");
+            method.Invoke(new object(), null);
+        }
+
+        internal class MigrationStep
         {
             public enum State
             {
@@ -97,9 +114,9 @@ namespace Unity.VisualScripting
                 this.migration = migration;
             }
 
-            private readonly Plugin plugin;
-            private readonly PluginMigration migration;
-            private Exception exception;
+            internal readonly Plugin plugin;
+            internal readonly PluginMigration migration;
+            internal Exception exception;
 
             public State state { get; private set; }
 
@@ -123,6 +140,19 @@ namespace Unity.VisualScripting
             public void Run()
             {
                 state = State.Migrating;
+                try
+                {
+                    migration.Run();
+                    exception = null;
+                    state = State.Success;
+                    plugin.manifest.savedVersion = migration.to;
+                    InternalEditorUtility.RepaintAllViews();
+                }
+                catch (Exception ex)
+                {
+                    state = State.Failure;
+                    exception = ex;
+                }
             }
 
             public void Reset()
@@ -130,90 +160,6 @@ namespace Unity.VisualScripting
                 state = State.Idle;
                 exception = null;
             }
-
-            public void Update()
-            {
-                if (state == State.Migrating)
-                {
-                    try
-                    {
-                        migration.Run();
-                        exception = null;
-                        state = State.Success;
-                        plugin.manifest.savedVersion = migration.to;
-                        InternalEditorUtility.RepaintAllViews();
-                    }
-                    catch (Exception ex)
-                    {
-                        state = State.Failure;
-                        exception = ex;
-                    }
-                }
-            }
-
-            public void OnGUI()
-            {
-                LudiqGUI.BeginHorizontal();
-
-                GUILayout.Box(GetStateIcon(state)?[IconSize.Small], Styles.stepIcon);
-
-                GUILayout.Label($"{plugin.manifest.name}: Version {migration.@from} to version {migration.to}", state == State.Idle ? Styles.stepIdleLabel : Styles.stepLabel, GUILayout.ExpandWidth(false));
-
-                LudiqGUI.Space(5);
-
-                if (exception != null)
-                {
-                    if (GUILayout.Button("Show Error", Styles.stepShowErrorButton, GUILayout.ExpandWidth(false)))
-                    {
-                        Debug.LogException(exception);
-                        EditorUtility.DisplayDialog("Update Error", $"{exception.HumanName()}:\n\n{exception.Message}\n\n(Full trace shown in log)", "OK");
-                    }
-                }
-
-                LudiqGUI.EndHorizontal();
-            }
-        }
-
-        public static class Styles
-        {
-            static Styles()
-            {
-                background = new GUIStyle(LudiqStyles.windowBackground);
-                background.padding = new RectOffset(10, 10, 10, 10);
-
-                updateButton = new GUIStyle("Button");
-                updateButton.padding = new RectOffset(16, 16, 8, 8);
-
-                completeButton = new GUIStyle("Button");
-                completeButton.padding = new RectOffset(16, 16, 8, 8);
-
-                stepIcon = new GUIStyle();
-                stepIcon.fixedWidth = IconSize.Small;
-                stepIcon.fixedHeight = IconSize.Small;
-                stepIcon.margin.right = 5;
-
-                stepLabel = new GUIStyle(EditorStyles.label);
-                stepLabel.alignment = TextAnchor.MiddleLeft;
-                stepLabel.padding = new RectOffset(0, 0, 0, 0);
-                stepLabel.margin = new RectOffset(0, 0, 0, 0);
-                stepLabel.fixedHeight = stepIcon.fixedHeight;
-
-                stepIdleLabel = new GUIStyle(stepLabel);
-                stepIdleLabel.normal.textColor = ColorPalette.unityForegroundDim;
-
-                stepShowErrorButton = new GUIStyle(stepLabel);
-                stepShowErrorButton.normal.textColor = ColorPalette.hyperlink;
-                stepShowErrorButton.active.textColor = ColorPalette.hyperlinkActive;
-            }
-
-            public static readonly GUIStyle background;
-            public static readonly GUIStyle updateButton;
-            public static readonly GUIStyle completeButton;
-            public static readonly GUIStyle stepLabel;
-            public static readonly GUIStyle stepIdleLabel;
-            public static readonly GUIStyle stepShowErrorButton;
-            public static readonly GUIStyle stepIcon;
-            public static readonly float spaceBetweenSteps = 5;
         }
     }
 }

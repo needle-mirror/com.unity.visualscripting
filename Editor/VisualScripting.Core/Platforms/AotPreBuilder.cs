@@ -37,6 +37,9 @@ namespace Unity.VisualScripting
         [PostProcessBuild]
         public static void OnPostProcessBuild(BuildTarget target, string pathToBuiltProject)
         {
+            if (instance == null || BoltCore.instance == null)
+                return;
+
             instance.DeleteAotStubs();
         }
 

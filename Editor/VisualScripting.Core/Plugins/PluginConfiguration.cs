@@ -22,28 +22,38 @@ namespace Unity.VisualScripting
         {
             Load();
 
+#if VISUAL_SCRIPT_DEBUG_MIGRATION
+            Debug.Log(
+                $"Plugin Configuration for {this.plugin.id} init, load complete. Saved version is {savedVersion}");
+#endif
+
+            if (savedVersion != "0.0.0")
+                return;
+
             // If our savedVersion is still 0.0.0, it means we didn't load an existing project savedVersion
             // Run any deprecatedSavedVersionLoaders we have to see if we can detect and load any older savedVersion formats in the project
-            if (savedVersion == "0.0.0")
-            {
-                // Order by descending to find the latest possible savedVersion in the project first
-                deprecatedSavedVersionLoaders = PluginContainer.InstantiateLinkedTypes(typeof(PluginDeprecatedSavedVersionLoader), plugin).
-                    Cast<PluginDeprecatedSavedVersionLoader>().ToArray().OrderByDescending(m => m.from).ToList().AsReadOnly();
+            // Order by descending to find the latest possible savedVersion in the project first
+            deprecatedSavedVersionLoaders = PluginContainer.InstantiateLinkedTypes(typeof(PluginDeprecatedSavedVersionLoader), plugin).
+                Cast<PluginDeprecatedSavedVersionLoader>().ToArray().OrderByDescending(m => m.@from).ToList().AsReadOnly();
 
-                foreach (var migration in deprecatedSavedVersionLoaders)
+            foreach (var migration in deprecatedSavedVersionLoaders)
+            {
+                var success = migration.Run(out var loadedVersion);
+                if (success)
                 {
-                    SemanticVersion loadedVersion;
-                    var success = migration.Run(out loadedVersion);
-                    if (success)
-                    {
-                        // Once we've found a valid savedVersion, we can break out and let the pluginMigrations run
-                        savedVersion = loadedVersion;
-                        return;
-                    }
+                    // Once we've found a valid savedVersion, we can break out and let the pluginMigrations run
+                    savedVersion = loadedVersion;
+#if VISUAL_SCRIPT_DEBUG_MIGRATION
+                    Debug.Log($"Found legacy version, loaded as {loadedVersion}");
+#endif
+                    return;
                 }
             }
 
-            // If we get here, it means we couldn't find any savedVersion in the project, it must be a fresh project
+            // If we get here, it means we couldn't find any savedVersion in the project (legacy or not), it must be a fresh project
+#if VISUAL_SCRIPT_DEBUG_MIGRATION
+            Debug.Log($"Found no legacy versions for {this.plugin.id}, setting to {plugin.manifest.version}");
+#endif
             savedVersion = plugin.manifest.version;
         }
 
@@ -125,7 +135,7 @@ namespace Unity.VisualScripting
 
         #region Project Settings
 
-        internal List<ProjectSettingMetadata> projectSettings;
+        public List<ProjectSettingMetadata> projectSettings;
 
         private string projectSettingsStoragePath => plugin.paths.projectSettings;
 

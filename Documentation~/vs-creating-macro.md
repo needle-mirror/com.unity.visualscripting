@@ -9,6 +9,8 @@ To create a graph:
 2. Select **Create** > **Visual Scripting** &gt; **(Script** or **State) Graph**. 
    Note: Although it is recommend to place your graphs in a top-level Graphs folder, folder organization has no impact on functionality.
    
+   ![](images/VS-CreateGraph.png)
+   
 3. Drag-and-drop your new graph to the machine (from the Assets folder you created) to machine's Graph field (which currently states None (Script Graph Asset)).
 
 The graph is assigned to the machine.

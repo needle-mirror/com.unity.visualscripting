@@ -1,8 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+
+## [1.6.0-pre.3] - 2021-03-12
+### Changed
+- Updated graph migration process
+
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
-## [1.5.2] - 2021-05-05
+## [1.5.2] - 2021-03-05
 ### Changed
 - User interface updated
 - Names in different UI elements made to be more consistent with new naming schemes
@@ -12,6 +17,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Warn the user when an Input System Package event is referencing an action of the wrong type for that event
 - A warning is raised when adding more than one Input unit in a SuperUnit
 - "Open" inspector button and double clicking a graph in the project browser now opens the visual scripting editor
+- A warning is raised when the step's default value of the For unit is set to 0.
+
 ### Fixed
 - Fixed "Restore to Defaults" buttons in the Project Settings window
 - Fixed ThreadAbortException when entering Play Mode while searching in the Fuzzy Finder
@@ -40,9 +47,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fixed RenamedFrom attribute does not function correctly on array references to a renamed type [BOLT-1149](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1149)
 - Fixed error message when custom inspectors are generated
 - Fixed missing succession for Cooldown. Output of Cooldown completed is treated as unentered.  [BOLT-725](https://issuetracker.unity3d.com/issues/bolt-1-output-of-cooldown-completed-is-treated-as-unentered)
+- Fixed infinite loop when setting the For unit's step's default value to 0. Instead, the unit won't be executed and the exit output will be triggered directly.
 - Fixed Object Variables tabs not updated when creating a Prefab
 - Fixed console errors when deleting a Prefab with a Visual Script
 - Fixed console errors when editing nested graphs during Play Mode
+- Fixed console errors when opening the standalone profiler window
+
+## [1.5.1-pre.5] - 2021-01-20
+### Changed
+- Removed code referring to an unused SceneManagement.PrefabStage API
 
 ## [1.5.1-pre.3] - 2020-12-07
 ### Added
@@ -77,6 +90,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Renamed Control Schemes from "Unity/Unreal" to "Default/Alternate" (Neither control scheme currently matches their respective editors' controls and will be updated in a future release)
 - Consolidated Graph editor, Blackboard and Graph Inspector into a single window
 - Updated Third-Party Notices
+- Plugin version information has been removed from the Visual Scripting settings window. This information can be retrieved from the Package Manager.
 ### Fixed
 - Corrected UGUI event management to trickle down correctly when the hierarchy contains a Unity Message Listener [BOLT-2](https://issuetracker.unity3d.com/issues/bolt-1-unity-message-listener-blocks-proper-trickling-of-ugui-events-in-hierarchies)
 - Fixed backup failures with large projects [BOLT-10](https://issuetracker.unity3d.com/issues/bolt-1-backup-fails-to-complete)
@@ -84,4 +98,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fixed IL2CPP build crash on startup [BOLT-1036](https://issuetracker.unity3d.com/issues/bolt-bolt-1-il2cpp-release-build-crashes-on-startup-when-there-is-at-least-1-node-present-in-a-graph)
 - Fixed IL2CPP issue around converting certain managed types [BOLT-8](https://issuetracker.unity3d.com/issues/bolt-1-il2cpp-encountered-a-managed-type-which-it-cannot-convert-ahead-of-time)
 - Fixed deserialization issues when undoing graphs with Wait nodes [BOLT-679](https://issuetracker.unity3d.com/issues/bolt-deserialization-error-and-nodes-missing-after-pressing-undo-when-update-coroutine-with-wait-node-is-present-in-graph)
-- Fixed "SelectOnEnum" node behaviour enums containing non-unique values e.g. "RuntimePlatform" [BOLT-688](https://issuetracker.unity3d.com/issues/select-on-enum-doesnt-work-with-the-runtimeplatform-enum)
+- Fixed "SelectOnEnum" node behavior enums containing non-unique values e.g. "RuntimePlatform" [BOLT-688](https://issuetracker.unity3d.com/issues/select-on-enum-doesnt-work-with-the-runtimeplatform-enum)

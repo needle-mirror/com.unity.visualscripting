@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 
-## [1.6.0-pre.3] - 2021-03-12
+## [1.6.0] - 2021-03-23
 ### Changed
 - Updated graph migration process
 

@@ -1,7 +1,7 @@
 {
   "name": "com.unity.visualscripting",
   "displayName": "Visual Scripting",
-  "version": "1.6.0-pre.3",
+  "version": "1.6.0",
   "unity": "2021.1",
   "description": "Visual Scripting, previously known as BOLT, is an alternative workflow to design behaviours. Instead of the classic method of writing a C# script, visual scripting offers a way to design behaviours intuitively without code, by connecting events, actions, and data together in a graph. \n\nBoth programmers and non-programmers can use node-based graphs to design final logic or to quickly create prototypes. This package also features an API that programmers can use for more advanced tasks, or to create custom nodes that can be used by other team members.",
   "type": "tool",
@@ -15,14 +15,14 @@
     "com.unity.modules.physics2d": "1.0.0"
   },
   "relatedPackages": {
-    "com.unity.visualscripting.tests": "1.6.0-pre.3"
+    "com.unity.visualscripting.tests": "1.6.0"
   },
   "upmCi": {
-    "footprint": "d642c9187f3d035b66e285bd93f433a54d6aadb4"
+    "footprint": "6248610bd95832d7b8ad7f5d74f4b8f603e577c4"
   },
   "repository": {
     "url": "https://github.cds.internal.unity3d.com/unity/com.unity.visualscripting.git",
     "type": "git",
-    "revision": "7497ac917364be0eba8a5999cf03f20c18f1d838"
+    "revision": "dec93945ecf3a06c28196d4b2dd92b42d0d54f29"
   }
 }

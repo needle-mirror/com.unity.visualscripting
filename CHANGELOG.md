@@ -1,12 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.6.1] - 2021-03-30
+### Fixed
+- Fixed bug caused by Editor API transitioning from private to public
 
 ## [1.6.0] - 2021-03-23
 ### Changed
 - Updated graph migration process
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [1.5.2] - 2021-03-05
 ### Changed
 - User interface updated

@@ -16,7 +16,7 @@ namespace Unity.VisualScripting
         static Icons()
         {
             EditorGUIUtility_GetScriptObjectFromClass = typeof(EditorGUIUtility).GetMethod("GetScript", BindingFlags.Static | BindingFlags.NonPublic);
-            EditorGUIUtility_GetIconForObject = typeof(EditorGUIUtility).GetMethod("GetIconForObject", BindingFlags.Static | BindingFlags.NonPublic);
+            EditorGUIUtility_GetIconForObject = typeof(EditorGUIUtility).GetMethod("GetIconForObject", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
 
             Load();
         }

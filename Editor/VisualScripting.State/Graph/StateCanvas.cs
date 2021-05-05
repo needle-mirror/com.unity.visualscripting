@@ -124,7 +124,7 @@ namespace Unity.VisualScripting
 
         protected override IEnumerable<DropdownOption> GetContextOptions()
         {
-            yield return new DropdownOption((Action<Vector2>)CreateFlowState, "Create Flow State");
+            yield return new DropdownOption((Action<Vector2>)CreateFlowState, "Create Script State");
             yield return new DropdownOption((Action<Vector2>)CreateSuperState, "Create Super State");
             yield return new DropdownOption((Action<Vector2>)CreateAnyState, "Create Any State");
 

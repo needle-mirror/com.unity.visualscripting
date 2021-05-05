@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using UnityEngine;
 using UnityObject = UnityEngine.Object;
 
 namespace Unity.VisualScripting
@@ -186,7 +188,12 @@ namespace Unity.VisualScripting
             }
             else
             {
-                var name = type.Name.Prettify();
+                string name;
+
+                if (Attribute.GetCustomAttribute(type, typeof(DisplayNameAttribute)) is DisplayNameAttribute displayNameAttribute)
+                    name = displayNameAttribute.DisplayName;
+                else
+                    name = type.Name.Prettify();
 
                 if (type.IsInterface && name.StartsWith("I "))
                 {

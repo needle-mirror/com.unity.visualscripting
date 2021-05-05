@@ -35,7 +35,7 @@ Just like units in script graphs, the new state is dimmed as it is never entered
 
 Select the state the graph begins at by selecting one or more **Start State(s)**. To do so, right-click the state and choose **Toggle Start**. Start states are highlighted in green.
 
-![](/Users/bryanzako/Documents/Bolt/GitBolt/com.unity.bolt/Packages/com.unity.bolt/Documentation~/images/vs-start-state-toggle-start.png)
+![](images/vs-start-state-toggle-start.png)
 
 Unlike most finite state machine (FSM) tools, visual scripting supports multiple start states. You can have parallel FSM's running in the same graph or joining at some point. Normally you'll only need a single start state.
 
@@ -45,7 +45,7 @@ Select **Any State** to trigger transitions to other states, no matter which sta
 
 Note: This state cannot receive any transition or execute any action.
 
-![](/Users/bryanzako/Documents/Bolt/GitBolt/com.unity.bolt/Packages/com.unity.bolt/Documentation~/images/bolt-states4.png)
+![](images/bolt-states4.png)
 
 ###Reading States
 
@@ -67,11 +67,11 @@ Events added to a script graph listen only while the parent state is active.
 
 Example: The breadcrumbs at the top left indicate that the the view is now within the state graph on a game object, inside the Start state.
 
-![](/Users/bryanzako/Documents/Bolt/GitBolt/com.unity.bolt/Packages/com.unity.bolt/Documentation~/images/bolt-states7.png)
+![](images/bolt-states7.png)
 
 Use this part of the toolbar to navigate back to parent graphs at any time. Edit the title and summary of that state at the top of the graph inspector when a node isn't selected.
 
-![](/Users/bryanzako/Documents/Bolt/GitBolt/com.unity.bolt/Packages/com.unity.bolt/Documentation~/images/bolt-states8.png)
+![](images/bolt-states8.png)
 
 Ignore the input and output port definitions. They are used for Super Units, not for Script States.  
 

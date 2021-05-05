@@ -1,9 +1,11 @@
+using System.ComponentModel;
 using UnityEngine;
 
 namespace Unity.VisualScripting
 {
     [SerializationVersion("A")]
     [TypeIcon(typeof(FlowGraph))]
+    [DisplayName("Script State")]
     public sealed class FlowState : NesterState<FlowGraph, ScriptGraphAsset>, IGraphEventListener
     {
         public FlowState() { }

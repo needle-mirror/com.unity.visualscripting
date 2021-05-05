@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     {
         private BoltStateManifest(BoltState plugin) : base(plugin) { }
 
-        public override string name => "Bolt State";
+        public override string name => "Visual Scripting State";
         public override string author => "";
         public override string description => "State-machine based visual scripting.";
         public override SemanticVersion version => "1.5.1";

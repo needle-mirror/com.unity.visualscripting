@@ -20,6 +20,8 @@
 
 ​         *[Adding variables](vs-adding-variables.md)
 
+​         *[Using object variables](vs-using-object-variable.md)
+
 ​      *[Creating graphs](vs-creating-macro.md)
 
 ​      *[Selecting an object type](vs-types.md)
@@ -38,9 +40,17 @@
 
 ​         *[Creating a connection](vs-creating-connection.md)
 
+​         *[Adding a unit to a graph](vs-add-unit-to-graph.md)
+
+​         *[Create a visual script graph unit](vs-creating-visual-script-graph-unit.md)
+
+​         *[Create a machine with a script](vs-create-machine-with-script.md)
+
 ​      *[Using relations to debug](vs-relations.md)
 
 ​      *[Predictive and live debugging](vs-debugging.md)
+
+​         *[Working with debug messages](vs-debug-messages.md)
 
 ​      *[Re-using scripts with super units](vs-super-units.md)
 
@@ -48,7 +58,13 @@
 
 ​      *[Live editing](vs-live.md)
 
+​         *[Live editing during runtime](vs-live-edit-runtime.md)
+
 ​      *[Refactoring the script](vs-refactoring.md)
+
+​      *[Capturing player inputs using the input system](vs-capturing-player-inputs-new.md)
+
+​      *[Capturing player inputs using the input manager](vs-capturing-player-inputs-old.md)
 
 * [Developing transitions using state graphs](vs-state.md)
 
@@ -69,6 +85,10 @@
 ​      *[Time unit](vs-time.md)
 
 ​      *[Event unit](vs-events-reference.md)
+
+​         *[Creating a custom event unit](vs-creating-custom-event-unit.md)
+
+​         *[Creating a custom visual script event unit](vs-creating-custom-visual-script-event-unit.md)
 
 ​      *[Variable unit](vs-variables-reference.md)
 

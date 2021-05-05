@@ -24,6 +24,4 @@ To create a transition:
    
      ![](images/vs-make-transition-ctrl-click-on-destination.png)
    
-3. 
 
-   

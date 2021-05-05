@@ -875,7 +875,7 @@ namespace Unity.VisualScripting
                             end,
                             startTangent,
                             endTangent,
-                            new Color(1, 1, 1, 0.75f),
+                            new Color(0.136f, 0.136f, 0.136f, 1.0f),
                             null,
                             3
                         );
@@ -1035,8 +1035,25 @@ namespace Unity.VisualScripting
                 subtitleInverted = new GUIStyle(subtitle);
                 subtitleInverted.normal.textColor = ColorPalette.unityBackgroundDark;
 
-                portsBackground = new GUIStyle("In BigTitle");
-                portsBackground.padding = new RectOffset(0, 0, 6, 5);
+                if (EditorGUIUtility.isProSkin)
+                {
+                    portsBackground = new GUIStyle("In BigTitle")
+                    {
+                        padding = new RectOffset(0, 0, 6, 5)
+                    };
+                }
+                else
+                {
+                    TextureResolution[] textureResolution = { 2 };
+                    var createTextureOptions = CreateTextureOptions.Scalable;
+                    EditorTexture normalTexture = BoltCore.Resources.LoadTexture($"Nodes/NodePortsBackground.png", textureResolution, createTextureOptions);
+
+                    portsBackground = new GUIStyle
+                    {
+                        normal = { background = normalTexture.Single() },
+                        padding = new RectOffset(0, 0, 6, 5)
+                    };
+                }
 
                 settingLabel = new GUIStyle(BoltCore.Styles.nodeLabel);
                 settingLabel.padding.left = 0;

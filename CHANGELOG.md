@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+## [1.5.2] - 2021-05-05
+### Changed
+- User interface updated
+- Names in different UI elements made to be more consistent with new naming schemes
 
 ## [1.5.1] - 2021-02-23
 ### Added

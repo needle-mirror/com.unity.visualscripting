@@ -868,7 +868,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                             while (true);
 
                         loop3:
-                            ; // Stops C# compiler whining that label 'loop3' has no statements
+                            ;     // Stops C# compiler whining that label 'loop3' has no statements
 
                             Match('.');
                             // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:15: ( DIGIT )+
@@ -906,7 +906,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                             while (true);
 
                         loop4:
-                            ; // Stops C# compiler whining that label 'loop4' has no statements
+                            ;     // Stops C# compiler whining that label 'loop4' has no statements
 
                             // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:253:22: ( E )?
                             var alt5 = 2;
@@ -965,7 +965,7 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                             while (true);
 
                         loop6:
-                            ; // Stops C# compiler whining that label 'loop6' has no statements
+                            ;     // Stops C# compiler whining that label 'loop6' has no statements
 
                             mE();
                         }

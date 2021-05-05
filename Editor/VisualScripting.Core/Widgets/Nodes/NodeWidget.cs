@@ -79,7 +79,7 @@ namespace Unity.VisualScripting
 
         protected abstract NodeColorMix color { get; }
 
-        protected bool invertForeground => EditorGUIUtility.isProSkin && (color.IsPure(NodeColor.Yellow));
+        protected bool invertForeground = false;
 
         public override void DrawForeground()
         {

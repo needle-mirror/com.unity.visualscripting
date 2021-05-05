@@ -30,7 +30,7 @@ To display the fuzzy finder, right-click anywhere in the empty grid. Browse thro
 New units appear dimmed out. This is a useful predictive debugging feature as visual scripting  warns you that their value is never used. 
 
 
-The fuzzy finder provides a preview documentation of each unit before it is created. For example, for the Add unit, there is a short description of what it does and of its ports.
+The fuzzy finder provides a preview documentation of each unit before it is created. For example, for the Subtract unit, there is a short description of what it does and of its ports.
 
 
 ![](images/bolt-units4.png)

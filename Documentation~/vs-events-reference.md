@@ -20,7 +20,7 @@ New script machines start with both these events by default.
 
 ![](images/bolt-events2.png)
 
-###Inputs &amp; Outputs
+### Inputs &amp; Outputs
 
 
 All events have a single Trigger control output that starts the script when they are triggered.
@@ -29,9 +29,11 @@ Value inputs are options that influence when the event is triggered. For example
 
 The value outputs on events are arguments that are passed from the event, giving you more information about what actually happened. For example, on the On Trigger Enter event, the other collider that is involved in the collision is an output.
 
-<img src="images/VS-OnTriggerEnterEvent.png"  />
+![](images/VS-OnTriggerEnterEvent.png)
 
-###Custom Events
+
+
+### Custom Events
 
 
 There is a special type of event, the Custom Event that triggers custom events across graphs, along with their custom arguments.
@@ -58,7 +60,7 @@ Note: The collider that hit with the boulder is the target of our trigger; the O
 
 Custom events do not require a receiver and do not cause an error if there isn't a listener to handle them.
 
-###Animation Events
+### Animation Events
 
 Use animation events to trigger Bolt graphs when you reach a certain point in your animation. Select an object with a machine and an animator. Then, from the animation window, add an animation event.
 
@@ -87,7 +89,7 @@ There are two types of events:
 
 The difference is that the first type listens to all animation events on the object and return the string parameter. The second type's trigger is the string parameter that is equal to the specified name input.
 
-###Unity Events
+### Unity Events
 
 Use Unity Events to trigger events that have been setup from the inspector. These are commonly found in GUI components like buttons, but [they can also be created in your custom scripts](https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html).
 
@@ -101,11 +103,11 @@ Configure them by selecting an object with a machine and select the Trigger Unit
 
 Additional arguments are not supported on Unity events.
 
-###Events API
+### Events API
 
 Visual scripting provides a simple API to trigger custom events from C# script. 
 
-####Usings API
+#### Usings API
 
 Add the following usings to your C# script to access the API.
 
@@ -114,7 +116,7 @@ using Ludiq;
 using Bolt;
 ```
 
-####Triggering API
+#### Triggering API
 
 A single method call is needed to trigger a custom event. Pass as many arguments as required.
 

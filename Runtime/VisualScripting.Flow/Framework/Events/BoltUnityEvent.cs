@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace Unity.VisualScripting
 {
     /// <summary>
@@ -6,6 +8,7 @@ namespace Unity.VisualScripting
     [UnitCategory("Events")]
     [UnitTitle("UnityEvent")]
     [UnitOrder(2)]
+    [DisplayName("Visual Scripting Unity Event")]
     public sealed class BoltUnityEvent : MachineEventUnit<string>
     {
         protected override string hookName => EventHooks.UnityEvent;

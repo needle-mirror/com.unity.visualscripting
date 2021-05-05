@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -868,6 +869,8 @@ namespace Unity.VisualScripting
 
         public static class Styles
         {
+            private static byte[] t;
+            private static Texture2D tx;
             static Styles()
             {
                 label = new GUIStyle(EditorStyles.label);
@@ -875,7 +878,15 @@ namespace Unity.VisualScripting
                 label.imagePosition = ImagePosition.TextOnly;
                 label.padding = new RectOffset(0, 0, 0, 0);
 
-                surround = new GUIStyle("LightmapEditorSelectedHighlight");
+                TextureResolution[] textureResolution = { 2 };
+
+                surround = new GUIStyle
+                {
+                    normal =
+                    {
+                        background = BoltCore.Resources.LoadTexture($"Nodes/Surround.png", textureResolution, CreateTextureOptions.Scalable).Single()
+                    }
+                };
             }
 
             public const float highlightScaling = 1f;

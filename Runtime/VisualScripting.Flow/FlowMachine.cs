@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 namespace Unity.VisualScripting
@@ -6,6 +7,7 @@ namespace Unity.VisualScripting
     [RequireComponent(typeof(Variables))]
     [DisableAnnotation]
     [HelpURL("https://docs.unity3d.com/Packages/com.unity.visualscripting@latest/index.html?subfolder=/manual/vs-graphs-machines-macros.html")]
+    [DisplayName("Script Machine")]
     public sealed class FlowMachine : EventMachine<FlowGraph, ScriptGraphAsset>
     {
         public override FlowGraph DefaultGraph()

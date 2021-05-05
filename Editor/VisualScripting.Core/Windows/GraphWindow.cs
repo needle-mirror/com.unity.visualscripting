@@ -332,10 +332,10 @@ namespace Unity.VisualScripting
             if (EditorApplicationUtility.WantsScriptChangesDuringPlay() && checkReloadScriptSettings)
             {
                 bool result = EditorUtility.DisplayDialog("Warning", "Your Unity preferences are set to reload scripts during play mode." +
-                                                                                "\nThis causes instability in Visual Scripting plugins." +
-                                                                                "\nPlease use: Preferences > General > Script Changes While Playing > Stop Playing and Recompile." +
-                                                                                "\nWould you like to change it now?",
-                                                                                "Change now", "I will change later");
+                    "\nThis causes instability in Visual Scripting plugins." +
+                    "\nPlease use: Preferences > General > Script Changes While Playing > Stop Playing and Recompile." +
+                    "\nWould you like to change it now?",
+                    "Change now", "I will change later");
 
                 if (result)
                 {
@@ -574,7 +574,7 @@ namespace Unity.VisualScripting
                 sidebars.left.DrawLayout();
             }
 
-            var canvasContainer = GUILayoutUtility.GetRect(GUIContent.none, GUIStyle.none, GUILayout.ExpandHeight(true));
+            var canvasContainer = new Rect(GUILayoutUtility.GetRect(GUIContent.none, GUIStyle.none, GUILayout.ExpandHeight(true)));
 
             if (showSidebars)
             {

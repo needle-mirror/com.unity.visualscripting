@@ -12,25 +12,19 @@ There are six kinds of [variable](vs-variables.md) units. Each of these variable
 
 They are located under the Variables category in the fuzzy finder.
 
-![](images/VS-Variables.png)
-
-![](images/VS-VariablesObjects.png)
-
-![](images/VS-VariablesObjectsGet.png)
-
 
 Variable units are teal colored.
 
-###Dynamic Typing
+### Dynamic Typing
 
 For get / set units, variables are not statically typed, meaning their type can change at runtime. Their type displays as an object when defined from the blackboard window.
 
-###Get Variable
+### Get Variable
 ![](images/bolt-variables-ref2.png)
 
 The get variable unit requires the name of the variable as an input and returns the **Value** as an output.
 
-###Set Variable
+### Set Variable
 ![](images/bolt-variables8.png)
 
 
@@ -40,7 +34,7 @@ Note: Connect the control input port to indicate when the variable should be ass
 
 Using a set unit with a variable name that doesn't yet exist creates the variable.
 
-###Is Variable Defined
+### Is Variable Defined
 
 The is variable defined units require the name of the variable as an input and returns an Is Defined boolean an output. They are useful to check if a variable has been created, and often, provide a fallback value if it hasn't. 
 
@@ -52,11 +46,11 @@ Note: Do the same thing more easily by checking the Fallback box in the graph in
 
 ![](images/VS-ScriptGraphBlackboard.png)
 
-###Dynamic Variables
+### Dynamic Variables
 
 As the name of the variable is a standard value input port, connect it to any other port that returns a string. Refer to "dynamic variables", that is, variables whose reference might change during play mode.
 
-###Object Variables
+### Object Variables
 
 Object variable units require an additional input for the Source. That port indicates which game object the variable you're referring to is defined. When left to its default value, they look on the current object (self).
 
@@ -64,15 +58,13 @@ For example, the Get Variable unit gets the value of the health variable on the 
 
 ![](images/bolt-variables-ref5.png)
 
-###Dropdowns
+### Dropdowns
 
 The kind and the name dropdowns can quickly configure the variable units. The name suggestions are contextual and are based on the existing variables of this kind and on the other variable units in the current graph.
 
 ![](images/vs-get-variable-object.png)
 
-![](images/vs-get-variable-mana.png)
-
-###Drag and Drop
+### Drag and Drop
 
 Drag and drop items from the blackboard window directly into the graph to create matching units.
 
@@ -80,11 +72,7 @@ Drag and drop items from the blackboard window directly into the graph to create
 * If the Alt key is held, a Set unit is created.
 * If the Shiftkey is held, an Is Defined unit is created.
 
-![](images/VS-DragandDropvariable.png)
-
-
-
-###Variables API
+### Variables API
 
 Visual scripting provides an easy API to handle variables, to get or set their value and verify if they are defined. All these operations are available from the Variables class.
 
@@ -107,9 +95,9 @@ using Bolt;
 
 ***
 
-###Scope
+### Scope
 
-####Graph
+#### Graph
 
 To access variables on a graph, create a graph reference. This is basically a path to the nested graph from its root machine.
 
@@ -131,7 +119,7 @@ To pass a graph reference:
 Variables.Graph(graphReference)
 ```
 
-####Object
+#### Object
 
 To access variables on an object:
 
@@ -139,7 +127,7 @@ To access variables on an object:
 Variables.Object(gameObject)
 ```
 
-####Scene
+#### Scene
 
 To access scene variables, do one of the following:
 
@@ -159,7 +147,7 @@ Or:
 Variables.ActiveScene
 ```
 
-####Application
+#### Application
 
 To access application variables:
 
@@ -167,7 +155,7 @@ To access application variables:
 Variables.Application
 ```
 
-####Saved
+#### Saved
 
 To access saved variables:
 
@@ -177,11 +165,11 @@ Variables.Saved
 
 ***
 
-###Operations
+### Operations
 
 In these examples, the lowercase scope refers to one of the previous scopes.
 
-####Get
+#### Get
 
 To get the value of a variable, use the Get method with a name parameter:
 
@@ -195,7 +183,7 @@ Note that variables are not strongly typed; they need to be cast manually. For e
 int health = (int)Variables.Object(player).Get("health")
 ```
 
-####Set
+#### Set
 
 To set the value of a variable, use the Set method with the name and value parameters:
 
@@ -213,7 +201,7 @@ Because variables are not strongly typed, pass any value to the second parameter
 
 Note: Using the set method with a variable name that does not yet exist defines a new variable.
 
-####Is Defined
+#### Is Defined
 
 To check if a variable is defined, use the IsDefined method with a name parameter:
 

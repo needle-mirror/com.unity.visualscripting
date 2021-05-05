@@ -11,6 +11,9 @@ namespace Unity.VisualScripting
 {
     public sealed class FuzzyWindow : EditorWindow
     {
+        private static readonly Color lightSkinColor = new Color(0.75f, 0.75f, 0.75f);
+
+        private static Color backgroundWindowColor;
         public void Populate(FuzzyOptionNode node, IEnumerable<object> childrenValues, CancellationToken? cancellation = null)
         {
             if (node.isPopulated)
@@ -91,6 +94,8 @@ namespace Unity.VisualScripting
 
         static FuzzyWindow()
         {
+            backgroundWindowColor = EditorGUIUtility.isProSkin ? GUI.color : lightSkinColor;
+
             ShowAsDropDownFitToScreen = typeof(FuzzyWindow).GetMethod("ShowAsDropDownFitToScreen", BindingFlags.Instance | BindingFlags.NonPublic);
         }
 
@@ -103,9 +108,8 @@ namespace Unity.VisualScripting
             static Styles()
             {
                 header = new GUIStyle("In BigTitle");
-
                 header.font = EditorStyles.boldLabel.font;
-
+                header.normal.textColor = ColorPalette.unityForeground;
                 header.alignment = TextAnchor.MiddleCenter;
                 header.padding = new RectOffset(0, 0, 0, 0);
 
@@ -772,9 +776,14 @@ namespace Unity.VisualScripting
         private void OnHeaderGUI(FuzzyOptionNode parent, Rect headerPosition)
         {
             EditorGUIUtility.SetIconSize(new Vector2(IconSize.Small, IconSize.Small));
-            var headerContent = new GUIContent(new GUIContent(parent.option.headerLabel, parent.option.showHeaderIcon ? parent.option.icon?[IconSize.Small] : null));
+            var headerContent = new GUIContent(parent.option.headerLabel, parent.option.showHeaderIcon ? parent.option.icon?[IconSize.Small] : null);
             headerWidth = Styles.header.CalcSize(headerContent).x;
-            GUI.Label(headerPosition, headerContent, Styles.header);
+
+            if (e.type == EventType.Repaint)
+            {
+                GUI.Label(headerPosition, headerContent, Styles.header);
+            }
+
             EditorGUIUtility.SetIconSize(default(Vector2));
         }
 
@@ -911,6 +920,7 @@ namespace Unity.VisualScripting
 
                 if (e.type == EventType.Repaint)
                 {
+                    PaintBackground(optionPosition);
                     node.style.Draw(optionPosition, node.label, false, false, optionIsSelected, optionIsSelected);
                 }
 
@@ -1065,6 +1075,16 @@ namespace Unity.VisualScripting
                     e.Use();
                 }
             }
+        }
+
+        private static void PaintBackground(Rect backgroundPosition)
+        {
+            Color currentColor = GUI.color;
+
+            GUI.color = backgroundWindowColor;
+            GUI.Box(backgroundPosition, string.Empty);
+
+            GUI.color = currentColor;
         }
 
         #endregion

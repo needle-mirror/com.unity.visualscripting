@@ -70,11 +70,6 @@ namespace Unity.VisualScripting
 
             var offset = Vector2.zero;
 
-            if (shape == NodeShape.Square && (color == NodeColor.Green || color == NodeColor.Red) && selected)
-            {
-                offset.x = -1;
-            }
-
             position.position += offset;
 
             return position;
@@ -104,7 +99,14 @@ namespace Unity.VisualScripting
         {
             if (e.type == EventType.Repaint)
             {
-                Styles.background.Draw(position, false, false, false, false);
+                if (EditorGUIUtility.isProSkin)
+                {
+                    EditorGUI.DrawRect(position, new Color(0.125f, 0.125f, 0.125f));
+                }
+                else
+                {
+                    EditorGUI.DrawRect(position, new Color(0.45f, 0.45f, 0.45f));
+                }
             }
         }
 
@@ -668,25 +670,44 @@ namespace Unity.VisualScripting
                     //  - Border: 9-slice coordinates
                     //  - Padding: inner spacing from edge
                     //  - Margin: shadow / glow outside edge
+                    TextureResolution[] textureResolution = { 2 };
+                    var createTextureOptions = CreateTextureOptions.Scalable;
 
-                    var square = new GUIStyle();
-                    square.border = squareOff.border.Clone();
-                    square.margin = new RectOffset(7, 7, 6, 9);
-                    square.padding = new RectOffset(5, 5, 6, 6);
-                    square.normal.background = squareOff.normal.background;
-                    square.active.background = squareOff.normal.background;
-                    square.hover.background = squareOff.normal.background;
-                    square.focused.background = squareOn.normal.background;
+                    string path = "Nodes/NodeFill";
+
+                    if (EditorGUIUtility.isProSkin)
+                    {
+                        path = "Nodes_Pro/NodeFill";
+                    }
+
+                    EditorTexture normalTexture = BoltCore.Resources.LoadTexture($"{path}{nodeColor}.png", textureResolution, createTextureOptions);
+                    EditorTexture activeTexture = BoltCore.Resources.LoadTexture($"{path}{nodeColor}Active.png", textureResolution, createTextureOptions);
+                    EditorTexture hoverTexture = BoltCore.Resources.LoadTexture($"{path}{nodeColor}Hover.png", textureResolution, createTextureOptions);
+                    EditorTexture focusedTexture = BoltCore.Resources.LoadTexture($"{path}{nodeColor}Focused.png", textureResolution, createTextureOptions);
+
+                    var square = new GUIStyle
+                    {
+                        border = squareOff.border.Clone(),
+                        margin = new RectOffset(3, 3, 6, 9),
+                        padding = new RectOffset(5, 5, 6, 6),
+
+                        normal = { background = normalTexture.Single() },
+                        active = { background = activeTexture.Single() },
+                        hover = { background = hoverTexture.Single() },
+                        focused = { background = focusedTexture.Single() }
+                    };
                     squares.Add(nodeColor, square);
 
-                    var hex = new GUIStyle();
-                    hex.border = new RectOffset(25, 25, 23, 23);
-                    hex.margin = new RectOffset(6, 6, 5, 7);
-                    hex.padding = new RectOffset(17, 17, 10, 10);
-                    hex.normal.background = hexOff.normal.background;
-                    hex.active.background = hexOff.normal.background;
-                    hex.hover.background = hexOff.normal.background;
-                    hex.focused.background = hexOn.normal.background;
+                    var hex = new GUIStyle
+                    {
+                        border = new RectOffset(25, 25, 23, 23),
+                        margin = new RectOffset(6, 6, 5, 7),
+                        padding = new RectOffset(17, 17, 10, 10),
+                        normal = { background = hexOff.normal.background },
+                        active = { background = hexOff.normal.background },
+                        hover = { background = hexOff.normal.background },
+                        focused = { background = hexOn.normal.background }
+                    };
                     hexes.Add(nodeColor, hex);
                 }
 
@@ -717,8 +738,8 @@ namespace Unity.VisualScripting
             }
 
             public static readonly GUIStyle background = new GUIStyle("flow background");
-            public static readonly Color majorGridColor = new Color(0, 0, 0, 0.12f);
-            public static readonly Color minorGridColor = new Color(0, 0, 0, 0.05f);
+            public static readonly Color majorGridColor = new Color(1, 1, 1, 0.1f);
+            public static readonly Color minorGridColor = new Color(1, 1, 1, 0.03f);
             public static readonly int majorGridGroup = 10;
             public static readonly float minorGridSpacing = 12;
             public static readonly float majorGridThickness = 1;

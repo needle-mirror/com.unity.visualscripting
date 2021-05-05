@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 using UnityObject = UnityEngine.Object;
 
@@ -10,6 +11,7 @@ namespace Unity.VisualScripting
     [UnitShortTitle("Animation Event")]
     [UnitTitle("Animation Event")]
     [TypeIcon(typeof(Animation))]
+    [DisplayName("Visual Scripting Animation Event")]
     public sealed class BoltAnimationEvent : MachineEventUnit<AnimationEvent>
     {
         protected override string hookName => EventHooks.AnimationEvent;

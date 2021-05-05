@@ -2,21 +2,22 @@
 
 Relations are a useful tool to understand the dependencies between each port of a unit. For example, to get the result of A + B with the Add unit, you need to provide a value for A and B. Likewise, before invoking the Log unit, you should provide a value for its Message input port.
 
-![](/Users/bryanzako/Documents/Bolt/GitBolt/com.unity.bolt/Packages/com.unity.bolt/Documentation~/images/vs-dependencies-no-relations.png)
+![](images/vs-dependencies-no-relations.png)
 
 
-![](/Users/bryanzako/Documents/Bolt/GitBolt/com.unity.bolt/Packages/com.unity.bolt/Documentation~/images/vs-dependencies-relations.png)
-
+![](images/vs-dependencies-relations.png)
 
 
 
 Visual scripting uses this information in the background for Predictive Debugging. For example, if you tried to get the value of A + B without providing a value for A, the node would show up as orange to indicate that it fails in play mode.
 
+![](images/bolt-connections13.png)
 
-![](/Users/bryanzako/Documents/Bolt/GitBolt/com.unity.bolt/Packages/com.unity.bolt/Documentation~/images/bolt-connections13.png)
 
 
-When that happens, you can use the warnings shown in the graph inspector to know what is missing.
+
+
+When that happens, you can use the warnings shown in the Graph Inspector to know what is missing.
 
 
 ![](images/VS-AisMissing.png)

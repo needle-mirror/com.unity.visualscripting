@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 
 namespace Unity.VisualScripting
 {
     [SerializationVersion("A")]
+    [DisplayName("Script Graph")]
     public sealed class FlowGraph : Graph, IGraphWithVariables, IGraphEventListener
     {
         public FlowGraph()

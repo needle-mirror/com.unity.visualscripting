@@ -190,6 +190,16 @@ namespace Unity.VisualScripting
 
                 if (type != null)
                 {
+                    // This catches things like generic parameters of system collection types using disallowed assembly types
+                    // Ex: System HashSet<Ludiq.xyz>
+                    foreach (var disallowed in disallowedAssemblies)
+                    {
+                        if (type.FullName.Contains(disallowed))
+                        {
+                            return false;
+                        }
+                    }
+
                     return true;
                 }
             }

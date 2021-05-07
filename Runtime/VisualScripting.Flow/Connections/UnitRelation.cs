@@ -11,7 +11,7 @@ namespace Unity.VisualScripting
 
             if (source.unit != destination.unit)
             {
-                throw new NotSupportedException("Cannot create relations across units.");
+                throw new NotSupportedException("Cannot create relations across nodes.");
             }
 
             this.source = source;

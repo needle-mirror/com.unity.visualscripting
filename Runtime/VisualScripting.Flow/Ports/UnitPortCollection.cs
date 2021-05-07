@@ -19,11 +19,11 @@ namespace Unity.VisualScripting
             {
                 if (port.unit == unit)
                 {
-                    throw new InvalidOperationException("Unit ports cannot be added multiple time to the same unit.");
+                    throw new InvalidOperationException("Node ports cannot be added multiple time to the same unit.");
                 }
                 else
                 {
-                    throw new InvalidOperationException("Unit ports cannot be shared across units.");
+                    throw new InvalidOperationException("Node ports cannot be shared across nodes.");
                 }
             }
 

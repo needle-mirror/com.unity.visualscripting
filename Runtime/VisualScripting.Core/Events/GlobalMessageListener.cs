@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
-    [Singleton(Name = "Global Event Listener", Automatic = true, Persistent = true)]
+    [Singleton(Name = "VisualScripting GlobalEventListener", Automatic = true, Persistent = true)]
     [DisableAnnotation]
     [AddComponentMenu("")]
     [IncludeInSettings(false)]

@@ -9,7 +9,7 @@ namespace Unity.VisualScripting
         {
             title = "Type Options";
             shortTitle = "Types";
-            icon = BoltFlow.Resources.LoadIcon("Icons/Windows/UnitOptionsWizard/TypeOptionsPage.png");
+            icon = BoltFlow.Resources.LoadIcon("TypeOptionsPage.png");
             typeOptionsMetadata = BoltCore.Configuration.GetMetadata(nameof(BoltCoreConfiguration.typeOptions));
         }
 

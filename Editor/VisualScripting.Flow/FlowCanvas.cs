@@ -173,7 +173,7 @@ namespace Unity.VisualScripting
 
         protected override IEnumerable<DropdownOption> GetContextOptions()
         {
-            yield return new DropdownOption((Action<Vector2>)(NewUnit), "Add Unit...");
+            yield return new DropdownOption((Action<Vector2>)(NewUnit), "Add Node...");
 
             foreach (var baseOption in base.GetContextOptions())
             {
@@ -183,7 +183,7 @@ namespace Unity.VisualScripting
 
         public void AddUnit(IUnit unit, Vector2 position)
         {
-            UndoUtility.RecordEditedObject("Create Unit");
+            UndoUtility.RecordEditedObject("Create Node");
             unit.guid = Guid.NewGuid();
             unit.position = position.PixelPerfect();
             graph.units.Add(unit);
@@ -193,7 +193,7 @@ namespace Unity.VisualScripting
 
         private UnitOptionTree GetNewUnitOptions(UnitOptionFilter filter)
         {
-            var options = new UnitOptionTree(new GUIContent("Unit"));
+            var options = new UnitOptionTree(new GUIContent("Node"));
 
             options.filter = filter;
             options.reference = reference;
@@ -288,7 +288,7 @@ namespace Unity.VisualScripting
             if (DragAndDropUtility.Is<ScriptGraphAsset>())
             {
                 var flowMacro = DragAndDropUtility.Get<ScriptGraphAsset>();
-                var superUnit = new SuperUnit(flowMacro);
+                var superUnit = new SubgraphUnit(flowMacro);
                 AddUnit(superUnit, DragAndDropUtility.position);
             }
             else if (DragAndDropUtility.Is<UnityObject>())

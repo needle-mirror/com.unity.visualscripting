@@ -25,7 +25,7 @@ namespace Unity.VisualScripting
         }
 
         /// <summary>
-        /// Run this event in a coroutine, enabling asynchronous flow like wait units.
+        /// Run this event in a coroutine, enabling asynchronous flow like wait nodes.
         /// </summary>
         [Serialize]
         [Inspectable]

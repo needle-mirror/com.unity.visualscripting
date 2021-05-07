@@ -10,7 +10,7 @@ namespace Unity.VisualScripting
         [RequiresUnityAPI]
         protected override string DefinedTitle()
         {
-            return GraphNesterDescriptor.Title(unit);
+            return GraphNesterDescriptor.Title(unit, BoltFlowNameUtility.UnitTitle(unitType, false, false));
         }
 
         [RequiresUnityAPI]
@@ -31,14 +31,9 @@ namespace Unity.VisualScripting
             var hasCurrentTitle = !StringUtility.IsNullOrWhiteSpace(unit.nest.graph?.title);
             var hasMacroTitle = unit.nest.source == GraphSource.Macro && (UnityObject)unit.nest.macro != null;
 
-            if (hasCurrentTitle || hasMacroTitle)
-            {
-                return unit.GetType().HumanName();
-            }
-            else
-            {
-                return null;
-            }
+            return hasCurrentTitle || hasMacroTitle
+                ? BoltFlowNameUtility.UnitTitle(unitType, false, false)
+                : null;
         }
     }
 }

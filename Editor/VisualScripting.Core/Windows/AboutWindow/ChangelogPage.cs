@@ -19,7 +19,7 @@ namespace Unity.VisualScripting
                 title = subtitle = $"Version {changelog.version}";
             }
 
-            icon = BoltCore.Resources.LoadIcon("Icons/Windows/AboutWindow/ChangelogPage.png");
+            icon = BoltCore.Resources.LoadIcon("ChangelogPage.png");
 
             this.changelog = changelog;
 

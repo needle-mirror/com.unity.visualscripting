@@ -10,7 +10,7 @@ namespace Unity.VisualScripting
     [UnitShortTitle("Not Equal")]
     [UnitSubtitle("(Approximately)")]
     [UnitOrder(8)]
-    [Obsolete("Use the Not Equal unit with Numeric enabled instead.")]
+    [Obsolete("Use the Not Equal node with Numeric enabled instead.")]
     public sealed class NotApproximatelyEqual : Unit
     {
         /// <summary>

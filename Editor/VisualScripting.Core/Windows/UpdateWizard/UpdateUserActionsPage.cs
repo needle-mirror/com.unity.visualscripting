@@ -11,7 +11,7 @@ namespace Unity.VisualScripting
         {
             title = "Required Actions";
             shortTitle = "Actions";
-            icon = BoltCore.Resources.LoadIcon("Icons/Windows/UpdateWizard/UpdateUserActionsPage.png");
+            icon = BoltCore.Resources.LoadIcon("UpdateUserActionsPage.png");
 
             migrations = plugins
                 .OrderByDependencies()

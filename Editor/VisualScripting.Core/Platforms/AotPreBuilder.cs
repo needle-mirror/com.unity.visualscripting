@@ -37,7 +37,7 @@ namespace Unity.VisualScripting
         [PostProcessBuild]
         public static void OnPostProcessBuild(BuildTarget target, string pathToBuiltProject)
         {
-            if (instance == null || BoltCore.instance == null)
+            if (instance == null || BoltCore.instance == null || !BoltCore.Configuration.isVisualScriptingUsed)
                 return;
 
             instance.DeleteAotStubs();
@@ -59,7 +59,8 @@ namespace Unity.VisualScripting
         public void OnPreprocessBuild(BuildReport report)
         {
             // If the user isn't using Visual Scripting, we don't do any of this
-            if (!Directory.Exists(PluginPaths.generated)) return;
+            if (instance == null || BoltCore.instance == null || !BoltCore.Configuration.isVisualScriptingUsed)
+                return;
 
             if (PlayerSettings.GetScriptingBackend(report.summary.platformGroup) != ScriptingImplementation.IL2CPP)
             {
@@ -205,7 +206,7 @@ namespace Unity.VisualScripting
 
         private IEnumerable<object> FindAllSettingsStubs()
         {
-            // Include all custom operators for the formula unit and generic math units
+            // Include all custom operators for the formula node and generic math nodes
             // Also include all user defined conversion operators for the conversion utility
             var codebaseSubset = Codebase.Subset(Codebase.settingsTypes, TypeFilter.Any.Configured(), MemberFilter.Any.Configured());
 

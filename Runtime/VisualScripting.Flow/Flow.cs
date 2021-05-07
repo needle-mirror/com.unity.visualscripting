@@ -277,7 +277,7 @@ namespace Unity.VisualScripting
             else
             {
                 // We prefer a soft coroutine stop here that will happen at the *next frame*,
-                // because we don't want the flow to be disposed just yet when the event unit stops
+                // because we don't want the flow to be disposed just yet when the event node stops
                 // listening, as we still need it for clean up operations.
                 coroutineStopRequested = true;
             }
@@ -342,14 +342,19 @@ namespace Unity.VisualScripting
 
             BeforeInvoke(output, recursionNode);
 
-            var nextPort = InvokeDelegate(input);
-
-            if (nextPort != null)
+            try
             {
-                Invoke(nextPort);
-            }
+                var nextPort = InvokeDelegate(input);
 
-            AfterInvoke(output, recursionNode);
+                if (nextPort != null)
+                {
+                    Invoke(nextPort);
+                }
+            }
+            finally
+            {
+                AfterInvoke(output, recursionNode);
+            }
         }
 
         private IEnumerable InvokeCoroutine(ControlOutput output)
@@ -573,19 +578,24 @@ namespace Unity.VisualScripting
                 throw;
             }
 
-            if (enableDebug)
+            try
             {
-                var outputUnitEditorData = stack.GetElementDebugData<IUnitDebugData>(output.unit);
+                if (enableDebug)
+                {
+                    var outputUnitEditorData = stack.GetElementDebugData<IUnitDebugData>(output.unit);
 
-                outputUnitEditorData.lastInvokeFrame = EditorTimeBinding.frame;
-                outputUnitEditorData.lastInvokeTime = EditorTimeBinding.time;
+                    outputUnitEditorData.lastInvokeFrame = EditorTimeBinding.frame;
+                    outputUnitEditorData.lastInvokeTime = EditorTimeBinding.time;
+                }
+
+                var value = GetValueDelegate(output);
+
+                return value;
             }
-
-            var value = GetValueDelegate(output);
-
-            recursion?.Exit(recursionNode);
-
-            return value;
+            finally
+            {
+                recursion?.Exit(recursionNode);
+            }
         }
 
         public object GetValue(ValueInput input, Type type)

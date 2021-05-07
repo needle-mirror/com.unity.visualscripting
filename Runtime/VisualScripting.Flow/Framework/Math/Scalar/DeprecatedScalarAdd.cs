@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     /// </summary>
     [UnitCategory("Math/Scalar")]
     [UnitTitle("Add")]
-    [Obsolete("Use the new \"Add (Math/Scalar)\" unit instead.")]
+    [Obsolete("Use the new \"Add (Math/Scalar)\" node instead.")]
     [RenamedFrom("Bolt.ScalarAdd")]
     [RenamedFrom("Unity.VisualScripting.ScalarAdd")]
     public sealed class DeprecatedScalarAdd : Add<float>

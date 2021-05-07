@@ -10,7 +10,7 @@ namespace Unity.VisualScripting
             Ensure.That(nameof(plugins)).IsNotNull(plugins);
 
             title = shortTitle = "Acknowledgements";
-            icon = BoltCore.Resources.LoadIcon("Icons/Windows/AboutWindow/AcknowledgementPage.png");
+            icon = BoltCore.Resources.LoadIcon("AcknowledgementPage.png");
 
             foreach (var acknowledgement in plugins.ResolveDependencies().SelectMany(plugin => plugin.resources.acknowledgements))
             {

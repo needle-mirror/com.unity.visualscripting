@@ -17,7 +17,10 @@ namespace Unity.VisualScripting
         [Serialize]
         public string name { get; private set; }
 
-        [Serialize]
+        [Serialize, Value]
         public object value { get; set; }
+
+        [Serialize]
+        public SerializableType typeHandle { get; set; }
     }
 }

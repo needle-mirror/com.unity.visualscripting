@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
+#if MODULE_PARTICLE_SYSTEM_EXISTS
     /// <summary>
     /// Called when a particle hits a collider.
     /// </summary>
@@ -47,4 +48,5 @@ namespace Unity.VisualScripting
             flow.SetValue(this.collisionEvents, collisionEvents);
         }
     }
+#endif
 }

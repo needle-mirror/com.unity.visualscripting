@@ -230,8 +230,8 @@ namespace Unity.VisualScripting
 
         public override void ExpandDragGroup(HashSet<IGraphElement> dragGroup)
         {
-            if ((BoltCore.Configuration.controlScheme == CanvasControlScheme.Unity && e.alt) ||
-                (BoltCore.Configuration.controlScheme == CanvasControlScheme.Unreal && e.ctrlOrCmd))
+            if ((BoltCore.Configuration.controlScheme == CanvasControlScheme.Default && e.alt) ||
+                (BoltCore.Configuration.controlScheme == CanvasControlScheme.Alternate && e.ctrlOrCmd))
             {
                 return;
             }

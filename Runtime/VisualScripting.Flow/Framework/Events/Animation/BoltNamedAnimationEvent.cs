@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
+#if MODULE_ANIMATION_EXISTS
     /// <summary>
     /// Called when an animation event points to TriggerAnimationEvent.
     /// This version allows you to use the string parameter as the event name.
@@ -68,4 +69,5 @@ namespace Unity.VisualScripting
             flow.SetValue(objectReferenceParameter, animationEvent.objectReferenceParameter);
         }
     }
+#endif
 }

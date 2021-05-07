@@ -10,7 +10,7 @@ namespace Unity.VisualScripting
     [UnitShortTitle("Equal")]
     [UnitSubtitle("(Approximately)")]
     [UnitOrder(7)]
-    [Obsolete("Use the Equal unit with Numeric enabled instead.")]
+    [Obsolete("Use the Equal node with Numeric enabled instead.")]
     public sealed class ApproximatelyEqual : Unit
     {
         /// <summary>

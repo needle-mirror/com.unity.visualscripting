@@ -13,7 +13,7 @@ namespace Unity.VisualScripting
         public override string author => "";
         public override string copyrightHolder => "Unity";
         public override string supportUrl => "";
-        public override SemanticVersion version => "1.4.13";
+        public override SemanticVersion version => PackageVersionUtility.version;
         public const string ID = "Ludiq";
 
         public const int ToolsMenuPriority = -990000;

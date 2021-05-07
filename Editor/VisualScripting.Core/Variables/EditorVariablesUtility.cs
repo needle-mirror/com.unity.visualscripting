@@ -102,7 +102,7 @@ namespace Unity.VisualScripting
             return LinqUtility.Concat<string>(GetPredefinedVariableNames(kind, reference), GetDynamicVariableNames(kind, reference)).Distinct().OrderBy(name => name);
         }
 
-        [MenuItem("GameObject/Scene Variables", false, 12)]
+        [MenuItem("GameObject/Visual Scripting Scene Variables", false, 12)]
         private static void MenuCommand(MenuCommand menuCommand)
         {
             var scene = SceneManager.GetActiveScene();

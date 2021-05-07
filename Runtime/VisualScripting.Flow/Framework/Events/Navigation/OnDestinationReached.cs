@@ -2,6 +2,7 @@ using UnityEngine.AI;
 
 namespace Unity.VisualScripting
 {
+#if MODULE_AI_EXISTS
     /// <summary>
     /// Called when the nav mesh agent comes within a certain threshold of its destination.
     /// </summary>
@@ -39,4 +40,5 @@ namespace Unity.VisualScripting
                 (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete || !flow.GetValue<bool>(requireSuccess));
         }
     }
+#endif
 }

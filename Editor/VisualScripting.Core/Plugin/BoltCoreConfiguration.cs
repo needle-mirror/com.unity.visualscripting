@@ -145,13 +145,26 @@ namespace Unity.VisualScripting
         [EditorPref(visibleCondition = nameof(developerMode))]
         public bool debug { get; set; } = false;
 
+        private CanvasControlScheme _controlScheme;
+        public event Action ControlSchemeChanged;
+
         /// <summary>
         /// The control scheme to use for pan and zoom.
         /// Default: pan with [MMB], zoom with [Ctrl + Scroll Wheel].
         /// Alternate: pan with [MMB] or [Alt + LMB], zoom with [Scroll Wheel].
         /// </summary>
         [EditorPref]
-        public CanvasControlScheme controlScheme { get; set; }
+        public CanvasControlScheme controlScheme
+        {
+            get => _controlScheme;
+            set
+            {
+                var old = _controlScheme;
+                _controlScheme = value;
+                if (old != _controlScheme)
+                    ControlSchemeChanged?.Invoke();
+            }
+        }
 
         /// <summary>
         /// Whether the graph window and inspector should be cleared when
@@ -237,6 +250,9 @@ namespace Unity.VisualScripting
         private bool isEditorOSX => Application.platform == RuntimePlatform.OSXEditor;
 
         #region Project Settings
+
+        [ProjectSetting]
+        public bool isVisualScriptingUsed { get; set; } = false;
 
         /// <summary>
         /// Whether some types, including generics, should be filtered out
@@ -339,6 +355,18 @@ namespace Unity.VisualScripting
             "UnityEngine.FileSystemHttpModule",
             "UnityEngine.JSONSerializeModule",
             "UnityEngine.UmbraModule",
+            
+            // Other packages included with VS in its feature set
+            // Timeline
+            "Unity.Timeline",
+            "Unity.Timeline.Editor",
+
+            // Cinemachine
+            "Cinemachine",
+            "com.unity.cinemachine.Editor",
+
+            // Input System
+            "Unity.InputSystem",
         };
 
         /// <summary>

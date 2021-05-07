@@ -10,7 +10,7 @@ namespace Unity.VisualScripting
     [UnitSurtitle("Equality")]
     [UnitShortTitle("Comparison")]
     [UnitOrder(4)]
-    [Obsolete("Use the Comparison unit instead.")]
+    [Obsolete("Use the Comparison node instead.")]
     public sealed class EqualityComparison : Unit
     {
         /// <summary>

@@ -294,9 +294,9 @@ namespace Unity.VisualScripting
                 return false;
             }
 
-            if (!AllowSelfNestedGraph && option.UnitIs<SuperUnit>())
+            if (!AllowSelfNestedGraph && option.UnitIs<SubgraphUnit>())
             {
-                if (((SuperUnit)option.unit).nest.graph.GetHashCode() == GraphHashCode)
+                if (((SubgraphUnit)option.unit).nest.graph.GetHashCode() == GraphHashCode)
                 {
                     return false;
                 }

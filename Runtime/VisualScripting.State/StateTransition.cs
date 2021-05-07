@@ -102,5 +102,14 @@ namespace Unity.VisualScripting
         public abstract void OnExit(Flow flow);
 
         #endregion
+
+        #region Analytics
+
+        public override AnalyticsIdentifier GetAnalyticsIdentifier()
+        {
+            return null;
+        }
+
+        #endregion
     }
 }

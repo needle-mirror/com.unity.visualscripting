@@ -15,7 +15,7 @@ namespace Unity.VisualScripting
         {
             base.Initialize();
 
-            logo = BoltCore.Resources.LoadTexture("Logos/LogoBolt.png", CreateTextureOptions.Scalable)?.Single();
+            logo = BoltCore.Resources.LoadTexture("LogoBolt.png", CreateTextureOptions.Scalable)?.Single();
         }
 
         public override string configurationPanelLabel => "Bolt";
@@ -25,7 +25,7 @@ namespace Unity.VisualScripting
         public override string authorLabel => "Designed & Developed by ";
         public override string author => "";
         public override string copyrightHolder => "Unity";
-        public override SemanticVersion version => "1.5.1";
+        public override SemanticVersion version => PackageVersionUtility.version;
         public override string publisherUrl => "";
         public override string websiteUrl => "";
         public override string supportUrl => "";

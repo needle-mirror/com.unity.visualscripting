@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
-    [Singleton(Name = "Coroutine Runner", Automatic = true, Persistent = true)]
+    [Singleton(Name = "VisualScripting CoroutineRunner", Automatic = true, Persistent = true)]
     [AddComponentMenu("")]
     [DisableAnnotation]
     [IncludeInSettings(false)]

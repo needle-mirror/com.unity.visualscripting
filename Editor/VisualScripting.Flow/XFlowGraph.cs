@@ -17,7 +17,7 @@ namespace Unity.VisualScripting
             {
                 yield return unit;
 
-                var nestedGraph = (unit as SuperUnit)?.nest.graph;
+                var nestedGraph = (unit as SubgraphUnit)?.nest.graph;
 
                 if (nestedGraph != null)
                 {

@@ -147,5 +147,14 @@ namespace Unity.VisualScripting
         }
 
         #endregion
+
+        #region Analytics
+
+        public override AnalyticsIdentifier GetAnalyticsIdentifier()
+        {
+            return null;
+        }
+
+        #endregion
     }
 }

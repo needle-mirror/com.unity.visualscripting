@@ -2,6 +2,7 @@ using System;
 
 namespace Unity.VisualScripting
 {
+#if MODULE_PHYSICS_2D_EXISTS
     /// <summary>
     /// Called when an incoming collider makes contact with this object's collider.
     /// </summary>
@@ -10,4 +11,5 @@ namespace Unity.VisualScripting
         public override Type MessageListenerType => typeof(UnityOnCollisionEnter2DMessageListener);
         protected override string hookName => EventHooks.OnCollisionEnter2D;
     }
+#endif
 }

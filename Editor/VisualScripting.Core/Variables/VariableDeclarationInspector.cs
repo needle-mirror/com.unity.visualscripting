@@ -6,11 +6,11 @@ namespace Unity.VisualScripting
     [Inspector(typeof(VariableDeclaration))]
     public sealed class VariableDeclarationInspector : Inspector
     {
-        public VariableDeclarationInspector(Metadata metadata) : base(metadata) { }
-
         private Metadata nameMetadata => metadata[nameof(VariableDeclaration.name)];
-
         private Metadata valueMetadata => metadata[nameof(VariableDeclaration.value)];
+        private Metadata typeMetadata => metadata[nameof(VariableDeclaration.typeHandle)];
+
+        public VariableDeclarationInspector(Metadata metadata) : base(metadata) { }
 
         protected override float GetHeight(float width, GUIContent label)
         {
@@ -20,6 +20,8 @@ namespace Unity.VisualScripting
             {
                 height += Styles.padding;
                 height += GetNameHeight(width);
+                height += Styles.spacing;
+                height += GetTypeHeight(width);
                 height += Styles.spacing;
                 height += GetValueHeight(width);
                 height += Styles.padding;
@@ -38,6 +40,11 @@ namespace Unity.VisualScripting
             return LudiqGUI.GetInspectorHeight(this, valueMetadata, width);
         }
 
+        float GetTypeHeight(float width)
+        {
+            return LudiqGUI.GetInspectorHeight(this, typeMetadata, width);
+        }
+
         protected override void OnGUI(Rect position, GUIContent label)
         {
             position = BeginLabeledBlock(metadata, position, label);
@@ -47,10 +54,13 @@ namespace Unity.VisualScripting
                 y += Styles.padding;
                 var namePosition = position.VerticalSection(ref y, GetNameHeight(position.width));
                 y += Styles.spacing;
+                var typePosition = position.VerticalSection(ref y, GetTypeHeight(position.width));
+                y += Styles.spacing;
                 var valuePosition = position.VerticalSection(ref y, GetValueHeight(position.width));
                 y += Styles.padding;
 
                 OnNameGUI(namePosition);
+                OnTypeGUI(typePosition);
                 OnValueGUI(valuePosition);
             }
 
@@ -87,6 +97,11 @@ namespace Unity.VisualScripting
         public void OnValueGUI(Rect valuePosition)
         {
             LudiqGUI.Inspector(valueMetadata, valuePosition, GUIContent.none);
+        }
+
+        public void OnTypeGUI(Rect position)
+        {
+            LudiqGUI.Inspector(typeMetadata, position, GUIContent.none);
         }
 
         public static class Styles

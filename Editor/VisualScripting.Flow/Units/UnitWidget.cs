@@ -148,7 +148,7 @@ namespace Unity.VisualScripting
 
                     if (destination != null)
                     {
-                        UndoUtility.RecordEditedObject("Connect Units");
+                        UndoUtility.RecordEditedObject("Connect Nodes");
                         source.ValidlyConnectTo(destination);
                         canvas.connectionSource = null;
                         canvas.Widget(source.unit).Reposition();
@@ -966,7 +966,7 @@ namespace Unity.VisualScripting
             var unitPosition = oldUnit.position;
             var preservation = UnitPreservation.Preserve(oldUnit);
 
-            var options = new UnitOptionTree(new GUIContent("Unit"));
+            var options = new UnitOptionTree(new GUIContent("Node"));
             options.reference = reference;
 
             var activatorPosition = new Rect(e.mousePosition, new Vector2(200, 1));
@@ -983,7 +983,7 @@ namespace Unity.VisualScripting
                         var option = (IUnitOption)_option;
 
                         context.BeginEdit();
-                        UndoUtility.RecordEditedObject("Replace Unit");
+                        UndoUtility.RecordEditedObject("Replace Node");
                         var graph = oldUnit.graph;
                         oldUnit.graph.units.Remove(oldUnit);
                         var newUnit = option.InstantiateUnit();
@@ -1046,7 +1046,7 @@ namespace Unity.VisualScripting
                 {
                     TextureResolution[] textureResolution = { 2 };
                     var createTextureOptions = CreateTextureOptions.Scalable;
-                    EditorTexture normalTexture = BoltCore.Resources.LoadTexture($"Nodes/NodePortsBackground.png", textureResolution, createTextureOptions);
+                    EditorTexture normalTexture = BoltCore.Resources.LoadTexture($"NodePortsBackground.png", textureResolution, createTextureOptions);
 
                     portsBackground = new GUIStyle
                     {

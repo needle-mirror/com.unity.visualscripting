@@ -13,7 +13,7 @@ namespace Unity.VisualScripting
         {
             title = "Automatic Update";
             shortTitle = "Update";
-            icon = BoltCore.Resources.LoadIcon("Icons/Windows/UpdateWizard/UpdateMigrationPage.png");
+            icon = BoltCore.Resources.LoadIcon("UpdateMigrationPage.png");
 
             this.plugins = plugins.OrderByDependencies().ToList();
 

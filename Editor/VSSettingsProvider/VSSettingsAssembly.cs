@@ -5,12 +5,12 @@ namespace Unity.VisualScripting
 {
     public class VSSettingsAssembly
     {
-        private const string completeLabel = "Regenerate Units";
+        private const string completeLabel = "Regenerate Nodes";
         private PluginConfigurationItemMetadata assemblyOptionsMetadata;
 
         private bool showAssembly = false;
         private const string titleAssembly = "Node Library";
-        private const string descriptionAssembly = "Choose the assemblies in which you want to look for units.\n"
+        private const string descriptionAssembly = "Choose the assemblies in which you want to look for nodes.\n"
             + "By default, all project and Unity assemblies are included.\n"
             + "Unless you use a third-party plugin distributed as a DLL, you shouldn't need to change this.";
         public VSSettingsAssembly()
@@ -69,7 +69,7 @@ namespace Unity.VisualScripting
             {
                 UnitBase.Rebuild();
 
-                EditorUtility.DisplayDialog("Visual Script", "Regenerate Units completed", "OK");
+                EditorUtility.DisplayDialog("Visual Script", "Regenerate Nodes completed", "OK");
             }
         }
     }

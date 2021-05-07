@@ -90,7 +90,7 @@ namespace Unity.VisualScripting
         // Therefore, if any graph relied on a macro dependency (super unit, super state, flow state, state unit)
         // that was created before a deserialization of that dependency (usually enter/exit play mode, restart Unity),
         // it would silently never load, not throwing any error or warning along the way.
-        // For example, creating a new flow macro, dragging it to create a super unit in another graph,
+        // For example, creating a new flow macro, dragging it to create a super node in another graph,
         // then undoing, would corrupt the parent graph.
         // Note: this *could* go in Awake, but OnEnable seems to be more reliable and consistent. Awake
         // doesn't get called in play mode entry for example (but that doesn't matter because OnAfterDeserialize does anyway).

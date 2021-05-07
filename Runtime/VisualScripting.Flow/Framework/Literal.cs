@@ -53,5 +53,20 @@ namespace Unity.VisualScripting
         {
             output = ValueOutput(type, nameof(output), (flow) => value).Predictable();
         }
+
+        #region Analytics
+
+        public override AnalyticsIdentifier GetAnalyticsIdentifier()
+        {
+            var aid = new AnalyticsIdentifier
+            {
+                Identifier = $"{GetType().FullName}({type.Name})",
+                Namespace = type.Namespace,
+            };
+            aid.Hashcode = aid.Identifier.GetHashCode();
+            return aid;
+        }
+
+        #endregion
     }
 }

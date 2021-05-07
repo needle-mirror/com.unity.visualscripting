@@ -19,7 +19,7 @@ namespace Unity.VisualScripting
 
             if (unit.IsStepValueZero())
             {
-                yield return Warning.Caution("The step value is 0. This will prevent the For unit to be executed or can cause an infinite loop.");
+                yield return Warning.Caution("The step value is 0. This will prevent the For node to be executed or can cause an infinite loop.");
             }
         }
     }

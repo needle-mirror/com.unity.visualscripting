@@ -4,15 +4,33 @@ namespace Unity.VisualScripting
 {
     public static class ProgressUtility
     {
+        private static string _progressBarTitleOverride = null;
+
+        internal static void SetTitleOverride(string title)
+        {
+            _progressBarTitleOverride = title;
+        }
+
+        internal static void ClearTitleOverride()
+        {
+            _progressBarTitleOverride = null;
+        }
+
         public static void DisplayProgressBar(string title, string info, float progress)
         {
+            var actualTitle = $"Visual Scripting: {title}";
+            if (_progressBarTitleOverride != null)
+            {
+                actualTitle = _progressBarTitleOverride;
+            }
+
             if (UnityThread.allowsAPI)
             {
-                EditorUtility.DisplayProgressBar(title, info, progress);
+                EditorUtility.DisplayProgressBar(actualTitle, info, progress);
             }
             else
             {
-                BackgroundWorker.ReportProgress(title, progress);
+                BackgroundWorker.ReportProgress(actualTitle, progress);
             }
         }
 

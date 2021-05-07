@@ -673,12 +673,7 @@ namespace Unity.VisualScripting
                     TextureResolution[] textureResolution = { 2 };
                     var createTextureOptions = CreateTextureOptions.Scalable;
 
-                    string path = "Nodes/NodeFill";
-
-                    if (EditorGUIUtility.isProSkin)
-                    {
-                        path = "Nodes_Pro/NodeFill";
-                    }
+                    string path = "NodeFill";
 
                     EditorTexture normalTexture = BoltCore.Resources.LoadTexture($"{path}{nodeColor}.png", textureResolution, createTextureOptions);
                     EditorTexture activeTexture = BoltCore.Resources.LoadTexture($"{path}{nodeColor}Active.png", textureResolution, createTextureOptions);
@@ -714,10 +709,10 @@ namespace Unity.VisualScripting
                 var arrowResolutions = new TextureResolution[] { 32 };
                 var arrowOptions = CreateTextureOptions.Scalable;
 
-                arrowUp = BoltCore.Resources.LoadTexture("Arrows/ArrowUp.png", arrowResolutions, arrowOptions);
-                arrowDown = BoltCore.Resources.LoadTexture("Arrows/ArrowDown.png", arrowResolutions, arrowOptions);
-                arrowLeft = BoltCore.Resources.LoadTexture("Arrows/ArrowLeft.png", arrowResolutions, arrowOptions);
-                arrowRight = BoltCore.Resources.LoadTexture("Arrows/ArrowRight.png", arrowResolutions, arrowOptions);
+                arrowUp = BoltCore.Resources.LoadTexture("ArrowUp.png", arrowResolutions, arrowOptions, false);
+                arrowDown = BoltCore.Resources.LoadTexture("ArrowDown.png", arrowResolutions, arrowOptions, false);
+                arrowLeft = BoltCore.Resources.LoadTexture("ArrowLeft.png", arrowResolutions, arrowOptions, false);
+                arrowRight = BoltCore.Resources.LoadTexture("ArrowRight.png", arrowResolutions, arrowOptions, false);
 
                 lockIcon = new GUIContent(LudiqGUIUtility.newSkin ? ((GUIStyle)"IN ThumbnailSelection").onActive.background : ((GUIStyle)"Icon.Locked").onNormal.background);
 

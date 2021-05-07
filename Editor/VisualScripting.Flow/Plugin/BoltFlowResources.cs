@@ -49,20 +49,20 @@ namespace Unity.VisualScripting
             {
                 graph = typeof(FlowGraph).Icon();
                 unit = typeof(IUnit).Icon();
-                flowMacro = resources.LoadIcon("Icons/FlowMacro.png");
-                unitCategory = resources.LoadIcon("Icons/UnitCategory.png");
+                flowMacro = resources.LoadIcon("FlowMacro.png", false);
+                unitCategory = resources.LoadIcon("UnitCategory.png");
 
                 var portResolutions = new[] { new TextureResolution(9, 12), new TextureResolution(12, 24) };
                 var portOptions = CreateTextureOptions.PixelPerfect;
 
-                controlPortConnected = resources.LoadTexture("Ports/ControlPortConnected.png", portResolutions, portOptions);
-                controlPortUnconnected = resources.LoadTexture("Ports/ControlPortUnconnected.png", portResolutions, portOptions);
-                valuePortConnected = resources.LoadTexture("Ports/ValuePortConnected.png", portResolutions, portOptions);
-                valuePortUnconnected = resources.LoadTexture("Ports/ValuePortUnconnected.png", portResolutions, portOptions);
-                invalidPortConnected = resources.LoadTexture("Ports/InvalidPortConnected.png", portResolutions, portOptions);
-                invalidPortUnconnected = resources.LoadTexture("Ports/InvalidPortUnconnected.png", portResolutions, portOptions);
+                controlPortConnected = resources.LoadTexture("ControlPortConnected.png", portResolutions, portOptions);
+                controlPortUnconnected = resources.LoadTexture("ControlPortUnconnected.png", portResolutions, portOptions);
+                valuePortConnected = resources.LoadTexture("ValuePortConnected.png", portResolutions, portOptions);
+                valuePortUnconnected = resources.LoadTexture("ValuePortUnconnected.png", portResolutions, portOptions);
+                invalidPortConnected = resources.LoadTexture("InvalidPortConnected.png", portResolutions, portOptions);
+                invalidPortUnconnected = resources.LoadTexture("InvalidPortUnconnected.png", portResolutions, portOptions);
 
-                coroutine = resources.LoadIcon("Icons/Coroutine.png");
+                coroutine = resources.LoadIcon("Coroutine.png");
             }
 
             public EditorTexture UnitCategory(UnitCategory category)
@@ -74,9 +74,16 @@ namespace Unity.VisualScripting
 
                 if (!unitCategoryIcons.ContainsKey(category))
                 {
-                    var path = $"Icons/UnitCategories/{category.fullName}.png";
+                    var path = $"{category.name}.png";
 
-                    unitCategoryIcons.Add(category, LoadSharedIcon(path, false) ?? unitCategory);
+                    EditorTexture editorTexture = LoadSharedIcon(path, false);
+
+                    if (editorTexture == null)
+                    {
+                        editorTexture = unitCategory;
+                    }
+
+                    unitCategoryIcons.Add(category, editorTexture);
                 }
 
                 return unitCategoryIcons[category];

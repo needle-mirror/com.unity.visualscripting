@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
+#if MODULE_PHYSICS_2D_EXISTS
     [UnitCategory("Events/Physics 2D")]
     public abstract class TriggerEvent2DUnit : GameObjectEventUnit<Collider2D>
     {
@@ -23,4 +24,5 @@ namespace Unity.VisualScripting
             flow.SetValue(collider, other);
         }
     }
+#endif
 }

@@ -2,10 +2,10 @@ using System.Linq;
 
 namespace Unity.VisualScripting
 {
-    [Descriptor(typeof(SuperUnit))]
-    public class SuperUnitDescriptor : NesterUnitDescriptor<SuperUnit>
+    [Descriptor(typeof(SubgraphUnit))]
+    public class SuperUnitDescriptor : NesterUnitDescriptor<SubgraphUnit>
     {
-        public SuperUnitDescriptor(SuperUnit unit) : base(unit) { }
+        public SuperUnitDescriptor(SubgraphUnit unit) : base(unit) { }
 
         protected override void DefinedPort(IUnitPort port, UnitPortDescription description)
         {

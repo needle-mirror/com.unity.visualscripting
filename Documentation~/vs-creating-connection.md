@@ -15,13 +15,6 @@ The units become fully visible as soon as they are in use.
 
 To delete a connection, right-click on any of the connected ports.
 
-
-
-
-![](images/bolt-connections2.gif)
-
-Example: This graph reads as "at every frame, rotate your own transform in the Y axis at a rate of 30 degrees per second". 
-
 There are two types of connections:
 
  * A Control Connection between the Update event and the Rotate invocation.

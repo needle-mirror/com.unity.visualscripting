@@ -151,7 +151,6 @@ namespace Unity.VisualScripting
 
         #endregion
 
-
         #region Poutine
 
         public virtual IEnumerable<ISerializationDependency> deserializationDependencies => Enumerable.Empty<ISerializationDependency>();
@@ -173,5 +172,10 @@ namespace Unity.VisualScripting
         }
 
         #endregion
+
+        public virtual AnalyticsIdentifier GetAnalyticsIdentifier()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

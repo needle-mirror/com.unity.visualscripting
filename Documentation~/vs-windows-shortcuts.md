@@ -31,7 +31,7 @@ Note: If you have dual monitors, consider to locating visual scripting on your s
 
 Once you select a graph, a toolbar displays in the graph window.
 
-VS-GraphInspectorButton
+
 
 
 ![](images/VS_FlowGraphBar.png)
@@ -43,7 +43,7 @@ Toggling the:
 
 
 
-The right side button ![](images/VS-leftrightside.png)places the Blackboard or Graph Inspector to the right side of the graph window. The left side button ![](images/VS-LeftSide.png)places the Blackboard or Graph Inspector to the left side of the graph window.
+The right side button ![](images/VS-leftrightside.png) places the Blackboard or Graph Inspector to the right side of the graph window. The left side button ![](images/VS-LeftSide.png) places the Blackboard or Graph Inspector to the left side of the graph window.
 
 The breadcrumb path to the currently selected graph is on the left. Use the Zoom slider to zoom out and get a high-level view of the graph. 
 
@@ -84,3 +84,4 @@ The keybindings are:
 |Duplicate|Ctrl/Cmd + D|
 |Delete|Del|
 |Maximize|Shift + Space <br/> Double-Click|
+1. 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Unity.VisualScripting.FullSerializer.Internal;
 
@@ -88,9 +89,18 @@ namespace Unity.VisualScripting.FullSerializer
 
                     // Verify that the enum name exists; Enum.TryParse is only
                     // available in .NET 4.0 and above :(.
-                    if (ArrayContains(Enum.GetNames(storageType), enumValue) == false)
+                    var strings = Enum.GetNames(storageType);
+                    if (ArrayContains(strings, enumValue) == false)
                     {
-                        return fsResult.Fail("Cannot find enum name " + enumValue + " on type " + storageType);
+                        // Look for a [RenamedFrom("prevName")] attribute on the enum member
+                        IEnumerable<(Enum enumMember, string previousName)> valueTuples = Enum.GetValues(storageType).Cast<Enum>().SelectMany(
+                            x => x.GetAttributeOfEnumMember<RenamedFromAttribute>().Select(attr => (x, attr.previousName)));
+                        Dictionary<string, Enum> enumToRenamedFrom = valueTuples
+                            .ToDictionary(x => x.previousName, x => x.enumMember);
+                        if (enumToRenamedFrom.TryGetValue(enumValue, out var newName))
+                            enumValues[i] = newName.ToString();
+                        else
+                            return fsResult.Fail("Cannot find enum name " + enumValue + " on type " + storageType);
                     }
                 }
 

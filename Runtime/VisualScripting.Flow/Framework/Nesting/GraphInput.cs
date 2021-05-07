@@ -28,7 +28,7 @@ namespace Unity.VisualScripting
 
                 ValueOutput(type, key, (flow) =>
                 {
-                    var superUnit = flow.stack.GetParent<SuperUnit>();
+                    var superUnit = flow.stack.GetParent<SubgraphUnit>();
 
                     if (flow.enableDebug)
                     {

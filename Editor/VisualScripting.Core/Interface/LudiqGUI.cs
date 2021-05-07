@@ -131,7 +131,7 @@ namespace Unity.VisualScripting
                 {
                     var tempResourcesFolderRoot = Path.Combine(PluginPaths.package, "Editor", BoltCore.ID, "EditorAssetResources");
                     var tempResourceProvider = new EditorAssetResourceProvider(tempResourcesFolderRoot);
-                    temporaryLoader = EditorTexture.Load(tempResourceProvider, "Loader/Loader.png", CreateTextureOptions.PixelPerfect, true);
+                    temporaryLoader = EditorTexture.Load(tempResourceProvider, "Loader.png", CreateTextureOptions.PixelPerfect, true);
                 }
 
                 loader = temporaryLoader;

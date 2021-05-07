@@ -9,7 +9,7 @@ namespace Unity.VisualScripting
         private AboutPage()
         {
             title = shortTitle = "About";
-            icon = BoltCore.Resources.LoadIcon("Icons/Windows/AboutWindow/AboutPage.png");
+            icon = BoltCore.Resources.LoadIcon("AboutPage.png");
         }
 
         public AboutPage(IEnumerable<Plugin> plugins) : this()

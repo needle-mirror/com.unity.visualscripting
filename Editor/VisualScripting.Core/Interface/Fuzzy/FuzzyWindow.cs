@@ -108,6 +108,7 @@ namespace Unity.VisualScripting
             static Styles()
             {
                 header = new GUIStyle("In BigTitle");
+
                 header.font = EditorStyles.boldLabel.font;
                 header.normal.textColor = ColorPalette.unityForeground;
                 header.alignment = TextAnchor.MiddleCenter;
@@ -149,15 +150,15 @@ namespace Unity.VisualScripting
                 insufficientSearch.alignment = TextAnchor.MiddleCenter;
 
                 check = new GUIStyle();
-                var checkTexture = BoltCore.Resources.LoadTexture("Fuzzy/Check.png", new TextureResolution[] { 12, 24 }, CreateTextureOptions.PixelPerfect);
+                var checkTexture = BoltCore.Resources.LoadTexture("Check.png", new TextureResolution[] { 12, 24 }, CreateTextureOptions.PixelPerfect);
                 check.normal.background = checkTexture?[12];
                 check.normal.scaledBackgrounds = new[] { checkTexture?[24] };
                 check.fixedHeight = 12;
                 check.fixedWidth = 12;
 
                 star = new GUIStyle();
-                var starOffTexture = BoltCore.Resources.LoadIcon("Fuzzy/StarOff.png");
-                var starOnTexture = BoltCore.Resources.LoadIcon("Fuzzy/StarOn.png");
+                var starOffTexture = BoltCore.Resources.LoadIcon("StarOff.png");
+                var starOnTexture = BoltCore.Resources.LoadIcon("StarOn.png");
                 star.normal.background = starOffTexture?[16];
                 star.normal.scaledBackgrounds = new[] { starOffTexture?[32] };
                 star.onNormal.background = starOnTexture?[16];
@@ -249,7 +250,6 @@ namespace Unity.VisualScripting
 
         private void OnEnable()
         {
-            instance = this;
             query = string.Empty;
         }
 
@@ -257,6 +257,13 @@ namespace Unity.VisualScripting
         {
             instance = null;
         }
+
+#if UNITY_EDITOR_LINUX
+        private void OnLostFocus()
+        {
+            Close();
+        }
+#endif
 
         private void Update()
         {
@@ -818,10 +825,15 @@ namespace Unity.VisualScripting
                         Styles.leftArrow.Draw(leftArrowPosition, false, false, false, false);
                     }
 
-                    if (e.type == EventType.MouseDown && (e.button == (int)MouseButton.Right || headerPosition.Contains(e.mousePosition)))
+                    if (!isAnimating)
                     {
-                        SelectParent();
-                        e.Use();
+                        if (e.type == EventType.MouseDown && (e.button == (int)MouseButton.Right || headerPosition.Contains(e.mousePosition)))
+                        {
+                            SelectParent();
+                            e.Use();
+
+                            GUIUtility.ExitGUI();
+                        }
                     }
                 }
             }
@@ -895,15 +907,19 @@ namespace Unity.VisualScripting
 
                 var optionPosition = GUILayoutUtility.GetRect(IconSize.Small, Styles.optionHeight, GUILayout.ExpandWidth(true));
 
-                if (((e.type == EventType.MouseMove && GUIUtility.GUIToScreenPoint(e.mousePosition) != lastMouseMovePosition) || e.type == EventType.MouseDown) &&
-                    parent.selectedIndex != i &&
-                    optionPosition.Contains(e.mousePosition))
+                if (!isAnimating)
                 {
-                    parent.selectedIndex = i;
+                    if (((e.type == EventType.MouseMove && GUIUtility.GUIToScreenPoint(e.mousePosition) != lastMouseMovePosition) || e.type == EventType.MouseDown) &&
+                        parent.selectedIndex != i && optionPosition.Contains(e.mousePosition))
+                    {
+                        parent.selectedIndex = i;
 
-                    requireRepaint = true;
+                        requireRepaint = true;
 
-                    lastMouseMovePosition = GUIUtility.GUIToScreenPoint(e.mousePosition);
+                        lastMouseMovePosition = GUIUtility.GUIToScreenPoint(e.mousePosition);
+
+                        GUIUtility.ExitGUI();
+                    }
                 }
 
                 var optionIsSelected = false;
@@ -922,7 +938,6 @@ namespace Unity.VisualScripting
 
                 if (e.type == EventType.Repaint)
                 {
-                    PaintBackground(optionPosition);
                     node.style.Draw(optionPosition, node.label, false, false, optionIsSelected, optionIsSelected);
                 }
 
@@ -978,11 +993,16 @@ namespace Unity.VisualScripting
                     }
                 }
 
-                if (e.type == EventType.MouseDown && e.button == (int)MouseButton.Left && optionPosition.Contains(e.mousePosition))
+                if (!isAnimating)
                 {
-                    e.Use();
-                    parent.selectedIndex = i;
-                    SelectChild(node);
+                    if (e.type == EventType.MouseDown && e.button == (int)MouseButton.Left && optionPosition.Contains(e.mousePosition))
+                    {
+                        e.Use();
+                        parent.selectedIndex = i;
+                        SelectChild(node);
+
+                        GUIUtility.ExitGUI();
+                    }
                 }
             }
 
@@ -1077,16 +1097,6 @@ namespace Unity.VisualScripting
                     e.Use();
                 }
             }
-        }
-
-        private static void PaintBackground(Rect backgroundPosition)
-        {
-            Color currentColor = GUI.color;
-
-            GUI.color = backgroundWindowColor;
-            GUI.Box(backgroundPosition, string.Empty);
-
-            GUI.color = currentColor;
         }
 
         #endregion

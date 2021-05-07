@@ -130,6 +130,8 @@ namespace Unity.VisualScripting
         {
             if (PluginContainer.initialized)
             {
+                if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+
                 LudiqGUIUtility.BeginNotActuallyOnGUI();
                 onSelectionChange?.Invoke();
                 LudiqGUIUtility.EndNotActuallyOnGUI();
@@ -140,6 +142,8 @@ namespace Unity.VisualScripting
         {
             if (PluginContainer.initialized)
             {
+                if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+
                 LudiqGUIUtility.BeginNotActuallyOnGUI();
                 onProjectChange?.Invoke();
                 LudiqGUIUtility.EndNotActuallyOnGUI();
@@ -150,6 +154,8 @@ namespace Unity.VisualScripting
         {
             if (PluginContainer.initialized)
             {
+                if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+
                 LudiqGUIUtility.BeginNotActuallyOnGUI();
                 onHierarchyChange?.Invoke();
                 LudiqGUIUtility.EndNotActuallyOnGUI();
@@ -160,6 +166,8 @@ namespace Unity.VisualScripting
         {
             if (PluginContainer.initialized)
             {
+                if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+
                 LudiqGUIUtility.BeginNotActuallyOnGUI();
                 onUndoRedo?.Invoke();
                 LudiqGUIUtility.EndNotActuallyOnGUI();
@@ -168,21 +176,29 @@ namespace Unity.VisualScripting
 
         private static void OnPause()
         {
+            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+
             onPause?.Invoke();
         }
 
         private static void OnResume()
         {
+            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+
             onResume?.Invoke();
         }
 
         private static void OnPauseChange()
         {
+            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+
             onPauseChange?.Invoke();
         }
 
         private static void OnEnteredEditMode()
         {
+            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+
             if (wantedScriptChangesDuringPlay)
             {
                 UnlockReloadAssemblies();
@@ -194,13 +210,14 @@ namespace Unity.VisualScripting
 
         private static void OnExitingEditMode()
         {
+            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+
             onExitEditMode?.Invoke();
         }
 
         private static void OnEnteredPlayMode()
         {
-            // If the user isn't using Visual Scripting, we don't do any of this
-            if (!Directory.Exists(PluginPaths.generated)) return;
+            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
 
             onEnterPlayMode?.Invoke();
 
@@ -214,16 +231,22 @@ namespace Unity.VisualScripting
 
         private static void OnExitingPlayMode()
         {
+            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+
             onExitPlayMode?.Invoke();
         }
 
         private static void OnModeChange()
         {
+            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+
             onModeChange?.Invoke();
         }
 
         private static void OnAssemblyReload()
         {
+            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+
             onAssemblyReload?.Invoke();
         }
 

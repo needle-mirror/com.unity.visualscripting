@@ -110,10 +110,12 @@ namespace Unity.VisualScripting
             }
         }
 
+#if MODULE_ANIMATION_EXISTS
         public override void TriggerAnimationEvent(AnimationEvent animationEvent)
         {
             TriggerEvent(EventHooks.AnimationEvent, animationEvent);
         }
+#endif
 
         public override void TriggerUnityEvent(string name)
         {

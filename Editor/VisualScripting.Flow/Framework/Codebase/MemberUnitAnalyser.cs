@@ -24,12 +24,12 @@ namespace Unity.VisualScripting
                 {
                     if (obsoleteAttribute.Message != null)
                     {
-                        Debug.LogWarning($"\"{target.member.name}\" unit member is deprecated: {obsoleteAttribute.Message}");
+                        Debug.LogWarning($"\"{target.member.name}\" node member is deprecated: {obsoleteAttribute.Message}");
                         yield return Warning.Caution("Deprecated: " + obsoleteAttribute.Message);
                     }
                     else
                     {
-                        Debug.LogWarning($"\"{target.member.name}\" unit member is deprecated.");
+                        Debug.LogWarning($"\"{target.member.name}\" node member is deprecated.");
                         yield return Warning.Caution($"Member {target.member.name} is deprecated.");
                     }
                 }

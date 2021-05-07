@@ -1,7 +1,7 @@
 namespace Unity.VisualScripting
 {
     /// <summary>
-    /// Returns the unit length version of a 4D vector.
+    /// Returns the node length version of a 4D vector.
     /// </summary>
     [UnitCategory("Math/Vector 4")]
     [UnitTitle("Normalize")]

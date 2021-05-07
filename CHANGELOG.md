@@ -2,6 +2,42 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.7.1] - 2021-05-07
+### Changed
+- Renamed the VSSettingsProvider assembly to Unity.VisualScripting.SettingsProvider.Editor
+- Variables Saver GameObject no longer appears until a variable is created or changed. [BOLT-1343](https://jira.unity3d.com/browse/BOLT-1343)
+- Renamed Singleton GameObjects created by Visual Scripting to use "VisualScripting ---" names.
+- All internal plugin and product versions have been normalized to use the package version.
+- SuperUnits have been renamed into Subgraphs
+- No longer have a hard dependency on any of the following built-in modules: ai, animation, particlesystem, physics, physics2d
+- ScriptMachine is now displayed as "Script Machine" instead of "Flow Machine" in the Gizmo window.
+- Update, Start, Fixed Update and Late Update nodes have been renamed into On Update, On Start, On Fixed Update and On Late Update.
+- Moved project settings from Assets directory to the ProjectSettings directory in Unity projects
+- Renamed control schemes to Default/Alternate
+- The UI references to 'Unit' were changed to 'Node' without any change to the underlying types 
+- Nodes from Timeline, Cinemachine and InputSystem packages are now automatically included, with their assemblies part of the default assemblyOptions.
+- Progress bar titles for initial node generation have been tweaked to better indicate that it is a one-time process
+
+### Added
+- Added workflows to create new graphs directly from the Graph Window
+- SetScriptGraph node
+- SetStateGraph node
+- Support for RenamedFrom attribute on enum members
+- GetStateGraphs node
+- GetScriptGraphs node
+- GetScriptGraph node
+- GetStateGraph node
+- HasStateGraph node
+- HasScriptGraph node
+
+### Fixed
+- Fixed the problem were on Linux the fuzzy window would remains above all others. [BOLT-1197](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1197)
+- There is no more crash when the user navigates quickly between fuzzy finder levels on Linux [BOLT-1197](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1196) 
+- Fixed variable type turns to null when clicked outside of the graph
+- Fixed rearranging variables, if type is not set, it sets to the type that is bellow it
+- Lots of miscellaneous migration fixes and quality of life changes
+- Fixed unexpected error when exceptions are thrown by flow graph units and caught by the TryCatch unit [BOLT-1392](https://issuetracker.unity3d.com/issues/graph-fails-with-recursion-error-trycatch-unit-catches-exception-from-throw-unit)
+
 ## [1.6.1] - 2021-03-30
 ### Fixed
 - Fixed bug caused by Editor API transitioning from private to public
@@ -27,9 +63,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fixed ThreadAbortException when entering Play Mode while searching in the Fuzzy Finder
 - Fixed Visual Scripting Preferences being searchable [BOLT-1218](https://issuetracker.unity3d.com/issues/visual-scripting-preferences-are-not-searchable-when-using-search-in-the-preferences-window)
 - Fixed ScalarAdd unit migration from 1.4.13 to 1.4.14 and above
-- Fixed Open the graph window no longer causes Unity UI stop processing mouse click [BOLT-1159](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1159),
+- Fixed Open the graph window no longer causes Unity UI to stop processing mouse clicks" [BOLT-1159](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1159),
 - Fixed Fuzzy finder no longer blinks when trying to add a node [BOLT-1157](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1157),
-- Fixed Fuzzy search no longer drops keyboard inputs and respond slowly [BOLT-1214](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1214),
+- Fixed Fuzzy search no longer drops keyboard inputs and respond slowly [BOLT-1214](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1214), 
 - Fixed Fuzzy finder search window no longer remains above all other windows [BOLT-1197](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1197)"
 - Fixed Dropdown icon is not clipped with TextField under "Get Variable"
 - Fixed Scale groups when zoom is not at 1x

@@ -332,7 +332,7 @@ namespace Unity.VisualScripting
 
         protected virtual string ErrorSummary(Exception exception)
         {
-            return $"This unit failed to define.\n\n{exception.DisplayName()}: {exception.Message}";
+            return $"This node failed to define.\n\n{exception.DisplayName()}: {exception.Message}";
         }
 
         protected virtual EditorTexture DefinedIcon()
@@ -369,7 +369,7 @@ namespace Unity.VisualScripting
         {
             description.getMetadata = (unitMetadata) => unitMetadata.StaticObject(port);
 
-            // Only defined units can have specific ports
+            // Only defined nodes can have specific ports
             if (state == State.Defined)
             {
                 DefinedPort(port, description);

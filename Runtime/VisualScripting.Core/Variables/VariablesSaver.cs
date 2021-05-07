@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     /// Listens to the OnApplicationQuit on OnApplicationPause
     /// hooks to trigger the serialization of saved variables into PlayerPrefs.
     /// </summary>
-    [Singleton(Name = "Variables Saver", Automatic = true, Persistent = true)]
+    [Singleton(Name = "VisualScripting SavedVariablesSerializer", Automatic = true, Persistent = true)]
     [AddComponentMenu("")]
     [DisableAnnotation]
     [IncludeInSettings(false)]

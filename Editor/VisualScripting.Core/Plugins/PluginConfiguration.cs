@@ -4,8 +4,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace Unity.VisualScripting
@@ -139,20 +139,18 @@ namespace Unity.VisualScripting
 
         private string projectSettingsStoragePath => plugin.paths.projectSettings;
 
-        internal DictionaryAsset projectSettingsAsset { get; private set; }
+        internal DictionaryAsset projectSettingsAsset { get; set; }
+        private bool _projectSettingsAssetDirty = false;
 
-        internal void CreateProjectSettingsAsset()
+        internal void LoadProjectSettings()
         {
-            AssetUtility.TryLoad(projectSettingsStoragePath, out DictionaryAsset loadedProjectSettingsAsset);
-            projectSettingsAsset = loadedProjectSettingsAsset;
+            LoadOrCreateProjectSettingsAsset();
+
+            ResetProjectSettingsMetadata();
         }
 
-        private void LoadProjectSettings()
+        internal void ResetProjectSettingsMetadata()
         {
-            AssetUtility.TryLoadIfExists(projectSettingsStoragePath, out DictionaryAsset _projectSettingsAsset);
-
-            projectSettingsAsset = _projectSettingsAsset;
-
             projectSettings = new List<ProjectSettingMetadata>();
 
             var metadata = Metadata.Root();
@@ -163,9 +161,65 @@ namespace Unity.VisualScripting
             }
         }
 
-        public void SaveProjectSettingsAsset()
+        internal void LoadOrCreateProjectSettingsAsset()
         {
-            EditorUtility.SetDirty(projectSettingsAsset);
+            if (File.Exists(projectSettingsStoragePath))
+            {
+                // Try loading the existing asset file.
+                var objects = InternalEditorUtility.LoadSerializedFileAndForget(projectSettingsStoragePath);
+
+                if (objects.Length <= 0 || objects[0] == null)
+                {
+                    // The file exists, but it isn't a valid asset.
+                    // Warn and leave the asset as is to prevent losing its serialized contents
+                    // because we might be able to salvage them by deserializing later on.
+                    // Return a new empty instance in the mean time.
+                    Debug.LogWarning($"Loading visual scripting project settings failed!");
+                    projectSettingsAsset = ScriptableObject.CreateInstance<DictionaryAsset>();
+                    return;
+                }
+
+                projectSettingsAsset = (DictionaryAsset)objects[0];
+            }
+            else
+            {
+                // The file doesn't exist, so create a new asset
+                projectSettingsAsset = ScriptableObject.CreateInstance<DictionaryAsset>();
+            }
+
+            projectSettingsAsset.OnDestroyActions += SerializeProjectSettingsAssetToDisk;
+        }
+
+        public void SaveProjectSettingsAsset(bool immediately = false)
+        {
+            if (immediately)
+            {
+                _projectSettingsAssetDirty = true;
+                SerializeProjectSettingsAssetToDisk();
+                return;
+            }
+
+            if (!_projectSettingsAssetDirty)
+            {
+                _projectSettingsAssetDirty = true;
+                EditorApplication.delayCall += SerializeProjectSettingsAssetToDisk;
+            }
+        }
+
+        private void SerializeProjectSettingsAssetToDisk()
+        {
+            if (_projectSettingsAssetDirty)
+            {
+                // make sure the path exists or file write will fail
+                PathUtility.CreateParentDirectoryIfNeeded(projectSettingsStoragePath);
+
+                const bool saveAsText = true;
+                InternalEditorUtility.SaveToSerializedFileAndForget(new UnityEngine.Object[] { projectSettingsAsset },
+                    projectSettingsStoragePath, saveAsText);
+            }
+
+            _projectSettingsAssetDirty = false;
+            EditorApplication.delayCall -= SerializeProjectSettingsAssetToDisk;
         }
 
         #endregion

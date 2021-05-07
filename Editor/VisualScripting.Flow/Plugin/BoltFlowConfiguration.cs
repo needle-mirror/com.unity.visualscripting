@@ -10,7 +10,7 @@ namespace Unity.VisualScripting
         public override string header => "Script Graphs";
 
         /// <summary>
-        /// (Experimental) Whether the unit database should be incrementally updated
+        /// (Experimental) Whether the node database should be incrementally updated
         /// whenever a codebase change is detected.
         /// </summary>
         [EditorPref]
@@ -44,7 +44,7 @@ namespace Unity.VisualScripting
 
         /// <summary>
         /// Whether labels should be hidden on ports when the value can be deduced from the context.
-        /// Disabling will make units more explicit but less compact.
+        /// Disabling will make nodes more explicit but less compact.
         /// </summary>
         [EditorPref]
         public bool hidePortLabels { get; set; } = true;

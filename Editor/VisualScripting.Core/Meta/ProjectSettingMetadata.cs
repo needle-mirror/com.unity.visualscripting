@@ -25,7 +25,7 @@ namespace Unity.VisualScripting
         public override void Save()
         {
             if (storage == null)
-                configuration.CreateProjectSettingsAsset();
+                configuration.LoadOrCreateProjectSettingsAsset();
             if (storage.ContainsKey(key))
             {
                 storage[key] = value;

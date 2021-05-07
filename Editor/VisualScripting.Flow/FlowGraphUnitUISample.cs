@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class FlowGraphUnitUISample : RuntimeFlowGraph
 {
-    [MenuItem("Tools/Visual Scripting/Internal/Create Unit UI Samples", priority = LudiqProduct.DeveloperToolsMenuPriority + 403)]
+    [MenuItem("Tools/Visual Scripting/Internal/Create Node UI Samples", priority = LudiqProduct.DeveloperToolsMenuPriority + 403)]
 
     public static void CreateUnitUISamples()
     {
@@ -28,28 +28,33 @@ public class FlowGraphUnitUISample : RuntimeFlowGraph
 
         foreach (var unitType in GetEventUnitTypes())
         {
-            string name = unitType.Assembly.GetName().Name;
-            string space = unitType.FullName;
-
-            var unit = Activator.CreateInstance(name, space);
-
-            Debug.Log(unit);
-
-            IUnit b = (IUnit)unit.Unwrap();
-
-            b.position = position;
-
-            if (index % 10 == 0)
+            try
             {
-                position.x = 0;
-                position.y += 180;
+                string name = unitType.Assembly.GetName().Name;
+                string space = unitType.FullName;
+
+                var unit = Activator.CreateInstance(name, space);
+
+                IUnit b = (IUnit)unit.Unwrap();
+
+                b.position = position;
+
+                if (index % 10 == 0)
+                {
+                    position.x = 0;
+                    position.y += 180;
+                }
+
+                position.x += 180;
+
+                AddUnit(b, position);
+
+                index++;
             }
-
-            position.x += 180;
-
-            AddUnit(b, position);
-
-            index++;
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
         }
     }
 }

@@ -49,7 +49,7 @@ namespace Unity.VisualScripting
                 return false;
             }
 
-            // Add the invalid ports to the units if need be
+            // Add the invalid ports to the nodes if need be
             if (!sourceExists)
             {
                 sourceUnit.invalidOutputs.Add(new InvalidOutput(sourceKey));

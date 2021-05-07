@@ -10,7 +10,7 @@ namespace Unity.VisualScripting
 
             title = "About Plugins";
             shortTitle = "Plugins";
-            icon = BoltCore.Resources.LoadIcon("Icons/Windows/AboutWindow/AboutPluginsPage.png");
+            icon = BoltCore.Resources.LoadIcon("AboutPluginsPage.png");
 
             foreach (var plugin in plugins)
             {

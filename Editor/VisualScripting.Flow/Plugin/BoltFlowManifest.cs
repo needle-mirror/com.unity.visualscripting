@@ -8,6 +8,6 @@ namespace Unity.VisualScripting
         public override string name => "Visual Scripting Flow";
         public override string author => "";
         public override string description => "Flow-graph based visual scripting.";
-        public override SemanticVersion version => "1.5.1";
+        public override SemanticVersion version => PackageVersionUtility.version;
     }
 }

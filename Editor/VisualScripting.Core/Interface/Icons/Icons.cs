@@ -281,7 +281,7 @@ namespace Unity.VisualScripting
         {
             if (!resourcesTypeIcons.TryGetValue(fileName, out var icon))
             {
-                icon = PluginResources.LoadSharedIcon($"Icons/Types/{fileName}.png", false);
+                icon = PluginResources.LoadSharedIcon($"{fileName}.png", false);
                 resourcesTypeIcons.Add(fileName, icon);
             }
 
@@ -569,8 +569,8 @@ namespace Unity.VisualScripting
                     throw new ArgumentException(nameof(@enum));
                 }
 
-                var namespaced = PluginResources.LoadSharedIcon($"Icons/Enums/{enumType.CSharpFileName(true)}/{@enum}.png", false);
-                var nonNamespaced = PluginResources.LoadSharedIcon($"Icons/Enums/{enumType.CSharpFileName(false)}/{@enum}.png", false);
+                var namespaced = PluginResources.LoadSharedIcon($"{enumType.CSharpFileName(true)}/{@enum}.png", false);
+                var nonNamespaced = PluginResources.LoadSharedIcon($"{enumType.CSharpFileName(false)}/{@enum}.png", false);
 
                 enumIcons.Add(@enum, namespaced ?? nonNamespaced);
             }
@@ -589,7 +589,7 @@ namespace Unity.VisualScripting
 
             if (!namespaceIcons.ContainsKey(@namespace))
             {
-                var path = $"Icons/Namespaces/{@namespace}.png";
+                var path = $"{@namespace}.png";
 
                 namespaceIcons.Add(@namespace, PluginResources.LoadSharedIcon(path, false) ?? Language.@namespace.@public);
             }

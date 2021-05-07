@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
+#if MODULE_PHYSICS_EXISTS
     /// <summary>
     /// Called when the controller hits a collider while performing a move.
     /// </summary>
@@ -79,4 +80,5 @@ namespace Unity.VisualScripting
             flow.SetValue(data, hitData);
         }
     }
+#endif
 }

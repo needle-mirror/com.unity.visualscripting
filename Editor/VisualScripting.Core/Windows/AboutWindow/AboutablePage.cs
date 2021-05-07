@@ -13,7 +13,7 @@ namespace Unity.VisualScripting
             title = $"About {aboutable.name}";
             shortTitle = aboutable.name;
             subtitle = $"v.{aboutable.version}";
-            icon = BoltCore.Resources.LoadIcon("Icons/Windows/AboutWindow/AboutPage.png");
+            icon = BoltCore.Resources.LoadIcon("AboutPage.png");
 
             this.aboutable = aboutable;
         }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Unity.VisualScripting.Analytics;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEditorInternal;
@@ -13,6 +14,7 @@ namespace Unity.VisualScripting
     {
         private readonly List<Plugin> plugins;
         private readonly List<MigrationStep> steps;
+        private MigrationAnalytics.Data analyticsData;
 
         public VSMigrationUtility()
         {
@@ -23,17 +25,51 @@ namespace Unity.VisualScripting
             steps = this.plugins
                 .SelectMany(plugin =>
                     plugin.resources.pendingMigrations.Select(migration => new MigrationStep(plugin, migration)))
-                .OrderBy(step => step.migration.order)
+                .OrderBy(step => step.migration.from)
+                .ThenBy(step => step.migration.order)
                 .ToList();
+
+            analyticsData = new MigrationAnalytics.Data
+            {
+                total = new MigrationAnalytics.MigrationStepAnalyticsData()
+                {
+                    from = BoltCore.Manifest.savedVersion.ToString(),
+                    to = BoltCore.Manifest.currentVersion.ToString(),
+                    pluginId = "VS",
+                    success = true
+                },
+                steps = new List<MigrationAnalytics.MigrationStepAnalyticsData>()
+            };
+            foreach (var step in steps)
+            {
+                analyticsData.steps.Add(new MigrationAnalytics.MigrationStepAnalyticsData()
+                {
+                    from = step.migration.from.ToString(),
+                    to = step.migration.to.ToString(),
+                    pluginId = step.plugin.id,
+                });
+            }
         }
 
         public void OnUpdate()
         {
+            // If there are no migration steps required, don't bother the user
+            if (steps.Count <= 0)
+            {
+                SetPluginVersionsToCurrent();
+                MigrationAnalytics.Send(analyticsData);
+                return;
+            }
+
+            var firstVSPackageVersion = new SemanticVersion(1, 5, 0, "", 0);
+            var olderVersionText = BoltCore.Manifest.savedVersion < firstVSPackageVersion ? "Unity Visual Scripting (Bolt)" : "Unity Visual Scripting";
+
             if (EditorSettings.serializationMode != SerializationMode.ForceText)
             {
                 EditorUtility.DisplayDialog("Unity Visual Scripting Upgrade",
-                    "We've detected an older version of Unity Visual Scripting (Bolt).\n\n" +
-                    "We can't migrate your project unless you use ForceText as your serialization mode. Go to Edit -> Project Settings -> Editor -> Asset Serialization -> Mode to set it.\n\nRe-initiate the migration by installing the package.",
+                    $"We've detected an older version of {olderVersionText}.\n\n" +
+                    "We can't migrate your project unless you use ForceText as your serialization mode. Go to Edit -> Project Settings -> Editor -> Asset Serialization -> Mode to set it.\n\n" +
+                    "Re-initiate the migration by installing the package.",
                     "OK / Uninstall");
 
                 Client.Remove("com.unity.visualscripting");
@@ -41,7 +77,7 @@ namespace Unity.VisualScripting
             }
 
             var ok = EditorUtility.DisplayDialog("Unity Visual Scripting Upgrade",
-                "We've detected an older version of Unity Visual Scripting (Bolt).\n\n" +
+                $"We've detected an older version of {olderVersionText}.\n\n" +
                 "Your project and bolt assets will be backed up and migrated to work with the newest version. This can take a few minutes.",
                 "Migrate My Project", "Cancel / Uninstall");
 
@@ -55,8 +91,9 @@ namespace Unity.VisualScripting
 
             // ClearLog();
 
-            foreach (var step in steps)
+            for (var i = 0; i < steps.Count; ++i)
             {
+                var step = steps[i];
                 step.Reset();
                 step.Run();
 
@@ -64,9 +101,17 @@ namespace Unity.VisualScripting
                 {
                     Debug.LogWarning(
                         $"VisualScripting - A migration step for {step.plugin.id} failed! Your project might be in an invalid state, restore your backup and try again...");
+                    analyticsData.steps[i].success = false;
+                    analyticsData.steps[i].exception = step.exception.ToString();
+                    analyticsData.total.success = false;
+                    break;
 #if VISUAL_SCRIPT_DEBUG_MIGRATION
                     throw step.exception;
 #endif
+                }
+                else
+                {
+                    analyticsData.steps[i].success = true;
                 }
             }
 
@@ -77,17 +122,25 @@ namespace Unity.VisualScripting
         {
             // Make sure all plugins are set to their latest version, even if they
             // don't have a migration to it.
-
-            foreach (var plugin in plugins)
-            {
-                plugin.manifest.savedVersion = plugin.manifest.currentVersion;
-                plugin.configuration.Save();
-            }
+            SetPluginVersionsToCurrent();
 
             AssetDatabase.SaveAssets();
 
+            MigrationAnalytics.Send(analyticsData);
+
             var ok = EditorUtility.DisplayDialog("Unity Visual Scripting Upgrade",
                 "Migration complete!", "OK");
+
+            UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
+        }
+
+        private void SetPluginVersionsToCurrent()
+        {
+            foreach (var plugin in plugins)
+            {
+                plugin.manifest.savedVersion = plugin.manifest.currentVersion;
+                plugin.configuration.SaveProjectSettingsAsset(true);
+            }
         }
 
         private static void ClearLog()

@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
+#if MODULE_PHYSICS_EXISTS
     [UnitCategory("Events/Physics")]
     public abstract class CollisionEventUnit : GameObjectEventUnit<Collision>
     {
@@ -55,4 +56,5 @@ namespace Unity.VisualScripting
             flow.SetValue(data, collision);
         }
     }
+#endif
 }

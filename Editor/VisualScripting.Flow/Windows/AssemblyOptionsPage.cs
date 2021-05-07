@@ -9,7 +9,7 @@ namespace Unity.VisualScripting
         {
             title = "Assembly Options";
             shortTitle = "Assemblies";
-            icon = BoltFlow.Resources.LoadIcon("Icons/Windows/UnitOptionsWizard/AssemblyOptionsPage.png");
+            icon = BoltFlow.Resources.LoadIcon("AssemblyOptionsPage.png");
             assemblyOptionsMetadata = BoltCore.Configuration.GetMetadata(nameof(BoltCoreConfiguration.assemblyOptions));
         }
 
@@ -24,7 +24,7 @@ namespace Unity.VisualScripting
             LudiqGUI.BeginHorizontal();
             LudiqGUI.FlexibleSpace();
 
-            var text = "Choose the assemblies in which you want to look for units.\n"
+            var text = "Choose the assemblies in which you want to look for nodes.\n"
                 + "By default, all project and Unity assemblies are included.\n"
                 + "Unless you use a third-party plugin distributed as a DLL, you shouldn't need to change this.";
 

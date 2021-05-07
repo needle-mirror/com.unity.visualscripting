@@ -15,6 +15,8 @@ namespace Unity.VisualScripting
         [Serialize, InspectorWide(true)]
         private VariableDeclarationCollection collection;
 
+        internal Action OnVariableChanged;
+
         public object this[[InspectorVariableName(ActionDirection.Any)] string variable]
         {
             get => Get(variable);
@@ -33,11 +35,16 @@ namespace Unity.VisualScripting
 
             if (collection.TryGetValue(variable, out var declaration))
             {
-                declaration.value = value;
+                if (declaration.value != value)
+                {
+                    declaration.value = value;
+                    OnVariableChanged?.Invoke();
+                }
             }
             else
             {
                 collection.Add(new VariableDeclaration(variable, value));
+                OnVariableChanged?.Invoke();
             }
         }
 

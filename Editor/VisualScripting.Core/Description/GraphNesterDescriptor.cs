@@ -6,6 +6,11 @@ namespace Unity.VisualScripting
     {
         public static string Title(IGraphNester nester)
         {
+            return Title(nester, string.Empty);
+        }
+
+        public static string Title(IGraphNester nester, string defaultName)
+        {
             var graph = nester.childGraph;
 
             if (!StringUtility.IsNullOrWhiteSpace(graph?.title))
@@ -16,18 +21,10 @@ namespace Unity.VisualScripting
             if (nester.nest.source == GraphSource.Macro && (UnityObject)nester.nest.macro != null)
             {
                 var macroName = ((UnityObject)nester.nest.macro).name;
-
-                if (BoltCore.Configuration.humanNaming)
-                {
-                    return macroName.Prettify();
-                }
-                else
-                {
-                    return macroName;
-                }
+                return BoltCore.Configuration.humanNaming ? macroName.Prettify() : macroName;
             }
 
-            return nester.GetType().HumanName();
+            return !string.IsNullOrEmpty(defaultName) ? defaultName : nester.GetType().HumanName();
         }
 
         public static string Summary(IGraphNester nester)

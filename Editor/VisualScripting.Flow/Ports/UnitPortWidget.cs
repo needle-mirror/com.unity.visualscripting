@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Unity.VisualScripting.Analytics;
 using UnityEditor;
 using UnityEngine;
 
@@ -111,6 +112,8 @@ namespace Unity.VisualScripting
                 {
                     if (isMouseOver)
                     {
+                        HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.RmbRemoveConnections);
+
                         RemoveConnections();
                     }
 
@@ -205,7 +208,7 @@ namespace Unity.VisualScripting
         {
             if (source.CanValidlyConnectTo(destination))
             {
-                UndoUtility.RecordEditedObject("Connect Units");
+                UndoUtility.RecordEditedObject("Connect Nodes");
                 source.ValidlyConnectTo(destination);
                 canvas.connectionSource = null;
                 canvas.Widget(source.unit).Reposition();
@@ -884,7 +887,7 @@ namespace Unity.VisualScripting
                 {
                     normal =
                     {
-                        background = BoltCore.Resources.LoadTexture($"Nodes/Surround.png", textureResolution, CreateTextureOptions.Scalable).Single()
+                        background = BoltCore.Resources.LoadTexture($"Surround.png", textureResolution, CreateTextureOptions.Scalable).Single()
                     }
                 };
             }

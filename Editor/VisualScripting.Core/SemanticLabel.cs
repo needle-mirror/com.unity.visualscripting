@@ -6,6 +6,7 @@ namespace Unity.VisualScripting
         Alpha,
         Beta,
         ReleaseCandidate,
-        Final
+        Final,
+        Pre,
     }
 }

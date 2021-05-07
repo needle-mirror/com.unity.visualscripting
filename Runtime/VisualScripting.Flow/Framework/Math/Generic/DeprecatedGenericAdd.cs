@@ -9,7 +9,7 @@ namespace Unity.VisualScripting
     [UnitTitle("Add")]
     [RenamedFrom("Bolt.GenericAdd")]
     [RenamedFrom("Unity.VisualScripting.GenericAdd")]
-    [Obsolete("Use the new \"Add (Math/Generic)\" unit instead.")]
+    [Obsolete("Use the new \"Add (Math/Generic)\" node instead.")]
     public sealed class DeprecatedGenericAdd : Add<object>
     {
         public override object Operation(object a, object b)

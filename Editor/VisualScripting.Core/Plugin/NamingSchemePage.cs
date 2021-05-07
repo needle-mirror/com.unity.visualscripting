@@ -10,7 +10,7 @@ namespace Unity.VisualScripting
         {
             title = "Naming Scheme";
             shortTitle = "Naming";
-            icon = BoltCore.Resources.LoadIcon("Icons/Windows/SetupWizard/NamingSchemePage.png");
+            icon = BoltCore.Resources.LoadIcon("NamingSchemePage.png");
         }
 
         protected override void OnContentGUI()
@@ -67,7 +67,7 @@ namespace Unity.VisualScripting
             LudiqGUI.FlexibleSpace();
             LudiqGUI.EndHorizontal();
             LudiqGUI.FlexibleSpace();
-            GUILayout.Label("You can change this setting at any time from the setup or unit options wizard.", EditorStyles.centeredGreyMiniLabel);
+            GUILayout.Label("You can change this setting at any time from the setup or node options wizard.", EditorStyles.centeredGreyMiniLabel);
             LudiqGUI.FlexibleSpace();
 
             LudiqGUI.EndVertical();

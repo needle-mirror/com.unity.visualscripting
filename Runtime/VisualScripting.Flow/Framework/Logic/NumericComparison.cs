@@ -11,7 +11,7 @@ namespace Unity.VisualScripting
     [UnitSurtitle("Numeric")]
     [UnitShortTitle("Comparison")]
     [UnitOrder(99)]
-    [Obsolete("Use the Comparison unit with Numeric enabled instead.")]
+    [Obsolete("Use the Comparison node with Numeric enabled instead.")]
     public sealed class NumericComparison : Unit
     {
         /// <summary>

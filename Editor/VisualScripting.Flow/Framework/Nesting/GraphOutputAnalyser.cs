@@ -24,7 +24,7 @@ namespace Unity.VisualScripting
 
                 if (unit.graph.units.Count(unit => unit is GraphOutput) > 1)
                 {
-                    yield return Warning.Caution("Multiple output units in the same graph. Only one of them will be used.");
+                    yield return Warning.Caution("Multiple output nodes in the same graph. Only one of them will be used.");
                 }
             }
         }

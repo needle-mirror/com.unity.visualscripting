@@ -26,7 +26,7 @@ namespace Unity.VisualScripting
         public ControlInput reset { get; private set; }
 
         /// <summary>
-        /// The action to execute the first time the unit is entered.
+        /// The action to execute the first time the node is entered.
         /// </summary>
         [DoNotSerialize]
         public ControlOutput once { get; private set; }

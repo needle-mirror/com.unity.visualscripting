@@ -4,6 +4,7 @@ using UnityObject = UnityEngine.Object;
 
 namespace Unity.VisualScripting
 {
+#if MODULE_ANIMATION_EXISTS 
     /// <summary>
     /// Called when an animation event points to TriggerAnimationEvent.
     /// </summary>
@@ -62,4 +63,5 @@ namespace Unity.VisualScripting
             flow.SetValue(objectReferenceParameter, args.objectReferenceParameter);
         }
     }
+#endif
 }

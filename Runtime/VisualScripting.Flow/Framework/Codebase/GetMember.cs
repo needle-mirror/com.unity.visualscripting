@@ -55,5 +55,20 @@ namespace Unity.VisualScripting
 
             return member.Get(target);
         }
+
+        #region Analytics
+
+        public override AnalyticsIdentifier GetAnalyticsIdentifier()
+        {
+            var aid = new AnalyticsIdentifier
+            {
+                Identifier = $"{member.targetType.FullName}.{member.name}(Get)",
+                Namespace = member.targetType.Namespace
+            };
+            aid.Hashcode = aid.Identifier.GetHashCode();
+            return aid;
+        }
+
+        #endregion
     }
 }

@@ -55,6 +55,21 @@ namespace Unity.VisualScripting
             dictionary.Add(key, value);
         }
 
+        public void Merge(DictionaryAsset other, bool overwriteExisting = true)
+        {
+            foreach (var key in other.Keys)
+            {
+                if (overwriteExisting)
+                {
+                    dictionary[key] = other[key];
+                }
+                else if (!dictionary.ContainsKey(key))
+                {
+                    dictionary.Add(key, other[key]);
+                }
+            }
+        }
+
         public bool Remove(string key)
         {
             return dictionary.Remove(key);

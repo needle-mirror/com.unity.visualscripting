@@ -32,7 +32,7 @@ namespace Unity.VisualScripting
         {
             get
             {
-                // Load the unit on demand to avoid deserialization overhead
+                // Load the node on demand to avoid deserialization overhead
                 // Deserializing the entire database takes many seconds,
                 // which is the reason why UnitOptionRow and SQLite are used
                 // in the first place.
@@ -232,7 +232,7 @@ namespace Unity.VisualScripting
 
         public string favoriteKey { get; private set; }
 
-        public string formerHaystack => BoltFlowNameUtility.UnitPreviousTitle(unitType);
+        public virtual string formerHaystack => BoltFlowNameUtility.UnitPreviousTitle(unitType);
 
         GUIStyle IFuzzyOption.style => Style();
 

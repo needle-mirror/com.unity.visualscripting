@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 #if DISTRIBUTE_ASSEMBLIES
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -39,3 +41,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 #endif
+
+[assembly: InternalsVisibleTo("Unity.VisualScripting.Flow.Editor")]
+[assembly: InternalsVisibleTo("Unity.VisualScripting.State.Editor")]
+[assembly: InternalsVisibleTo("Unity.VisualScripting.State")]
+[assembly: InternalsVisibleTo("Unity.VisualScripting.SettingsProvider.Editor")]
+[assembly: InternalsVisibleTo("Unity.VisualScripting.Tests.Editor")]
+[assembly: InternalsVisibleTo("Unity.VisualScripting.Tests")]

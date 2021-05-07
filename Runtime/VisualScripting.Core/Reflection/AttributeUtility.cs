@@ -316,6 +316,17 @@ namespace Unity.VisualScripting
             GetAttributeCache(element);
         }
 
+        /// <summary>
+        /// Gets attributes on an enum member, eg. enum E { [Attr] A }
+        /// </summary>
+        internal static IEnumerable<T> GetAttributeOfEnumMember<T>(this Enum enumVal) where T : System.Attribute
+        {
+            var type = enumVal.GetType();
+            var memInfo = type.GetMember(enumVal.ToString());
+            var attributes = memInfo[0].GetCustomAttributes(typeof(T), false);
+            return attributes.Cast<T>();
+        }
+
         public static bool HasAttribute(this MemberInfo element, Type attributeType, bool inherit = true)
         {
             return GetAttributeCache(element).HasAttribute(attributeType, inherit);

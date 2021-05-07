@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Unity.VisualScripting
 {
-    public interface IGraphElement : IGraphItem, INotifiedCollectionItem, IDisposable, IPrewarmable, IAotStubbable, IIdentifiable
+    public interface IGraphElement : IGraphItem, INotifiedCollectionItem, IDisposable, IPrewarmable, IAotStubbable, IIdentifiable, IAnalyticsIdentifiable
     {
         new IGraph graph { get; set; }
 

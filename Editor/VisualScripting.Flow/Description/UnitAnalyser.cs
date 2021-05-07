@@ -75,13 +75,13 @@ namespace Unity.VisualScripting
                 }
                 else if (!unit.canDefine)
                 {
-                    yield return Warning.Caution("Unit is not properly configured.");
+                    yield return Warning.Caution("Node is not properly configured.");
                 }
             }
 
             if (!isEntered)
             {
-                yield return Warning.Info("Unit is never entered.");
+                yield return Warning.Info("Node is never entered.");
             }
 
             // Obsolete attribute is not inherited, so traverse the chain manually
@@ -93,13 +93,13 @@ namespace Unity.VisualScripting
 
                 if (obsoleteAttribute.Message != null)
                 {
-                    Debug.LogWarning($"\"{unitName}\" unit is deprecated: {obsoleteAttribute.Message}");
+                    Debug.LogWarning($"\"{unitName}\" node is deprecated: {obsoleteAttribute.Message}");
                     yield return Warning.Caution($"Deprecated: {obsoleteAttribute.Message}");
                 }
                 else
                 {
-                    Debug.LogWarning($"\"{unitName}\" unit is deprecated.");
-                    yield return Warning.Caution("This unit is deprecated.");
+                    Debug.LogWarning($"\"{unitName}\" node is deprecated.");
+                    yield return Warning.Caution("This node is deprecated.");
                 }
             }
 

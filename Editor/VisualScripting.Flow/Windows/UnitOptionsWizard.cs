@@ -20,7 +20,7 @@ namespace Unity.VisualScripting
 
         protected override void ConfigureWindow()
         {
-            window.titleContent = new GUIContent("Unit Options Wizard");
+            window.titleContent = new GUIContent("Node Options Wizard");
             window.minSize = window.maxSize = new Vector2(500, 400);
         }
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Unity.VisualScripting
 {
     /// <summary>
-    /// Returns the unit length version of a scalar.
+    /// Returns the node length version of a scalar.
     /// </summary>
     [UnitCategory("Math/Scalar")]
     [UnitTitle("Normalize")]

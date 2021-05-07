@@ -78,9 +78,6 @@ For example, the following graph outputs three messages to the console:
 
 To access the key and value from dictionaries in the loop, check the Dictionary box.
 
-
-![](images/vs-dictionary-enabled.png)
-
 ####For Loop
 
 For is a numeric loop and requires three integers: a start index, an end index, and a step. The loop starts at the first index, then increments towards the last index via increments of the step. It outputs the current index.

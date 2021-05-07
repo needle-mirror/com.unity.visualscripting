@@ -138,6 +138,7 @@ namespace Unity.VisualScripting
             EventBus.Trigger(EventHooks.OnBecameVisible, gameObject);
         }
 
+#if MODULE_PHYSICS_EXISTS
         private void OnCollisionEnter(Collision collision)
         {
             EventBus.Trigger(EventHooks.OnCollisionEnter, gameObject, collision);
@@ -152,7 +153,9 @@ namespace Unity.VisualScripting
         {
             EventBus.Trigger(EventHooks.OnCollisionStay, gameObject, collision); ;
         }
+#endif
 
+#if MODULE_PHYSICS_2D_EXISTS
         private void OnCollisionEnter2D(Collision2D collision)
         {
             EventBus.Trigger(EventHooks.OnCollisionEnter2D, gameObject, collision);
@@ -167,21 +170,26 @@ namespace Unity.VisualScripting
         {
             EventBus.Trigger(EventHooks.OnCollisionStay2D, gameObject, collision);
         }
+#endif
 
+#if MODULE_PHYSICS_EXISTS
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
             EventBus.Trigger(EventHooks.OnControllerColliderHit, gameObject, hit);
         }
+#endif
 
         private void OnJointBreak(float breakForce)
         {
             EventBus.Trigger(EventHooks.OnJointBreak, gameObject, breakForce);
         }
 
+#if MODULE_PHYSICS_2D_EXISTS
         private void OnJointBreak2D(Joint2D brokenJoint)
         {
             EventBus.Trigger(EventHooks.OnJointBreak2D, gameObject, brokenJoint);
         }
+#endif
 
         private void OnMouseDown()
         {
@@ -233,6 +241,7 @@ namespace Unity.VisualScripting
             EventBus.Trigger(EventHooks.OnTransformParentChanged, gameObject);
         }
 
+#if MODULE_PHYSICS_EXISTS
         private void OnTriggerEnter(Collider other)
         {
             EventBus.Trigger(EventHooks.OnTriggerEnter, gameObject, other);
@@ -247,7 +256,9 @@ namespace Unity.VisualScripting
         {
             EventBus.Trigger(EventHooks.OnTriggerStay, gameObject, other);
         }
+#endif
 
+#if MODULE_PHYSICS_2D_EXISTS
         private void OnTriggerEnter2D(Collider2D other)
         {
             EventBus.Trigger(EventHooks.OnTriggerEnter2D, gameObject, other);
@@ -262,5 +273,6 @@ namespace Unity.VisualScripting
         {
             EventBus.Trigger(EventHooks.OnTriggerStay2D, gameObject, other);
         }
+#endif
     }
 }

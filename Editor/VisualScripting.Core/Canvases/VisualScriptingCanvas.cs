@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Analytics;
 using UnityEditor;
 using UnityEngine;
 
@@ -529,12 +530,12 @@ namespace Unity.VisualScripting
                 bool zooming;
                 bool scrolling;
 
-                if (controlScheme == CanvasControlScheme.Unity)
+                if (controlScheme == CanvasControlScheme.Default)
                 {
                     zooming = e.ctrlOrCmd;
                     scrolling = !zooming;
                 }
-                else if (controlScheme == CanvasControlScheme.Unreal)
+                else if (controlScheme == CanvasControlScheme.Alternate)
                 {
                     zooming = true;
                     scrolling = false;
@@ -565,6 +566,8 @@ namespace Unity.VisualScripting
                         }
                     }
 
+                    HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Zoom);
+
                     e.Use();
                 }
 
@@ -577,6 +580,8 @@ namespace Unity.VisualScripting
                         graph.pan += panDelta;
                     }
 
+                    HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Scroll);
+
                     e.Use();
                 }
             }
@@ -585,11 +590,11 @@ namespace Unity.VisualScripting
             {
                 bool panning;
 
-                if (controlScheme == CanvasControlScheme.Unity)
+                if (controlScheme == CanvasControlScheme.Default)
                 {
                     panning = e.mouseButton == MouseButton.Middle;
                 }
-                else if (controlScheme == CanvasControlScheme.Unreal)
+                else if (controlScheme == CanvasControlScheme.Alternate)
                 {
                     panning = (e.mouseButton == MouseButton.Middle) || (e.alt && e.mouseButton == (int)MouseButton.Left);
                 }
@@ -607,6 +612,11 @@ namespace Unity.VisualScripting
                         graph.pan += panDelta;
                     }
 
+                    if (e.mouseButton == MouseButton.Middle)
+                        HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.PanMmb);
+                    if (e.alt && e.mouseButton == (int)MouseButton.Left)
+                        HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.PanAltLmb);
+
                     e.Use();
                 }
             }
@@ -614,6 +624,7 @@ namespace Unity.VisualScripting
             if (e.IsKeyDown(KeyCode.Home))
             {
                 ViewSelection();
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Home);
                 e.Use();
             }
         }
@@ -839,6 +850,8 @@ namespace Unity.VisualScripting
             }
             else if (e.IsExecuteCommand("SelectAll"))
             {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.SelectAll);
+
                 selection.Select(elementWidgets.Where(widget => widget.canSelect).Select(widget => widget.element));
                 e.Use();
             }
@@ -1055,6 +1068,8 @@ namespace Unity.VisualScripting
             }
             else if (e.IsExecuteCommand("Delete"))
             {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Delete);
+
                 DeleteSelection();
             }
             else if (e.IsKeyDown(KeyCode.Delete))
@@ -1083,6 +1098,8 @@ namespace Unity.VisualScripting
             }
             else if (e.IsExecuteCommand("Copy"))
             {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Copy);
+
                 GraphClipboard.CopySelection();
             }
 
@@ -1095,6 +1112,8 @@ namespace Unity.VisualScripting
             }
             else if (e.IsExecuteCommand("Cut"))
             {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Cut);
+
                 GraphClipboard.CutSelection();
             }
 
@@ -1107,6 +1126,8 @@ namespace Unity.VisualScripting
             }
             else if (e.IsExecuteCommand("Paste"))
             {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Paste);
+
                 GraphClipboard.Paste();
                 lastPasteTime = DateTime.Now;
             }
@@ -1120,6 +1141,8 @@ namespace Unity.VisualScripting
             }
             else if (e.IsExecuteCommand("Duplicate"))
             {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Duplicate);
+
                 GraphClipboard.DuplicateSelection();
                 lastPasteTime = DateTime.Now;
             }

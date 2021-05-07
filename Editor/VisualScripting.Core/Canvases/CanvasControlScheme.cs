@@ -2,7 +2,9 @@ namespace Unity.VisualScripting
 {
     public enum CanvasControlScheme
     {
-        Unity,
-        Unreal
+        [RenamedFrom("Unity")]
+        Default,
+        [RenamedFrom("Unreal")]
+        Alternate
     }
 }

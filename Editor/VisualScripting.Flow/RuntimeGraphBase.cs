@@ -22,7 +22,7 @@ namespace Unity.VisualScripting
         protected GameObject m_GameObject;
     }
 
-    public abstract class RuntimeFlowGraph : RuntimeGraphBase<ScriptGraphAsset, FlowGraph, FlowCanvas, FlowMachine>
+    public abstract class RuntimeFlowGraph : RuntimeGraphBase<ScriptGraphAsset, FlowGraph, FlowCanvas, ScriptMachine>
     {
         protected void CreateGraph()
         {
@@ -34,7 +34,7 @@ namespace Unity.VisualScripting
             m_Reference = GraphReference.New(m_Macro, false);
             m_GameObject = new GameObject();
 
-            m_Machine = m_GameObject.AddComponent<FlowMachine>();
+            m_Machine = m_GameObject.AddComponent<ScriptMachine>();
             m_Machine.nest.macro = m_Macro;
         }
 

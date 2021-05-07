@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
-    [Widget(typeof(SuperUnit))]
-    public class SuperUnitWidget : NestrerUnitWidget<SuperUnit>, IDragAndDropHandler
+    [Widget(typeof(SubgraphUnit))]
+    public class SuperUnitWidget : NestrerUnitWidget<SubgraphUnit>, IDragAndDropHandler
     {
-        public SuperUnitWidget(FlowCanvas canvas, SuperUnit unit) : base(canvas, unit) { }
+        public SuperUnitWidget(FlowCanvas canvas, SubgraphUnit unit) : base(canvas, unit) { }
 
         protected override NodeColorMix baseColor
         {

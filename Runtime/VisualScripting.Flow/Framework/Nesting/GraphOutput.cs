@@ -22,7 +22,7 @@ namespace Unity.VisualScripting
 
                 ControlInput(key, (flow) =>
                 {
-                    var superUnit = flow.stack.GetParent<SuperUnit>();
+                    var superUnit = flow.stack.GetParent<SubgraphUnit>();
 
                     flow.stack.ExitParentElement();
 

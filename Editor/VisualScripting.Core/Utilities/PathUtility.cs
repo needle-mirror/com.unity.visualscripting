@@ -137,9 +137,9 @@ namespace Unity.VisualScripting
 
             // if Bolt is loaded as a package, that package might live out of the project tree and be referenced by path in the manifest.json
             // in that case, we need a virtual package path that will be automatically remapped to the actual package location by the AssetDatabase
-            // eg. Packages/com.unity.bolt/...
+            // eg. Packages/com.unity.visualscripting/...
             // otherwise, just keep a relative path from the project folder
-            // eg. if boltCoreEditorAssetPath == Project/Assets/Subfolder/com.unity.bolt/...., keep Assets/Subfolder/com.unity.bolt/
+            // eg. if boltCoreEditorAssetPath == Project/Assets/Subfolder/com.unity.visualscripting/...., keep Assets/Subfolder/com.unity.visualscripting/
             // The root Bolt folder path is 2 directories up from our Unity.VisualScripting.Core.Editor.asmdef parent dir
             return Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(boltCoreEditorAssetPath)));
         }

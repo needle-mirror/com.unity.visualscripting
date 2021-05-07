@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
+#if MODULE_PHYSICS_2D_EXISTS
     /// <summary>
     /// Called when a joint attached to the same game object broke.
     /// </summary>
@@ -71,4 +72,5 @@ namespace Unity.VisualScripting
             flow.SetValue(this.joint, joint);
         }
     }
+#endif
 }

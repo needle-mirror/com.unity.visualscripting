@@ -3,7 +3,7 @@ using System;
 namespace Unity.VisualScripting
 {
     [SpecialUnit]
-    [Obsolete("Use the new unified variable units instead.")]
+    [Obsolete("Use the new unified variable nodes instead.")]
     public abstract class VariableUnit : Unit, IVariableUnit
     {
         protected VariableUnit() : base() { }

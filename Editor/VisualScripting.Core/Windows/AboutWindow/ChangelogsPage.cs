@@ -11,7 +11,7 @@ namespace Unity.VisualScripting
 
             title = "Changelogs";
             shortTitle = "Changelogs";
-            icon = BoltCore.Resources.LoadIcon("Icons/Windows/AboutWindow/ChangelogPage.png");
+            icon = BoltCore.Resources.LoadIcon("ChangelogPage.png");
 
             foreach (var changelog in plugins.ResolveDependencies().SelectMany(plugin => plugin.resources.changelogs).OrderByDescending(changelog => changelog.date))
             {

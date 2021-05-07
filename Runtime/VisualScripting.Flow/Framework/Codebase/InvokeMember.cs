@@ -266,5 +266,43 @@ namespace Unity.VisualScripting
 
             return exit;
         }
+
+        #region Analytics
+
+        public override AnalyticsIdentifier GetAnalyticsIdentifier()
+        {
+            const int maxNumParameters = 5;
+            var s = $"{member.targetType.FullName}.{member.name}";
+
+            if (member.parameterTypes != null)
+            {
+                s += "(";
+
+                for (var i = 0; i < member.parameterTypes.Length; ++i)
+                {
+                    if (i >= maxNumParameters)
+                    {
+                        s += $"->{i}";
+                        break;
+                    }
+
+                    s += member.parameterTypes[i].FullName;
+                    if (i < member.parameterTypes.Length - 1)
+                        s += ", ";
+                }
+
+                s += ")";
+            }
+
+            var aid = new AnalyticsIdentifier
+            {
+                Identifier = s,
+                Namespace = member.targetType.Namespace
+            };
+            aid.Hashcode = aid.Identifier.GetHashCode();
+            return aid;
+        }
+
+        #endregion
     }
 }

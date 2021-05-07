@@ -20,7 +20,7 @@ namespace Unity.VisualScripting
             if (flow.stack.TryEnterParentElement(this))
             {
                 nest.graph.StartListening(flow.stack);
-                flow.stack.TriggerEventHandler(hook => hook == StateEventHooks.OnEnterState, new EmptyEventArgs(), parent => parent is SuperUnit, false);
+                flow.stack.TriggerEventHandler(hook => hook == StateEventHooks.OnEnterState, new EmptyEventArgs(), parent => parent is SubgraphUnit, false);
                 flow.stack.ExitParentElement();
             }
         }
@@ -29,7 +29,7 @@ namespace Unity.VisualScripting
         {
             if (flow.stack.TryEnterParentElement(this))
             {
-                flow.stack.TriggerEventHandler(hook => hook == StateEventHooks.OnExitState, new EmptyEventArgs(), parent => parent is SuperUnit, false);
+                flow.stack.TriggerEventHandler(hook => hook == StateEventHooks.OnExitState, new EmptyEventArgs(), parent => parent is SubgraphUnit, false);
                 nest.graph.StopListening(flow.stack);
                 flow.stack.ExitParentElement();
             }

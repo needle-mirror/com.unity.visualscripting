@@ -102,7 +102,7 @@ namespace Unity.VisualScripting
 
         private void Undefine()
         {
-            // Because a unit is always undefined on definition,
+            // Because a node is always undefined on definition,
             // even if it wasn't defined before, we make sure the user
             // code for undefinition can safely presume it was defined.
             if (isDefined)
@@ -134,7 +134,7 @@ namespace Unity.VisualScripting
         {
             var preservation = UnitPreservation.Preserve(this);
 
-            // A unit needs to undefine even if it wasn't defined,
+            // A node needs to undefine even if it wasn't defined,
             // because there might be invalid ports and connections
             // that we need to clear to avoid duplicates on definition.
             Undefine();
@@ -399,6 +399,21 @@ namespace Unity.VisualScripting
 
         [DoNotSerialize]
         public Exception definitionException { get; protected set; }
+
+        #endregion
+
+        #region Analytics
+
+        public override AnalyticsIdentifier GetAnalyticsIdentifier()
+        {
+            var aid = new AnalyticsIdentifier
+            {
+                Identifier = GetType().FullName,
+                Namespace = GetType().Namespace,
+            };
+            aid.Hashcode = aid.Identifier.GetHashCode();
+            return aid;
+        }
 
         #endregion
     }

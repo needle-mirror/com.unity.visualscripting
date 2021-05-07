@@ -37,7 +37,7 @@ namespace Unity.VisualScripting
             get
             {
 #pragma warning disable 618
-                yield return ScriptReferenceReplacement.From<FlowMachine>(ScriptReference.Dll(LegacyRuntimeDllGuid, "Bolt", "FlowMachine"));
+                yield return ScriptReferenceReplacement.From<ScriptMachine>(ScriptReference.Dll(LegacyRuntimeDllGuid, "Bolt", "FlowMachine"));
                 yield return ScriptReferenceReplacement.From<ScriptGraphAsset>(ScriptReference.Dll(LegacyRuntimeDllGuid, "Bolt", "FlowMacro"));
                 // Variables moved to Bolt.Core assembly in v.1.3
                 yield return ScriptReferenceReplacement.From<Variables>(ScriptReference.Dll(LegacyRuntimeDllGuid, "Bolt", "Variables"));
@@ -58,7 +58,7 @@ namespace Unity.VisualScripting
 
         public override void RunAction()
         {
-            UnitBase.Build();
+            UnitBase.Build(true);
         }
     }
 }

@@ -8,6 +8,6 @@ namespace Unity.VisualScripting
         public override string name => "Visual Scripting Core";
         public override string author => "";
         public override string description => "";
-        public override SemanticVersion version => "1.5.1";
+        public override SemanticVersion version => PackageVersionUtility.version;
     }
 }

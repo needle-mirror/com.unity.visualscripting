@@ -29,7 +29,7 @@ namespace Unity.VisualScripting
                 throw new ArgumentNullException(nameof(name));
             }
 
-            var path = $"Icons/Language/{Icons.Language.skin}/{name}.png";
+            var path = $"{name}.png";
 
             return BoltCore.Resources.LoadIcon(path, required);
         }

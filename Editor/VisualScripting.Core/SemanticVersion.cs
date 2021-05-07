@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Unity.VisualScripting
@@ -29,6 +30,11 @@ namespace Unity.VisualScripting
             this.increment = increment;
         }
 
+        public SemanticVersion(string semVerString)
+        {
+            this = Parse(semVerString);
+        }
+
         public SemanticLabel semanticLabel
         {
             get
@@ -40,6 +46,9 @@ namespace Unity.VisualScripting
 
                 switch (label.Filter(whitespace: false, punctuation: false, symbols: false).ToLower())
                 {
+                    case "pre":
+                        return SemanticLabel.Pre;
+
                     case "a":
                     case "alpha":
                         return SemanticLabel.Alpha;
@@ -66,7 +75,7 @@ namespace Unity.VisualScripting
 
         public override string ToString()
         {
-            if (StringUtility.IsNullOrWhiteSpace(label))
+            if (semanticLabel == SemanticLabel.Unspecified)
             {
                 return $"{major}.{minor}.{patch}";
             }
@@ -102,7 +111,7 @@ namespace Unity.VisualScripting
                 throw new ArgumentNullException(nameof(s));
             }
 
-            var regex = new Regex(@"(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)(?:(?<label>[a-zA-Z\s-_\.]+)(?<increment>\d+))?", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            var regex = new Regex(@"(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)(?:(?<label>[a-zA-Z\s\-_\.]+)(?<increment>\d+))?", RegexOptions.IgnoreCase | RegexOptions.Singleline);
             var match = regex.Match(s);
 
             if (!match.Success)
@@ -132,6 +141,17 @@ namespace Unity.VisualScripting
             return true;
         }
 
+        // Final > _(Nothing)_ > Release Candidate > Beta > Alpha > Pre
+        private static readonly Dictionary<SemanticLabel, int> LabelComparisonMap = new Dictionary<SemanticLabel, int>()
+        {
+            { SemanticLabel.Final, 6 },
+            { SemanticLabel.Unspecified, 5 },
+            { SemanticLabel.ReleaseCandidate, 4 },
+            { SemanticLabel.Beta, 3 },
+            { SemanticLabel.Alpha, 2 },
+            { SemanticLabel.Pre, 1 },
+        };
+
         public int CompareTo(SemanticVersion other)
         {
             var majorComparison = major.CompareTo(other.major);
@@ -155,7 +175,10 @@ namespace Unity.VisualScripting
                 return patchComparison;
             }
 
-            var labelComparison = semanticLabel.CompareTo(other.semanticLabel);
+            // Final > _(Nothing)_ > Release Candidate > Beta > Alpha > Pre
+            var ours = LabelComparisonMap[this.semanticLabel];
+            var others = LabelComparisonMap[other.semanticLabel];
+            var labelComparison = ours.CompareTo(others);
 
             if (labelComparison != 0)
             {
@@ -222,6 +245,11 @@ namespace Unity.VisualScripting
         public static bool operator >=(SemanticVersion a, SemanticVersion b)
         {
             return a.CompareTo(b) >= 0;
+        }
+
+        public bool IsUnset()
+        {
+            return Equals(new SemanticVersion(0, 0, 0, null, 0));
         }
     }
 }

@@ -216,5 +216,20 @@ namespace Unity.VisualScripting
         public float width { get; set; } = DefaultWidth;
 
         #endregion
+
+        #region Analytics
+
+        public override AnalyticsIdentifier GetAnalyticsIdentifier()
+        {
+            var aid = new AnalyticsIdentifier
+            {
+                Identifier = GetType().FullName,
+                Namespace = GetType().Namespace,
+            };
+            aid.Hashcode = aid.Identifier.GetHashCode();
+            return aid;
+        }
+
+        #endregion
     }
 }

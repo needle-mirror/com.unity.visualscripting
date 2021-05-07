@@ -58,7 +58,7 @@ namespace Unity.VisualScripting
                     }
                     catch (Exception ex)
                     {
-                        Debug.LogError($"Failed to update unit options.\nRetry with '{UnitOptionUtility.GenerateUnitDatabasePath}'.\n{ex}");
+                        Debug.LogError($"Failed to update node options.\nRetry with '{UnitOptionUtility.GenerateUnitDatabasePath}'.\n{ex}");
                     }
                     finally
                     {
@@ -68,11 +68,11 @@ namespace Unity.VisualScripting
 
                 lock (@lock)
                 {
-                    using (ProfilingUtility.SampleBlock("Load Unit Database"))
+                    using (ProfilingUtility.SampleBlock("Load Node Database"))
                     {
                         using (NativeUtility.Module("sqlite3.dll"))
                         {
-                            ProgressUtility.DisplayProgressBar("Loading unit database...", null, 0);
+                            ProgressUtility.DisplayProgressBar("Loading node database...", null, 0);
 
                             SQLiteConnection database = null;
 
@@ -103,15 +103,15 @@ namespace Unity.VisualScripting
                                         failedOptions.Add(row, rowEx);
                                     }
 
-                                    ProgressUtility.DisplayProgressBar("Loading unit database...", BoltCore.Configuration.humanNaming ? row.labelHuman : row.labelProgrammer, progress++ / total);
+                                    ProgressUtility.DisplayProgressBar("Loading node database...", BoltCore.Configuration.humanNaming ? row.labelHuman : row.labelProgrammer, progress++ / total);
                                 }
 
                                 if (failedOptions.Count > 0)
                                 {
                                     var sb = new StringBuilder();
 
-                                    sb.AppendLine($"{failedOptions.Count} unit options failed to load and were skipped.");
-                                    sb.AppendLine($"Try rebuilding the unit options with '{UnitOptionUtility.GenerateUnitDatabasePath}' to purge outdated units.");
+                                    sb.AppendLine($"{failedOptions.Count} node options failed to load and were skipped.");
+                                    sb.AppendLine($"Try rebuilding the node options with '{UnitOptionUtility.GenerateUnitDatabasePath}' to purge outdated nodes.");
                                     sb.AppendLine();
 
                                     foreach (var failedOption in failedOptions)
@@ -134,7 +134,7 @@ namespace Unity.VisualScripting
                             catch (Exception ex)
                             {
                                 options = new HashSet<IUnitOption>();
-                                Debug.LogError($"Failed to load unit options.\nTry to rebuild them with '{UnitOptionUtility.GenerateUnitDatabasePath}'.\n\n{ex}");
+                                Debug.LogError($"Failed to load node options.\nTry to rebuild them with '{UnitOptionUtility.GenerateUnitDatabasePath}'.\n\n{ex}");
                             }
                             finally
                             {
@@ -164,88 +164,93 @@ namespace Unity.VisualScripting
             Build();
         }
 
-        public static void Build()
+        public static void Build(bool initialBuild = false)
         {
-            if (!IsUnitOptionsBuilt())
+            if (IsUnitOptionsBuilt()) return;
+
+            if (initialBuild)
             {
-                var progressTitle = "Visual Scripting: Building unit database...";
+                ProgressUtility.SetTitleOverride("Visual Scripting: Initial Node Generation...");
+            }
 
-                lock (@lock)
+            const string progressTitle = "Visual Scripting: Building node database...";
+
+            lock (@lock)
+            {
+                using (ProfilingUtility.SampleBlock("Update Node Database"))
                 {
-                    using (ProfilingUtility.SampleBlock("Update Unit Database"))
+                    using (NativeUtility.Module("sqlite3.dll"))
                     {
-                        using (NativeUtility.Module("sqlite3.dll"))
+                        SQLiteConnection database = null;
+
+                        try
                         {
-                            SQLiteConnection database = null;
+                            ProgressUtility.DisplayProgressBar(progressTitle, "Creating database...", 0);
 
-                            try
+                            PathUtility.CreateParentDirectoryIfNeeded(BoltFlow.Paths.unitOptions);
+                            database = new SQLiteConnection(BoltFlow.Paths.unitOptions);
+                            database.CreateTable<UnitOptionRow>();
+
+                            ProgressUtility.DisplayProgressBar(progressTitle, "Updating codebase...", 0);
+
+                            UpdateCodebase();
+
+                            ProgressUtility.DisplayProgressBar(progressTitle, "Updating type mappings...", 0);
+
+                            UpdateTypeMappings();
+
+                            ProgressUtility.DisplayProgressBar(progressTitle,
+                                "Converting codebase to node options...", 0);
+
+                            options = new HashSet<IUnitOption>(GetStaticOptions());
+
+                            var rows = new HashSet<UnitOptionRow>();
+
+                            var progress = 0;
+                            var lastShownProgress = 0f;
+
+                            foreach (var option in options)
                             {
-                                ProgressUtility.DisplayProgressBar(progressTitle, "Creating database...", 0);
-
-                                PathUtility.CreateParentDirectoryIfNeeded(BoltFlow.Paths.unitOptions);
-                                database = new SQLiteConnection(BoltFlow.Paths.unitOptions);
-                                database.CreateTable<UnitOptionRow>();
-
-                                ProgressUtility.DisplayProgressBar(progressTitle, "Updating codebase...", 0);
-
-                                UpdateCodebase();
-
-                                ProgressUtility.DisplayProgressBar(progressTitle, "Updating type mappings...", 0);
-
-                                UpdateTypeMappings();
-
-                                ProgressUtility.DisplayProgressBar(progressTitle,
-                                    "Converting codebase to unit options...", 0);
-
-                                options = new HashSet<IUnitOption>(GetStaticOptions());
-
-                                var rows = new HashSet<UnitOptionRow>();
-
-                                var progress = 0;
-                                var lastShownProgress = 0f;
-
-                                foreach (var option in options)
-                                {
-                                    try
-                                    {
-                                        var shownProgress = (float)progress / options.Count;
-
-                                        if (shownProgress > lastShownProgress + 0.01f)
-                                        {
-                                            ProgressUtility.DisplayProgressBar(progressTitle,
-                                                "Converting codebase to unit options...", shownProgress);
-                                            lastShownProgress = shownProgress;
-                                        }
-
-                                        rows.Add(option.Serialize());
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Debug.LogError($"Failed to save option '{option.GetType()}'.\n{ex}");
-                                    }
-
-                                    progress++;
-                                }
-
-                                ProgressUtility.DisplayProgressBar(progressTitle, "Writing to database...", 1);
-
                                 try
                                 {
-                                    database.CreateTable<UnitOptionRow>();
-                                    database.InsertAll(rows);
+                                    var shownProgress = (float)progress / options.Count;
+
+                                    if (shownProgress > lastShownProgress + 0.01f)
+                                    {
+                                        ProgressUtility.DisplayProgressBar(progressTitle,
+                                            "Converting codebase to node options...", shownProgress);
+                                        lastShownProgress = shownProgress;
+                                    }
+
+                                    rows.Add(option.Serialize());
                                 }
                                 catch (Exception ex)
                                 {
-                                    Debug.LogError($"Failed to write options to database.\n{ex}");
+                                    Debug.LogError($"Failed to save option '{option.GetType()}'.\n{ex}");
                                 }
+
+                                progress++;
                             }
-                            finally
+
+                            ProgressUtility.DisplayProgressBar(progressTitle, "Writing to database...", 1);
+
+                            try
                             {
-                                database?.Close();
-                                ProgressUtility.ClearProgressBar();
-                                AssetDatabase.Refresh();
-                                //ConsoleProfiler.Dump();
+                                database.CreateTable<UnitOptionRow>();
+                                database.InsertAll(rows);
                             }
+                            catch (Exception ex)
+                            {
+                                Debug.LogError($"Failed to write options to database.\n{ex}");
+                            }
+                        }
+                        finally
+                        {
+                            database?.Close();
+                            ProgressUtility.ClearProgressBar();
+                            ProgressUtility.ClearTitleOverride();
+                            AssetDatabase.Refresh();
+                            //ConsoleProfiler.Dump();
                         }
                     }
                 }
@@ -262,11 +267,11 @@ namespace Unity.VisualScripting
 
             lock (@lock)
             {
-                using (ProfilingUtility.SampleBlock("Update Unit Database"))
+                using (ProfilingUtility.SampleBlock("Update Node Database"))
                 {
                     using (NativeUtility.Module("sqlite3.dll"))
                     {
-                        var progressTitle = "Updating unit database...";
+                        var progressTitle = "Updating node database...";
 
                         SQLiteConnection database = null;
 
@@ -303,7 +308,7 @@ namespace Unity.VisualScripting
                             outdatedScriptGuids.UnionWith(modifiedScriptGuids);
                             outdatedScriptGuids.UnionWith(deletedScriptGuids);
 
-                            ProgressUtility.DisplayProgressBar(progressTitle, "Removing outdated unit options...", step++ / steps);
+                            ProgressUtility.DisplayProgressBar(progressTitle, "Removing outdated node options...", step++ / steps);
 
                             options?.RemoveWhere(option => outdatedScriptGuids.Overlaps(option.sourceScriptGuids));
 
@@ -320,7 +325,7 @@ namespace Unity.VisualScripting
                                 }
                             }
 
-                            ProgressUtility.DisplayProgressBar(progressTitle, "Converting codebase to unit options...", step++ / steps);
+                            ProgressUtility.DisplayProgressBar(progressTitle, "Converting codebase to node options...", step++ / steps);
 
                             var newOptions = new HashSet<IUnitOption>(modifiedScriptGuids.SelectMany(GetScriptTypes)
                                 .Distinct()
@@ -484,7 +489,7 @@ namespace Unity.VisualScripting
 
             // Blank Super Unit
 
-            yield return SuperUnit.WithInputOutput().Option();
+            yield return SubgraphUnit.WithInputOutput().Option();
 
             // Extensions
 
@@ -593,7 +598,7 @@ namespace Unity.VisualScripting
 
             var flowMacros = AssetUtility.GetAllAssetsOfType<ScriptGraphAsset>().ToArray();
 
-            foreach (var superUnit in flowMacros.Select(flowMacro => new SuperUnit(flowMacro)))
+            foreach (var superUnit in flowMacros.Select(flowMacro => new SubgraphUnit(flowMacro)))
             {
                 yield return superUnit.Option();
             }

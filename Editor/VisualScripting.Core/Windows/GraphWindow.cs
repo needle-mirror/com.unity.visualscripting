@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Analytics;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace Unity.VisualScripting
 
         private GUIEvent e => GUIEvent.current;
 
-        [MenuItem("Window/Visual Scripting/Visual Scripting Graph", false, 3010)]
+
         public static void OpenTab()
         {
             var tab = CreateInstance<GraphWindow>();
@@ -84,6 +85,17 @@ namespace Unity.VisualScripting
             context?.canvas.Close();
 
             _reference = value;
+
+            // Reference can be null (If there's no graph yet)
+            if (_reference != null)
+            {
+                // Removing each action first in order to ensure that we don't add our handler twice
+                // Removing it when it's not there is perfectly valid
+                _reference.graph.elements.ItemAdded -= _onItemAddedAction;
+                _reference.graph.elements.ItemAdded += _onItemAddedAction;
+                _reference.graph.elements.ItemRemoved -= _onItemRemovedAction;
+                _reference.graph.elements.ItemRemoved += _onItemRemovedAction;
+            }
 
             // Only preserve the last valid reference
             // This is needed because the window revalidates before exiting playmode
@@ -308,6 +320,10 @@ namespace Unity.VisualScripting
 
             PluginContainer.delayCall += () =>
             {
+                BoltCore.Configuration.isVisualScriptingUsed = true;
+                // To ensure our savedVersion is serialized for future migrations
+                BoltCore.Manifest.savedVersion = BoltCore.Manifest.savedVersion;
+
                 PluginContainer.ImportUnits();
 
                 titleContent = new GUIContent(defaultTitle, BoltCore.Icons.window?[IconSize.Small]);
@@ -565,6 +581,11 @@ namespace Unity.VisualScripting
                 }
 
                 LudiqGUI.EndHorizontal();
+
+                if (e.keyCode == KeyCode.Tab)
+                {
+                    HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Tab);
+                }
             }
 
             LudiqGUI.BeginHorizontal();
@@ -839,6 +860,42 @@ namespace Unity.VisualScripting
                 SetReference(prefabGraphPointer, false);
             }
         }
+
+        #endregion
+
+        #region Analytics
+
+        private readonly Action<IGraphElement> _onItemAddedAction = delegate (IGraphElement element)
+        {
+            try
+            {
+                var aid = element.GetAnalyticsIdentifier();
+                if (aid is null)
+                    return;
+
+                NodeUsageAnalytics.NodeAdded(aid);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        };
+
+        private readonly Action<IGraphElement> _onItemRemovedAction = delegate (IGraphElement element)
+        {
+            try
+            {
+                var aid = element.GetAnalyticsIdentifier();
+                if (aid is null)
+                    return;
+
+                NodeUsageAnalytics.NodeRemoved(aid);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        };
 
         #endregion
     }

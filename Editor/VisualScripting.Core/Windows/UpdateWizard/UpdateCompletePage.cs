@@ -10,7 +10,7 @@ namespace Unity.VisualScripting
         {
             title = "Update Complete";
             shortTitle = "Finish";
-            icon = BoltCore.Resources.LoadIcon("Icons/Windows/UpdateWizard/UpdateCompletePage.png");
+            icon = BoltCore.Resources.LoadIcon("UpdateCompletePage.png");
 
             hasChangelogs = plugins.ResolveDependencies().SelectMany(plugin => plugin.resources.changelogs).Any();
         }

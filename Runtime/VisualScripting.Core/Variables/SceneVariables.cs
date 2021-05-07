@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace Unity.VisualScripting
 {
-    [Singleton(Name = "Scene Variables", Automatic = true, Persistent = false)]
+    [Singleton(Name = "VisualScripting SceneVariables", Automatic = true, Persistent = false)]
     [RequireComponent(typeof(Variables))]
     [DisableAnnotation]
     [AddComponentMenu("")]

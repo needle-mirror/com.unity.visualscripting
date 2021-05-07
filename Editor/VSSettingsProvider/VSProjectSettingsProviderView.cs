@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     {
         private const string path = "Project/Visual Scripting";
         private const string title = "Visual Scripting";
-        private const string titleGroup = "Generate Units";
+        private const string titleGroup = "Generate Nodes";
 
         VSSettingsAssembly vsSettingsAssembly;
         VSSettingsTypeOption vsSettingsTypeOption;

@@ -12,7 +12,7 @@ namespace Unity.VisualScripting
         {
             this.acknowledgement = acknowledgement;
             title = shortTitle = acknowledgement.title;
-            icon = BoltCore.Resources.LoadIcon("Icons/Windows/AboutWindow/AcknowledgementPage.png");
+            icon = BoltCore.Resources.LoadIcon("AcknowledgementPage.png");
 
             // Remove single newlines but keep multiple newlines.
             licenseText = acknowledgement.licenseText == null ? null : string.Join("\n\n", acknowledgement.licenseText.Split(new[] { "\r\n\r\n", "\n\n" }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Replace("\r\n", "").Replace("\n", "")).ToArray());

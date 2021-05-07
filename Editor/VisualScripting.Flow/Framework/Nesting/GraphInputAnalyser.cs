@@ -29,7 +29,7 @@ namespace Unity.VisualScripting
                     var firstInput = inputs[0];
                     if (unit != firstInput)
                     {
-                        var graphName = string.IsNullOrEmpty(unit.graph.title) ? nameof(SuperUnit) : unit.graph.title;
+                        var graphName = string.IsNullOrEmpty(unit.graph.title) ? nameof(SubgraphUnit) : unit.graph.title;
                         Debug.LogWarning($"Only one Input node can be used and will execute in {graphName}.");
                         yield return Warning.Caution("Only one Input node can be used and will execute.");
                     }

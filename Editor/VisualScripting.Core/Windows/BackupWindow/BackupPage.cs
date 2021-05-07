@@ -10,7 +10,7 @@ namespace Unity.VisualScripting
         {
             title = "Backup";
             shortTitle = "Backup";
-            icon = BoltCore.Resources.LoadIcon("Icons/Windows/BackupWindow/BackupPage.png");
+            icon = BoltCore.Resources.LoadIcon("BackupPage.png");
         }
 
         protected bool createdBackup { get; private set; }

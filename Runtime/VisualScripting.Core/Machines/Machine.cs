@@ -199,10 +199,12 @@ namespace Unity.VisualScripting
             }
         }
 
+#if MODULE_ANIMATION_EXISTS
         // Should be in EventMachine logically, but kept here for legacy compatibility.
         public virtual void TriggerAnimationEvent(AnimationEvent animationEvent)
         {
         }
+#endif
 
         // Should be in EventMachine logically, but kept here for legacy compatibility.
         public virtual void TriggerUnityEvent(string name)

@@ -118,5 +118,20 @@ namespace Unity.VisualScripting
 
             return assigned;
         }
+
+        #region Analytics
+
+        public override AnalyticsIdentifier GetAnalyticsIdentifier()
+        {
+            var aid = new AnalyticsIdentifier
+            {
+                Identifier = $"{member.targetType.FullName}.{member.name}(Set)",
+                Namespace = member.targetType.Namespace,
+            };
+            aid.Hashcode = aid.Identifier.GetHashCode();
+            return aid;
+        }
+
+        #endregion
     }
 }

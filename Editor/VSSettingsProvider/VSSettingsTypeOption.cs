@@ -9,7 +9,7 @@ namespace Unity.VisualScripting
 
         bool showTypeOption = false;
         private const string titleTypeOption = "Type Options";
-        private const string descriptionTypeOption = "Choose the types you want to use for variables and units.\n"
+        private const string descriptionTypeOption = "Choose the types you want to use for variables and nodes.\n"
             + "MonoBehaviour types are always included.";
         static class Styles
         {

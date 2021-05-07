@@ -44,7 +44,7 @@ namespace Unity.VisualScripting
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Failed to fetch unit options for fuzzy finder (error log below).\nTry rebuilding the unit options from '{UnitOptionUtility.GenerateUnitDatabasePath}'.\n\n{ex}");
+                Debug.LogError($"Failed to fetch node options for fuzzy finder (error log below).\nTry rebuilding the node options from '{UnitOptionUtility.GenerateUnitDatabasePath}'.\n\n{ex}");
                 options = new HashSet<IUnitOption>();
             }
 

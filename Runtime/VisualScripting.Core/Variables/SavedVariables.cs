@@ -53,7 +53,15 @@ namespace Unity.VisualScripting
         {
             FetchSavedDeclarations();
             MergeInitialAndSavedDeclarations();
-            VariablesSaver.Instantiate();
+
+            // The variables saver gameobject is only instantiated if its needed
+            // It's only needed if a variable in our merged collection changes, requiring re-serialization as
+            // the runtime ends
+            merged.OnVariableChanged += () =>
+            {
+                if (VariablesSaver.instance == null)
+                    VariablesSaver.Instantiate();
+            };
         }
 
         internal static void OnExitPlayMode()

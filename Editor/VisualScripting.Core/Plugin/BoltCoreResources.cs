@@ -18,7 +18,7 @@ namespace Unity.VisualScripting
 
             icons.Load();
 
-            loader = LoadTexture("Loader/Loader.png", CreateTextureOptions.PixelPerfect);
+            loader = LoadTexture("Loader.png", CreateTextureOptions.PixelPerfect);
         }
 
         public class Icons
@@ -70,18 +70,18 @@ namespace Unity.VisualScripting
 
             public void Load()
             {
-                variablesWindow = resources.LoadIcon("Icons/Windows/VariablesWindow.png");
+                variablesWindow = resources.LoadIcon("VariablesWindow.png");
 
-                variable = resources.LoadIcon("Icons/Variables/Variable.png");
-                flowVariable = resources.LoadIcon("Icons/Variables/FlowVariable.png");
-                graphVariable = resources.LoadIcon("Icons/Variables/GraphVariable.png");
-                objectVariable = resources.LoadIcon("Icons/Variables/ObjectVariable.png");
-                sceneVariable = resources.LoadIcon("Icons/Variables/SceneVariable.png");
-                applicationVariable = resources.LoadIcon("Icons/Variables/ApplicationVariable.png");
-                savedVariable = resources.LoadIcon("Icons/Variables/SavedVariable.png");
+                variable = resources.LoadIcon("Variable.png");
+                flowVariable = resources.LoadIcon("FlowVariable.png", false);
+                graphVariable = resources.LoadIcon("GraphVariable.png");
+                objectVariable = resources.LoadIcon("ObjectVariable.png");
+                sceneVariable = resources.LoadIcon("SceneVariable.png");
+                applicationVariable = resources.LoadIcon("ApplicationVariable.png");
+                savedVariable = resources.LoadIcon("SavedVariable.png");
 
-                window = resources.LoadIcon("Windows/GraphWindow.png");
-                inspectorWindow = resources.LoadIcon("Windows/GraphInspectorWindow.png");
+                window = resources.LoadIcon("GraphWindow.png");
+                inspectorWindow = resources.LoadIcon("GraphInspectorWindow.png");
 
                 if (GraphWindow.active != null)
                 {
@@ -91,34 +91,34 @@ namespace Unity.VisualScripting
                 empty = EditorTexture.Single(ColorPalette.transparent.GetPixel());
 
                 // Messages
-                informationMessage = resources.LoadIcon("Icons/Messages/Information.png");
-                questionMessage = resources.LoadIcon("Icons/Messages/Question.png");
-                warningMessage = resources.LoadIcon("Icons/Messages/Warning.png");
-                successMessage = resources.LoadIcon("Icons/Messages/Success.png");
-                errorMessage = resources.LoadIcon("Icons/Messages/Error.png");
+                informationMessage = resources.LoadIcon("Information.png", false);
+                questionMessage = resources.LoadIcon("Question.png");
+                warningMessage = resources.LoadIcon("Warning.png");
+                successMessage = resources.LoadIcon("Success.png");
+                errorMessage = resources.LoadIcon("Error.png");
 
                 // States
-                warningState = resources.LoadIcon("Icons/State/Warning.png");
-                successState = resources.LoadIcon("Icons/State/Success.png");
-                errorState = resources.LoadIcon("Icons/State/Error.png");
-                progress = resources.LoadIcon("Icons/State/Progress.png");
+                warningState = resources.LoadIcon("Warning.png");
+                successState = resources.LoadIcon("Success.png");
+                errorState = resources.LoadIcon("Error.png");
+                progress = resources.LoadIcon("Progress.png");
 
                 // Versioning
-                upgrade = resources.LoadIcon("Icons/Versioning/Upgrade.png");
-                upToDate = resources.LoadIcon("Icons/Versioning/UpToDate.png");
-                downgrade = resources.LoadIcon("Icons/Versioning/Downgrade.png");
+                upgrade = resources.LoadIcon("Upgrade.png");
+                upToDate = resources.LoadIcon("UpToDate.png");
+                downgrade = resources.LoadIcon("Downgrade.png");
 
                 // Windows
-                supportWindow = resources.LoadIcon("Icons/Windows/SupportWindow.png");
-                sidebarAnchorLeft = resources.LoadTexture("Icons/Windows/SidebarAnchorLeft.png", CreateTextureOptions.PixelPerfect);
-                sidebarAnchorRight = resources.LoadTexture("Icons/Windows/SidebarAnchorRight.png", CreateTextureOptions.PixelPerfect);
+                supportWindow = resources.LoadIcon("SupportWindow.png");
+                sidebarAnchorLeft = resources.LoadTexture("SidebarAnchorLeft.png", CreateTextureOptions.PixelPerfect);
+                sidebarAnchorRight = resources.LoadTexture("SidebarAnchorRight.png", CreateTextureOptions.PixelPerfect);
 
                 // Configuration
-                editorPref = resources.LoadTexture("Icons/Configuration/EditorPref.png", new TextureResolution[] { 12, 24 }, CreateTextureOptions.PixelPerfect);
-                projectSetting = resources.LoadTexture("Icons/Configuration/ProjectSetting.png", new TextureResolution[] { 12, 24 }, CreateTextureOptions.PixelPerfect);
+                editorPref = resources.LoadTexture("EditorPref.png", new TextureResolution[] { 12, 24 }, CreateTextureOptions.PixelPerfect);
+                projectSetting = resources.LoadTexture("ProjectSetting.png", new TextureResolution[] { 12, 24 }, CreateTextureOptions.PixelPerfect);
 
                 // Other
-                @null = resources.LoadIcon("Icons/Null.png");
+                @null = resources.LoadIcon("Null.png");
             }
 
             public EditorTexture VariableKind(VariableKind kind)

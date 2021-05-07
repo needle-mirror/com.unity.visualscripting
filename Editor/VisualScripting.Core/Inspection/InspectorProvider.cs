@@ -50,6 +50,7 @@ namespace Unity.VisualScripting
                 SystemObjectInspector(decoratedType) ??
                 CustomPropertyDrawerInspector(decoratedType) ??
                 AutomaticReflectedInspector(decoratedType) ??
+                TypeHandleInspector(decoratedType) ??
                 typeof(UnknownInspector);
         }
 
@@ -131,6 +132,11 @@ namespace Unity.VisualScripting
             }
 
             return null;
+        }
+
+        private Type TypeHandleInspector(Type type)
+        {
+            return type == typeof(SerializableType) ? typeof(TypeHandleInspector) : null;
         }
 
         private Type AutomaticReflectedInspector(Type type)

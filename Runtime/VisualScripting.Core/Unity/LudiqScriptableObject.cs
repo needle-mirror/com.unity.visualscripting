@@ -8,6 +8,8 @@ namespace Unity.VisualScripting
         [SerializeField, DoNotSerialize] // Serialize with Unity, but not with FullSerializer.
         protected SerializationData _data;
 
+        internal event Action OnDestroyActions;
+
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
             // Ignore the FullSerializer callback, but still catch the Unity callback
@@ -69,6 +71,11 @@ namespace Unity.VisualScripting
         protected virtual void OnAfterDeserialize() { }
 
         protected virtual void OnPostDeserializeInEditor() { }
+
+        private void OnDestroy()
+        {
+            OnDestroyActions?.Invoke();
+        }
 
         protected virtual void ShowData()
         {

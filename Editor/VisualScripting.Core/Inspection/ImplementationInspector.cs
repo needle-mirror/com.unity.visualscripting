@@ -260,7 +260,7 @@ namespace Unity.VisualScripting
                     fixedHeight = EditorGUIUtility.singleLineHeight
                 };
 
-                compactSelectorWithoutIconContent = new GUIContent(BoltCore.Resources.LoadTexture("TypeSelector/TypeSelector.png", new TextureResolution[] { 9, 18 }, CreateTextureOptions.PixelPerfect)?[9]);
+                compactSelectorWithoutIconContent = new GUIContent(BoltCore.Resources.LoadTexture("TypeSelector.png", new TextureResolution[] { 9, 18 }, CreateTextureOptions.PixelPerfect)?[9]);
 
                 compactSelectorWithIcon = new GUIStyle
                 {

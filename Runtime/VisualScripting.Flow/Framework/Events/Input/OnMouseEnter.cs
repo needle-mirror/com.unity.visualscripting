@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     /// Called when the mouse enters the GUI element or collider.
     /// </summary>
     [UnitCategory("Events/Input")]
-    public sealed class OnMouseEnter : GameObjectEventUnit<EmptyEventArgs>
+    public sealed class OnMouseEnter : GameObjectEventUnit<EmptyEventArgs>, IMouseEventUnit
     {
         public override Type MessageListenerType => typeof(UnityOnMouseEnterMessageListener);
         protected override string hookName => EventHooks.OnMouseEnter;

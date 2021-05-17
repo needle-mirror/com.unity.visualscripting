@@ -7,7 +7,7 @@ namespace Unity.VisualScripting
     /// <summary>
     /// Check if a GameObject or StateMachine has a StateGraph
     /// </summary>
-    [TypeIcon(typeof(StateGraphAsset))]
+    [TypeIcon(typeof(StateGraph))]
     [UnitCategory("Graphs/Graph Nodes")]
     public sealed class HasStateGraph : HasGraph<StateGraph, StateGraphAsset, StateMachine>
     {

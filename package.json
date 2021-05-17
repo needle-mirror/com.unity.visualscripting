@@ -1,7 +1,7 @@
 {
   "name": "com.unity.visualscripting",
   "displayName": "Visual Scripting",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "unity": "2021.1",
   "description": "Visual scripting is a workflow that uses visual, node-based graphs to design behaviors rather than write lines of C# script.\n\nEnabling artists, designers and programmers alike, visual scripting can be used to design final logic, quickly create prototypes, iterate on gameplay and create custom nodes to help streamline collaboration.\n\nVisual scripting is compatible with third-party APIs, including most packages, assets and custom libraries.",
   "type": "tool",
@@ -10,14 +10,14 @@
     "com.unity.modules.jsonserialize": "1.0.0"
   },
   "relatedPackages": {
-    "com.unity.visualscripting.tests": "1.7.1"
+    "com.unity.visualscripting.tests": "1.7.2"
   },
   "upmCi": {
-    "footprint": "04c56305d0d1a98591ec0a0cf63cf0f6ceed2972"
+    "footprint": "a4b30ec8a5934c9e5fef137f3e961808f90f38bd"
   },
   "repository": {
     "url": "https://github.cds.internal.unity3d.com/unity/com.unity.visualscripting.git",
     "type": "git",
-    "revision": "a992468af97ec2c78eb5a5455e1ef584a2f75d27"
+    "revision": "50ad819715a5bcbfd1131cc47e51dc8c3cea57e2"
   }
 }

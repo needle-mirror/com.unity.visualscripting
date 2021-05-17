@@ -4,12 +4,8 @@ namespace Unity.VisualScripting
 {
     public class GraphContextProvider : SingleDecoratorProvider<GraphReference, IGraphContext, GraphContextAttribute>
     {
-        static GraphContextProvider()
-        {
-            instance = new GraphContextProvider();
-        }
-
-        public static GraphContextProvider instance { get; }
+        private static GraphContextProvider _instance;
+        public static GraphContextProvider instance => _instance ?? (_instance = new GraphContextProvider());
 
         protected override bool cache => true;
 

@@ -122,6 +122,16 @@ namespace Unity.VisualScripting
                         yield return Warning.Caution($"{PortLabel(validPort)} has an invalid connection.");
                     }
                 }
+
+#if UNITY_IOS || UNITY_ANDROID || UNITY_TVOS
+                if (unit is IMouseEventUnit)
+                {
+                    var graphName = string.IsNullOrEmpty(unit.graph.title) ? "A ScriptGraph" : $"The ScriptGraph {unit.graph.title}";
+                    var unitName = BoltFlowNameUtility.UnitTitle(unit.GetType(), true, false);
+                    Debug.LogWarning($"{graphName} contains a {unitName} node. Presence of MouseEvent nodes might impact performance on handheld devices.");
+                    yield return Warning.Caution("Presence of MouseEvent nodes might impact performance on handheld devices.");
+                }
+#endif
             }
 
             foreach (var controlInput in unit.controlInputs)

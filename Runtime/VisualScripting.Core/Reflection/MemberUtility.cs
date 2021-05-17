@@ -11,25 +11,16 @@ namespace Unity.VisualScripting
     {
         static MemberUtility()
         {
-            // Cache a list of all extension methods in assemblies
-            // http://stackoverflow.com/a/299526
-
-            extensionMethodsCache = RuntimeCodebase.types
-                .Where(type => type.IsStatic() && !type.IsGenericType && !type.IsNested)
-                .SelectMany(type => type.GetMethods())
-                .Where(method => method.IsExtension())
-                .ToArray();
-
-            // The process of resolving generic methods is very expensive.
-            // Cache the results for each this parameter type.
-
-            inheritedExtensionMethodsCache = new Dictionary<Type, MethodInfo[]>();
-            genericExtensionMethods = new HashSet<MethodInfo>();
+            ExtensionMethodsCache = new Lazy<ExtensionMethodCache>(() => new ExtensionMethodCache(), true);
+            InheritedExtensionMethodsCache = new Lazy<Dictionary<Type, MethodInfo[]>>(() => new Dictionary<Type, MethodInfo[]>(), true);
+            GenericExtensionMethods = new Lazy<HashSet<MethodInfo>>(() => new HashSet<MethodInfo>(), true);
         }
 
-        private static readonly MethodInfo[] extensionMethodsCache;
-        private static readonly Dictionary<Type, MethodInfo[]> inheritedExtensionMethodsCache;
-        private static readonly HashSet<MethodInfo> genericExtensionMethods;
+        // The process of resolving generic methods is very expensive.
+        // Cache the results for each this parameter type.
+        private static readonly Lazy<ExtensionMethodCache> ExtensionMethodsCache;
+        private static readonly Lazy<Dictionary<Type, MethodInfo[]>> InheritedExtensionMethodsCache;
+        private static readonly Lazy<HashSet<MethodInfo>> GenericExtensionMethods;
 
         public static bool IsOperator(this MethodInfo method)
         {
@@ -97,12 +88,13 @@ namespace Unity.VisualScripting
 
         public static bool IsGenericExtension(this MethodInfo methodInfo)
         {
-            return genericExtensionMethods.Contains(methodInfo);
+            return GenericExtensionMethods.Value.Contains(methodInfo);
         }
 
         private static IEnumerable<MethodInfo> GetInheritedExtensionMethods(Type thisArgumentType)
         {
-            foreach (var extensionMethod in extensionMethodsCache)
+            var methodInfos = ExtensionMethodsCache.Value.Cache;
+            foreach (var extensionMethod in methodInfos)
             {
                 var compatibleThis = extensionMethod.GetParameters()[0].ParameterType.CanMakeGenericTypeVia(thisArgumentType);
 
@@ -114,7 +106,7 @@ namespace Unity.VisualScripting
 
                         var closedConstructedMethod = extensionMethod.MakeGenericMethodVia(closedConstructedParameterTypes.ToArray());
 
-                        genericExtensionMethods.Add(closedConstructedMethod);
+                        GenericExtensionMethods.Value.Add(closedConstructedMethod);
 
                         yield return closedConstructedMethod;
                     }
@@ -130,12 +122,12 @@ namespace Unity.VisualScripting
         {
             if (inherited)
             {
-                lock (inheritedExtensionMethodsCache)
+                lock (InheritedExtensionMethodsCache)
                 {
-                    if (!inheritedExtensionMethodsCache.TryGetValue(thisArgumentType, out var inheritedExtensionMethods))
+                    if (!InheritedExtensionMethodsCache.Value.TryGetValue(thisArgumentType, out var inheritedExtensionMethods))
                     {
                         inheritedExtensionMethods = GetInheritedExtensionMethods(thisArgumentType).ToArray();
-                        inheritedExtensionMethodsCache.Add(thisArgumentType, inheritedExtensionMethods);
+                        InheritedExtensionMethodsCache.Value.Add(thisArgumentType, inheritedExtensionMethods);
                     }
 
                     return inheritedExtensionMethods;
@@ -143,7 +135,8 @@ namespace Unity.VisualScripting
             }
             else
             {
-                return extensionMethodsCache.Where(method => method.GetParameters()[0].ParameterType == thisArgumentType);
+                var methodInfos = ExtensionMethodsCache.Value.Cache;
+                return methodInfos.Where(method => method.GetParameters()[0].ParameterType == thisArgumentType);
             }
         }
 
@@ -689,5 +682,21 @@ namespace Unity.VisualScripting
         }
 
         #endregion
+    }
+
+    internal class ExtensionMethodCache
+    {
+        internal ExtensionMethodCache()
+        {
+            // Cache a list of all extension methods in assemblies
+            // http://stackoverflow.com/a/299526
+            Cache = RuntimeCodebase.types
+                .Where(type => type.IsStatic() && !type.IsGenericType && !type.IsNested)
+                .SelectMany(type => type.GetMethods())
+                .Where(method => method.IsExtension())
+                .ToArray();
+        }
+
+        internal readonly MethodInfo[] Cache;
     }
 }

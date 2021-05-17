@@ -14,9 +14,9 @@ namespace Unity.VisualScripting.Analytics
 
             OnPreprocessBuildAnalytics.Send(new OnPreprocessBuildAnalytics.Data()
             {
-                Guid = report.summary.guid,
-                BuildTarget = report.summary.platform,
-                BuildTargetGroup = report.summary.platformGroup
+                guid = report.summary.guid.ToString(),
+                buildTarget = report.summary.platform,
+                buildTargetGroup = report.summary.platformGroup
             });
         }
     }

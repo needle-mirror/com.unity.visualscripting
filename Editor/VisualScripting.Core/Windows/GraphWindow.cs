@@ -109,7 +109,7 @@ namespace Unity.VisualScripting
 
             CheckForActiveContextChange();
 
-            if (exitGUI && isActive && LudiqGUIUtility.isWithinGUI)
+            if (exitGUI && isActive && LudiqGUIUtility.isWithinGUI && e.type == EventType.Repaint)
             {
                 GUIUtility.ExitGUI();
             }

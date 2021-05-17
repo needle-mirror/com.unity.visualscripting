@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -50,7 +51,7 @@ namespace Unity.VisualScripting
 
         internal static Dictionary<string, HashSet<string>> pluginDependencies;
 
-        private static readonly Queue<Action> delayQueue = new Queue<Action>();
+        private static readonly ConcurrentQueue<Action> delayQueue = new ConcurrentQueue<Action>();
 
         public static event Action delayCall
         {
@@ -64,10 +65,7 @@ namespace Unity.VisualScripting
                 }
                 else
                 {
-                    lock (delayQueue)
-                    {
-                        delayQueue.Enqueue(value);
-                    }
+                    delayQueue.Enqueue(value);
                 }
             }
             remove { }
@@ -264,12 +262,9 @@ namespace Unity.VisualScripting
 
                 using (ProfilingUtility.SampleBlock($"Delayed Calls"))
                 {
-                    lock (delayQueue)
+                    while (delayQueue.TryDequeue(out var a))
                     {
-                        while (delayQueue.Count > 0)
-                        {
-                            delayQueue.Dequeue().Invoke();
-                        }
+                        a.Invoke();
                     }
                 }
 

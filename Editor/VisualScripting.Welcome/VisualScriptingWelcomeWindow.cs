@@ -211,7 +211,7 @@ namespace Unity.VisualScripting
 
         private void OpenGraph()
         {
-            EditorGUIUtility.ShowObjectPicker<LudiqScriptableObject>(null, false, String.Empty,
+            EditorGUIUtility.ShowObjectPicker<MacroScriptableObject>(null, false, String.Empty,
                 EditorGUIUtility.GetControlID(FocusType.Passive));
         }
 

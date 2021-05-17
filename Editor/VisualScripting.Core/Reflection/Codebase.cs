@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
@@ -78,8 +77,6 @@ namespace Unity.VisualScripting
                         {
                             _types.Add(type);
 
-                            RuntimeCodebase.PrewarmTypeDeserialization(type);
-
                             if (isRuntimeAssembly)
                             {
                                 _runtimeTypes.Add(type);
@@ -143,6 +140,8 @@ namespace Unity.VisualScripting
         private static List<Assembly> _settingsAssemblies;
         private static List<Type> _settingsAssembliesTypes;
         private static List<Type> _settingsTypes;
+
+        private static readonly Dictionary<Assembly, bool> _editorAssemblyCache = new Dictionary<Assembly, bool>();
 
         #region Serialization
 
@@ -242,8 +241,10 @@ namespace Unity.VisualScripting
 
         public static ReadOnlyCollection<Assembly> assemblies { get; private set; }
 
+        // not used
         public static ReadOnlyCollection<Assembly> runtimeAssemblies { get; private set; }
 
+        // not used
         public static ReadOnlyCollection<Assembly> editorAssemblies { get; private set; }
 
         public static ReadOnlyCollection<Assembly> ludiqAssemblies { get; private set; }
@@ -260,6 +261,7 @@ namespace Unity.VisualScripting
 
         public static ReadOnlyCollection<Type> editorTypes { get; private set; }
 
+        // not used
         public static ReadOnlyCollection<Type> ludiqTypes { get; private set; }
 
         public static ReadOnlyCollection<Type> ludiqRuntimeTypes { get; private set; }
@@ -319,12 +321,18 @@ namespace Unity.VisualScripting
 
         private static bool IsEditorAssembly(Assembly assembly)
         {
+            // assembly.GetName() is surprisingly expensive, keep a cache
+            if (_editorAssemblyCache.TryGetValue(assembly, out var isEditor))
+                return isEditor;
             if (Attribute.IsDefined(assembly, typeof(AssemblyIsEditorAssembly)))
             {
+                _editorAssemblyCache.Add(assembly, isEditor);
                 return true;
             }
 
-            return IsEditorAssembly(assembly.GetName());
+            var isEditorAssembly = IsEditorAssembly(assembly.GetName());
+            _editorAssemblyCache.Add(assembly, isEditorAssembly);
+            return isEditorAssembly;
         }
 
         private static bool IsRuntimeAssembly(Assembly assembly)
@@ -420,6 +428,8 @@ namespace Unity.VisualScripting
         {
             using (ProfilingUtility.SampleBlock("Codebase settings update"))
             {
+                var typeOptionsHashSet = new HashSet<Type>(BoltCore.Configuration.typeOptions);
+                var assemblyOptionsHashSet = new HashSet<LooseAssemblyName>(BoltCore.Configuration.assemblyOptions);
                 _settingsAssemblies = new List<Assembly>();
                 _settingsAssembliesTypes = new List<Type>();
                 _settingsTypes = new List<Type>();
@@ -430,7 +440,7 @@ namespace Unity.VisualScripting
 
                     // It's important not to provide types outside the settings assemblies,
                     // because only those assemblies will be added to the linker to preserve stripping.
-                    if (IncludeInSettings(assembly))
+                    if (IncludeInSettings(assembly, assemblyOptionsHashSet))
                     {
                         _settingsAssemblies.Add(assembly);
 
@@ -447,7 +457,7 @@ namespace Unity.VisualScripting
 
                             // For optimization, we bypass [IncludeInSettings] for assemblies
                             // that could logically never have it.
-                            if (IncludeInSettings(type, couldHaveIncludeInSettingsAttribute))
+                            if (IncludeInSettings(type, couldHaveIncludeInSettingsAttribute, typeOptionsHashSet))
                             {
                                 _settingsTypes.Add(type);
                             }
@@ -463,29 +473,36 @@ namespace Unity.VisualScripting
             }
         }
 
-        private static bool IncludeInSettings(Assembly a)
+        private static bool IncludeInSettings(Assembly a, HashSet<LooseAssemblyName> assemblyOptionsHashSet)
         {
-            return BoltCore.Configuration.assemblyOptions.Any(assemblyName => assemblyName == a.GetName().Name);
+            var includeInSettings = assemblyOptionsHashSet.Contains(a.GetName().Name);
+            return includeInSettings;
         }
 
-        private static bool IncludeInSettings(Type t, bool couldHaveAttribute)
+        private static bool IncludeInSettings(Type t, bool couldHaveAttribute, HashSet<Type> typeOptionsHashSet)
         {
             // User-defined settings types
-            // TODO OPTIM with temporary hash set. Contains is O(n)
-            if (BoltCore.Configuration.typeOptions.Contains(t))
+            if (typeOptionsHashSet.Contains(t))
             {
                 return true;
             }
 
-            var attributeInclude = couldHaveAttribute ? t.GetAttribute<IncludeInSettingsAttribute>()?.include : null;
-
             // Include non-runtime, non-internal enum and class deriving from UnityObject
-            if ((attributeInclude ?? true) && (t.IsEnum || typeof(UnityObject).IsAssignableFrom(t)))
+            // check the attribute last, attempt to early-out
+            if ((t.IsEnum || typeof(UnityObject).IsAssignableFrom(t)) && (GetAttributeInclude() ?? true))
             {
                 return !IsEditorType(t) && !IsInternalType(t);
             }
 
-            return attributeInclude ?? false;
+            return GetAttributeInclude() ?? false;
+
+            bool? GetAttributeInclude()
+            {
+                // Attribute.IsDefined is way faster than GetAttribute
+                return couldHaveAttribute && Attribute.IsDefined(t, typeof(IncludeInSettingsAttribute))
+                    ? (bool?)t.GetAttribute<IncludeInSettingsAttribute>().include
+                    : null;
+            }
         }
 
         public static CodebaseSubset Subset(IEnumerable<Type> types, MemberFilter memberFilter, TypeFilter memberTypeFilter = null)

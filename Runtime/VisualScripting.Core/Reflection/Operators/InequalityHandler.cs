@@ -149,7 +149,7 @@ namespace Unity.VisualScripting
             return false;
         }
 
-        public override object Operate(object leftOperand, object rightOperand)
+        protected override object CustomHandling(object leftOperand, object rightOperand)
         {
             return !Equals(leftOperand, rightOperand);
         }

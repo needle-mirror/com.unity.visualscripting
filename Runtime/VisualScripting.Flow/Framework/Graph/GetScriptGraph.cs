@@ -3,6 +3,6 @@ namespace Unity.VisualScripting
     /// <summary>
     /// Get a ScriptGraphAsset from a GameObject
     /// </summary>
-    [TypeIcon(typeof(ScriptGraphAsset))]
+    [TypeIcon(typeof(FlowGraph))]
     public class GetScriptGraph : GetGraph<FlowGraph, ScriptGraphAsset, ScriptMachine> { }
 }

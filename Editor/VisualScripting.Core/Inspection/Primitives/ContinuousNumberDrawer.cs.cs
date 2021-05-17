@@ -13,7 +13,6 @@ namespace Unity.VisualScripting
             position = BeginLabeledBlock(metadata, position, label);
 
             T newValue;
-            var oldValue = Convert.ToSingle(metadata.value);
 
             var fieldPosition = new Rect
                 (
@@ -27,11 +26,18 @@ namespace Unity.VisualScripting
             {
                 var rangeAttribute = metadata.GetAttribute<InspectorRangeAttribute>();
 
-                newValue = (T)Convert.ChangeType(EditorGUI.Slider(fieldPosition, oldValue, rangeAttribute.min, rangeAttribute.max), typeof(T));
+                newValue = (T)Convert.ChangeType(EditorGUI.Slider(fieldPosition, Convert.ToSingle(metadata.value), rangeAttribute.min, rangeAttribute.max), typeof(T));
             }
             else
             {
-                newValue = (T)Convert.ChangeType(LudiqGUI.DraggableFloatField(fieldPosition, oldValue), typeof(T));
+                if (Is64Bits(metadata.value))
+                {
+                    newValue = (T)Convert.ChangeType(LudiqGUI.DraggableLongField(fieldPosition, Convert.ToInt64(metadata.value)), typeof(T));
+                }
+                else
+                {
+                    newValue = (T)Convert.ChangeType(LudiqGUI.DraggableFloatField(fieldPosition, Convert.ToSingle(metadata.value)), typeof(T));
+                }
             }
 
             if (EndBlock(metadata))
@@ -46,7 +52,6 @@ namespace Unity.VisualScripting
             BeginBlock(metadata, position);
 
             T newValue;
-            var oldValue = Convert.ToSingle(metadata.value);
 
             var fieldPosition = new Rect
                 (
@@ -60,11 +65,18 @@ namespace Unity.VisualScripting
             {
                 var rangeAttribute = metadata.GetAttribute<InspectorRangeAttribute>();
 
-                newValue = (T)Convert.ChangeType(EditorGUI.Slider(fieldPosition, label, oldValue, rangeAttribute.min, rangeAttribute.max), typeof(T));
+                newValue = (T)Convert.ChangeType(EditorGUI.Slider(fieldPosition, label, Convert.ToSingle(metadata.value), rangeAttribute.min, rangeAttribute.max), typeof(T));
             }
             else
             {
-                newValue = (T)Convert.ChangeType(LudiqGUI.DraggableFloatField(fieldPosition, oldValue, label), typeof(T));
+                if (Is64Bits(metadata.value))
+                {
+                    newValue = (T)Convert.ChangeType(LudiqGUI.DraggableLongField(fieldPosition, Convert.ToInt64(metadata.value), label), typeof(T));
+                }
+                else
+                {
+                    newValue = (T)Convert.ChangeType(LudiqGUI.DraggableFloatField(fieldPosition, Convert.ToSingle(metadata.value), label), typeof(T));
+                }
             }
 
             if (EndBlock(metadata))
@@ -72,6 +84,11 @@ namespace Unity.VisualScripting
                 metadata.RecordUndo();
                 metadata.value = newValue;
             }
+        }
+
+        static bool Is64Bits(object value)
+        {
+            return value is long || value is ulong;
         }
 
         protected override float GetHeight(float width, GUIContent label)

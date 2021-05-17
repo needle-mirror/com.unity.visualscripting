@@ -22,6 +22,11 @@ namespace Unity.VisualScripting
 
             plugins = allPlugins.OrderByDependencies().ToList();
 
+            foreach (var plugin in plugins)
+            {
+                plugin.resources.LoadMigrations();
+            }
+
             steps = this.plugins
                 .SelectMany(plugin =>
                     plugin.resources.pendingMigrations.Select(migration => new MigrationStep(plugin, migration)))
@@ -102,7 +107,7 @@ namespace Unity.VisualScripting
                     Debug.LogWarning(
                         $"VisualScripting - A migration step for {step.plugin.id} failed! Your project might be in an invalid state, restore your backup and try again...");
                     analyticsData.steps[i].success = false;
-                    analyticsData.steps[i].exception = step.exception.ToString();
+                    analyticsData.steps[i].exception = AnalyticsUtilities.AnonymizeException(step.exception);
                     analyticsData.total.success = false;
                     break;
 #if VISUAL_SCRIPT_DEBUG_MIGRATION

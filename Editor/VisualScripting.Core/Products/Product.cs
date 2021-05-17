@@ -18,7 +18,6 @@ namespace Unity.VisualScripting
 
         public virtual void Initialize()
         {
-            aboutWindow = new AboutWindow(this);
             configurationPanel = new ConfigurationPanel(this);
         }
 
@@ -51,7 +50,6 @@ namespace Unity.VisualScripting
 
         public abstract string configurationPanelLabel { get; }
 
-        public AboutWindow aboutWindow { get; private set; }
         public ConfigurationPanel configurationPanel { get; private set; }
     }
 }

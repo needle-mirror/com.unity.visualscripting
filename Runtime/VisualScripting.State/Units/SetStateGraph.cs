@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     /// <summary>
     /// Set a StateGraphAsset to a StateMachine
     /// </summary>
-    [TypeIcon(typeof(StateGraphAsset))]
+    [TypeIcon(typeof(StateGraph))]
     public class SetStateGraph : SetGraph<StateGraph, StateGraphAsset, StateMachine>
     {
         /// <summary>

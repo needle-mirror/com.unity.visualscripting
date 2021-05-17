@@ -1,5 +1,6 @@
+using System;
 using UnityEditor;
-using UnityEditor.Build.Reporting;
+using UnityEngine;
 
 namespace Unity.VisualScripting.Analytics
 {
@@ -36,11 +37,15 @@ namespace Unity.VisualScripting.Analytics
             return _isRegistered;
         }
 
+        [Serializable]
         internal struct Data
         {
-            internal GUID Guid;
-            internal BuildTarget BuildTarget;
-            internal BuildTargetGroup BuildTargetGroup;
+            [SerializeField]
+            internal string guid;
+            [SerializeField]
+            internal BuildTarget buildTarget;
+            [SerializeField]
+            internal BuildTargetGroup buildTargetGroup;
         }
     }
 }

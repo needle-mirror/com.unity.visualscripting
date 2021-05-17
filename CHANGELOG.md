@@ -2,7 +2,22 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.7.2] - 2021-05-17
+### Changed
+- NotEquals node in non-scalar mode is now consistent with Equals
+
+### Fixed
+- Fixed long values not preserved in literal nodes.
+- Fixed root icons in breadcrumbs in the graph editor window. [BOLT-1290](https://issuetracker.unity3d.com/issues/wrong-icons-when-opening-a-script-graph)
+- Fixed graph nodes icons
+- Fixed project settings will not show when looking for graphs
+- Fixed exception when user double clicks on a graph
+- Raise warnings at edit time when a MouseEvent node is used when targeting handheld devices instead of build time.
+
 ## [1.7.1] - 2021-05-07
+### Removed
+- For performance reasons, the BackgroundWorker attribute is now obsolete and won't have any effect. Use BackgroundWorker.Schedule() directly
+
 ### Changed
 - Renamed the VSSettingsProvider assembly to Unity.VisualScripting.SettingsProvider.Editor
 - Variables Saver GameObject no longer appears until a variable is created or changed. [BOLT-1343](https://jira.unity3d.com/browse/BOLT-1343)
@@ -17,6 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - The UI references to 'Unit' were changed to 'Node' without any change to the underlying types 
 - Nodes from Timeline, Cinemachine and InputSystem packages are now automatically included, with their assemblies part of the default assemblyOptions.
 - Progress bar titles for initial node generation have been tweaked to better indicate that it is a one-time process
+- Various optimizations to reduce the duration of domain reloads
 
 ### Added
 - Added workflows to create new graphs directly from the Graph Window

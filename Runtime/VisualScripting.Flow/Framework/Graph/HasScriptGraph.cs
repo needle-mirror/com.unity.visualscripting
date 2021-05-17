@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     /// <summary>
     /// Check if a GameObject or ScriptMachine has a ScriptGraph
     /// </summary>
-    [TypeIcon(typeof(ScriptGraphAsset))]
+    [TypeIcon(typeof(FlowGraph))]
     [UnitCategory("Graphs/Graph Nodes")]
     public sealed class HasScriptGraph : HasGraph<FlowGraph, ScriptGraphAsset, ScriptMachine>
     {

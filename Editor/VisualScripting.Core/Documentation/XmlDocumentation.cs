@@ -8,32 +8,48 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
-    [BackgroundWorker]
     public static class XmlDocumentation
     {
-        static XmlDocumentation()
+        class Data
         {
-            documentations = new Dictionary<Assembly, Dictionary<string, XmlDocumentationTags>>();
-            typeDocumentations = new Dictionary<Type, XmlDocumentationTags>();
-            memberDocumentations = new Dictionary<MemberInfo, XmlDocumentationTags>();
-            enumDocumentations = new Dictionary<object, XmlDocumentationTags>();
+            public Dictionary<Assembly, Dictionary<string, XmlDocumentationTags>> documentations;
+            public Dictionary<Type, XmlDocumentationTags> typeDocumentations;
+            public Dictionary<MemberInfo, XmlDocumentationTags> memberDocumentations;
+            public Dictionary<object, XmlDocumentationTags> enumDocumentations;
+
+            public void Clear()
+            {
+                documentations.Clear();
+                typeDocumentations.Clear();
+                memberDocumentations.Clear();
+                enumDocumentations.Clear();
+            }
         }
 
-        private static readonly Dictionary<Assembly, Dictionary<string, XmlDocumentationTags>> documentations;
-        private static readonly Dictionary<Type, XmlDocumentationTags> typeDocumentations;
-        private static readonly Dictionary<MemberInfo, XmlDocumentationTags> memberDocumentations;
-        private static readonly Dictionary<object, XmlDocumentationTags> enumDocumentations;
+        private static Lazy<Data> LazyData = new Lazy<Data>(Init);
         private static readonly object @lock = new object();
 
         public static event Action loadComplete;
 
         public static bool loaded { get; private set; }
 
-        private static readonly string[] fallbackDirectories =
+        private static string[] fallbackDirectories;
+
+        static XmlDocumentation()
         {
-            BoltCore.Paths.dotNetDocumentation,
-            BoltCore.Paths.assemblyDocumentations
-        };
+            BackgroundWorker.Schedule(BackgroundWork);
+        }
+
+        private static Data Init()
+        {
+            return new Data
+            {
+                documentations = new Dictionary<Assembly, Dictionary<string, XmlDocumentationTags>>(),
+                typeDocumentations = new Dictionary<Type, XmlDocumentationTags>(),
+                memberDocumentations = new Dictionary<MemberInfo, XmlDocumentationTags>(),
+                enumDocumentations = new Dictionary<object, XmlDocumentationTags>(),
+            };
+        }
 
         public static void BackgroundWork()
         {
@@ -48,11 +64,12 @@ namespace Unity.VisualScripting
                 ProgressUtility.DisplayProgressBar($"Documentation ({assembly.GetName().Name})...", null, (float)i / Codebase.settingsAssemblies.Count);
                 var documentation = GetDocumentationUncached(assembly);
 
+
                 lock (@lock)
                 {
-                    if (!documentations.ContainsKey(assembly))
+                    if (!LazyData.Value.documentations.ContainsKey(assembly))
                     {
-                        documentations.Add(assembly, documentation);
+                        LazyData.Value.documentations.Add(assembly, documentation);
                     }
                 }
             }
@@ -66,12 +83,11 @@ namespace Unity.VisualScripting
 
         public static void ClearCache()
         {
+            if (!LazyData.IsValueCreated)
+                return;
             lock (@lock)
             {
-                documentations.Clear();
-                typeDocumentations.Clear();
-                memberDocumentations.Clear();
-                enumDocumentations.Clear();
+                LazyData.Value.Clear();
             }
         }
 
@@ -84,12 +100,13 @@ namespace Unity.VisualScripting
                     return null;
                 }
 
-                if (!documentations.ContainsKey(assembly))
+                var valueDocumentations = LazyData.Value.documentations;
+                if (!valueDocumentations.ContainsKey(assembly))
                 {
-                    documentations.Add(assembly, GetDocumentationUncached(assembly));
+                    valueDocumentations.Add(assembly, GetDocumentationUncached(assembly));
                 }
 
-                return documentations[assembly];
+                return valueDocumentations[assembly];
             }
         }
 
@@ -103,6 +120,14 @@ namespace Unity.VisualScripting
             documentationPath = "/" + documentationPath;
 #endif
 
+            if (fallbackDirectories == null)
+            {
+                fallbackDirectories = new[]
+                {
+                    BoltCore.Paths.dotNetDocumentation,
+                    BoltCore.Paths.assemblyDocumentations
+                };
+            }
             if (!File.Exists(documentationPath))
             {
                 foreach (var fallbackDirectory in fallbackDirectories)
@@ -212,12 +237,13 @@ namespace Unity.VisualScripting
                     return null;
                 }
 
-                if (!enumDocumentations.ContainsKey(@enum))
+                var xmlDocumentationTagsMap = LazyData.Value.enumDocumentations;
+                if (!xmlDocumentationTagsMap.ContainsKey(@enum))
                 {
-                    enumDocumentations.Add(@enum, GetDocumentationFromNameInherited(@enum.GetType(), 'F', @enum.ToString(), null));
+                    xmlDocumentationTagsMap.Add(@enum, GetDocumentationFromNameInherited(@enum.GetType(), 'F', @enum.ToString(), null));
                 }
 
-                return enumDocumentations[@enum];
+                return xmlDocumentationTagsMap[@enum];
             }
         }
 
@@ -230,16 +256,17 @@ namespace Unity.VisualScripting
                     return null;
                 }
 
-                if (!memberDocumentations.ContainsKey(methodInfo))
+                var xmlDocumentationTagsMap = LazyData.Value.memberDocumentations;
+                if (!xmlDocumentationTagsMap.ContainsKey(methodInfo))
                 {
                     var methodDocumentation = GetDocumentationFromNameInherited(methodInfo.DeclaringType, 'M', methodInfo.Name, methodInfo.GetParameters());
 
                     methodDocumentation?.CompleteWithMethodBase(methodInfo, methodInfo.ReturnType);
 
-                    memberDocumentations.Add(methodInfo, methodDocumentation);
+                    xmlDocumentationTagsMap.Add(methodInfo, methodDocumentation);
                 }
 
-                return memberDocumentations[methodInfo];
+                return xmlDocumentationTagsMap[methodInfo];
             }
         }
 
@@ -252,12 +279,13 @@ namespace Unity.VisualScripting
                     return null;
                 }
 
-                if (!memberDocumentations.ContainsKey(fieldInfo))
+                var xmlDocumentationTagsMap = LazyData.Value.memberDocumentations;
+                if (!xmlDocumentationTagsMap.ContainsKey(fieldInfo))
                 {
-                    memberDocumentations.Add(fieldInfo, GetDocumentationFromNameInherited(fieldInfo.DeclaringType, 'F', fieldInfo.Name, null));
+                    xmlDocumentationTagsMap.Add(fieldInfo, GetDocumentationFromNameInherited(fieldInfo.DeclaringType, 'F', fieldInfo.Name, null));
                 }
 
-                return memberDocumentations[fieldInfo];
+                return xmlDocumentationTagsMap[fieldInfo];
             }
         }
 
@@ -270,12 +298,13 @@ namespace Unity.VisualScripting
                     return null;
                 }
 
-                if (!memberDocumentations.ContainsKey(propertyInfo))
+                var xmlDocumentationTagsMap = LazyData.Value.memberDocumentations;
+                if (!xmlDocumentationTagsMap.ContainsKey(propertyInfo))
                 {
-                    memberDocumentations.Add(propertyInfo, GetDocumentationFromNameInherited(propertyInfo.DeclaringType, 'P', propertyInfo.Name, null));
+                    xmlDocumentationTagsMap.Add(propertyInfo, GetDocumentationFromNameInherited(propertyInfo.DeclaringType, 'P', propertyInfo.Name, null));
                 }
 
-                return memberDocumentations[propertyInfo];
+                return xmlDocumentationTagsMap[propertyInfo];
             }
         }
 
@@ -288,16 +317,17 @@ namespace Unity.VisualScripting
                     return null;
                 }
 
-                if (!memberDocumentations.ContainsKey(constructorInfo))
+                var xmlDocumentationTagsMap = LazyData.Value.memberDocumentations;
+                if (!xmlDocumentationTagsMap.ContainsKey(constructorInfo))
                 {
                     var constructorDocumentation = GetDocumentationFromNameInherited(constructorInfo.DeclaringType, 'M', "#ctor", constructorInfo.GetParameters());
 
                     constructorDocumentation?.CompleteWithMethodBase(constructorInfo, constructorInfo.DeclaringType);
 
-                    memberDocumentations.Add(constructorInfo, constructorDocumentation);
+                    xmlDocumentationTagsMap.Add(constructorInfo, constructorDocumentation);
                 }
 
-                return memberDocumentations[constructorInfo];
+                return xmlDocumentationTagsMap[constructorInfo];
             }
         }
 
@@ -310,12 +340,13 @@ namespace Unity.VisualScripting
                     return null;
                 }
 
-                if (!typeDocumentations.ContainsKey(type))
+                var xmlDocumentationTagsMap = LazyData.Value.typeDocumentations;
+                if (!xmlDocumentationTagsMap.ContainsKey(type))
                 {
-                    typeDocumentations.Add(type, GetDocumentationFromNameInherited(type, 'T', null, null));
+                    xmlDocumentationTagsMap.Add(type, GetDocumentationFromNameInherited(type, 'T', null, null));
                 }
 
-                return typeDocumentations[type];
+                return xmlDocumentationTagsMap[type];
             }
         }
 

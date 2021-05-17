@@ -5,7 +5,7 @@ using UnityObject = UnityEngine.Object;
 namespace Unity.VisualScripting
 {
     [DisableAnnotation]
-    public abstract class Macro<TGraph> : LudiqScriptableObject, IMacro
+    public abstract class Macro<TGraph> : MacroScriptableObject, IMacro
         where TGraph : class, IGraph, new()
     {
         [SerializeAs(nameof(graph))]

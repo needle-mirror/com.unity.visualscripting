@@ -591,6 +591,18 @@ namespace Unity.VisualScripting
             Dragging
         }
 
+        public static long DraggableLongField(Rect position, long value, GUIContent label = null)
+        {
+            var controlId = GUIUtility.GetControlID(numberDragControlIDHint, FocusType.Passive, position);
+
+            if (e.shift)
+            {
+                value = DragNumber(position, true, controlId, value);
+            }
+
+            return label != null ? EditorGUI.LongField(position, label, value) : EditorGUI.LongField(position, value);
+        }
+
         public static float DraggableFloatField(Rect position, float value, GUIContent label = null)
         {
             var controlId = GUIUtility.GetControlID(numberDragControlIDHint, FocusType.Passive, position);
@@ -613,6 +625,14 @@ namespace Unity.VisualScripting
             }
 
             return label != null ? EditorGUI.IntField(position, label, value) : EditorGUI.IntField(position, value);
+        }
+
+        public static long DragNumber(Rect hotZone, bool deadZone, int controlId, long value)
+        {
+            double continuousValue = value;
+            long discreteValue = 0;
+            DragNumber(hotZone, deadZone, controlId, true, ref continuousValue, ref discreteValue);
+            return (long)continuousValue;
         }
 
         public static float DragNumber(Rect hotZone, bool deadZone, int controlId, float value)

@@ -18,10 +18,6 @@ namespace Unity.VisualScripting
 
         public virtual void Initialize()
         {
-            acknowledgements = InstantiateLinkedTypes<PluginAcknowledgement>().OrderBy(a => a.title).ToList().AsReadOnly();
-            migrations = InstantiateLinkedTypes<PluginMigration>().OrderBy(m => m).ToList().AsReadOnly();
-            changelogs = InstantiateLinkedTypes<PluginChangelog>().OrderBy(m => m).ToList().AsReadOnly();
-
             var pluginType = plugin.GetType();
             assembly = new AssemblyResourceProvider(pluginType.Assembly, pluginType.Namespace, assemblyRoot);
             _providers.Add(assembly);
@@ -48,6 +44,11 @@ namespace Unity.VisualScripting
             }
         }
 
+        internal void LoadMigrations()
+        {
+            migrations = InstantiateLinkedTypes<PluginMigration>().OrderBy(m => m).ToList().AsReadOnly();
+        }
+
         public virtual void LateInitialize() { }
 
         public Plugin plugin { get; }
@@ -55,11 +56,7 @@ namespace Unity.VisualScripting
 
         #region Types
 
-        public ReadOnlyCollection<PluginAcknowledgement> acknowledgements { get; private set; }
-
         public ReadOnlyCollection<PluginMigration> migrations { get; private set; }
-
-        public ReadOnlyCollection<PluginChangelog> changelogs { get; private set; }
 
         public IEnumerable<PluginMigration> pendingMigrations => migrations.Where(m => m.from >= plugin.manifest.savedVersion && m.to <= plugin.manifest.currentVersion);
 

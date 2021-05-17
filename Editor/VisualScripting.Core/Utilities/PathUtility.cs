@@ -126,22 +126,15 @@ namespace Unity.VisualScripting
         public static string GetPackageRootPath()
         {
             // This bit of code is so that we can find out Bolt package folder wherever it lives, as long as its accessible to the AssetDatabase
-            // We do this by first finding the path to one of our plugins (Unity.VisualScripting.Core.Editor) and tracing it up to find the root Bolt folder path
-            var guids = AssetDatabase.FindAssets("Unity.VisualScripting.Core.Editor");
-            if (guids.Length <= 0)
+            const string packageEditorFolderGuid = "ee9f54d6cd5a17045a3f1c9877d4b7e6";
+            var packageEditorAssetPath = AssetDatabase.GUIDToAssetPath(packageEditorFolderGuid);
+            if (packageEditorAssetPath == string.Empty)
             {
-                throw new FileNotFoundException($"Couldn't find Bolt package folder.");
+                throw new FileNotFoundException($"Couldn't find Visual Scripting package folder.");
             }
 
-            var boltCoreEditorAssetPath = AssetDatabase.GUIDToAssetPath(guids[0]);
-
-            // if Bolt is loaded as a package, that package might live out of the project tree and be referenced by path in the manifest.json
-            // in that case, we need a virtual package path that will be automatically remapped to the actual package location by the AssetDatabase
-            // eg. Packages/com.unity.visualscripting/...
-            // otherwise, just keep a relative path from the project folder
-            // eg. if boltCoreEditorAssetPath == Project/Assets/Subfolder/com.unity.visualscripting/...., keep Assets/Subfolder/com.unity.visualscripting/
-            // The root Bolt folder path is 2 directories up from our Unity.VisualScripting.Core.Editor.asmdef parent dir
-            return Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(boltCoreEditorAssetPath)));
+            // The root VS folder path is 1 directories up from our Editor folder
+            return Path.GetDirectoryName(packageEditorAssetPath);
         }
     }
 }

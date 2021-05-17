@@ -5,7 +5,7 @@ namespace Unity.VisualScripting
     /// <summary>
     /// Set a ScriptGraph to a ScriptMachine
     /// </summary>
-    [TypeIcon(typeof(ScriptGraphAsset))]
+    [TypeIcon(typeof(FlowGraph))]
     public sealed class SetScriptGraph : SetGraph<FlowGraph, ScriptGraphAsset, ScriptMachine>
     {
         /// <summary>

@@ -11,7 +11,6 @@ using UnityEngine;
 namespace Unity.VisualScripting
 {
     [InitializeAfterPlugins]
-    [BackgroundWorker(nameof(AutoLoad))]
     public static class UnitBase
     {
         static UnitBase()
@@ -19,6 +18,7 @@ namespace Unity.VisualScripting
             staticUnitsExtensions = new NonNullableList<Func<IEnumerable<IUnitOption>>>();
             dynamicUnitsExtensions = new NonNullableList<Func<IEnumerable<IUnitOption>>>();
             contextualUnitsExtensions = new NonNullableList<Func<GraphReference, IEnumerable<IUnitOption>>>();
+            BackgroundWorker.Schedule(AutoLoad);
         }
 
         private static readonly object @lock = new object();

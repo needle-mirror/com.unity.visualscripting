@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 
 namespace Unity.VisualScripting
 {
@@ -8,6 +9,18 @@ namespace Unity.VisualScripting
         private BoltFlowResources(BoltFlow plugin) : base(plugin)
         {
             icons = new Icons(this);
+
+            EditorApplication.playModeStateChanged += LogPlayModeState;
+        }
+
+        private void LogPlayModeState(PlayModeStateChange state)
+        {
+            if (state == PlayModeStateChange.EnteredEditMode)
+            {
+                VisualScripting.Icons.Clear();
+
+                icons.Load();
+            }
         }
 
         public Icons icons { get; private set; }
@@ -49,7 +62,7 @@ namespace Unity.VisualScripting
             {
                 graph = typeof(FlowGraph).Icon();
                 unit = typeof(IUnit).Icon();
-                flowMacro = resources.LoadIcon("FlowMacro.png", false);
+                flowMacro = resources.LoadIcon("FlowMacro.png");
                 unitCategory = resources.LoadIcon("UnitCategory.png");
 
                 var portResolutions = new[] { new TextureResolution(9, 12), new TextureResolution(12, 24) };

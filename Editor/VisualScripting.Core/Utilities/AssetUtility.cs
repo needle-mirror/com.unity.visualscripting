@@ -11,6 +11,33 @@ namespace Unity.VisualScripting
 {
     public static class AssetUtility
     {
+        private static AssetBundle assetBundleEditor;
+
+        public static AssetBundle LoadAssetBundle(string name, string path)
+        {
+            foreach (AssetBundle assetBundle in AssetBundle.GetAllLoadedAssetBundles())
+            {
+                if (assetBundle.name == name)
+                {
+                    return assetBundle;
+                }
+            }
+
+            return AssetBundle.LoadFromFile(path);
+        }
+        public static AssetBundle AssetBundleEditor
+        {
+            get
+            {
+                if (assetBundleEditor.IsUnityNull())
+                {
+                    assetBundleEditor = LoadAssetBundle(PluginPaths.assetBundle, PluginPaths.resourcesBundle);
+                }
+
+                return assetBundleEditor;
+            }
+        }
+
         public static IEnumerable<T> GetAllAssetsOfType<T>()
         {
             if (typeof(UnityObject).IsAssignableFrom(typeof(T)))

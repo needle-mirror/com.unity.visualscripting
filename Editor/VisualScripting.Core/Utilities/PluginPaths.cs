@@ -49,7 +49,11 @@ namespace Unity.VisualScripting
 
         public string resourcesFolder => Path.Combine(package, $"Editor/VisualScripting.Core/EditorAssetResources");
 
-        public string resourcesBundle => Path.Combine(package, $"Editor/VisualScripting.Core/Resources.assetbundle");
+        internal const string assetBundleRoot = "Assets/EditorResources";
+
+        internal const string assetBundle = "visualscripting.editor_assets";
+
+        public static string resourcesBundle = Path.Combine(package, $"Editor/VisualScripting.Core/EditorAssetResources/{assetBundle}");
 
         public static string generated => Path.Combine(Paths.assets, FOLDER_BOLT_GENERATED);
 

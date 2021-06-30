@@ -8,6 +8,15 @@ namespace Unity.VisualScripting
 
         private bool _isLabelVisible = true;
 
+        internal IUnitPort portType;
+
+        public EditorTexture icon
+        {
+            get
+            {
+                return GetIcon(portType);
+            }
+        }
         public string fallbackLabel { get; set; }
 
         public string label
@@ -26,8 +35,6 @@ namespace Unity.VisualScripting
 
         public string summary { get; set; }
 
-        public EditorTexture icon { get; set; }
-
         public Func<Metadata, Metadata> getMetadata { get; set; }
 
         public void CopyFrom(UnitPortDescription other)
@@ -35,8 +42,29 @@ namespace Unity.VisualScripting
             _label = other._label;
             _isLabelVisible = other._isLabelVisible;
             summary = other.summary;
-            icon = other.icon ?? icon;
+            portType = other.portType ?? portType;
             getMetadata = other.getMetadata ?? getMetadata;
+        }
+
+        private static EditorTexture GetIcon(IUnitPort portType)
+        {
+            if (portType is IUnitControlPort)
+            {
+                return typeof(Flow).Icon();
+            }
+            else if (portType is IUnitValuePort)
+            {
+                return Icons.Type(((IUnitValuePort)portType).type);
+            }
+            else if (portType is IUnitInvalidPort)
+            {
+                return BoltCore.Resources.icons.errorState;
+            }
+            else
+            {
+                // throw new NotSupportedException();
+                return null;
+            }
         }
     }
 }

@@ -10,6 +10,8 @@ namespace Unity.VisualScripting
             Ensure.That(nameof(target)).IsNotNull(target);
 
             this.target = target;
+
+            description.portType = target;
         }
 
         public IUnitPort target { get; }
@@ -30,32 +32,12 @@ namespace Unity.VisualScripting
 
                 description.fallbackLabel = target.key.Filter(symbols: false, punctuation: false).Prettify();
 
-                UnityAPI.Async(() => description.icon = GetIcon(target));
+                description.portType = target;
 
                 target.unit?.Descriptor<IUnitDescriptor>().DescribePort(target, description);
 
                 // No DescriptionAssignment is run, so we'll just always assume that the description changes.
                 DescriptorProvider.instance.TriggerDescriptionChange(target);
-            }
-        }
-
-        private static EditorTexture GetIcon(IUnitPort port)
-        {
-            if (port is IUnitControlPort)
-            {
-                return typeof(Flow).Icon();
-            }
-            else if (port is IUnitValuePort)
-            {
-                return Icons.Type(((IUnitValuePort)port).type);
-            }
-            else if (port is IUnitInvalidPort)
-            {
-                return BoltCore.Resources.icons.errorState;
-            }
-            else
-            {
-                throw new NotSupportedException();
             }
         }
     }

@@ -26,6 +26,8 @@ namespace Unity.VisualScripting
             try
             {
                 var vsCoreProjectSettings = GetLegacyProjectSettingsAsset("VisualScripting.Core");
+                if (vsCoreProjectSettings == null)
+                    return new SemanticVersion();
 
                 return (SemanticVersion)vsCoreProjectSettings["savedVersion"];
             }

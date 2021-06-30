@@ -44,9 +44,11 @@ namespace Unity.VisualScripting
 
                         var isRuntimeAssembly = IsRuntimeAssembly(assembly);
                         var isEditorAssembly = IsEditorDependentAssembly(assembly);
-                        var isLudiqAssembly = IsLudiqRuntimeDependentAssembly(assembly) || IsLudiqEditorDependentAssembly(assembly);
-                        var isLudiqEditorAssembly = IsLudiqEditorDependentAssembly(assembly);
-                        var isLudiqRuntimeAssembly = IsLudiqRuntimeDependentAssembly(assembly) && !IsLudiqEditorDependentAssembly(assembly);
+                        var isLudiqRuntimeDependentAssembly = IsLudiqRuntimeDependentAssembly(assembly);
+                        var isLudiqEditorDependentAssembly = IsLudiqEditorDependentAssembly(assembly);
+                        var isLudiqAssembly = isLudiqRuntimeDependentAssembly || isLudiqEditorDependentAssembly;
+                        var isLudiqEditorAssembly = isLudiqEditorDependentAssembly;
+                        var isLudiqRuntimeAssembly = isLudiqRuntimeDependentAssembly && !isLudiqEditorDependentAssembly;
 
                         if (isRuntimeAssembly)
                         {
@@ -370,7 +372,7 @@ namespace Unity.VisualScripting
 
             foreach (var dependency in assembly.GetReferencedAssemblies())
             {
-                if (dependency.Name == "Unity.VisualScripting.Core")
+                if (dependency.Name == "Unity.VisualScripting.Core" || dependency.Name == "Unity.VisualScripting.Flow" || dependency.Name == "Unity.VisualScripting.State")
                 {
                     return true;
                 }

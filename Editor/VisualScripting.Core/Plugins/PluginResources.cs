@@ -18,29 +18,36 @@ namespace Unity.VisualScripting
 
         public virtual void Initialize()
         {
-            var pluginType = plugin.GetType();
-            assembly = new AssemblyResourceProvider(pluginType.Assembly, pluginType.Namespace, assemblyRoot);
-            _providers.Add(assembly);
+            //TODO: Move it to the lazy initialization
 
-            if (Directory.Exists(plugin.paths.resourcesFolder))
+            if (plugin.id == BoltCore.ID)
             {
-                editorAssets = new EditorAssetResourceProvider(plugin.paths.resourcesFolder);
-                _providers.Add(editorAssets);
-            }
+                var pluginType = plugin.GetType();
+                assembly = new AssemblyResourceProvider(pluginType.Assembly, pluginType.Namespace, assemblyRoot);
 
-            if (File.Exists(plugin.paths.resourcesBundle))
-            {
-                assetBundle = new AssetBundleResourceProvider(AssetBundle.LoadFromFile(plugin.paths.resourcesBundle));
-                _providers.Add(assetBundle);
-            }
+                _providers.Add(assembly);
 
-            if (_providers.Count == 0)
-            {
-                Debug.LogWarning($"No plugin resources provider available for {plugin.id}.");
-            }
-            else
-            {
-                defaultProvider = _providers[0];
+                if (Directory.Exists(plugin.paths.resourcesFolder))
+                {
+                    editorAssets = new EditorAssetResourceProvider(plugin.paths.resourcesFolder);
+                    _providers.Add(editorAssets);
+                }
+
+                if (File.Exists(PluginPaths.resourcesBundle))
+                {
+                    assetBundleResourceProvider = new AssetBundleResourceProvider(AssetUtility.AssetBundleEditor);
+
+                    _providers.Add(assetBundleResourceProvider);
+                }
+
+                if (_providers.Count == 0)
+                {
+                    Debug.LogWarning($"No plugin resources provider available for {plugin.id}.");
+                }
+                else
+                {
+                    defaultProvider = _providers[0];
+                }
             }
         }
 
@@ -77,15 +84,14 @@ namespace Unity.VisualScripting
 
         public IResourceProvider defaultProvider { get; private set; }
 
-        private readonly List<IResourceProvider> _providers = new List<IResourceProvider>();
+        private static readonly List<IResourceProvider> _providers = new List<IResourceProvider>();
 
         public IEnumerable<IResourceProvider> providers => _providers;
 
         protected virtual string assemblyRoot => "Resources";
 
+        public AssetBundleResourceProvider assetBundleResourceProvider { get; private set; }
         public AssemblyResourceProvider assembly { get; private set; }
-
-        public AssetBundleResourceProvider assetBundle { get; private set; }
 
         public EditorAssetResourceProvider editorAssets { get; private set; }
 

@@ -34,6 +34,9 @@ namespace Unity.VisualScripting
             try
             {
                 var legacyProjectSettingsAsset = MigrationUtility_1_6_to_1_7.GetLegacyProjectSettingsAsset("VisualScripting.State");
+                if (legacyProjectSettingsAsset == null)
+                    return false;
+
                 savedVersion = (SemanticVersion)legacyProjectSettingsAsset["savedVersion"];
                 return true;
             }

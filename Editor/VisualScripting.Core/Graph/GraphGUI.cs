@@ -649,6 +649,11 @@ namespace Unity.VisualScripting
         {
             static Styles()
             {
+                LoadStyles();
+            }
+
+            internal static void LoadStyles()
+            {
                 coordinatesLabel = new GUIStyle(EditorStyles.label);
                 coordinatesLabel.normal.textColor = majorGridColor;
                 coordinatesLabel.fontSize = 9;
@@ -709,11 +714,6 @@ namespace Unity.VisualScripting
                 var arrowResolutions = new TextureResolution[] { 32 };
                 var arrowOptions = CreateTextureOptions.Scalable;
 
-                arrowUp = BoltCore.Resources.LoadTexture("ArrowUp.png", arrowResolutions, arrowOptions, false);
-                arrowDown = BoltCore.Resources.LoadTexture("ArrowDown.png", arrowResolutions, arrowOptions, false);
-                arrowLeft = BoltCore.Resources.LoadTexture("ArrowLeft.png", arrowResolutions, arrowOptions, false);
-                arrowRight = BoltCore.Resources.LoadTexture("ArrowRight.png", arrowResolutions, arrowOptions, false);
-
                 lockIcon = new GUIContent(LudiqGUIUtility.newSkin ? ((GUIStyle)"IN ThumbnailSelection").onActive.background : ((GUIStyle)"Icon.Locked").onNormal.background);
 
                 if (EditorGUIUtility.isProSkin)
@@ -733,17 +733,17 @@ namespace Unity.VisualScripting
             }
 
             public static readonly GUIStyle background = new GUIStyle("flow background");
-            public static readonly Color majorGridColor = new Color(1, 1, 1, 0.1f);
-            public static readonly Color minorGridColor = new Color(1, 1, 1, 0.03f);
+            public static Color majorGridColor = new Color(1, 1, 1, 0.1f);
+            public static Color minorGridColor = new Color(1, 1, 1, 0.03f);
             public static readonly int majorGridGroup = 10;
             public static readonly float minorGridSpacing = 12;
             public static readonly float majorGridThickness = 1;
             public static readonly float minorGridThickness = 1;
-            public static readonly Dictionary<NodeColor, GUIStyle> squares;
-            public static readonly Dictionary<NodeColor, GUIStyle> hexes;
-            public static readonly GUIStyle coordinatesLabel;
-            public static readonly GUIStyle dragAndDropPreviewBackground;
-            public static readonly GUIStyle dragAndDropPreviewText;
+            public static Dictionary<NodeColor, GUIStyle> squares;
+            public static Dictionary<NodeColor, GUIStyle> hexes;
+            public static GUIStyle coordinatesLabel;
+            public static GUIStyle dragAndDropPreviewBackground;
+            public static GUIStyle dragAndDropPreviewText;
 
             public static readonly EditorTexture arrowUp;
             public static readonly EditorTexture arrowRight;
@@ -752,7 +752,7 @@ namespace Unity.VisualScripting
 
             public static readonly float dimAlpha = EditorGUIUtility.isProSkin ? 0.3f : 0.4f;
 
-            public static readonly GUIContent lockIcon;
+            public static GUIContent lockIcon;
 
             // Mono allocates memory on its default comparer for enums
             // because of boxing. Creating a specific comparer to avoid this.

@@ -94,12 +94,6 @@ namespace Unity.VisualScripting
         public bool snapToGrid { get; set; } = false;
 
         /// <summary>
-        /// The window size at which the graph window should start displaying a sidebar.
-        /// </summary>
-        [EditorPref]
-        public Vector2 graphSidebarThreshold { get; set; } = new Vector2(1000, 700);
-
-        /// <summary>
         /// The speed at which the mouse scroll pans the graph.
         /// </summary>
         [EditorPref]
@@ -176,8 +170,6 @@ namespace Unity.VisualScripting
 
         private bool _humanNaming = true;
 
-        private LanguageIconsSkin _languageIconsSkin = LanguageIconsSkin.VisualStudioMonochrome;
-
         public event Action namingSchemeChanged;
 
         /// <summary>
@@ -205,20 +197,6 @@ namespace Unity.VisualScripting
         /// </summary>
         [EditorPref]
         public bool groupInheritedMembers { get; set; } = true;
-
-        /// <summary>
-        /// The skin to use for language related (C# / VB) icons.
-        /// </summary>
-        [EditorPref]
-        public LanguageIconsSkin LanguageIconsSkin
-        {
-            get => _languageIconsSkin;
-            set
-            {
-                _languageIconsSkin = value;
-                Icons.Language.skin = value;
-            }
-        }
 
         /// <summary>
         /// Whether the height of the fuzzy finder should be limited to the
@@ -251,7 +229,7 @@ namespace Unity.VisualScripting
 
         #region Project Settings
 
-        [ProjectSetting]
+        [ProjectSetting(visibleCondition = nameof(developerMode), resettable = false)]
         public bool isVisualScriptingUsed { get; set; } = false;
 
         /// <summary>
@@ -355,7 +333,7 @@ namespace Unity.VisualScripting
             "UnityEngine.FileSystemHttpModule",
             "UnityEngine.JSONSerializeModule",
             "UnityEngine.UmbraModule",
-            
+
             // Other packages included with VS in its feature set
             // Timeline
             "Unity.Timeline",

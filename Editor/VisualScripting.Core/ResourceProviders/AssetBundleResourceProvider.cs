@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityObject = UnityEngine.Object;
 
@@ -9,11 +11,24 @@ namespace Unity.VisualScripting
     {
         public const char DirectorySeparatorChar = '/';
 
-        public AssetBundle assetBundle { get; }
+        private AssetBundle _assetBundle;
+
+        public AssetBundle assetBundle
+        {
+            get
+            {
+                if (_assetBundle.IsUnityNull())
+                {
+                    _assetBundle = AssetUtility.AssetBundleEditor;
+                }
+
+                return _assetBundle;
+            }
+        }
 
         public AssetBundleResourceProvider(AssetBundle assetBundle)
         {
-            this.assetBundle = assetBundle;
+            _assetBundle = assetBundle;
 
             Analyze();
         }

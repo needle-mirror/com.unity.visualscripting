@@ -41,6 +41,14 @@ namespace Unity.VisualScripting
             }
         }
 
+        internal static void Clear()
+        {
+            typeIcons.Clear();
+            namespaceIcons.Clear();
+            enumIcons.Clear();
+            resourcesTypeIcons.Clear();
+        }
+
         public static EditorTexture Icon(this Type type)
         {
             return Type(type);
@@ -601,8 +609,6 @@ namespace Unity.VisualScripting
         {
             public static LanguageIconSet method;
 
-            private static LanguageIconsSkin _skin;
-
             public static LanguageIconSet @namespace { get; private set; }
 
             public static LanguageIconSet @class { get; private set; }
@@ -626,22 +632,6 @@ namespace Unity.VisualScripting
             public static LanguageIconSet @const { get; private set; }
 
             public static LanguageIconSet favorite { get; private set; }
-
-            public static LanguageIconsSkin skin
-            {
-                get { return _skin; }
-                set
-                {
-                    var oldSkin = skin;
-
-                    _skin = value;
-
-                    if (PluginContainer.initialized && skin != oldSkin)
-                    {
-                        Load();
-                    }
-                }
-            }
 
             internal static void Load()
             {

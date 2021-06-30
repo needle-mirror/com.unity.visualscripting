@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.7.3] - 2021-06-30
+### Changed
+- Removed unused Preferences
+- Renamed preference "Update Units Automatically" to "Update Nodes Automatically"
+
+### Fixed
+- Fixed an issue where uncaught exceptions were thrown in Debug builds of the Windows editor
+- Fixed custom units not appearing in the finder
+
 ## [1.7.2] - 2021-05-17
 ### Changed
 - NotEquals node in non-scalar mode is now consistent with Equals
@@ -23,6 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Variables Saver GameObject no longer appears until a variable is created or changed. [BOLT-1343](https://jira.unity3d.com/browse/BOLT-1343)
 - Renamed Singleton GameObjects created by Visual Scripting to use "VisualScripting ---" names.
 - All internal plugin and product versions have been normalized to use the package version.
+- NotEquals node in non-scalar mode is now consistent with Equals
 - SuperUnits have been renamed into Subgraphs
 - No longer have a hard dependency on any of the following built-in modules: ai, animation, particlesystem, physics, physics2d
 - ScriptMachine is now displayed as "Script Machine" instead of "Flow Machine" in the Gizmo window.

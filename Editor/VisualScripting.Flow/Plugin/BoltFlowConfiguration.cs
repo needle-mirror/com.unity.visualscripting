@@ -13,8 +13,8 @@ namespace Unity.VisualScripting
         /// (Experimental) Whether the node database should be incrementally updated
         /// whenever a codebase change is detected.
         /// </summary>
-        [EditorPref]
-        public bool updateUnitsAutomatically { get; set; } = false;
+        [EditorPref, RenamedFrom("updateUnitsAutomatically")]
+        public bool updateNodesAutomatically { get; set; } = false;
 
         /// <summary>
         /// Whether predictive debugging should warn about null value inputs.

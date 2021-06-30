@@ -56,7 +56,7 @@ namespace Unity.VisualScripting
         private static void MigrateProjectSettings()
         {
             var legacyProjectSettingPluginIds = new string[]
-                {"VisualScripting.Core", "VisualScripting.Flow", "VisualScripting.State"};
+            {"VisualScripting.Core", "VisualScripting.Flow", "VisualScripting.State"};
 
             BoltCore.Configuration.LoadOrCreateProjectSettingsAsset();
 
@@ -113,6 +113,9 @@ namespace Unity.VisualScripting
             try
             {
                 var legacyProjectSettingsAsset = MigrationUtility_1_6_to_1_7.GetLegacyProjectSettingsAsset("VisualScripting.Core");
+                if (legacyProjectSettingsAsset == null)
+                    return false;
+
                 savedVersion = (SemanticVersion)legacyProjectSettingsAsset["savedVersion"];
                 return true;
             }

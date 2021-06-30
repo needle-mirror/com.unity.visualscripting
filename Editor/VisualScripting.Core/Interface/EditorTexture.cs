@@ -174,6 +174,8 @@ namespace Unity.VisualScripting
 
         public static EditorTexture Load(IEnumerable<IResourceProvider> resourceProviders, string path, TextureResolution[] resolutions, CreateTextureOptions options, bool required)
         {
+            path = Path.Combine(PluginPaths.assetBundleRoot, path);
+
             foreach (var resources in resourceProviders)
             {
                 var texture = Load(resources, path, resolutions, options, false);

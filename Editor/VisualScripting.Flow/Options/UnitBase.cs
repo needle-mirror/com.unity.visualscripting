@@ -45,7 +45,7 @@ namespace Unity.VisualScripting
                 // Update before loading if required, ensuring no "in-between" state
                 // where the loaded options are not yet loaded.
                 // The update code will not touch the options array if it is null.
-                if (BoltFlow.Configuration.updateUnitsAutomatically)
+                if (BoltFlow.Configuration.updateNodesAutomatically)
                 {
                     try
                     {
@@ -653,26 +653,26 @@ namespace Unity.VisualScripting
             {
                 foreach (var script in UnityEngine.Resources.FindObjectsOfTypeAll<MonoScript>())
                 {
-                    var path = AssetDatabase.GetAssetPath(script);
-                    var guid = AssetDatabase.AssetPathToGUID(path);
                     var type = script.GetClass();
 
+                    // Skip scripts without types
+                    if (type == null)
+                    {
+                        continue;
+                    }
+
+                    var path = AssetDatabase.GetAssetPath(script);
                     // Skip built-in Unity plugins, which are referenced by full path
                     if (!path.StartsWith("Assets"))
                     {
                         continue;
                     }
 
+                    var guid = AssetDatabase.AssetPathToGUID(path);
                     // Add the GUID to the list, even if it doesn't have any type
                     if (!guidsToTypes.ContainsKey(guid))
                     {
                         guidsToTypes.Add(guid, new HashSet<Type>());
-                    }
-
-                    // Skip scripts without types
-                    if (type == null)
-                    {
-                        continue;
                     }
 
                     if (!typesToGuids.ContainsKey(type))

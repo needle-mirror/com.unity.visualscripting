@@ -12,8 +12,7 @@ namespace Unity.VisualScripting
 
         public static bool allowsAPI => !Serialization.isUnitySerializing && Thread.CurrentThread == thread;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void RuntimeInitialize()
+        internal static void RuntimeInitialize()
         {
             thread = Thread.CurrentThread;
         }

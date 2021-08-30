@@ -10,17 +10,28 @@ namespace Unity.VisualScripting
         {
             icons = new Icons(this);
 
-            EditorApplication.playModeStateChanged += LogPlayModeState;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+            ReloadAssets.OnBuildCompleted += OnBuildCompleted;
         }
 
-        private void LogPlayModeState(PlayModeStateChange state)
+        private void OnBuildCompleted()
+        {
+            ReloadTextureAssets();
+        }
+
+        private void OnPlayModeStateChanged(PlayModeStateChange state)
         {
             if (state == PlayModeStateChange.EnteredEditMode)
             {
-                VisualScripting.Icons.Clear();
-
-                icons.Load();
+                ReloadTextureAssets();
             }
+        }
+
+        private void ReloadTextureAssets()
+        {
+            VisualScripting.Icons.Clear();
+
+            icons.Load();
         }
 
         public Icons icons { get; private set; }

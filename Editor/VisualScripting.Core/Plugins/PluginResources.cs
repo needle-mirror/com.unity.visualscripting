@@ -27,15 +27,18 @@ namespace Unity.VisualScripting
 
                 _providers.Add(assembly);
 
-                if (Directory.Exists(plugin.paths.resourcesFolder))
+                if (Directory.Exists(PluginPaths.resourcesFolder))
                 {
-                    editorAssets = new EditorAssetResourceProvider(plugin.paths.resourcesFolder);
+                    editorAssets = new EditorAssetResourceProvider(PluginPaths.resourcesFolder);
                     _providers.Add(editorAssets);
                 }
 
                 if (File.Exists(PluginPaths.resourcesBundle))
                 {
-                    assetBundleResourceProvider = new AssetBundleResourceProvider(AssetUtility.AssetBundleEditor);
+                    /*
+                     * TODO: To be removed when the asset bundle team fix the issue JIRA: BOLT-1650
+                     */
+                    assetBundleResourceProvider = new AssetBundleResourceProvider();
 
                     _providers.Add(assetBundleResourceProvider);
                 }
@@ -134,9 +137,25 @@ namespace Unity.VisualScripting
         {
             Ensure.That(nameof(path)).IsNotNull(path);
 
-            foreach (var plugin in PluginContainer.plugins)
+            if (PluginContainer.initialized)
             {
-                var pluginIcon = plugin.resources.LoadIcon(path, false);
+                foreach (var plugin in PluginContainer.plugins)
+                {
+                    var pluginIcon = plugin.resources.LoadIcon(path, false);
+
+                    if (pluginIcon != null)
+                    {
+                        return pluginIcon;
+                    }
+                }
+            }
+            // Doing this only because we share an asset bundle of icons between all plugins.
+            // Every plugin (including core) has an asset bundle resource provider that points to that pack, so
+            // use this as a last ditch effort even if the whole plugin container isn't loaded.
+            // Eventually, this should be refactored away (when we stop using a plugin container / individual plugins)
+            else if (BoltCore.Resources != null)
+            {
+                var pluginIcon = BoltCore.Resources.LoadIcon(path, false);
 
                 if (pluginIcon != null)
                 {

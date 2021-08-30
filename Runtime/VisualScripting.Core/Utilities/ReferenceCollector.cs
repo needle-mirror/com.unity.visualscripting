@@ -8,8 +8,7 @@ namespace Unity.VisualScripting
     {
         public static event Action onSceneUnloaded;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void Initialize()
+        internal static void Initialize()
         {
             SceneManager.sceneUnloaded += scene => onSceneUnloaded?.Invoke();
         }

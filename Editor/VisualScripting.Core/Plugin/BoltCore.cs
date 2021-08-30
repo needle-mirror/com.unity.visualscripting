@@ -35,11 +35,11 @@ namespace Unity.VisualScripting
 
         public static BoltCore instance { get; private set; }
 
-        public static BoltCoreManifest Manifest => (BoltCoreManifest)instance.manifest;
-        public static BoltCoreConfiguration Configuration => (BoltCoreConfiguration)instance.configuration;
-        public static BoltCoreResources Resources => (BoltCoreResources)instance.resources;
-        public static BoltCorePaths Paths => (BoltCorePaths)instance.paths;
-        public static BoltCoreResources.Icons Icons => Resources.icons;
+        public static BoltCoreManifest Manifest => (BoltCoreManifest)instance?.manifest;
+        public static BoltCoreConfiguration Configuration => (BoltCoreConfiguration)instance?.configuration;
+        public static BoltCoreResources Resources => (BoltCoreResources)instance?.resources;
+        public static BoltCorePaths Paths => (BoltCorePaths)instance?.paths;
+        public static BoltCoreResources.Icons Icons => Resources?.icons;
 
         public const string LegacyRuntimeDllGuid = "c8d0ad23af520fe46aabe2b1fecf6462";
 

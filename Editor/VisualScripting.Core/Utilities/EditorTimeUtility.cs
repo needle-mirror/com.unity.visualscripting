@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
-    [InitializeOnLoad]
     public static class EditorTimeUtility
     {
         private static int _frameCount;
@@ -12,7 +11,7 @@ namespace Unity.VisualScripting
 
         private static float time => EditorApplication.isPlaying ? Time.realtimeSinceStartup : (float)EditorApplication.timeSinceStartup;
 
-        static EditorTimeUtility()
+        internal static void Initialize()
         {
             EditorApplication.update += () => _frameCount++;
 

@@ -13,10 +13,9 @@ using UnityEditor.MPE;
 
 namespace Unity.VisualScripting
 {
-    [InitializeOnLoad]
     public sealed class PluginContainer
     {
-        static PluginContainer()
+        internal static void InitializeOnLoad()
         {
             // Fixes console errors shown in Standalone Profiler window (Bolt-1289).
             // Note: MPE as a whole (including Standalone Profiler) is going away, will need to remove this
@@ -30,20 +29,10 @@ namespace Unity.VisualScripting
                 return;
 #endif
 
-            if (EditorApplication.isPlayingOrWillChangePlaymode)
-            {
-                Initialize();
-            }
-            else
-            {
-                initializeCallbackFunction = Initialize;
-                EditorApplication.delayCall += initializeCallbackFunction;
-            }
+            Initialize();
         }
 
         private static bool initializing;
-
-        private static readonly EditorApplication.CallbackFunction initializeCallbackFunction;
 
         private static Dictionary<string, Plugin> pluginsById;
 
@@ -88,10 +77,8 @@ namespace Unity.VisualScripting
             anyVersionMismatch = plugins.Any(p => p.manifest.versionMismatch);
         }
 
-        private static void Initialize()
+        internal static void Initialize()
         {
-            EditorApplication.delayCall -= initializeCallbackFunction;
-
             using (ProfilingUtility.SampleBlock("Plugin Container Initialization"))
             {
                 initializing = true;
@@ -345,8 +332,6 @@ namespace Unity.VisualScripting
 
         public static string GetPluginID(Type linkedType)
         {
-            EnsureInitialized();
-
             Ensure.That(nameof(linkedType)).IsNotNull(linkedType);
             Ensure.That(nameof(linkedType)).HasAttribute<PluginAttribute>(linkedType);
 

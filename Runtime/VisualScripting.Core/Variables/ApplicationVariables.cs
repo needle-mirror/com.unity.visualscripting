@@ -39,8 +39,7 @@ namespace Unity.VisualScripting
 
         public static void OnExitEditMode() { }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void OnEnterPlayMode()
+        internal static void OnEnterPlayMode()
         {
             CreateRuntimeDeclarations();
         }

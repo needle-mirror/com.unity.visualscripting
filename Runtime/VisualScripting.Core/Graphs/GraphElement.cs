@@ -155,7 +155,10 @@ namespace Unity.VisualScripting
 
         public virtual IEnumerable<ISerializationDependency> deserializationDependencies => Enumerable.Empty<ISerializationDependency>();
 
-        public virtual IEnumerable<object> aotStubs => Enumerable.Empty<object>();
+        public virtual IEnumerable<object> GetAotStubs(HashSet<object> visited)
+        {
+            return Enumerable.Empty<object>();
+        }
 
         public virtual void Prewarm() { }
 

@@ -32,6 +32,7 @@ namespace Unity.VisualScripting
 
         public static void OpenActive(GraphReference reference)
         {
+            VSUsageUtility.isVisualScriptingUsed = true;
             if (active == null)
             {
                 active = GetWindow<GraphWindow>();
@@ -128,7 +129,7 @@ namespace Unity.VisualScripting
             reference = null;
         }
 
-        public void MatchSelection()
+        public void MatchSelection(bool IsOnHierarchyChange = false)
         {
             if (locked)
             {
@@ -172,7 +173,7 @@ namespace Unity.VisualScripting
                 var rootChanged = previousRoot != newRoot;
                 var rootGameObjectChanged = !UnityObjectUtility.TrulyEqual(previousRootGameObject, newRootGameObject);
 
-                if (rootWasEmpty || (rootChanged && (rootIsMacro || (rootIsMachine && rootGameObjectChanged))))
+                if (rootWasEmpty || (!IsOnHierarchyChange && (rootChanged && (rootIsMacro || (rootIsMachine && rootGameObjectChanged)))))
                 {
                     var newRef = GraphReference.New(newRoot, false);
                     if (newRef != null && !newRef.isValid)
@@ -280,7 +281,7 @@ namespace Unity.VisualScripting
         private void _OnHierarchyChange()
         {
             Validate();
-            MatchSelection();
+            MatchSelection(true);
             context?.DescribeAndAnalyze();
         }
 
@@ -320,11 +321,7 @@ namespace Unity.VisualScripting
 
             PluginContainer.delayCall += () =>
             {
-                BoltCore.Configuration.isVisualScriptingUsed = true;
-                // To ensure our savedVersion is serialized for future migrations
-                BoltCore.Manifest.savedVersion = BoltCore.Manifest.savedVersion;
-
-                PluginContainer.ImportUnits();
+                VSUsageUtility.isVisualScriptingUsed = true;
 
                 titleContent = new GUIContent(defaultTitle, BoltCore.Icons.window?[IconSize.Small]);
 

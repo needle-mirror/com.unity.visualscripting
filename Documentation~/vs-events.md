@@ -1,22 +1,20 @@
-#Events API
+# Events API
 
-| **Note**                                                     |
-| :----------------------------------------------------------- |
-| For versions 2019/2020 LTS, download the visual scripting solution from the [Unity Asset Store](https://assetstore.unity.com/packages/tools/visual-bolt-163802). |
+> [!NOTE]
+> For versions 2019/2020 LTS, download the Visual Scripting package from the [Unity Asset Store](https://assetstore.unity.com/packages/tools/visual-bolt-163802).
 
 
 Visual scripting provides a simple API to trigger custom events from C# script. 
 
-###Usings
+## Usings
 
 Add the following usings to your C# script to access the API.
 
 ```
-using Ludiq;
-using Bolt;
+using Unity.VisualScripting;
 ```
 
-###Triggering
+## Triggering
 
 A single method call is needed to trigger a custom event. Pass as many arguments as required.
 
@@ -24,15 +22,15 @@ A single method call is needed to trigger a custom event. Pass as many arguments
 CustomEvent.Trigger(targetGameObject, argument1, argument2, ...)
 ```
 
-For example, this custom event unit:
+For example, this custom event node:
 
 
-![](images/bolt-events.png)
+![](images/vs-events-custom-event-node.png)
 
 
 Can be triggered with this line of code.
 
 ```
-CustomEvent.Trigger(enemy, "Damage", 30);
+CustomEvent.Trigger(enemy, "On Damage", 30);
 ```
 

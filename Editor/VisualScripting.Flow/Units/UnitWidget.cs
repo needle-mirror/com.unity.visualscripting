@@ -762,7 +762,7 @@ namespace Unity.VisualScripting
         {
             var icon = description.icon ?? BoltFlow.Icons.unit;
 
-            if (icon != null)
+            if (icon != null && icon[(int)iconPosition.width])
             {
                 GUI.DrawTexture(iconPosition, icon[(int)iconPosition.width]);
             }

@@ -714,6 +714,11 @@ namespace Unity.VisualScripting
                 var arrowResolutions = new TextureResolution[] { 32 };
                 var arrowOptions = CreateTextureOptions.Scalable;
 
+                arrowUp = BoltCore.Resources.LoadTexture("ArrowUp_Pro.png", arrowResolutions, arrowOptions, false);
+                arrowDown = BoltCore.Resources.LoadTexture("ArrowDown_Pro.png", arrowResolutions, arrowOptions, false);
+                arrowLeft = BoltCore.Resources.LoadTexture("ArrowLeft_Pro.png", arrowResolutions, arrowOptions, false);
+                arrowRight = BoltCore.Resources.LoadTexture("ArrowRight_Pro.png", arrowResolutions, arrowOptions, false);
+
                 lockIcon = new GUIContent(LudiqGUIUtility.newSkin ? ((GUIStyle)"IN ThumbnailSelection").onActive.background : ((GUIStyle)"Icon.Locked").onNormal.background);
 
                 if (EditorGUIUtility.isProSkin)
@@ -745,10 +750,10 @@ namespace Unity.VisualScripting
             public static GUIStyle dragAndDropPreviewBackground;
             public static GUIStyle dragAndDropPreviewText;
 
-            public static readonly EditorTexture arrowUp;
-            public static readonly EditorTexture arrowRight;
-            public static readonly EditorTexture arrowDown;
-            public static readonly EditorTexture arrowLeft;
+            public static EditorTexture arrowUp;
+            public static EditorTexture arrowRight;
+            public static EditorTexture arrowDown;
+            public static EditorTexture arrowLeft;
 
             public static readonly float dimAlpha = EditorGUIUtility.isProSkin ? 0.3f : 0.4f;
 

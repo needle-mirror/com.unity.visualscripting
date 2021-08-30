@@ -10,8 +10,7 @@ namespace Unity.VisualScripting
     [UsedImplicitly]
     public sealed class PackageEventListener
     {
-        [InitializeOnLoadMethod]
-        static void SubscribeToEvents()
+        internal static void SubscribeToEvents()
         {
             Events.registeringPackages += OnRegisteringPackages;
         }

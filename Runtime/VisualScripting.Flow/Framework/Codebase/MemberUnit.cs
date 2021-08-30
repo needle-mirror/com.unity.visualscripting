@@ -60,14 +60,11 @@ namespace Unity.VisualScripting
             }
         }
 
-        IEnumerable<object> IAotStubbable.aotStubs
+        private IEnumerable<object> GetaotStubs()
         {
-            get
+            if (member != null && member.isReflected)
             {
-                if (member != null && member.isReflected)
-                {
-                    yield return member.info;
-                }
+                yield return member.info;
             }
         }
     }

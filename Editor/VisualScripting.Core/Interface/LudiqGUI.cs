@@ -127,11 +127,10 @@ namespace Unity.VisualScripting
             }
             else
             {
-                if (temporaryLoader == null)
+                if (temporaryLoader == null && File.Exists(PluginPaths.resourcesBundle))
                 {
-                    var tempResourcesFolderRoot = Path.Combine(PluginPaths.package, "Editor", BoltCore.ID, "EditorAssetResources");
-                    var tempResourceProvider = new EditorAssetResourceProvider(tempResourcesFolderRoot);
-                    temporaryLoader = EditorTexture.Load(tempResourceProvider, "Loader.png", CreateTextureOptions.PixelPerfect, true);
+                    var assetBundleResourceProvider = new AssetBundleResourceProvider(AssetUtility.AssetBundleEditor);
+                    temporaryLoader = EditorTexture.Load(assetBundleResourceProvider, "Loader.png", CreateTextureOptions.PixelPerfect, true);
                 }
 
                 loader = temporaryLoader;
@@ -956,7 +955,10 @@ namespace Unity.VisualScripting
 
         private static void OnHeaderIconGUI(EditorTexture icon, Rect iconPosition)
         {
-            GUI.DrawTexture(iconPosition, icon?[IconSize.Medium]);
+            if (icon != null && icon[IconSize.Medium])
+            {
+                GUI.DrawTexture(iconPosition, icon?[IconSize.Medium]);
+            }
         }
 
         #region Static

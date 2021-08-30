@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.7.5] - 2021-08-30
+### Changed
+- Removed unused Preferences
+- Renamed preference "Update Units Automatically" to "Update Nodes Automatically"
+- Reduced domain reload performance cost of visual scripting to 1ms or less when not actively used by a project
+
+### Fixed
+- Fixed an issue where uncaught exceptions were thrown in Debug builds of the Windows editor
+- Fixed the missing arrow when the "Transition End Arrow" is on. [BOLT-1535](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1535)
+- Fixed wrong graph is showed after creating script graph form selected object in "Welcome Screen"
+- Fixed duplicate variable error. [BOLT-1569](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1569)
+- Fixed 'ReadOnlySpan<>' does not exist in the namespace 'System'" error with AOT build. [BOLT-1648](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1648)
+- Fixed jitter when the fuzzy window is on the bottom of the screen and the user scrolls [BOLT-1530](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1530)
+- Fixed missing AOT prebuild step when building an IL2CPP project in batchmode [BOLT-1649](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1649)
+- Restored a public icon set API in UnitPortDescription.cs that was by mistake
+- Fixed il2cpp crash caused by a recursion of the machine states in itself when  AOTstubs is generating.[BOLT-1656](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1656)
+
 ## [1.7.3] - 2021-06-30
 ### Changed
 - Removed unused Preferences

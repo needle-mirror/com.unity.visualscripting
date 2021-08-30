@@ -3,10 +3,9 @@ using UnityEditor.Build;
 
 namespace Unity.VisualScripting
 {
-    [InitializeOnLoad]
     public static class EditorPlatformUtility
     {
-        static EditorPlatformUtility()
+        internal static void InitializeActiveBuildTarget()
         {
             // To access the build target off the main thread
             activeBuildTarget = EditorUserBuildSettings.activeBuildTarget;

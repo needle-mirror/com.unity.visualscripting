@@ -15,7 +15,7 @@ namespace Unity.VisualScripting
             ChangeItemKey(item, newName);
         }
 
-        public bool TryGetValue(string key, out VariableDeclaration value)
+        public new bool TryGetValue(string key, out VariableDeclaration value)
         {
             if (Dictionary == null)
             {

@@ -37,7 +37,7 @@ namespace Unity.VisualScripting
         [PostProcessBuild]
         public static void OnPostProcessBuild(BuildTarget target, string pathToBuiltProject)
         {
-            if (instance == null || BoltCore.instance == null || !BoltCore.Configuration.isVisualScriptingUsed)
+            if (instance == null || BoltCore.instance == null || !VSUsageUtility.isVisualScriptingUsed)
                 return;
 
             instance.DeleteAotStubs();
@@ -59,8 +59,15 @@ namespace Unity.VisualScripting
         public void OnPreprocessBuild(BuildReport report)
         {
             // If the user isn't using Visual Scripting, we don't do any of this
-            if (instance == null || BoltCore.instance == null || !BoltCore.Configuration.isVisualScriptingUsed)
+            if (!VSUsageUtility.isVisualScriptingUsed)
                 return;
+            if (!PluginContainer.initialized)
+                PluginContainer.Initialize();
+            if (instance == null || BoltCore.instance == null)
+            {
+                UnityEngine.Debug.Log($"Aborting AOT Prebuild, reason: {(instance == null ? "No instance" : BoltCore.instance == null ? "No BoltCore.instance" : "???")}");
+                return;
+            }
 
             if (PlayerSettings.GetScriptingBackend(report.summary.platformGroup) != ScriptingImplementation.IL2CPP)
             {
@@ -107,6 +114,9 @@ namespace Unity.VisualScripting
             var linker = new XDocument();
 
             var linkerNode = new XElement("linker");
+
+            if (!PluginContainer.initialized)
+                PluginContainer.Initialize();
 
             foreach (var pluginAssembly in PluginContainer.plugins
                      .SelectMany(plugin => plugin.GetType()
@@ -225,21 +235,24 @@ namespace Unity.VisualScripting
 
         private IEnumerable<object> FindAllAssetStubs()
         {
+            var visited = new HashSet<object>();
+
             return LinqUtility.Concat<object>
                 (
                     AssetUtility.GetAllAssetsOfType<IAotStubbable>()
-                        .SelectMany(aot => aot.aotStubs),
+                        .SelectMany(aot => aot.GetAotStubs(visited)),
 
                     AssetUtility.GetAllAssetsOfType<GameObject>()
                         .SelectMany(go => go.GetComponents<IAotStubbable>()
-                            .SelectMany(component => component.aotStubs))
+                            .SelectMany(component => component.GetAotStubs(visited)))
                 );
         }
 
         private IEnumerable<object> FindAllSceneStubs()
         {
+            var visited = new HashSet<object>();
             return UnityObjectUtility.FindObjectsOfTypeIncludingInactive<IAotStubbable>()
-                .SelectMany(aot => aot.aotStubs);
+                .SelectMany(aot => aot.GetAotStubs(visited));
         }
 
         private void GenerateStubScript(string scriptPath, IEnumerable<AotStubWriter> stubWriters)

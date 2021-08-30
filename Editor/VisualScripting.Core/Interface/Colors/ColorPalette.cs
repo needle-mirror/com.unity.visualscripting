@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
-    [InitializeOnLoad]
     public static class ColorPalette
     {
         // Unity

@@ -415,6 +415,19 @@ namespace Unity.VisualScripting
                     {
                         return false;
                     }
+
+                    // Not supported return type
+#if !UNITY_2022_1_OR_NEWER
+                    if (isGettable && method.ReturnType.ToString().Contains("ReadOnlySpan"))
+                    {
+                        return false;
+                    }
+#else
+                    if (isGettable && method.ReturnType.IsByRefLike)
+                    {
+                        return false;
+                    }
+#endif
                 }
                 else if (member is ConstructorInfo)
                 {

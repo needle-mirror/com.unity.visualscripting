@@ -8,6 +8,10 @@ namespace Unity.VisualScripting
     [InitializeAfterPlugins]
     public static class EditorTypeUtility
     {
+        // Used to call the static constructor on the main thread before threaded work might query things from here
+        // EditorSettings.defaultBehaviourMode errors when queried from anything but the main thread.
+        internal static void Initialize() { }
+
         private static EditorBehaviorMode lastBehaviorMode = EditorSettings.defaultBehaviorMode;
 
         private static EditorBehaviorMode behaviorMode

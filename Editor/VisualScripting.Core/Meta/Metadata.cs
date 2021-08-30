@@ -118,7 +118,7 @@ namespace Unity.VisualScripting
                 return item.subhash;
             }
 
-            public bool TryGetValue(int key, out Metadata value)
+            public new bool TryGetValue(int key, out Metadata value)
             {
                 if (Dictionary == null)
                 {
@@ -1171,6 +1171,22 @@ namespace Unity.VisualScripting
             else
             {
                 newItem = list[index].CloneViaSerialization();
+            }
+
+            var keyCollection = list as VariableDeclarationCollection;
+            var currentItem = newItem as VariableDeclaration;
+            if (keyCollection != null && currentItem != null)
+            {
+                var currentName = currentItem.name;
+                var count = 0;
+
+                while (keyCollection.TryGetValue(currentItem.name, out _))
+                {
+                    count++;
+                    var newName = $"{currentName} ({count})";
+                    currentItem = new VariableDeclaration(newName, currentItem.value);
+                }
+                newItem = currentItem;
             }
 
             list.Insert(index + 1, newItem);

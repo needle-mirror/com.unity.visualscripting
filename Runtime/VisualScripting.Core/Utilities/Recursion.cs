@@ -143,8 +143,7 @@ namespace Unity.VisualScripting
 
         public static bool safeMode { get; set; }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void OnRuntimeMethodLoad()
+        internal static void OnRuntimeMethodLoad()
         {
             safeMode = Application.isEditor || Debug.isDebugBuild;
         }

@@ -10,7 +10,8 @@ namespace Unity.VisualScripting
         protected Plugin()
         {
             id = PluginContainer.GetPluginID(GetType());
-            dependencies = PluginContainer.pluginDependencies[id].Select(PluginContainer.GetPlugin).ToList().AsReadOnly();
+            if (PluginContainer.pluginDependencies != null)
+                dependencies = PluginContainer.pluginDependencies[id].Select(PluginContainer.GetPlugin).ToList().AsReadOnly();
         }
 
         public string id { get; }

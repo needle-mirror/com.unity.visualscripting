@@ -1,16 +1,16 @@
-#Formula unit
+# Formula node
 
-| **Note**                                                     |
-| :----------------------------------------------------------- |
-| For versions 2019/2020 LTS, download the visual scripting solution from the [Unity Asset Store](https://assetstore.unity.com/packages/tools/visual-bolt-163802). |
+> [!NOTE] 
+> For versions 2019/2020 LTS, download the Visual Scripting package from the [Unity Asset Store](https://assetstore.unity.com/packages/tools/visual-bolt-163802).
 
-Formula is a powerful unit that evaluates logical and mathematical expressions directly via a textual Formula and a list of Arguments.
+Formula is a powerful node that evaluates logical and mathematical expressions directly via a textual Formula and a list of Arguments.
 
-Note: Due to the binary tree traversal overhead (despite caching attempts), performance in using the formula unit is significantly slower than using the operator units individually. It is preferable to avoid using this unit at every frame.
+> [!IMPORTANT]
+> Due to the binary tree traversal overhead (despite caching attempts), performance in using the formula node is significantly slower than using the operator nodes individually. It is preferable to avoid using this node at every frame.
 
 Although a formula can return either a boolean for logic, or a number for math, formulas can return any type of value.
 
-![](images/bolt-formula1.png)
+![](images/vs-formula-node.png)
 
 The first text field in the header is the formula itself.
 
@@ -21,11 +21,11 @@ For example, this formula returns a boolean indicating:
 - whether, at a minimum, 10 seconds have elapsed since the start of the game and 
 - the current object's name is Player.
 
-![](images/bolt-formula2.png)
+![](images/vs-formula-node-example.png)
 
-###Arguments
+## Arguments
 
-####Variable Names
+### Variable Names
 
 Variable names can be directly used in the formula. For example, a graph variable named health can return a boolean just by typing the formula health &gt; 50. The argument names are evaluated in the following order of priority:
 
@@ -36,13 +36,13 @@ Variable names can be directly used in the formula. For example, a graph variabl
 5.  Application variable names
 6.  Saved variable names
 
-####Properties and Methods
+### Properties and Methods
 
 Retrieve the value of a property on an argument or variable by using the \[arg.prop\] notation. For example, if position is a Vector 3 object variable, check if it is equal to zero with: \[position.x\] = 0. Get the return value of parameterless methods with the \[arg.Method()\] notation.
 
 Note: Accessing properties and methods is not guaranteed to be compatible with AOT platforms, because the AOT pre-build cannot generate stubs for members that are only accessed by name.
 
-####Literals
+### Literals
 
 Use the following literals for assigning fixed values.
 
@@ -55,7 +55,7 @@ Use the following literals for assigning fixed values.
 | Delta Time        | The Unity frame delta time.          | 30 \* dt       |
 | Invert Delta Time | The inverse of the delta time.       | 30 / second    |
 
-####Operators
+### Operators
 
 
 Every common logical and mathematical operator can be used in formulas, as well as the ones defined through custom operator overloading in script.
@@ -78,7 +78,7 @@ Every common logical and mathematical operator can be used in formulas, as well 
 
 All common bitwise operators like \~ and &gt;&gt; are also supported.
 
-####Functions
+### Functions
 
 You can also use any function from the following table.
 

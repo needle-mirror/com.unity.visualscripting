@@ -35,7 +35,7 @@ namespace Unity.VisualScripting
 
         private static string[] fallbackDirectories;
 
-        static XmlDocumentation()
+        internal static void Initialize()
         {
             BackgroundWorker.Schedule(BackgroundWork);
         }

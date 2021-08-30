@@ -61,7 +61,7 @@ namespace Unity.VisualScripting
 
                 zip.Save(zipPath);
 
-                Debug.Log($"Visual Scripting Migration: A backup of all Bolt related assets has been created at {zipPath}");
+                Debug.Log($"Visual Scripting Migration: A backup of all Visual Scripting related assets has been created at {zipPath}");
 
                 EditorUtility.ClearProgressBar();
             }

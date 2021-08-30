@@ -14,9 +14,18 @@ namespace Unity.VisualScripting
         {
             get
             {
-                return GetIcon(portType);
+                if (_icon == null || !_icon.IsValid())
+                {
+                    _icon = GetIcon(portType);
+                }
+
+                return _icon;
             }
+            set => _icon = value;
         }
+
+        private EditorTexture _icon;
+
         public string fallbackLabel { get; set; }
 
         public string label

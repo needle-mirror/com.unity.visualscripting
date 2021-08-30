@@ -4,6 +4,6 @@ namespace Unity.VisualScripting
 {
     public interface IAotStubbable
     {
-        IEnumerable<object> aotStubs { get; }
+        IEnumerable<object> GetAotStubs(HashSet<object> visited);
     }
 }

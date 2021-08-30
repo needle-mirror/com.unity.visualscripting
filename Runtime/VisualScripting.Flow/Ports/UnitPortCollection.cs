@@ -60,7 +60,7 @@ namespace Unity.VisualScripting
             return item.key;
         }
 
-        public bool TryGetValue(string key, out TPort value)
+        public new bool TryGetValue(string key, out TPort value)
         {
             if (Dictionary == null)
             {

@@ -41,12 +41,6 @@ namespace Unity.VisualScripting
 
         public static BoltProduct instance => (BoltProduct)ProductContainer.GetProduct(ID);
 
-        [SettingsProvider]
-        private static SettingsProvider BoltSettingsProvider()
-        {
-            return new VSEditorSettingsProviderView();
-        }
-
         private static bool PrepareForRelease()
         {
             if (!EditorUtility.DisplayDialog("Delete Generated Files", "This action will delete all generated files, including those containing user data.\n\nAre you sure you want to continue?", "Confirm", "Cancel"))

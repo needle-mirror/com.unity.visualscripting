@@ -137,7 +137,7 @@ namespace Unity.VisualScripting
 
         public List<ProjectSettingMetadata> projectSettings;
 
-        private string projectSettingsStoragePath => plugin.paths.projectSettings;
+        private string projectSettingsStoragePath => PluginPaths.projectSettings;
 
         internal DictionaryAsset projectSettingsAsset { get; set; }
         private bool _projectSettingsAssetDirty = false;

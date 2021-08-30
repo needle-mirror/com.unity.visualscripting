@@ -6,10 +6,9 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
-    [InitializeOnLoad]
     public static class UnityAPI
     {
-        static UnityAPI()
+        internal static void Initialize()
         {
             UnityThread.thread = Thread.CurrentThread;
             UnityThread.editorAsync = Async;

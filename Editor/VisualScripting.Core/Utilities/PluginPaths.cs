@@ -47,7 +47,7 @@ namespace Unity.VisualScripting
 
         public bool isFirstPass => package.Contains("/Plugins/") || package.Contains("/Standard Assets/") || package.Contains("/Pro Standard Assets/");
 
-        public string resourcesFolder => Path.Combine(package, $"Editor/VisualScripting.Core/EditorAssetResources");
+        public static string resourcesFolder => Path.Combine(package, $"Editor/VisualScripting.Core/EditorAssetResources");
 
         internal const string assetBundleRoot = "Assets/EditorResources";
 
@@ -61,6 +61,6 @@ namespace Unity.VisualScripting
 
         public string transientGenerated => Path.Combine(generated, plugin.id);
 
-        public string projectSettings => Path.Combine(Paths.project, "ProjectSettings", "VisualScriptingSettings.asset");
+        public static string projectSettings => Path.Combine(Paths.project, "ProjectSettings", "VisualScriptingSettings.asset");
     }
 }

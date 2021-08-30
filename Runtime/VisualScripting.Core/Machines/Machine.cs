@@ -74,8 +74,10 @@ namespace Unity.VisualScripting
         [DoNotSerialize]
         IGraph IGraphParent.childGraph => graph;
 
-        [DoNotSerialize]
-        IEnumerable<object> IAotStubbable.aotStubs => nest.aotStubs;
+        public IEnumerable<object> GetAotStubs(HashSet<object> visited)
+        {
+            return nest.GetAotStubs(visited);
+        }
 
         public bool isDescriptionValid
         {

@@ -19,7 +19,9 @@ namespace Unity.VisualScripting
             {
                 if (assetBundle.name == name)
                 {
-                    return assetBundle;
+                    assetBundle.Unload(true);
+
+                    break;
                 }
             }
 
@@ -29,7 +31,7 @@ namespace Unity.VisualScripting
         {
             get
             {
-                if (assetBundleEditor.IsUnityNull())
+                if (assetBundleEditor == null)
                 {
                     assetBundleEditor = LoadAssetBundle(PluginPaths.assetBundle, PluginPaths.resourcesBundle);
                 }

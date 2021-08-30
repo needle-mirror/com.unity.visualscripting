@@ -52,9 +52,9 @@ namespace Unity.VisualScripting
         protected float y;
         public Metadata metadata { get; private set; }
 
-        protected virtual bool safe => !BoltCore.Configuration.developerMode;
+        protected virtual bool safe => BoltCore.instance != null && BoltCore.Configuration != null && !BoltCore.Configuration.developerMode;
 
-        protected virtual bool profile => BoltCore.Configuration.developerMode && BoltCore.Configuration.debugInspectorGUI;
+        protected static bool profile => BoltCore.instance != null && BoltCore.Configuration != null && BoltCore.Configuration.developerMode && BoltCore.Configuration.debugInspectorGUI;
 
         protected virtual bool indent => true;
 
@@ -510,7 +510,7 @@ namespace Unity.VisualScripting
 
             EditorGUI.LabelField(labelPosition, expandTooltip ? new GUIContent(label.text, label.image) : label, style);
 
-            if (BoltCore.Configuration.developerMode && BoltCore.Configuration.debugInspectorGUI && e.type == EventType.Repaint)
+            if (BoltCore.instance != null && BoltCore.Configuration.developerMode && BoltCore.Configuration.debugInspectorGUI && e.type == EventType.Repaint)
             {
                 labelDebugBox.Draw(labelPosition, false, false, false, false);
             }
@@ -604,7 +604,7 @@ namespace Unity.VisualScripting
                     e.Use();
                 }
 
-                if (BoltCore.Configuration.developerMode && BoltCore.Configuration.debugInspectorGUI && e.type == EventType.Repaint)
+                if (profile && e.type == EventType.Repaint)
                 {
                     blockDebugBox.Draw(block.position, false, false, false, false);
                 }

@@ -188,8 +188,10 @@ namespace Unity.VisualScripting
 
         #region Poutine
 
-        [DoNotSerialize]
-        public IEnumerable<object> aotStubs => LinqUtility.Concat<object>(graph?.aotStubs);
+        public IEnumerable<object> GetAotStubs(HashSet<object> visited)
+        {
+            return LinqUtility.Concat<object>(graph?.GetAotStubs(visited));
+        }
 
         [DoNotSerialize]
         public bool hasBackgroundEmbed => source == GraphSource.Macro && embed != null;

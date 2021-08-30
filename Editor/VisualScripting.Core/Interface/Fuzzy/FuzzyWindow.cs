@@ -606,10 +606,10 @@ namespace Unity.VisualScripting
 
             if (!isAnimating && activeNode?.option != null && activeNode.option.hasFooter)
             {
-                footerHeight = activeNode.option.GetFooterHeight(totalWidth - footerWidthMargin);
-
-                position.height += footerHeight;
+                var newfooterHeight = activeNode.option.GetFooterHeight(totalWidth - footerWidthMargin);
+                footerHeight = footerHeight < newfooterHeight ? newfooterHeight : footerHeight;
             }
+            position.height += footerHeight;
 
             if (Application.platform == RuntimePlatform.OSXEditor && BoltCore.Configuration.limitFuzzyFinderHeight)
             {
@@ -730,10 +730,7 @@ namespace Unity.VisualScripting
                                     );
                             }
 
-                            if (activeNode != null && activeNode.option.hasFooter)
-                            {
-                                OnFooterGUI();
-                            }
+                            OnFooterGUI();
 
                             OnPositioning();
                         }
@@ -901,6 +898,7 @@ namespace Unity.VisualScripting
                 minOptionWidth = Mathf.Max(minOptionWidth, Mathf.Min(node.width, Styles.maxOptionWidth));
             }
 
+
             for (var i = 0; i < parent.children.Count; i++)
             {
                 var node = parent.children[i];
@@ -1057,7 +1055,10 @@ namespace Unity.VisualScripting
                 Styles.footerBackground.Draw(backgroundPosition, false, false, false, false);
             }
 
-            activeNode.option.OnFooterGUI(footerPosition);
+            if (activeNode != null && activeNode.option.hasFooter)
+            {
+                activeNode.option.OnFooterGUI(footerPosition);
+            }
         }
 
         private void HandleKeyboard()

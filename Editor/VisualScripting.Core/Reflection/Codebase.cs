@@ -293,7 +293,8 @@ namespace Unity.VisualScripting
 
         public static ReadOnlyCollection<Type> GetTypeSetFromAttribute(IAttributeProvider attributeProvider, TypeSet fallback = TypeSet.SettingsTypes)
         {
-            return GetTypeSet(attributeProvider.GetAttribute<TypeSetAttribute>()?.typeSet ?? fallback);
+            var typeset = GetTypeSet(attributeProvider.GetAttribute<TypeSetAttribute>()?.typeSet ?? fallback);
+            return typeset;
         }
 
         private static bool IsEditorAssembly(AssemblyName assemblyName)

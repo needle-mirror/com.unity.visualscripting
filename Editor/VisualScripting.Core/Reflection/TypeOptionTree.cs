@@ -52,12 +52,9 @@ namespace Unity.VisualScripting
         {
             base.Prewarm();
 
-            if (types == null)
-            {
-                types = typeSet.Concat(typeSet.Where(t => !t.IsStatic()).Select(t => typeof(List<>).MakeGenericType(t))) // Add lists
-                    .Where(filter.Configured().ValidateType)            // Filter
-                    .ToHashSet();
-            }
+            types ??= typeSet.Concat(typeSet.Where(t => !t.IsStatic()).Select(t => typeof(List<>).MakeGenericType(t))) // Add lists
+                .Where(filter.Configured().ValidateType) // Filter
+                .ToHashSet();
 
             groupEnums = !types.All(t => t.IsEnum);
         }

@@ -9,7 +9,7 @@ namespace Unity.VisualScripting.Analytics
 
         public void OnPreprocessBuild(BuildReport report)
         {
-            if (!EditorAnalytics.enabled || !BoltCore.Configuration.isVisualScriptingUsed)
+            if (!EditorAnalytics.enabled || !VSUsageUtility.isVisualScriptingUsed)
                 return;
 
             OnPreprocessBuildAnalytics.Send(new OnPreprocessBuildAnalytics.Data()

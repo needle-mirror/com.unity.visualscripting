@@ -40,7 +40,10 @@ namespace Unity.VisualScripting
         [DoNotSerialize]
         public override IEnumerable<ISerializationDependency> deserializationDependencies => nest.deserializationDependencies;
 
-        public override IEnumerable<object> aotStubs => LinqUtility.Concat<object>(base.aotStubs, nest.aotStubs);
+        public override IEnumerable<object> GetAotStubs(HashSet<object> visited)
+        {
+            return LinqUtility.Concat<object>(base.GetAotStubs(visited), nest.GetAotStubs(visited));
+        }
 
         protected void CopyFrom(NesterUnit<TGraph, TMacro> source)
         {

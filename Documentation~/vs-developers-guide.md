@@ -1,10 +1,10 @@
-#Developer's guide
+# Developer's guide
 
 
 
-###_Misc
+## _Misc
 
-| Unit                         | Description                                                  |
+| Node                         | Description                                                  |
 | ---------------------------- | ------------------------------------------------------------ |
 | Formula                      | Outputs the result of the formula entered, which has a user specified number of input ports. Can create vector 2,3,4 and access all variables by name (object, graph, scene, application, saved). |
 | GetApplicationVariable       | Gets an application variable by name.                        |
@@ -32,9 +32,9 @@
 
 
 
-###Collections
+## Collections
 
-| Unit       | Description                                                |
+| Node       | Description                                                |
 | ---------- | ---------------------------------------------------------- |
 | CountItems | Provides a count of the number of items in the collection. |
 | FirstItem  | Gets a reference to the first item in the collections.     |
@@ -42,9 +42,9 @@
 
 
 
-###Collections, Dictionaries
+### Collections, Dictionaries
 
-| Unit                  | Description                                                  |
+| Node                  | Description                                                  |
 | --------------------- | ------------------------------------------------------------ |
 | AddDictionaryItem     | Adds Key/Value pair into dictionary.                         |
 | ClearDictionary       | Removes all elements from the dictionary.                    |
@@ -57,9 +57,9 @@
 
 
 
-###Collections, Lists
+### Collections, Lists
 
-| Unit             | Description                                                  |
+| Node             | Description                                                  |
 | ---------------- | ------------------------------------------------------------ |
 | AddListItem      | Adds an item to the list.                                    |
 | ClearList        | Removes all elements from the list.                          |
@@ -74,9 +74,9 @@
 
 
 
-###Control
+## Control
 
-| Unit                 | Description                                                  |
+| Node                 | Description                                                  |
 | -------------------- | ------------------------------------------------------------ |
 | If (Formerly Branch) | Executes the True branch if the provided input is true, otherwise executes the False branch. |
 | Break                | Immediately exits the current loop.                          |
@@ -101,17 +101,17 @@
 
 
 
-###Events
+## Events
 
-| Unit               | Description                      |
+| Node               | Description                      |
 | ------------------ | -------------------------------- |
 | TriggerCustomEvent | Triggers a custom event by name. |
 
 
 
-###Logic
+## Logic
 
-| Unit           | Description                                                  |
+| Node           | Description                                                  |
 | -------------- | ------------------------------------------------------------ |
 | And            | Logical AND (equivalent to &&) returns true if both operands are true and returns false otherwise. |
 | Comparison     | All comparisons in one node: inputs A/B, outputs < <= > >= == !=, and so on. |
@@ -127,9 +127,9 @@
 
 
 
-###Math, Generic
+## Math, Generic
 
-| Unit     | Description                     |
+| Node     | Description                     |
 | -------- | ------------------------------- |
 | Add      | Calls the + operator on inputs. |
 | Divide   | Calls the / operator on inputs. |
@@ -139,9 +139,9 @@
 
 
 
-###Math, Scalar
+## Math, Scalar
 
-| Unit         | Description                                                  |
+| Node         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
 | Absolute     | Absolute returns the absolute value of an integer.           |
 | Add          | Sum of two floats.                                           |
@@ -163,9 +163,9 @@
 
 
 
-###Math, Vector2
+## Math, Vector2
 
-| Unit        | Description                                                  |
+| Node        | Description                                                  |
 | ----------- | ------------------------------------------------------------ |
 | Absolute    | Gives both the x and y values of a Vector2 a positive sign.  |
 | Add         | Sum of two vectors.                                          |
@@ -189,9 +189,9 @@
 
 
 
-###Math, Vector3
+## Math, Vector3
 
-| Unit        | Description                                                  |
+| Node        | Description                                                  |
 | ----------- | ------------------------------------------------------------ |
 | Absolute    | Gives both the x and y values of a Vector3 a positive sign.  |
 | Add         | Sum of two vectors.                                          |
@@ -215,9 +215,9 @@
 
 
 
-###Math, Vector4
+## Math, Vector4
 
-| Unit        | Description                                                  |
+| Node        | Description                                                  |
 | ----------- | ------------------------------------------------------------ |
 | Absolute    | Gives both the x and y values of a Vector4 a positive sign.  |
 | Add         | Sum of two vectors.                                          |
@@ -241,21 +241,21 @@
 
 
 
-###Nesting
+## Nesting
 
-| Unit                   | Description                                                  |
+| Node                   | Description                                                  |
 | ---------------------- | ------------------------------------------------------------ |
-| GraphInput             | Gets the value of a graph input when the graph is used as a super unit. |
-| GraphOutput            | Gets the value of a graph output when the graph is used as a super unit. |
+| GraphInput             | Gets the value of a graph input when the graph is used as a Subgraph. |
+| GraphOutput            | Gets the value of a graph output when the graph is used as a Subgraph. |
 | StateUnit              | References another state machine graph as a state in the current graph. |
-| SuperUnit              | References another flow graph as a super unit in the current graph. |
+| Subgraph             | References another flow graph as a Subgraph in the current graph. |
 | TriggerStateTransition | In a transition graph, triggers the transition to the target graph in the parent state machine graph. |
 
 
 
-###Nulls
+## Nulls
 
-| Unit         | Description                                                  |
+| Node         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
 | Null         | Null literal.                                                |
 | NullCheck    | Branching based on the input value being null.               |
@@ -263,9 +263,9 @@
 
 
 
-###Time
+## Time
 
-| Unit                  | Description                                                  |
+| Node                  | Description                                                  |
 | --------------------- | ------------------------------------------------------------ |
 | Cooldown              | Coroutine node that can re-trigger its output only after a certain cooldown time interval. |
 | Timer                 | Coroutine node that triggers its output after a time interval. |
@@ -278,26 +278,26 @@
 
 
 
-###Variables
+## Variables
 
-| Unit          | Description                                                  |
+| Node          | Description                                                  |
 | ------------- | ------------------------------------------------------------ |
 | SaveVariables | Forces saved variables to be saved to the PlayerPrefs (this is useful on platforms that do not support automatic save on quit). |
 
 
 
-###Events
+## Events
 
-| Unit        | Description                                               |
+| Node        | Description                                               |
 | ----------- | --------------------------------------------------------- |
 | UnityEvent  | Called when a UnityEvent is pointed to TriggerUnityEvent. |
 | CustomEvent | Bolt's custom events, defined by name.                    |
 
 
 
-###Events, Animation 
+### Events, Animation 
 
-| Unit                  | Description                                                  |
+| Node                  | Description                                                  |
 | --------------------- | ------------------------------------------------------------ |
 | Animation Event       | Called when an animation event points to TriggerAnimationEvent. This version allows you to use the string parameter as the event name |
 | Named Animation Event | Called when an animation event points to TriggerAnimationEvent. This version allows you to use the string parameter as the event name. |
@@ -306,9 +306,9 @@
 
 
 
-###Events, Application
+### Events, Application
 
-| Unit                   | Description                                                  |
+| Node                   | Description                                                  |
 | ---------------------- | ------------------------------------------------------------ |
 | OnApplicationFocus     | [https://docs.unity3d.com/2021.1/Documentation/ScriptReference/<br />MonoBehaviour.OnApplicationFocus.html](https://docs.unity3d.com/2021.1/Documentation/ScriptReference/MonoBehaviour.OnApplicationFocus.html) |
 | OnApplicationLostFocus | Implements <br />[https://docs.unity3d.com/ScriptReference/<br />MonoBehaviour.OnApplicationFocus.html](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnApplicationFocus.html) |
@@ -318,18 +318,18 @@
 
 
 
-###Events, Editor
+### Events, Editor
 
-| Unit                 | Description                                                  |
+| Node                 | Description                                                  |
 | -------------------- | ------------------------------------------------------------ |
 | OnDrawGizmos         | [https://docs.unity3d.com/2021.1/Documentation/ScriptReference/<br />MonoBehaviour.OnDrawGizmos.html](https://docs.unity3d.com/2021.1/Documentation/ScriptReference/MonoBehaviour.OnDrawGizmos.html) |
 | OnDrawGizmosSelected | [https://docs.unity3d.com/2021.1/Documentation/ScriptReference/<br />MonoBehaviour.OnDrawGizmosSelected.html](https://docs.unity3d.com/2021.1/Documentation/ScriptReference/MonoBehaviour.OnDrawGizmosSelected.html) |
 
 
 
-###Events, GUI
+### Events, GUI
 
-| Unit                     | Description                                                  |
+| Node                     | Description                                                  |
 | ------------------------ | ------------------------------------------------------------ |
 | OnBeginDrag              | Implements IBeginDragHandler<br /> [https://docs.unity3d.com/2019.1/Documentation/ScriptReference/<br />EventSystems.IBeginDragHandler.html](https://docs.unity3d.com/2019.1/Documentation/ScriptReference/EventSystems.IBeginDragHandler.html) |
 | OnButtonClick            | Registers to a Button's onClick event<br /> [https://docs.unity3d.com/2019.1/Documentation/ScriptReference/<br />UI.Button.html](https://docs.unity3d.com/2019.1/Documentation/ScriptReference/UI.Button.html) |
@@ -356,18 +356,18 @@
 | OnSubmit                 | Implements ISubmitHandler<br /> [https://docs.unity3d.com/2019.1/Documentation/ScriptReference/<br />EventSystems.ISubmitHandler.html](https://docs.unity3d.com/2019.1/Documentation/ScriptReference/EventSystems.ISubmitHandler.html) |
 | OnToggleValueChanged     | Registers to a Toggle's onValueChanged event<br /> [https://docs.unity3d.com/2019.1/Documentation/ScriptReference/<br />UI.Toggle.html](https://docs.unity3d.com/2019.1/Documentation/ScriptReference/UI.Toggle.html) |
 
-###Events, Hierarchy
+### Events, Hierarchy
 
-| Unit                       | Description                                                  |
+| Node                       | Description                                                  |
 | -------------------------- | ------------------------------------------------------------ |
 | OnTransformChildrenChanged | [https://docs.unity3d.com/2021.1/Documentation/ScriptReference/<br />MonoBehaviour.OnTransformChildrenChanged.html](https://docs.unity3d.com/2021.1/Documentation/ScriptReference/MonoBehaviour.OnTransformChildrenChanged.html) |
 | OnTransformParentChanged   | [https://docs.unity3d.com/2021.1/Documentation/ScriptReference/<br />MonoBehaviour.OnTransformParentChanged.html](https://docs.unity3d.com/2021.1/Documentation/ScriptReference/MonoBehaviour.OnTransformParentChanged.html) |
 
 
 
-###Events, Input
+### Events, Input
 
-| Unit              | Description                                                  |
+| Node              | Description                                                  |
 | ----------------- | ------------------------------------------------------------ |
 | OnButtonInput     | On Update, checks Input.GetButtonDown/GetButtonUp/GetButton based on the specified Action type <br />[https://docs.unity3d.com/2019.1/Documentation/ScriptReference/Input.html](https://docs.unity3d.com/2019.1/Documentation/ScriptReference/Input.html). |
 | OnKeyboardInput   | On Update, check Input.GetKeyDown/GetKeyUp/GetKey based on the specified action type<br /> [https://docs.unity3d.com/2019.1/Documentation/ScriptReference/Input.html](https://docs.unity3d.com/2019.1/Documentation/ScriptReference/Input.html) |
@@ -382,9 +382,9 @@
 
 
 
-###Events, Lifecycle
+### Events, Lifecycle
 
-| Unit        | Description                                                  |
+| Node        | Description                                                  |
 | ----------- | ------------------------------------------------------------ |
 | FixedUpdate | [https://docs.unity3d.com/2021.1/Documentation/ScriptReference/<br />MonoBehaviour.FixedUpdate.html](https://docs.unity3d.com/2021.1/Documentation/ScriptReference/MonoBehaviour.FixedUpdate.html) |
 | LateUpdate  | [https://docs.unity3d.com/2021.1/Documentation/ScriptReference/<br />MonoBehaviour.LateUpdate.html](https://docs.unity3d.com/2021.1/Documentation/ScriptReference/MonoBehaviour.LateUpdate.html) |
@@ -396,17 +396,17 @@
 
 
 
-###Events, Navigation
+### Events, Navigation
 
-| Unit                 | Description                                                  |
+| Node                 | Description                                                  |
 | -------------------- | ------------------------------------------------------------ |
 | OnDestinationReached | Trigger if a NavMeshAgent's remaining distance to its target is less than the provided threshold and either has a current NavMeshPathStatus of PathComplete or requireSuccess is false. <br />[https://docs.unity3d.com/2019.1/Documentation/ScriptReference/<br />AI.NavMeshAgent.html](https://docs.unity3d.com/2019.1/Documentation/ScriptReference/AI.NavMeshAgent.html). |
 
 
 
-###Events, Physics
+### Events, Physics
 
-| Unit                    | Description                                                  |
+| Node                    | Description                                                  |
 | ----------------------- | ------------------------------------------------------------ |
 | OnCollisionEnter        | [https://docs.unity3d.com/2021.1/Documentation/ScriptReference/<br />MonoBehaviour.OnCollisionEnter.html](https://docs.unity3d.com/2021.1/Documentation/ScriptReference/MonoBehaviour.OnCollisionEnter.html) |
 | OnCollisionExit         | [https://docs.unity3d.com/2021.1/Documentation/ScriptReference/<br />MonoBehaviour.OnCollisionExit.html](https://docs.unity3d.com/2021.1/Documentation/ScriptReference/MonoBehaviour.OnCollisionExit.html) |
@@ -420,9 +420,9 @@
 
 
 
-###Events, Physics 2D
+### Events, Physics 2D
 
-| Unit                      | Description                                                  |
+| Node                      | Description                                                  |
 | ------------------------- | ------------------------------------------------------------ |
 | OnCollisionEnter2D        | [https://docs.unity3d.com/2021.1/Documentation/ScriptReference/<br />MonoBehaviour.OnCollisionEnter2D.html](https://docs.unity3d.com/2021.1/Documentation/ScriptReference/MonoBehaviour.OnCollisionEnter2D.html) |
 | OnCollisionExit2D         | [https://docs.unity3d.com/2021.1/Documentation/ScriptReference/<br />MonoBehaviour.OnCollisionExit2D.html](https://docs.unity3d.com/2021.1/Documentation/ScriptReference/MonoBehaviour.OnCollisionExit2D.html) |
@@ -436,18 +436,18 @@
 
 
 
-###Events, Rendering
+### Events, Rendering
 
-| Unit              | Description                                                  |
+| Node              | Description                                                  |
 | ----------------- | ------------------------------------------------------------ |
 | OnBecameInvisible | [https://docs.unity3d.com/2021.1/Documentation/ScriptReference/<br />MonoBehaviour.OnBecameInvisible.html](https://docs.unity3d.com/2021.1/Documentation/ScriptReference/MonoBehaviour.OnBecameInvisible.html) |
 | OnBecameVisible   | [https://docs.unity3d.com/2021.1/Documentation/ScriptReference/<br />MonoBehaviour.OnBecameVisible.html](https://docs.unity3d.com/2021.1/Documentation/ScriptReference/MonoBehaviour.OnBecameVisible.html) |
 
 
 
-###Events, State
+### Events, State
 
-| Unit         | Description              |
+| Node         | Description              |
 | ------------ | ------------------------ |
 | OnEnterState | When a state is entered. |
 | OnExitState  | When a state is exited.  |

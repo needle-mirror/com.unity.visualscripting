@@ -18,15 +18,15 @@ namespace Unity.VisualScripting
         [RenamedFrom("Bolt.Flow")]
         public const string ID = "VisualScripting.Flow";
 
-        public static BoltFlowManifest Manifest => (BoltFlowManifest)instance.manifest;
+        public static BoltFlowManifest Manifest => (BoltFlowManifest)instance?.manifest;
 
-        public static BoltFlowConfiguration Configuration => (BoltFlowConfiguration)instance.configuration;
+        public static BoltFlowConfiguration Configuration => (BoltFlowConfiguration)instance?.configuration;
 
-        public static BoltFlowResources Resources => (BoltFlowResources)instance.resources;
+        public static BoltFlowResources Resources => (BoltFlowResources)instance?.resources;
 
-        public static BoltFlowResources.Icons Icons => Resources.icons;
+        public static BoltFlowResources.Icons Icons => Resources?.icons;
 
-        public static BoltFlowPaths Paths => (BoltFlowPaths)instance.paths;
+        public static BoltFlowPaths Paths => (BoltFlowPaths)instance?.paths;
 
         public const string LegacyRuntimeDllGuid = "a040fb66244a7f54289914d98ea4ef7d";
 

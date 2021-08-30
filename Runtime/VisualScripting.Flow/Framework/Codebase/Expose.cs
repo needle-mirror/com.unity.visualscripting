@@ -41,18 +41,15 @@ namespace Unity.VisualScripting
 
         public override bool canDefine => type != null;
 
-        IEnumerable<object> IAotStubbable.aotStubs
+        private IEnumerable<object> GetaotStubs()
         {
-            get
+            if (members != null)
             {
-                if (members != null)
+                foreach (var member in members.Values)
                 {
-                    foreach (var member in members.Values)
+                    if (member != null && member.isReflected)
                     {
-                        if (member != null && member.isReflected)
-                        {
-                            yield return member.info;
-                        }
+                        yield return member.info;
                     }
                 }
             }

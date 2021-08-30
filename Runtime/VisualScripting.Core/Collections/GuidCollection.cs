@@ -24,7 +24,7 @@ namespace Unity.VisualScripting
             base.SetItem(index, item);
         }
 
-        public bool TryGetValue(Guid key, out T value)
+        public new bool TryGetValue(Guid key, out T value)
         {
             if (Dictionary == null)
             {

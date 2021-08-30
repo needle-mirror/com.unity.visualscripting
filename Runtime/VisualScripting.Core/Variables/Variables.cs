@@ -71,20 +71,17 @@ namespace Unity.VisualScripting
             base.ShowData();
         }
 
-        public IEnumerable<object> aotStubs
+        public IEnumerable<object> GetAotStubs(HashSet<object> visited)
         {
-            get
+            // Include the constructors for AOT serialization
+            // https://support.ludiq.io/communities/5/topics/3952-x
+            foreach (var declaration in declarations)
             {
-                // Include the constructors for AOT serialization
-                // https://support.ludiq.io/communities/5/topics/3952-x
-                foreach (var declaration in declarations)
-                {
-                    var defaultConstructor = declaration.value?.GetType().GetPublicDefaultConstructor();
+                var defaultConstructor = declaration.value?.GetType().GetPublicDefaultConstructor();
 
-                    if (defaultConstructor != null)
-                    {
-                        yield return defaultConstructor;
-                    }
+                if (defaultConstructor != null)
+                {
+                    yield return defaultConstructor;
                 }
             }
         }

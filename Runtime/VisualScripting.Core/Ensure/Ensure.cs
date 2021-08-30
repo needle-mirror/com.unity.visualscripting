@@ -18,8 +18,7 @@ namespace Unity.VisualScripting
             return instance;
         }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void OnRuntimeMethodLoad()
+        internal static void OnRuntimeMethodLoad()
         {
             IsActive = Application.isEditor || Debug.isDebugBuild;
         }

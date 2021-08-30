@@ -56,7 +56,7 @@ namespace Unity.VisualScripting
                         editorParent.Repaint();
                     }
 
-                    if (BoltCore.Configuration.developerMode)
+                    if (BoltCore.instance != null && BoltCore.Configuration.developerMode)
                     {
                         debugFoldout = EditorGUILayout.Foldout(debugFoldout, "Developer", true);
 

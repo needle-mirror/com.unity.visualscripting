@@ -157,7 +157,7 @@ namespace Unity.VisualScripting
                 return item.FullName;
             }
 
-            public bool TryGetValue(string key, out Namespace value)
+            public new bool TryGetValue(string key, out Namespace value)
             {
                 if (Dictionary == null)
                 {

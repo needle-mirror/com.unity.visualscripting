@@ -17,7 +17,7 @@ namespace Unity.VisualScripting
         {
             get
             {
-                if (_assetBundle.IsUnityNull())
+                if (_assetBundle == null)
                 {
                     _assetBundle = AssetUtility.AssetBundleEditor;
                 }
@@ -26,8 +26,17 @@ namespace Unity.VisualScripting
             }
         }
 
+        public AssetBundleResourceProvider()
+        {
+            Analyze();
+        }
+
         public AssetBundleResourceProvider(AssetBundle assetBundle)
         {
+            if (_assetBundle != null)
+            {
+                _assetBundle.Unload(true);
+            }
             _assetBundle = assetBundle;
 
             Analyze();

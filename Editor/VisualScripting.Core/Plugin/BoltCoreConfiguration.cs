@@ -229,9 +229,6 @@ namespace Unity.VisualScripting
 
         #region Project Settings
 
-        [ProjectSetting(visibleCondition = nameof(developerMode), resettable = false)]
-        public bool isVisualScriptingUsed { get; set; } = false;
-
         /// <summary>
         /// Whether some types, including generics, should be filtered out
         /// when targetting AOT platforms.

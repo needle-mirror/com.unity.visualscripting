@@ -5,10 +5,9 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
-    [InitializeOnLoad]
     public static class EditorApplicationUtility
     {
-        static EditorApplicationUtility()
+        internal static void Initialize()
         {
             Recursion.safeMode = true;
             OptimizedReflection.safeMode = true;
@@ -130,7 +129,7 @@ namespace Unity.VisualScripting
         {
             if (PluginContainer.initialized)
             {
-                if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+                if (!VSUsageUtility.isVisualScriptingUsed) return;
 
                 LudiqGUIUtility.BeginNotActuallyOnGUI();
                 onSelectionChange?.Invoke();
@@ -142,7 +141,7 @@ namespace Unity.VisualScripting
         {
             if (PluginContainer.initialized)
             {
-                if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+                if (!VSUsageUtility.isVisualScriptingUsed) return;
 
                 LudiqGUIUtility.BeginNotActuallyOnGUI();
                 onProjectChange?.Invoke();
@@ -154,7 +153,7 @@ namespace Unity.VisualScripting
         {
             if (PluginContainer.initialized)
             {
-                if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+                if (!VSUsageUtility.isVisualScriptingUsed) return;
 
                 LudiqGUIUtility.BeginNotActuallyOnGUI();
                 onHierarchyChange?.Invoke();
@@ -166,7 +165,7 @@ namespace Unity.VisualScripting
         {
             if (PluginContainer.initialized)
             {
-                if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+                if (!VSUsageUtility.isVisualScriptingUsed) return;
 
                 LudiqGUIUtility.BeginNotActuallyOnGUI();
                 onUndoRedo?.Invoke();
@@ -176,28 +175,28 @@ namespace Unity.VisualScripting
 
         private static void OnPause()
         {
-            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+            if (!VSUsageUtility.isVisualScriptingUsed) return;
 
             onPause?.Invoke();
         }
 
         private static void OnResume()
         {
-            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+            if (!VSUsageUtility.isVisualScriptingUsed) return;
 
             onResume?.Invoke();
         }
 
         private static void OnPauseChange()
         {
-            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+            if (!VSUsageUtility.isVisualScriptingUsed) return;
 
             onPauseChange?.Invoke();
         }
 
         private static void OnEnteredEditMode()
         {
-            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+            if (!VSUsageUtility.isVisualScriptingUsed) return;
 
             if (wantedScriptChangesDuringPlay)
             {
@@ -210,14 +209,14 @@ namespace Unity.VisualScripting
 
         private static void OnExitingEditMode()
         {
-            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+            if (!VSUsageUtility.isVisualScriptingUsed) return;
 
             onExitEditMode?.Invoke();
         }
 
         private static void OnEnteredPlayMode()
         {
-            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+            if (!VSUsageUtility.isVisualScriptingUsed) return;
 
             onEnterPlayMode?.Invoke();
 
@@ -231,21 +230,21 @@ namespace Unity.VisualScripting
 
         private static void OnExitingPlayMode()
         {
-            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+            if (!VSUsageUtility.isVisualScriptingUsed) return;
 
             onExitPlayMode?.Invoke();
         }
 
         private static void OnModeChange()
         {
-            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+            if (!VSUsageUtility.isVisualScriptingUsed) return;
 
             onModeChange?.Invoke();
         }
 
         private static void OnAssemblyReload()
         {
-            if (!BoltCore.Configuration.isVisualScriptingUsed) return;
+            if (!VSUsageUtility.isVisualScriptingUsed) return;
 
             onAssemblyReload?.Invoke();
         }

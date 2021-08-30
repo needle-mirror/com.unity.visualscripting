@@ -130,7 +130,17 @@ namespace Unity.VisualScripting
 
         #region Poutine
 
-        public IEnumerable<object> aotStubs => elements.SelectMany(element => element.aotStubs);
+        public IEnumerable<object> GetAotStubs(HashSet<object> visited)
+        {
+            return elements
+                .Where(element => !visited.Contains(element))
+                .Select(element =>
+                {
+                    visited.Add(element);
+                    return element;
+                })
+                .SelectMany(element => element.GetAotStubs(visited));
+        }
 
         private bool prewarmed;
 

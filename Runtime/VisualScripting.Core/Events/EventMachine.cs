@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Unity.VisualScripting
 {
@@ -6,6 +7,8 @@ namespace Unity.VisualScripting
         where TGraph : class, IGraph, new()
         where TMacro : Macro<TGraph>, new()
     {
+        protected virtual bool IsUsingNewRuntime => false;
+
         protected void TriggerEvent(string name)
         {
             if (hasGraph)
@@ -37,6 +40,8 @@ namespace Unity.VisualScripting
 
         protected virtual void TriggerUnregisteredEvent<TArgs>(EventHook hook, TArgs args)
         {
+            if (IsUsingNewRuntime) // TODO used for state machine events and gizmos
+                return;
             using (var stack = reference.ToStackPooled())
             {
                 stack.TriggerEventHandler(_hook => _hook == hook, args, parent => true, true);

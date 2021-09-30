@@ -91,12 +91,12 @@ namespace Unity.VisualScripting
         {
             var query = new ConversionQuery(source, destination);
 
-            if (!userConversionMethodsCache.ContainsKey(query))
+            if (!userConversionMethodsCache.TryGetValue(query, out var result))
             {
-                userConversionMethodsCache.Add(query, FindUserDefinedConversionMethods(query).ToArray());
+                userConversionMethodsCache.Add(query, result = FindUserDefinedConversionMethods(query).ToArray());
             }
 
-            return userConversionMethodsCache[query];
+            return result;
         }
 
         private static ConversionType GetUserDefinedConversionType(Type source, Type destination)

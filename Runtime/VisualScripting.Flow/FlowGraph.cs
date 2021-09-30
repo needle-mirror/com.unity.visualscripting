@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
+using Unity.VisualScripting.Interpreter;
 
 namespace Unity.VisualScripting
 {
@@ -10,6 +11,8 @@ namespace Unity.VisualScripting
     [DisplayName("Script Graph")]
     public sealed class FlowGraph : Graph, IGraphWithVariables, IGraphEventListener
     {
+        public RuntimeGraphAsset RuntimeGraphAsset;
+
         public FlowGraph()
         {
             units = new GraphElementCollection<IUnit>(this);

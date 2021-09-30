@@ -35,7 +35,7 @@ namespace Unity.VisualScripting
         }
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Tools/Bolt/Internal/Force Clear Progress Bar", priority = LudiqProduct.DeveloperToolsMenuPriority + 601)]
+        [MenuItem("Visual Scripting/Internal/Force Clear Progress Bar", priority = LudiqProduct.DeveloperToolsMenuPriority + 601)]
 #endif
         public static void ClearProgressBar()
         {

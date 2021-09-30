@@ -253,7 +253,7 @@ namespace Unity.VisualScripting
         #region Menu
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Tools/Bolt/Internal/Delete All Project Settings", priority = LudiqProduct.DeveloperToolsMenuPriority + 401)]
+        [MenuItem("Visual Scripting/Internal/Delete All Project Settings", priority = LudiqProduct.DeveloperToolsMenuPriority + 401)]
 #endif
         public static void DeleteAllProjectSettings()
         {
@@ -264,7 +264,7 @@ namespace Unity.VisualScripting
         }
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Tools/Bolt/Internal/Delete All Editor Prefs", priority = LudiqProduct.DeveloperToolsMenuPriority + 402)]
+        [MenuItem("Visual Scripting/Internal/Delete All Editor Prefs", priority = LudiqProduct.DeveloperToolsMenuPriority + 402)]
 #endif
         public static void DeleteAllEditorPrefs()
         {
@@ -291,7 +291,7 @@ namespace Unity.VisualScripting
         }
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Tools/Bolt/Internal/Delete All Player Prefs", priority = LudiqProduct.DeveloperToolsMenuPriority + 403)]
+        [MenuItem("Visual Scripting/Internal/Delete All Player Prefs", priority = LudiqProduct.DeveloperToolsMenuPriority + 403)]
 #endif
         public static void DeleteAllPlayerPrefs()
         {

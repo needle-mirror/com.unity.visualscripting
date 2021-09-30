@@ -30,6 +30,9 @@ namespace Unity.VisualScripting
             { typeof(object), "Object" },
         };
 
+        // If VS is not used, assume true
+        internal static bool humanNaming => !VSUsageUtility.isVisualScriptingUsed || BoltCore.Configuration.humanNaming;
+
         public static readonly Dictionary<string, string> humanOperatorNames = new Dictionary<string, string>
         {
             { "op_Addition", "Add" },
@@ -117,37 +120,37 @@ namespace Unity.VisualScripting
 
         public static string DisplayName(this Type type, bool includeGenericParameters = true)
         {
-            return SelectedName(type, BoltCore.Configuration.humanNaming, includeGenericParameters);
+            return SelectedName(type, humanNaming, includeGenericParameters);
         }
 
         public static string DisplayName(this MemberInfo member, ActionDirection direction = ActionDirection.Any, bool expectingBoolean = false)
         {
-            return SelectedName(member, BoltCore.Configuration.humanNaming, direction, expectingBoolean);
+            return SelectedName(member, humanNaming, direction, expectingBoolean);
         }
 
         public static string DisplayName(this ParameterInfo parameter)
         {
-            return SelectedName(parameter, BoltCore.Configuration.humanNaming);
+            return SelectedName(parameter, humanNaming);
         }
 
         public static string DisplayName(this Exception exception)
         {
-            return SelectedName(exception, BoltCore.Configuration.humanNaming);
+            return SelectedName(exception, humanNaming);
         }
 
         public static string DisplayName(this Enum @enum)
         {
-            return SelectedName(@enum, BoltCore.Configuration.humanNaming);
+            return SelectedName(@enum, humanNaming);
         }
 
         public static string DisplayName(this Namespace @namespace, bool full = true)
         {
-            return SelectedName(@namespace, BoltCore.Configuration.humanNaming, full);
+            return SelectedName(@namespace, humanNaming, full);
         }
 
         public static string DisplayParameterString(this MethodBase methodBase, Type targetType)
         {
-            return SelectedParameterString(methodBase, targetType, BoltCore.Configuration.humanNaming);
+            return SelectedParameterString(methodBase, targetType, humanNaming);
         }
 
         public static string HumanName(this Type type, bool includeGenericParameters = true)

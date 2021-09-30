@@ -29,6 +29,6 @@ To add the `[Inspectable]` attribute to your source code for your custom type:
 
     ```
 
-3. In Unity, follow the process for regenerating your Node Library, as described in [Configuring your project settings](vs-configuration.md).
+3. In Unity, follow the process for regenerating your Node Library, as described in [Configuring your Visual Scripting project settings](vs-configuration.md).
 
 Any variables using your custom types should now be modifiable from the Unity Inspector.

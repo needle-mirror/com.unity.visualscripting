@@ -955,10 +955,7 @@ namespace Unity.VisualScripting
 
         private static void OnHeaderIconGUI(EditorTexture icon, Rect iconPosition)
         {
-            if (icon != null && icon[IconSize.Medium])
-            {
-                GUI.DrawTexture(iconPosition, icon?[IconSize.Medium]);
-            }
+            GUI.DrawTexture(iconPosition, icon?[IconSize.Medium]);
         }
 
         #region Static

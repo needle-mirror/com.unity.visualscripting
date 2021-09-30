@@ -666,10 +666,12 @@ namespace Unity.VisualScripting
 
                 foreach (var nodeColor in nodeColors)
                 {
-                    var squareOff = (GUIStyle)($"flow node {(int)nodeColor}");
-                    var squareOn = (GUIStyle)($"flow node {(int)nodeColor} on");
-                    var hexOff = (GUIStyle)($"flow node hex {(int)nodeColor}");
-                    var hexOn = (GUIStyle)($"flow node hex {(int)nodeColor} on");
+                    // no purple style in base unity
+                    NodeColor nodeColorForExistingStyles = nodeColor == NodeColor.Purple ? NodeColor.Red : nodeColor;
+                    var squareOff = (GUIStyle)($"flow node {(int)nodeColorForExistingStyles}");
+                    var squareOn = (GUIStyle)($"flow node {(int)nodeColorForExistingStyles} on");
+                    var hexOff = (GUIStyle)($"flow node hex {(int)nodeColorForExistingStyles}");
+                    var hexOn = (GUIStyle)($"flow node hex {(int)nodeColorForExistingStyles} on");
 
                     // For node styles:
                     //  - Border: 9-slice coordinates

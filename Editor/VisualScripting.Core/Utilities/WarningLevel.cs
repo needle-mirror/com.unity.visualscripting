@@ -3,8 +3,9 @@ namespace Unity.VisualScripting
     public enum WarningLevel
     {
         Info = 1,
-        Caution = 2,
-        Severe = 3,
-        Error = 4
+        Important = 2,
+        Caution = 3,
+        Severe = 4,
+        Error = 5,
     }
 }

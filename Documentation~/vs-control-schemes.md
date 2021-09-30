@@ -35,7 +35,7 @@ When using the Default control scheme, you can pan your view in the Graph Editor
 
 You can change the zoom level in the Graph window to control how much of your graph is visible in the Graph Editor. 
 
-You can also set your zoom level using the toolbar in the Graph window. For more information, see [The Visual Scripting interface](vs-interface-overview.md).
+You can also set your zoom level using the toolbar in the Graph window. For more information, see [About the Visual Scripting interface](vs-interface-overview.md).
 
 ## Frame Selected 
 

@@ -34,4 +34,4 @@ The method for continuing to create your custom PropertyDrawer depends on the fi
 For more information on creating your custom PropertyDrawer, see the [PropertyDrawer class in the main Unity Scripting API](https://docs.unity3d.com/ScriptReference/PropertyDrawer.html) and its related methods.
 
 > [!NOTE]
-> Once you have created your custom PropertyDrawer, you must generate the additional required property provider scripts from your Visual Scripting Project Settings. For more information, see [Configuring your project settings](vs-configuration.md).
+> Once you have created your custom PropertyDrawer, you must generate the additional required property provider scripts from your Visual Scripting Project Settings. For more information, see [Configuring your Visual Scripting Project Settings](vs-configuration.md).

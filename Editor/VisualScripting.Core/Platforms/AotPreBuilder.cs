@@ -44,7 +44,7 @@ namespace Unity.VisualScripting
         }
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Tools/Bolt/Internal/AOT Pre-Build", priority = LudiqProduct.DeveloperToolsMenuPriority + 1001)]
+        [MenuItem("Visual Scripting/Internal/AOT Pre-Build", priority = LudiqProduct.DeveloperToolsMenuPriority + 1001)]
 #endif
         public static void GenerateFromInternalMenu()
         {

@@ -450,6 +450,11 @@ namespace Unity.VisualScripting
                             color = NodeColor.Yellow;
 
                             break;
+
+                        case WarningLevel.Important:
+                            color = NodeColor.Purple;
+
+                            break;
                     }
                 }
 

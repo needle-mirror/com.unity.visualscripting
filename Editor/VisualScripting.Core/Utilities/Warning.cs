@@ -8,6 +8,12 @@ namespace Unity.VisualScripting
 {
     public sealed class Warning
     {
+        internal Warning(WarningLevel level, string message, string buttonTitle, Action onClick) : this(level, message)
+        {
+            _buttonTitle = buttonTitle;
+            this._onClick = onClick;
+        }
+
         public Warning(WarningLevel level, string message)
         {
             Ensure.That(nameof(message)).IsNotNull(message);
@@ -16,6 +22,11 @@ namespace Unity.VisualScripting
             this.message = message;
         }
 
+        public Warning(Exception exception, string buttonTitle, Action onClick) : this(exception)
+        {
+            _buttonTitle = buttonTitle;
+            this._onClick = onClick;
+        }
         public Warning(Exception exception)
         {
             Ensure.That(nameof(exception)).IsNotNull(exception);
@@ -25,6 +36,8 @@ namespace Unity.VisualScripting
             this.message = exception.DisplayName() + ": " + exception.Message;
         }
 
+        private readonly string _buttonTitle;
+        private readonly Action _onClick;
         public WarningLevel level { get; }
         public string message { get; }
         public Exception exception { get; }
@@ -44,10 +57,27 @@ namespace Unity.VisualScripting
 
                     case WarningLevel.Error:
                         return MessageType.Error;
+                    case WarningLevel.Important:
+                        return MessageType.Info;
 
                     default:
                         return MessageType.None;
                 }
+            }
+        }
+
+        internal static LogType WarningLevelToLogType(WarningLevel l)
+        {
+            switch (l)
+            {
+                case WarningLevel.Info:
+                case WarningLevel.Important:
+                    return LogType.Log;
+                case WarningLevel.Caution:
+                case WarningLevel.Severe:
+                    return LogType.Warning;
+                default:
+                    return LogType.Error;
             }
         }
 
@@ -128,7 +158,7 @@ namespace Unity.VisualScripting
 
         public float GetHeight(float width)
         {
-            return LudiqGUIUtility.GetHelpBoxHeight(message, messageType, width);
+            return LudiqGUIUtility.GetHelpBoxHeight(message, messageType, width) + (_onClick == null ? 0 : (EditorGUIUtility.singleLineHeight + 2));
         }
 
         public void OnGUI(Rect position)
@@ -138,6 +168,20 @@ namespace Unity.VisualScripting
             if (exception != null && GUI.Button(position, GUIContent.none, GUIStyle.none))
             {
                 Debug.LogException(exception);
+            }
+
+            if (_onClick != null)
+            {
+                var guiContent = new GUIContent(_buttonTitle);
+                var style = EditorStyles.miniButton;
+                var width = style.CalcSize(guiContent).x;
+                // var rect = new Rect(position.x + 4, position.yMax - EditorGUIUtility.singleLineHeight - 2, EditorStyles.miniButton.CalcSize(guiContent).x,
+                var rect = new Rect(position.xMax - width - 2, position.yMax - EditorGUIUtility.singleLineHeight - 2, width,
+                    EditorGUIUtility.singleLineHeight);
+                if (GUI.Button(rect, guiContent, style))
+                {
+                    _onClick();
+                }
             }
         }
     }

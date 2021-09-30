@@ -32,15 +32,15 @@ You can find the following configuration options in your Visual Scripting Projec
 </tr>
 <tr>
 <td><strong>Generate</strong></td>
-<td>Select <strong>Generate</strong> to generate additional property provider scripts that are necessary for Unity to use custom drawers for classes and script variables inside Visual Scripting. <br/><div class="NOTE"><h5>NOTE</h5><p>To assign a default value to a custom variable type through the Unity Editor’s Inspector, you must either have access to the source code for the class, or provide a custom PropertyDrawer. For more information, see <a href="vs-custom-types.md">Custom types</a>.</p></div></td>
+<td>Select <strong>Generate</strong> to generate additional property provider scripts that are necessary for Unity to use custom drawers for classes and script variables inside Visual Scripting. <br/><div class="NOTE"><h5>NOTE</h5><p>To assign a default value to a custom variable type through the Unity Editor’s Inspector, you must either have access to the source code for the class, or provide a custom PropertyDrawer. For more information, see <a href="vs-custom-types.md">[Using custom types in Visual Scripting</a>.</p></div></td>
 </tr>
 <tr>
 <td><strong>Create Backup</strong></td>
-<td>Select <strong>Create Backup</strong> to create a new backup of your Visual Scripting graphs and settings. <br/> For more information about backups, see <a href="vs-create-restore-backups.md">Create or restore a backup</a>.</td>
+<td>Select <strong>Create Backup</strong> to create a new backup of your Visual Scripting graphs and settings. <br/> For more information about backups, see <a href="vs-create-restore-backups.md">Create or restore a Visual Scripting backup</a>.</td>
 </tr>
 <tr>
 <td><strong>Restore Backup</strong></td>
-<td>Select <strong>Restore Backup</strong> to open the folder where Visual Scripting stores your backups. <br/>For more information about backups, see <a href="vs-create-restore-backups.md">Create or restore a backup</a>.</td>
+<td>Select <strong>Restore Backup</strong> to open the folder where Visual Scripting stores your backups. <br/>For more information about backups, see <a href="vs-create-restore-backups.md">Create or restore a Visual Scripting backup</a>.</td>
 </tr>
 <tr>
 <td><strong>Fix Missing Scripts</strong></td>

@@ -20,7 +20,7 @@ The Graph Editor is the center editing area of the Graph window.
 
 You can use the Graph Editor to create your Visual Scripting graphs by manipulating nodes and connections. 
 
-You can change some default shortcuts and behaviors for interacting with the Graph Editor by changing your control scheme. For more information on the available control schemes in Visual Scripting, see [Choosing a control scheme](vs-control-schemes.md).
+You can change some default shortcuts and behaviors for interacting with the Graph Editor by changing your control scheme. For more information on the available control schemes in Visual Scripting, see [Choosing a Visual Scripting control scheme](vs-control-schemes.md).
 
 ## The fuzzy finder
 
@@ -30,7 +30,7 @@ The fuzzy finder is a searchable menu that lists every node available to you in 
 
 You can search for a node by name using the Search bar, or open a category from the list to find related nodes. For example, you can find any nodes related to creating or manipulating variables in the **Variables** category.
 
-You can also add new nodes to Visual Scripting from your own code, from other packages, or from other Unity features. For more information on adding new nodes to the fuzzy finder, see [Configuring your project settings](vs-configuration.md).
+You can also add new nodes to Visual Scripting from your own code, from other packages, or from other Unity features. For more information on adding new nodes to the fuzzy finder, see [Configuring your Visual Scripting project settings](vs-configuration.md).
 
 ## The Graph toolbar 
 
@@ -54,7 +54,7 @@ You can also configure some additional settings that control how nodes display i
 |__Full Screen__ | When selected, if you've docked your Graph window in the Unity Editor, Visual Scripting maximizes your Graph window to take up the entire Unity Editor window. |
 
 
-You can change some Graph toolbar settings from your preferences for Visual Scripting, or change how these settings behave. For example, you can control how fast the Graph Editor zooms in and out when setting your zoom level. For more information, see [Configuring your preferences](vs-set-preferences.md).
+You can change some Graph toolbar settings from your preferences for Visual Scripting, or change how these settings behave. For example, you can control how fast the Graph Editor zooms in and out when setting your zoom level. For more information, see [Configuring your Visual Scripting preferences](vs-set-preferences.md).
 
 ## The Graph Inspector 
 

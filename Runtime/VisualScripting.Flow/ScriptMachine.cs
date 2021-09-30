@@ -1,3 +1,4 @@
+using Unity.VisualScripting.Interpreter;
 using UnityEngine;
 
 namespace Unity.VisualScripting
@@ -10,6 +11,12 @@ namespace Unity.VisualScripting
     [RenamedFrom("Unity.VisualScripting.FlowMachine")]
     public sealed class ScriptMachine : EventMachine<FlowGraph, ScriptGraphAsset>
     {
+        public bool UseNewInterpreter;
+        private GraphInstance m_GraphInstance;
+        private Coroutine m_RunningCoroutine;
+
+        protected override bool IsUsingNewRuntime => UseNewInterpreter && graph?.RuntimeGraphAsset;
+
         public override FlowGraph DefaultGraph()
         {
             return FlowGraph.WithStartUpdate();
@@ -17,7 +24,11 @@ namespace Unity.VisualScripting
 
         protected override void OnEnable()
         {
-            if (hasGraph)
+            if (IsUsingNewRuntime)
+            {
+                SetupNewRuntime();
+            }
+            else if (hasGraph)
             {
                 graph.StartListening(reference);
             }
@@ -25,14 +36,45 @@ namespace Unity.VisualScripting
             base.OnEnable();
         }
 
+        private void SetupNewRuntime()
+        {
+            if (m_GraphInstance == null)
+                m_GraphInstance = new GraphInstance(gameObject, graph.RuntimeGraphAsset.GraphDefinition,
+                    graph.RuntimeGraphAsset.Hash);
+            else
+            {
+                StopCoroutine(m_RunningCoroutine);
+            }
+            m_RunningCoroutine = StartCoroutine(m_GraphInstance.InterpreterCoroutine());
+        }
+
         protected override void OnInstantiateWhileEnabled()
         {
-            if (hasGraph)
+            if (IsUsingNewRuntime)
+            {
+                SetupNewRuntime();
+            }
+            else if (hasGraph)
             {
                 graph.StartListening(reference);
             }
 
             base.OnInstantiateWhileEnabled();
+        }
+
+        protected override void Update()
+        {
+#if UNITY_EDITOR
+            if (IsUsingNewRuntime && m_GraphInstance != null && m_GraphInstance.Hash != graph.RuntimeGraphAsset.Hash)
+            {
+                Debug.Log($"Live reload {m_GraphInstance.Hash} -> {graph.RuntimeGraphAsset.Hash}");
+                StopCoroutine(m_RunningCoroutine);
+                m_GraphInstance.Dispose();
+                m_GraphInstance = null;
+                SetupNewRuntime();
+            }
+#endif
+            base.Update();
         }
 
         protected override void OnUninstantiateWhileEnabled()
@@ -49,10 +91,19 @@ namespace Unity.VisualScripting
         {
             base.OnDisable();
 
-            if (hasGraph)
+            if (IsUsingNewRuntime)
+            {
+            }
+            else if (hasGraph)
             {
                 graph.StopListening(reference);
             }
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            m_GraphInstance?.Dispose();
         }
 
         [ContextMenu("Show Data...")]

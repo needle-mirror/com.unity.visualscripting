@@ -9,7 +9,7 @@ namespace Unity.VisualScripting
     public static class IconExportUtility
     {
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Tools/Bolt/Internal/Export Type Icon...", priority = LudiqProduct.DeveloperToolsMenuPriority + 302)]
+        [MenuItem("Visual Scripting/Internal/Export Type Icon...", priority = LudiqProduct.DeveloperToolsMenuPriority + 302)]
 #endif
         public static void ExportTypeIcon()
         {
@@ -38,7 +38,7 @@ namespace Unity.VisualScripting
         }
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Tools/Bolt/Internal/Export Message Icon...", priority = LudiqProduct.DeveloperToolsMenuPriority + 302)]
+        [MenuItem("Visual Scripting/Internal/Export Message Icon...", priority = LudiqProduct.DeveloperToolsMenuPriority + 302)]
 #endif
         public static void ExportMessageIcon()
         {
@@ -88,7 +88,7 @@ namespace Unity.VisualScripting
         }
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Tools/Bolt/Internal/Export All Editor Icons...", priority = LudiqProduct.DeveloperToolsMenuPriority + 302)]
+        [MenuItem("Visual Scripting/Internal/Export All Editor Icons...", priority = LudiqProduct.DeveloperToolsMenuPriority + 302)]
 #endif
         public static void ExportAllEditorIcon()
         {

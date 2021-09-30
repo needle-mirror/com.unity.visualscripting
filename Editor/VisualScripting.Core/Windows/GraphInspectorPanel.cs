@@ -17,7 +17,7 @@ namespace Unity.VisualScripting
         {
             this.context = context;
 
-            titleContent = new GUIContent("Graph Inspector", BoltCore.Icons.inspectorWindow?[IconSize.Small]);
+            titleContent = new GUIContent("Graph Inspector", BoltCore.Icons?.inspectorWindow?[IconSize.Small]);
         }
 
         public void OnGUI(Rect position)

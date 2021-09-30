@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.IMGUI.Controls;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using UnityObject = UnityEngine.Object;
 
 namespace Unity.VisualScripting
@@ -124,10 +127,6 @@ namespace Unity.VisualScripting
         private SplitDropdown splitDropdownScriptGraph;
         private SplitDropdown splitDropdownStateGraph;
 
-        const string k_OnSelectedGameObject = "...on selected GameObject";
-        const string k_OnNewGameObject = "...on new GameObject";
-        const string k_SelectedGameObject = "Please, select a GameObject";
-
         [MenuItem("Window/Visual Scripting/Visual Scripting Graph", false, 3010)]
         private static void ShowWindow()
         {
@@ -140,7 +139,7 @@ namespace Unity.VisualScripting
         {
             string pathRoot = PathUtility.GetPackageRootPath();
 
-            UnityObject icon = EditorGUIUtility.Load(Path.Combine(pathRoot,
+            Object icon = EditorGUIUtility.Load(Path.Combine(pathRoot,
                 "Editor/VisualScripting.Shared/EditorAssetResources/SplitButtonArrow.png"));
 
             dropdownIcon = new GUIContent(icon as Texture2D);
@@ -151,37 +150,27 @@ namespace Unity.VisualScripting
             toggleOnState = false;
             shouldCloseWindow = false;
 
-            var listOfOptions = new List<DropdownOptions>
+            List<DropdownOptions> listOfOptions = new List<DropdownOptions>();
+            listOfOptions.Add(new DropdownOptions()
             {
-                new DropdownOptions
-                {
-                    label = k_OnSelectedGameObject,
-                    tooltip = k_SelectedGameObject,
-                    callback = CreateScriptGraphOnSelectedGameObject
-                },
-                new DropdownOptions
-                {
-                    label = k_OnNewGameObject,
-                    callback = CreateScriptGraphOnNewGameObject
-                }
-            };
+                label = "...on selected game object",
+                tooltip = "Please, select a gameObject",
+                callback = CreateScriptGraphOnSelectedGameObject
+            });
+            listOfOptions.Add(new DropdownOptions()
+            { label = "...on new game object", callback = CreateScriptGraphOnNewGameObject });
 
             splitDropdownScriptGraph = new SplitDropdown(listOfOptions);
 
-            listOfOptions = new List<DropdownOptions>
+            listOfOptions = new List<DropdownOptions>();
+            listOfOptions.Add(new DropdownOptions()
             {
-                new DropdownOptions
-                {
-                    label = k_OnSelectedGameObject,
-                    tooltip = k_SelectedGameObject,
-                    callback = CreateStateGraphOnSelectedGameObject
-                },
-                new DropdownOptions
-                {
-                    label = k_OnNewGameObject,
-                    callback = CreateStateGraphOnNewGameObject
-                }
-            };
+                label = "...on selected game object",
+                tooltip = "Please, select a gameObject",
+                callback = CreateStateGraphOnSelectedGameObject
+            });
+            listOfOptions.Add(new DropdownOptions()
+            { label = "...on new game object", callback = CreateStateGraphOnNewGameObject });
 
             splitDropdownStateGraph = new SplitDropdown(listOfOptions);
         }
@@ -237,9 +226,7 @@ namespace Unity.VisualScripting
                 return false;
             }
 
-            VSUsageUtility.isVisualScriptingUsed = true;
-
-            var macro = (IMacro)CreateInstance(typeof(ScriptGraphAsset));
+            var macro = (IMacro)ScriptableObject.CreateInstance(typeof(ScriptGraphAsset));
             var macroObject = (UnityObject)macro;
             macro.graph = FlowGraph.WithStartUpdate();
 
@@ -312,9 +299,7 @@ namespace Unity.VisualScripting
                 return false;
             }
 
-            VSUsageUtility.isVisualScriptingUsed = true;
-
-            var macro = (IMacro)CreateInstance(typeof(StateGraphAsset));
+            var macro = (IMacro)ScriptableObject.CreateInstance(typeof(StateGraphAsset));
             var macroObject = (UnityObject)macro;
             macro.graph = StateGraph.WithStart();
 

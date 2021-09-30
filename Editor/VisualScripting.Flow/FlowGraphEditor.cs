@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using Unity.VisualScripting;
 
 namespace Unity.VisualScripting
 {
@@ -17,7 +18,19 @@ namespace Unity.VisualScripting
         private Metadata valueInputDefinitionsMetadata => metadata[nameof(FlowGraph.valueInputDefinitions)];
         private Metadata valueOutputDefinitionsMetadata => metadata[nameof(FlowGraph.valueOutputDefinitions)];
 
-        private IEnumerable<Warning> warnings => UnitPortDefinitionUtility.Warnings((FlowGraph)metadata.value);
+        private IEnumerable<Warning> warnings => UnitPortDefinitionUtility.Warnings((FlowGraph)metadata.value)
+        .Concat(GraphWarnings);
+
+        private IEnumerable<Warning> GraphWarnings
+        {
+            get
+            {
+                // HACK not sure if an actual hack or intended purpose
+                var graphReference = LudiqGraphsEditorUtility.editedContext.value;
+                return graph.Analysis<FlowGraphTranslator.NewRuntimeAnalysis>(graphReference)?.warnings
+                    ?? Enumerable.Empty<Warning>();
+            }
+        }
 
         protected override float GetHeight(float width, GUIContent label)
         {

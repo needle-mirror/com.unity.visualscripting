@@ -60,7 +60,7 @@ namespace Unity.VisualScripting
         }
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Tools/Bolt/Internal/Export Release Asset Package...", priority = DeveloperToolsMenuPriority + 102)]
+        [MenuItem("Visual Scripting/Internal/Export Release Asset Package...", priority = DeveloperToolsMenuPriority + 102)]
 #endif
         private static void ExportReleasePackage()
         {

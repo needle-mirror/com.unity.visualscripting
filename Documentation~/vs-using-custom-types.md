@@ -1,6 +1,6 @@
-# Using custom types
+# Using custom types in Visual Scripting
 
-Visual Scripting supports every class and struct type available in Unity. By default, the most common are available in the Fuzzy Finder. You can add additional Unity assemblies, including custom types and classes, through your [Visual Scripting project settings](vs-configuration.md).
+Visual Scripting supports every class and struct type available in Unity. By default, the most common are available in the Fuzzy Finder. You can add additional Unity assemblies, including custom types and classes, through your [Visual Scripting Project Settings](vs-configuration.md).
 
 To use your custom types and classes in your graphs, you may need to write some additional code. You can't assign a value to a variable with a custom type from the Inspector, or initialize it from inside the Unity Editor if this additional code isn't available.
 
@@ -26,5 +26,5 @@ If you don't have access to the source code, creating a PropertyDrawer is the on
 
 For more information on creating a custom PropertyDrawer, see [Create a custom PropertyDrawer for a custom variable type](vs-create-custom-drawer.md).
 
-Once you have a custom PropertyDrawer available for a custom type, you must go into your Visual Scripting Project Settings to generate the necessary property provider scripts. For more information, see the description of the **Generate** option in [Configuring your project settings](vs-configuration.md).
+Once you have a custom PropertyDrawer available for a custom type, you must go into your Visual Scripting Project Settings to generate the necessary property provider scripts. For more information, see the description of the **Generate** option in [Configuring your Visual Scripting Project Settings](vs-configuration.md).
 

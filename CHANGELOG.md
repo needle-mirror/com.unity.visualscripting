@@ -2,7 +2,11 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
-## [1.7.5] - 2021-08-30
+## [1.8.0-pre.1] - 2021-09-30
+## Added
+- Added the High Performance Interpreter. It can be enabled on script machines using the toggle provided.
+
+## [1.7.4] - 2021-08-30
 ### Changed
 - Removed unused Preferences
 - Renamed preference "Update Units Automatically" to "Update Nodes Automatically"
@@ -18,15 +22,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fixed missing AOT prebuild step when building an IL2CPP project in batchmode [BOLT-1649](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1649)
 - Restored a public icon set API in UnitPortDescription.cs that was by mistake
 - Fixed il2cpp crash caused by a recursion of the machine states in itself when  AOTstubs is generating.[BOLT-1656](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1656)
-
-## [1.7.3] - 2021-06-30
-### Changed
-- Removed unused Preferences
-- Renamed preference "Update Units Automatically" to "Update Nodes Automatically"
-
-### Fixed
-- Fixed an issue where uncaught exceptions were thrown in Debug builds of the Windows editor
-- Fixed custom units not appearing in the finder
 
 ## [1.7.2] - 2021-05-17
 ### Changed
@@ -46,7 +41,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Changed
 - Renamed the VSSettingsProvider assembly to Unity.VisualScripting.SettingsProvider.Editor
-- Variables Saver GameObject no longer appears until a variable is created or changed. [BOLT-1343](https://jira.unity3d.com/browse/BOLT-1343)
+- Variables Saver GameObject no longer appears until a variable is created or changed
 - Renamed Singleton GameObjects created by Visual Scripting to use "VisualScripting ---" names.
 - All internal plugin and product versions have been normalized to use the package version.
 - NotEquals node in non-scalar mode is now consistent with Equals

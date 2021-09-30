@@ -86,7 +86,7 @@ namespace Unity.VisualScripting
         }
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Tools/Bolt/Fix Missing Scripts", priority = LudiqProduct.ToolsMenuPriority + 501)]
+        [MenuItem("Visual Scripting/Fix Missing Scripts", priority = LudiqProduct.ToolsMenuPriority + 501)]
 #endif
         public static void Run()
         {
@@ -124,7 +124,7 @@ namespace Unity.VisualScripting
         }
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Tools/Bolt/Developer/Log Script Reference Replacements", priority = BoltProduct.DeveloperToolsMenuPriority + 601)]
+        [MenuItem("Visual Scripting/Developer/Log Script Reference Replacements", priority = BoltProduct.DeveloperToolsMenuPriority + 601)]
 #endif
         private static void LogReplacements()
         {

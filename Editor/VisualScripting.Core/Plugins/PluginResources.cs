@@ -38,7 +38,9 @@ namespace Unity.VisualScripting
                     /*
                      * TODO: To be removed when the asset bundle team fix the issue JIRA: BOLT-1650
                      */
-                    assetBundleResourceProvider = new AssetBundleResourceProvider();
+                    AssetUtility.AssetBundleEditor.Unload(true);
+
+                    assetBundleResourceProvider = new AssetBundleResourceProvider(AssetUtility.AssetBundleEditor);
 
                     _providers.Add(assetBundleResourceProvider);
                 }

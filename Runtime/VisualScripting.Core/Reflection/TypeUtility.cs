@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using Unity.VisualScripting.Interpreter;
 using UnityObject = UnityEngine.Object;
 
 namespace Unity.VisualScripting
@@ -770,6 +771,10 @@ namespace Unity.VisualScripting
             else if (type == typeof(float))
             {
                 return ((float)o).ToString("0.##");
+            }
+            else if (type == typeof(Value))
+            {
+                return ((Value)o).ToPrettyString();
             }
             else if (type == typeof(double))
             {

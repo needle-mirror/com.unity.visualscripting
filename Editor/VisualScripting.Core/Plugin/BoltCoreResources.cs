@@ -23,30 +23,19 @@ namespace Unity.VisualScripting
 
             loader = LoadTexture("Loader.png", CreateTextureOptions.PixelPerfect);
 
-            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-            ReloadAssets.OnBuildCompleted += OnBuildCompleted;
+            EditorApplication.playModeStateChanged += LogPlayModeState;
         }
 
-        private void OnBuildCompleted()
+        private void LogPlayModeState(PlayModeStateChange state)
         {
-            ReloadTextureAssets();
-        }
-
-        private void OnPlayModeStateChanged(PlayModeStateChange state)
-        {
-            if (state == PlayModeStateChange.EnteredEditMode)
+            if (state == PlayModeStateChange.EnteredEditMode && !Application.isBatchMode)
             {
-                ReloadTextureAssets();
+                icons.Load();
+
+                loader = LoadTexture("Loader.png", CreateTextureOptions.PixelPerfect);
+
+                GraphGUI.Styles.LoadStyles();
             }
-        }
-
-        private void ReloadTextureAssets()
-        {
-            icons.Load();
-
-            loader = LoadTexture("Loader.png", CreateTextureOptions.PixelPerfect);
-
-            GraphGUI.Styles.LoadStyles();
         }
 
         public class Icons

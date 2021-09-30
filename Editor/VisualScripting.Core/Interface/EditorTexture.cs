@@ -45,30 +45,7 @@ namespace Unity.VisualScripting
             return new EditorTexture(texture);
         }
 
-        //TODO: remove once the asset bundle bug is fixed
-        internal bool IsValid()
-        {
-            foreach (Texture2D texture2D in personal.Values)
-            {
-                if (texture2D != null)
-                {
-                    return true;
-                }
-            }
-
-            foreach (Texture2D texture2D in professional.Values)
-            {
-                if (texture2D != null)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
         #region Fetching
-
-        private string textureName;
 
         private readonly Dictionary<int, Texture2D> personal;
 
@@ -101,19 +78,9 @@ namespace Unity.VisualScripting
                                 personal.Add(resolution, personalAtResolution);
                             }
 
-                            // if (personalAtResolution == null)
-                            // {
-                            //     Debug.Log($"{textureName} missing");
-                            // }
-
                             return personalAtResolution;
                         }
                     }
-
-                    // if (proAtResolution == null)
-                    // {
-                    //     Debug.Log($"{textureName} missing");
-                    // }
 
                     return proAtResolution;
                 }
@@ -126,11 +93,6 @@ namespace Unity.VisualScripting
                         personalAtResolution = GetHighestResolution(personal);
                         personal.Add(resolution, personalAtResolution);
                     }
-
-                    // if (personalAtResolution == null)
-                    // {
-                    //     Debug.Log($"{textureName} missing");
-                    // }
 
                     return personalAtResolution;
                 }
@@ -281,8 +243,6 @@ namespace Unity.VisualScripting
                     return null;
                 }
 
-                set.textureName = path;
-
                 return set;
             }
         }
@@ -333,8 +293,6 @@ namespace Unity.VisualScripting
 
                     return null;
                 }
-
-                set.textureName = path;
 
                 return set;
             }

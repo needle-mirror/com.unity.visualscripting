@@ -4,8 +4,7 @@ You can use the empty graph creation flow to create a new unassigned graph for u
 
 ![The Empty Graph Creation Flow window](images\vs-empty-graph-create-flow.png)
 
-> [!NOTE]
-> To use the graph file, you must [attach it to a Script Machine or State Machine](vs-attach-graph-machine.md).
+To use the graph file, you must [attach it to a Script Machine or State Machine](vs-attach-graph-machine.md).
 
 For more information on other ways to create a graph file, see [Creating a new graph file](vs-create-graph.md).
 

@@ -68,5 +68,8 @@ namespace Unity.VisualScripting
 
             return exit;
         }
+
+        public ControlInput GetBranchControlInput(int i) => controlInputs["enter_" + i];
+        public ValueInput GetBranchValueInput(int i) => branches[GetBranchControlInput(i)];
     }
 }

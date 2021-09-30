@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Unity.VisualScripting
 {
@@ -34,5 +35,6 @@ namespace Unity.VisualScripting
         void EndEdit();
 
         void DescribeAndAnalyze();
+        void OnRecordFrameTrace(uint hash, int frame, GameObject gameObject, DotsFrameTrace.RecordedStep step);
     }
 }

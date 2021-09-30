@@ -17,6 +17,6 @@ In the parent State Graph, any transition nodes with a configured transition Scr
 If you've assigned a name to your transition Script Graph from the Graph Inspector, the assigned name appears on the transition node. 
 
 > [!TIP]
-> If you want your transition nodes to take up less space in your State Graphs, you can choose to hide their name labels. For more information, see State Graphs preferences in [Configuring your preferences](vs-set-preferences.md#state-graphs-preferences).
+> If you want your transition nodes to take up less space in your State Graphs, you can choose to hide their name labels. For more information, see State Graphs preferences in [Configuring your Visual Scripting preferences](vs-set-preferences.md#state-graphs-preferences).
 
 You can create any number of transitions between states in a State Graph. You can use a self transition to make a state transition to itself. For more information on creating transitions, see [Create a transition between states](vs-creating-transition.md).

@@ -54,15 +54,15 @@ The following preferences control general behaviors across all graph types in Vi
 </tr>
 <tr>
 <td><strong>Zoom Speed</strong></td>
-<td>Set a <strong>Zoom Speed</strong> to control how quickly the Graph Editor zooms in or zooms out while setting a zoom level in the Graph window. For more information on zooming in the Graph Editor, see Zoom in/Zoom Out in <a href="vs-control-schemes.md#zoom-inzoom-out">Choosing a control scheme</a>.</td>
+<td>Set a <strong>Zoom Speed</strong> to control how quickly the Graph Editor zooms in or zooms out while setting a zoom level in the Graph window. For more information on zooming in the Graph Editor, see Zoom in/Zoom Out in <a href="vs-control-schemes.md#zoom-inzoom-out">Choosing a Visual Scripting control scheme</a>.</td>
 </tr>
 <tr>
 <td><strong>Overview Smoothing</strong></td>
-<td>Set <strong>Overview Smoothing</strong> to control how gradually the Graph Editor zooms or pans after selecting the <strong>Overview</strong> option. For more information on the <strong>Overview</strong> option, see <a href="vs-interface-overview.md">The Visual Scripting interface</a>.</td>
+<td>Set <strong>Overview Smoothing</strong> to control how gradually the Graph Editor zooms or pans after selecting the <strong>Overview</strong> option. For more information on the <strong>Overview</strong> option, see <a href="vs-interface-overview.md">About the Visual Scripting interface</a>.</td>
 </tr>
 <tr>
 <td><strong>Carry Children</strong></td>
-<td>When enabled, Visual Scripting moves all connected child nodes when you move a parent node. When disabled, any connected child nodes don't move when their parent node moves. <br/> <div class="NOTE"><h5>NOTE</h5><p>You can also change this setting from the toolbar in the Graph window. For more information, see <a href="vs-interface-overview.md">The Visual Scripting interface</a>.</p></div></td>
+<td>When enabled, Visual Scripting moves all connected child nodes when you move a parent node. When disabled, any connected child nodes don't move when their parent node moves. <br/> <div class="NOTE"><h5>NOTE</h5><p>You can also change this setting from the toolbar in the Graph window. For more information, see <a href="vs-interface-overview.md">About the Visual Scripting interface</a>.</p></div></td>
 </tr>
 <tr>
 <td><strong>Disable Playmode Tint</strong></td>
@@ -70,7 +70,7 @@ The following preferences control general behaviors across all graph types in Vi
 </tr>
 <tr>
 <td><strong>Control Scheme</strong></td>
-<td>Select your desired Visual Scripting control scheme. For more information, see <a href="vs-control-schemes.md">Choosing a control scheme</a>.</td>
+<td>Select your desired Visual Scripting control scheme. For more information, see <a href="vs-control-schemes.md">Choosing a Visual Scripting control scheme</a>.</td>
 </tr>
 <tr>
 <td><strong>Clear Graph Selection</strong></td>
@@ -114,7 +114,7 @@ The following preferences change the behavior of Script Graphs in the Graph wind
 <tbody>
 <tr>
 <td><strong>Update Units Automatically</strong></td>
-<td><div class="NOTE"><h5>NOTE</h5><p>This feature is experimental.</p></div>When enabled, Visual Scripting updates your node library automatically whenever it detects that a script in your project's <strong>Assets</strong> folder has changed. When disabled, you must manually update your node library. For more information on updating your node library, see <a href="vs-configuration.md">Configuring your project settings</a>.</td>
+<td><div class="NOTE"><h5>NOTE</h5><p>This feature is experimental.</p></div>When enabled, Visual Scripting updates your node library automatically whenever it detects that a script in your project's <strong>Assets</strong> folder has changed. When disabled, you must manually update your node library. For more information on updating your node library, see <a href="vs-configuration.md">Configuring your Visual Scripting project settings</a>.</td>
 </tr>
 <tr>
 <td><strong>Predict Potential Null References</strong></td>

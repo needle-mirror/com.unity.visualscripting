@@ -15,6 +15,7 @@ namespace Unity.VisualScripting
         public float yellow { get; set; }
         public float orange { get; set; }
         public float red { get; set; }
+        public float purple { get; set; }
 
         public static NodeColorMix TealReadable
         {
@@ -113,6 +114,8 @@ namespace Unity.VisualScripting
                         return orange;
                     case NodeColor.Red:
                         return red;
+                    case NodeColor.Purple:
+                        return purple;
                     default:
                         throw new UnexpectedEnumValueException<NodeColor>(color);
                 }
@@ -143,6 +146,9 @@ namespace Unity.VisualScripting
                         return;
                     case NodeColor.Red:
                         red = value;
+                        return;
+                    case NodeColor.Purple:
+                        purple = value;
                         return;
                     default:
                         throw new UnexpectedEnumValueException<NodeColor>(color);

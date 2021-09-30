@@ -640,6 +640,9 @@ namespace Unity.VisualScripting
 
                     switch (mostSevereWarning)
                     {
+                        case WarningLevel.Important:
+                            color = NodeColor.Purple;
+                            break;
                         case WarningLevel.Error:
                             color = NodeColor.Red;
 
@@ -762,7 +765,7 @@ namespace Unity.VisualScripting
         {
             var icon = description.icon ?? BoltFlow.Icons.unit;
 
-            if (icon != null && icon[(int)iconPosition.width])
+            if (icon != null)
             {
                 GUI.DrawTexture(iconPosition, icon[(int)iconPosition.width]);
             }

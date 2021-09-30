@@ -20,7 +20,7 @@
 
 * [Basic concepts in Visual Scripting](vs-basic-concepts.md)
 
-    *[The Visual Scripting interface](vs-interface-overview.md)
+    *[The interface](vs-interface-overview.md)
 
     *[Nodes](vs-nodes.md)
 
@@ -84,7 +84,7 @@
     
     *[Capturing player inputs using the input manager](vs-capturing-player-inputs-old.md)
     
-* [Developing logic transitions using state graphs](vs-state-graphs-intro.md)
+* [Developing transitions using state graphs](vs-state-graphs-intro.md)
 
     *[Create a new state](vs-create-state.md)
     

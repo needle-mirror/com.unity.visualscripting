@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.7.6] - 2021-11-05
+### Fixed
+- Fixed a regression where AOT Stubs were not being generated correctly, causing AOT builds to fail when run.
+
 ## [1.7.5] - 2021-08-30
 ### Changed
 - Removed unused Preferences

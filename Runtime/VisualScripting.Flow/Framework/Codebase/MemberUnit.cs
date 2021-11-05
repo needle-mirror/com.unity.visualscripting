@@ -60,7 +60,7 @@ namespace Unity.VisualScripting
             }
         }
 
-        private IEnumerable<object> GetaotStubs()
+        public override IEnumerable<object> GetAotStubs(HashSet<object> visited)
         {
             if (member != null && member.isReflected)
             {

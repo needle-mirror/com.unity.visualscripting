@@ -342,11 +342,11 @@ namespace Unity.VisualScripting
         static Inspector()
         {
             blockDebugBox = new GUIStyle();
-            blockDebugBox.normal.background = ColorUtility.CreateBox(ColorPalette.transparent, Color.yellow);
+            blockDebugBox.normal.background = ColorUtility.CreateBox($"{EmbeddedResourceProvider.VISUAL_SCRIPTING_PACKAGE}.blockDebugBox", ColorPalette.transparent, Color.yellow);
             blockDebugBox.border = new RectOffset(1, 1, 1, 1);
 
             labelDebugBox = new GUIStyle();
-            labelDebugBox.normal.background = ColorUtility.CreateBox(ColorPalette.transparent, Color.blue);
+            labelDebugBox.normal.background = ColorUtility.CreateBox($"{EmbeddedResourceProvider.VISUAL_SCRIPTING_PACKAGE}.labelDebugBox", ColorPalette.transparent, Color.blue);
             labelDebugBox.border = new RectOffset(1, 1, 1, 1);
 
             blockStack = new Stack<InspectorBlock>();

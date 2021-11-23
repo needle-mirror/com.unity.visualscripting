@@ -12,6 +12,9 @@ namespace Unity.VisualScripting
 
         IEnumerable<string> GetDirectories(string path);
 
+        string GetPersonalPath(string path, float width);
+        string GetProfessionalPath(string path, float width);
+
         bool FileExists(string path);
 
         bool DirectoryExists(string path);

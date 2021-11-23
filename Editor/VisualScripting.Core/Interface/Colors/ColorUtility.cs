@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,11 +34,10 @@ namespace Unity.VisualScripting
         {
             if (!pixels.ContainsKey(color))
             {
-                var pixel = new Texture2D(1, 1, TextureFormat.ARGB32, false, LudiqGUIUtility.createLinearTextures);
-                pixel.SetPixel(0, 0, color);
-                pixel.hideFlags = HideFlags.HideAndDontSave;
-                pixel.filterMode = FilterMode.Point;
-                pixel.Apply();
+                string name = $"{EmbeddedResourceProvider.VISUAL_SCRIPTING_PACKAGE}.{color.ToHexString()}";
+
+                Texture2D pixel = EmbeddedResourceProvider.CreatePixelTexture(name, color, 1, 1);
+
                 pixels.Add(color, pixel);
             }
 
@@ -49,6 +49,22 @@ namespace Unity.VisualScripting
             return skinnedColor.color.GetPixel();
         }
 
+        public static Texture2D CreateBox(string name, Color fill, Color border)
+        {
+            Texture2D box = EmbeddedResourceProvider.LoadFromMemoryResources(name);
+
+            if (box == null)
+            {
+                box = EmbeddedResourceProvider.CreatePixelTexture(name, border, 3, 3);
+
+                box.SetPixel(1, 1, fill);
+                box.Apply();
+            }
+
+            return box;
+        }
+
+        [Obsolete("Please use the new ColorUtility.CreateBox(name, fill, border) method instead.")]
         public static Texture2D CreateBox(Color fill, Color border)
         {
             var box = new Texture2D(3, 3, TextureFormat.ARGB32, false, LudiqGUIUtility.createLinearTextures);

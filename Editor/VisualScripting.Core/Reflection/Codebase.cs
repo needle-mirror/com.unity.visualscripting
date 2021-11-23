@@ -43,7 +43,7 @@ namespace Unity.VisualScripting
                         _assemblies.Add(assembly);
 
                         var isRuntimeAssembly = IsRuntimeAssembly(assembly);
-                        var isEditorAssembly = IsEditorDependentAssembly(assembly);
+                        var isEditorAssembly = IsEditorAssembly(assembly, new HashSet<string>());
                         var isLudiqRuntimeDependentAssembly = IsLudiqRuntimeDependentAssembly(assembly);
                         var isLudiqEditorDependentAssembly = IsLudiqEditorDependentAssembly(assembly);
                         var isLudiqAssembly = isLudiqRuntimeDependentAssembly || isLudiqEditorDependentAssembly;
@@ -144,7 +144,6 @@ namespace Unity.VisualScripting
         private static List<Type> _settingsTypes;
 
         private static readonly Dictionary<Assembly, bool> _editorAssemblyCache = new Dictionary<Assembly, bool>();
-
         #region Serialization
 
         public static string SerializeType(Type type)
@@ -297,7 +296,7 @@ namespace Unity.VisualScripting
             return typeset;
         }
 
-        private static bool IsEditorAssembly(AssemblyName assemblyName)
+        private static bool IsUnityEditorAssembly(AssemblyName assemblyName)
         {
             var name = assemblyName.Name;
 
@@ -306,6 +305,63 @@ namespace Unity.VisualScripting
                 name == "Assembly-CSharp-Editor-firstpass" ||
                 name == "UnityEditor" ||
                 name == "UnityEditor.CoreModule";
+        }
+
+        private static bool IsEditorAssembly(Assembly assembly, HashSet<string> visited)
+        {
+            // assembly.GetName() is surprisingly expensive, keep a cache
+            if (_editorAssemblyCache.TryGetValue(assembly, out var isEditor))
+            {
+                return isEditor;
+            }
+
+            if (visited.Contains(assembly.GetName().Name))
+            {
+                return false;
+            }
+
+            visited.Add(assembly.GetName().Name);
+
+            if (Attribute.IsDefined(assembly, typeof(AssemblyIsEditorAssembly)))
+            {
+                _editorAssemblyCache.Add(assembly, true);
+                return true;
+            }
+
+            if (IsUserAssembly(assembly))
+            {
+                _editorAssemblyCache.Add(assembly, false);
+                return false;
+            }
+
+            if (IsUnityEditorAssembly(assembly.GetName()))
+            {
+                _editorAssemblyCache.Add(assembly, true);
+                return true;
+            }
+
+            AssemblyName[] listOfAssemblyNames = assembly.GetReferencedAssemblies();
+            foreach (var dependencyName in listOfAssemblyNames)
+            {
+                try
+                {
+                    Assembly dependency = Assembly.Load(dependencyName);
+
+                    if (IsEditorAssembly(dependency, visited))
+                    {
+                        _editorAssemblyCache.Add(assembly, true);
+                        return true;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogWarning(e.Message);
+                }
+            }
+
+            _editorAssemblyCache.Add(assembly, false);
+
+            return false;
         }
 
         private static bool IsUserAssembly(AssemblyName assemblyName)
@@ -322,46 +378,12 @@ namespace Unity.VisualScripting
             return IsUserAssembly(assembly.GetName());
         }
 
-        private static bool IsEditorAssembly(Assembly assembly)
-        {
-            // assembly.GetName() is surprisingly expensive, keep a cache
-            if (_editorAssemblyCache.TryGetValue(assembly, out var isEditor))
-                return isEditor;
-            if (Attribute.IsDefined(assembly, typeof(AssemblyIsEditorAssembly)))
-            {
-                _editorAssemblyCache.Add(assembly, isEditor);
-                return true;
-            }
-
-            var isEditorAssembly = IsEditorAssembly(assembly.GetName());
-            _editorAssemblyCache.Add(assembly, isEditorAssembly);
-            return isEditorAssembly;
-        }
-
         private static bool IsRuntimeAssembly(Assembly assembly)
         {
             // User assemblies refer to the editor when they include
             // a using UnityEditor / #if UNITY_EDITOR, but they should still
             // be considered runtime.
-            return IsUserAssembly(assembly) || !IsEditorDependentAssembly(assembly);
-        }
-
-        private static bool IsEditorDependentAssembly(Assembly assembly)
-        {
-            if (IsEditorAssembly(assembly))
-            {
-                return true;
-            }
-
-            foreach (var dependency in assembly.GetReferencedAssemblies())
-            {
-                if (IsEditorAssembly(dependency))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return !IsEditorAssembly(assembly, new HashSet<string>());
         }
 
         private static bool IsLudiqRuntimeDependentAssembly(Assembly assembly)
@@ -404,7 +426,7 @@ namespace Unity.VisualScripting
         {
             var rootNamespace = type.RootNamespace();
 
-            return IsEditorAssembly(type.Assembly) ||
+            return IsEditorAssembly(type.Assembly, new HashSet<string>()) ||
                 rootNamespace == "UnityEditor" ||
                 rootNamespace == "UnityEditorInternal";
         }

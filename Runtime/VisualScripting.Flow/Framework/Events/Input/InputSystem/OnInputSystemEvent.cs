@@ -60,8 +60,6 @@ namespace Unity.VisualScripting.InputSystem
 
         private InputAction m_Action;
 
-        private bool m_WasRunning;
-
         /// <summary>
         ///  Stores the last value, and returned by the output port. This intermediary value is there to enable
         /// "fetching" from the value port, which happens when the value is read, but the node has never been executed.
@@ -122,29 +120,24 @@ namespace Unity.VisualScripting.InputSystem
             if (m_Action == null)
                 return false;
 
-            bool shouldtrigger;
-            // "Started" is true while the button is held, triggered is true only one frame. hence what looks like a bug but isn't
+            bool shouldTrigger;
             switch (InputActionChangeType)
             {
                 case InputActionChangeOption.OnPressed:
-                    shouldtrigger = m_Action.triggered; // started is true too long
+                    shouldTrigger = m_Action.WasPressedThisFrame();
                     break;
                 case InputActionChangeOption.OnHold:
-                    shouldtrigger = m_Action.phase == InputActionPhase.Started; // triggered is only true one frame
+                    shouldTrigger = m_Action.IsPressed();
                     break;
                 case InputActionChangeOption.OnReleased:
-                    shouldtrigger = m_WasRunning && m_Action.phase != InputActionPhase.Started; // never equal to InputActionPhase.Cancelled when polling
+                    shouldTrigger = m_Action.WasReleasedThisFrame();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
             DoAssignArguments(flow);
-
-            // Hack - can't make sense of the action phase when polled (always Started or Waiting). Fallback on "== Started"
-            m_WasRunning = m_Action.phase == InputActionPhase.Started;
-
-            return shouldtrigger;
+            return shouldTrigger;
         }
 
         private void DoAssignArguments(Flow flow)

@@ -9,29 +9,6 @@ namespace Unity.VisualScripting
         private BoltFlowResources(BoltFlow plugin) : base(plugin)
         {
             icons = new Icons(this);
-
-            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-            ReloadAssets.OnBuildCompleted += OnBuildCompleted;
-        }
-
-        private void OnBuildCompleted()
-        {
-            ReloadTextureAssets();
-        }
-
-        private void OnPlayModeStateChanged(PlayModeStateChange state)
-        {
-            if (state == PlayModeStateChange.EnteredEditMode)
-            {
-                ReloadTextureAssets();
-            }
-        }
-
-        private void ReloadTextureAssets()
-        {
-            VisualScripting.Icons.Clear();
-
-            icons.Load();
         }
 
         public Icons icons { get; private set; }

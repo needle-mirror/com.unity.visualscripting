@@ -22,31 +22,6 @@ namespace Unity.VisualScripting
             icons.Load();
 
             loader = LoadTexture("Loader.png", CreateTextureOptions.PixelPerfect);
-
-            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-            ReloadAssets.OnBuildCompleted += OnBuildCompleted;
-        }
-
-        private void OnBuildCompleted()
-        {
-            ReloadTextureAssets();
-        }
-
-        private void OnPlayModeStateChanged(PlayModeStateChange state)
-        {
-            if (state == PlayModeStateChange.EnteredEditMode)
-            {
-                ReloadTextureAssets();
-            }
-        }
-
-        private void ReloadTextureAssets()
-        {
-            icons.Load();
-
-            loader = LoadTexture("Loader.png", CreateTextureOptions.PixelPerfect);
-
-            GraphGUI.Styles.LoadStyles();
         }
 
         public class Icons
@@ -107,6 +82,7 @@ namespace Unity.VisualScripting
                 sceneVariable = resources.LoadIcon("SceneVariable.png");
                 applicationVariable = resources.LoadIcon("ApplicationVariable.png");
                 savedVariable = resources.LoadIcon("SavedVariable.png");
+                flowVariable = resources.LoadIcon("FlowVariable.png");
 
                 window = resources.LoadIcon("GraphWindow.png");
                 inspectorWindow = resources.LoadIcon("GraphInspectorWindow.png");

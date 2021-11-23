@@ -404,6 +404,7 @@ namespace Unity.VisualScripting
 
         private static void UpdateCodebase(IEnumerable<Type> typeSet = null)
         {
+            using var profilerScope = ProfilingUtility.SampleBlock("UpdateCodebase");
             if (typeSet == null)
             {
                 typeSet = Codebase.settingsTypes;
@@ -646,6 +647,8 @@ namespace Unity.VisualScripting
 
         private static void UpdateTypeMappings()
         {
+            using var profilerScope = ProfilingUtility.SampleBlock("UpdateTypeMappings");
+
             typesToGuids = new Dictionary<Type, HashSet<string>>();
             guidsToTypes = new Dictionary<string, HashSet<Type>>();
 

@@ -22,6 +22,8 @@ namespace Unity.VisualScripting
 
             if (plugin.id == BoltCore.ID)
             {
+                _providers.Add(new EmbeddedResourceProvider());
+
                 var pluginType = plugin.GetType();
                 assembly = new AssemblyResourceProvider(pluginType.Assembly, pluginType.Namespace, assemblyRoot);
 
@@ -62,7 +64,6 @@ namespace Unity.VisualScripting
         public virtual void LateInitialize() { }
 
         public Plugin plugin { get; }
-
 
         #region Types
 

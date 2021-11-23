@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityObject = UnityEngine.Object;
 
 namespace Unity.VisualScripting
@@ -186,7 +189,7 @@ namespace Unity.VisualScripting
             splitDropdownStateGraph = new SplitDropdown(listOfOptions);
         }
 
-        private void OpenGraphAsset(UnityObject unityObject)
+        private void OpenGraphAsset(UnityObject unityObject, bool shouldSetSceneAsDirty)
         {
             shouldCloseWindow = true;
 
@@ -208,18 +211,23 @@ namespace Unity.VisualScripting
                 }
             }
 
+            if (shouldSetSceneAsDirty)
+            {
+                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+            }
+
             GraphWindow.OpenActive(graphReference);
 
             GUIUtility.ExitGUI();
         }
 
-        private void OpenGraphFromPath(string path)
+        private void OpenGraphFromPath(string path, bool shouldSetSceneAsDirty)
         {
             path = path.Replace(Application.dataPath, "Assets");
 
             UnityObject unityObject = AssetDatabase.LoadAssetAtPath(path, typeof(UnityObject));
 
-            OpenGraphAsset(unityObject);
+            OpenGraphAsset(unityObject, shouldSetSceneAsDirty);
         }
 
         private void OpenGraph()
@@ -261,7 +269,9 @@ namespace Unity.VisualScripting
 
             AssetDatabase.CreateAsset(macroObject, path);
 
-            OpenGraphFromPath(path);
+            bool shouldSetSceneAsDirty = gameObject != null;
+
+            OpenGraphFromPath(path, shouldSetSceneAsDirty);
 
             return true;
         }
@@ -285,10 +295,6 @@ namespace Unity.VisualScripting
             if (!CreateScriptGraphAsset(newGameObject, true))
             {
                 DestroyImmediate(newGameObject);
-            }
-            else
-            {
-                shouldCloseWindow = true;
             }
         }
 
@@ -336,7 +342,9 @@ namespace Unity.VisualScripting
 
             AssetDatabase.CreateAsset(macroObject, path);
 
-            OpenGraphFromPath(path);
+            bool shouldSetSceneAsDirty = gameObject != null;
+
+            OpenGraphFromPath(path, shouldSetSceneAsDirty);
 
             return true;
         }
@@ -360,10 +368,6 @@ namespace Unity.VisualScripting
             if (!CreateStateGraphAsset(newGameObject, true))
             {
                 DestroyImmediate(newGameObject);
-            }
-            else
-            {
-                shouldCloseWindow = true;
             }
         }
 
@@ -431,7 +435,7 @@ namespace Unity.VisualScripting
             {
                 UnityObject selectedObject = EditorGUIUtility.GetObjectPickerObject();
 
-                OpenGraphAsset(selectedObject);
+                OpenGraphAsset(selectedObject, false);
             }
         }
 

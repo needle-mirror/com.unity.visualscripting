@@ -212,8 +212,6 @@ namespace Unity.VisualScripting
 
         public static EditorTexture Load(IEnumerable<IResourceProvider> resourceProviders, string path, TextureResolution[] resolutions, CreateTextureOptions options, bool required)
         {
-            path = Path.Combine(PluginPaths.assetBundleRoot, path);
-
             foreach (var resources in resourceProviders)
             {
                 var texture = Load(resources, path, resolutions, options, false);
@@ -296,9 +294,6 @@ namespace Unity.VisualScripting
                 Ensure.That(nameof(resolutions)).HasItems(resolutions);
 
                 var set = new EditorTexture();
-                var name = Path.GetFileNameWithoutExtension(path).PartBefore('@');
-                var extension = Path.GetExtension(path);
-                var directory = Path.GetDirectoryName(path);
 
                 // Try with explicit resolutions first
                 foreach (var resolution in resolutions)
@@ -306,8 +301,11 @@ namespace Unity.VisualScripting
                     var width = resolution.width;
                     // var height = resolution.height;
 
-                    var personalPath = Path.Combine(directory, $"{name}@{width}x{extension}");
-                    var professionalPath = Path.Combine(directory, $"{name}_Pro@{width}x{extension}");
+                    var personalPath = String.Empty;
+                    var professionalPath = String.Empty;
+
+                    personalPath = resources.GetPersonalPath(path, width);
+                    professionalPath = resources.GetProfessionalPath(path, width);
 
                     if (resources.FileExists(personalPath))
                     {
@@ -326,7 +324,7 @@ namespace Unity.VisualScripting
                 {
                     if (required)
                     {
-                        Debug.LogWarning($"Missing editor texture: {name}\n{resources.DebugPath(path)}");
+                        Debug.LogWarning($"Missing editor texture: {path}\n{resources.DebugPath(path)}");
                     }
 
                     // Never return an empty set; the codebase assumes this guarantee

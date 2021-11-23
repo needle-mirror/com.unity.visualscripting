@@ -6,7 +6,6 @@ namespace Unity.VisualScripting
     /// Delays flow by waiting until the next frame.
     /// </summary>
     [UnitTitle("Wait For Next Frame")]
-    [UnitShortTitle("Next Frame")]
     [UnitOrder(4)]
     public class WaitForNextFrameUnit : WaitUnit
     {

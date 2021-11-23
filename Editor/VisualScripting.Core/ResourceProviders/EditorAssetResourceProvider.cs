@@ -40,6 +40,24 @@ namespace Unity.VisualScripting
             return Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly);
         }
 
+        public string GetPersonalPath(string path, float width)
+        {
+            var name = Path.GetFileNameWithoutExtension(path).PartBefore('@');
+            var extension = Path.GetExtension(path);
+            var directory = Path.GetDirectoryName(path);
+
+            return Path.Combine(directory, $"{name}@{width}x{extension}");
+        }
+
+        public string GetProfessionalPath(string path, float width)
+        {
+            var name = Path.GetFileNameWithoutExtension(path).PartBefore('@');
+            var extension = Path.GetExtension(path);
+            var directory = Path.GetDirectoryName(path);
+
+            return Path.Combine(directory, $"{name}_Pro@{width}x{extension}");
+        }
+
         public bool FileExists(string path)
         {
             Ensure.That(nameof(path)).IsNotNull(path);

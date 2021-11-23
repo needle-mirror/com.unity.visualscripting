@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.7.7] - 2021-11-23
+### Fixed
+- Fix an NullException error that occurs when creating a Variable right after project initialization.
+- Fix Visual scripting naming in Project Settings and listener.
+- Scene is marked as dirty when a graph is created on a new or exiting GameObject [BOLT-1860](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1859)
+- Fix Flow Variables missing icon
+- Improved node regeneration speed
+- Fix null texture error when switching platform after a build failure
+- Fix null texture error when entering play mode
+- Fix Linux build failing when run from command line
+- Fix Editor Assemblies not detected correctly at Codebase initialization
+- Fix Wait nodes naming inconsistency [BOLT-1886](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1886)
+- Fix constant being stripped in IL2CPP builds [BOLT-1638](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1638)
+- TryConvert<T> now returns true when the conversion was successful [BOLT-2105](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-2105)
+- Fix Input system by using correct Input API [BOLT-2078](https://issuetracker.unity3d.com/issues/input-action-is-not-recognized-when-manipulating-canvas-text-using-visual-scripting)
+
 ## [1.7.6] - 2021-11-05
 ### Fixed
 - Fixed a regression where AOT Stubs were not being generated correctly, causing AOT builds to fail when run.
@@ -60,7 +76,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Update, Start, Fixed Update and Late Update nodes have been renamed into On Update, On Start, On Fixed Update and On Late Update.
 - Moved project settings from Assets directory to the ProjectSettings directory in Unity projects
 - Renamed control schemes to Default/Alternate
-- The UI references to 'Unit' were changed to 'Node' without any change to the underlying types 
+- The UI references to 'Unit' were changed to 'Node' without any change to the underlying types
 - Nodes from Timeline, Cinemachine and InputSystem packages are now automatically included, with their assemblies part of the default assemblyOptions.
 - Progress bar titles for initial node generation have been tweaked to better indicate that it is a one-time process
 - Various optimizations to reduce the duration of domain reloads
@@ -79,7 +95,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fixed the problem were on Linux the fuzzy window would remains above all others. [BOLT-1197](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1197)
-- There is no more crash when the user navigates quickly between fuzzy finder levels on Linux [BOLT-1197](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1196) 
+- There is no more crash when the user navigates quickly between fuzzy finder levels on Linux [BOLT-1197](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1196)
 - Fixed variable type turns to null when clicked outside of the graph
 - Fixed rearranging variables, if type is not set, it sets to the type that is bellow it
 - Lots of miscellaneous migration fixes and quality of life changes
@@ -112,7 +128,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fixed ScalarAdd unit migration from 1.4.13 to 1.4.14 and above
 - Fixed Open the graph window no longer causes Unity UI to stop processing mouse clicks" [BOLT-1159](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1159),
 - Fixed Fuzzy finder no longer blinks when trying to add a node [BOLT-1157](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1157),
-- Fixed Fuzzy search no longer drops keyboard inputs and respond slowly [BOLT-1214](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1214), 
+- Fixed Fuzzy search no longer drops keyboard inputs and respond slowly [BOLT-1214](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1214),
 - Fixed Fuzzy finder search window no longer remains above all other windows [BOLT-1197](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1197)"
 - Fixed Dropdown icon is not clipped with TextField under "Get Variable"
 - Fixed Scale groups when zoom is not at 1x

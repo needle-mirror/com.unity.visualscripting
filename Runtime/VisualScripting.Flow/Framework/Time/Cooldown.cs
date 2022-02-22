@@ -175,9 +175,7 @@ namespace Unity.VisualScripting
 
             if (data.isReady)
             {
-                Reset(flow);
-
-                return exitReady;
+                return Reset(flow);
             }
             else
             {
@@ -193,7 +191,7 @@ namespace Unity.VisualScripting
             data.remaining = data.duration;
             data.unscaled = flow.GetValue<bool>(unscaledTime);
 
-            return null;
+            return exitReady;
         }
 
         private void AssignMetrics(Flow flow, Data data)

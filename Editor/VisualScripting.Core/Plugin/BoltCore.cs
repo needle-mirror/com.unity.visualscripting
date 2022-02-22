@@ -2,9 +2,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[assembly: Unity.VisualScripting.RenamedNamespace("Bolt", "Unity.VisualScripting")]
-[assembly: Unity.VisualScripting.RenamedNamespace("Ludiq", "Unity.VisualScripting")]
-
 [assembly: Unity.VisualScripting.RenamedAssembly("Bolt.Core.Editor", "Unity.VisualScripting.Core.Editor")]
 [assembly: Unity.VisualScripting.RenamedAssembly("Bolt.Core.Runtime", "Unity.VisualScripting.Core")]
 [assembly: Unity.VisualScripting.RenamedAssembly("Bolt.Flow.Editor", "Unity.VisualScripting.Flow.Editor")]

@@ -1,4 +1,4 @@
-# Using relations to debug
+# Use relations to debug
 
 Relations are a useful tool to understand the dependencies between each port of a node. For example, to get the result of A + B with the Add node, you need to provide a value for A and B. Likewise, before invoking the Log node, you should provide a value for its Message input port.
 

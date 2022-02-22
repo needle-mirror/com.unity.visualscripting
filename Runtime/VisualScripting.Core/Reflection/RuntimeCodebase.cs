@@ -8,6 +8,9 @@ using UnityEngine;
 using Exception = System.Exception;
 using Unity.VisualScripting;
 
+[assembly: Unity.VisualScripting.RenamedNamespace("Bolt", "Unity.VisualScripting")]
+[assembly: Unity.VisualScripting.RenamedNamespace("Ludiq", "Unity.VisualScripting")]
+
 namespace Unity.VisualScripting
 {
     public static class RuntimeCodebase
@@ -25,21 +28,21 @@ namespace Unity.VisualScripting
         /* (disallowedAssemblies)
            This is a hack to force our RuntimeCodebase to use the RenamedTypeLookup for certain types when we deserialize them.
            When we migrate from asset store to package assemblies (With new names), we want to deserialize our types
-           to the new types with new namespaces that exist in our new assemblies 
+           to the new types with new namespaces that exist in our new assemblies
            (Ex: Unity.VisualScripting.SuperUnit instead of Bolt.SuperUnit).
-        
-           Problem arises because we're migrating via script. Deleting the old assembly files on the disk doesn't remove 
+
+           Problem arises because we're migrating via script. Deleting the old assembly files on the disk doesn't remove
            them from our AppDomain, and we can't unload specific assemblies.
-           Reloading the whole AppDomain would reload the migration scripts too, which would re-trigger the whole 
+           Reloading the whole AppDomain would reload the migration scripts too, which would re-trigger the whole
            migration flow and be bad UX.
-           
+
            So to avoid this problem, we don't reload the AppDomain (old assemblies still loaded) but just avoid them when
            trying to deserialize types temporarily. When we Domain Reload at the end, it's cleaned up.
-           
-           Without this, we get deserialization errors on migration to do with trying to instantiate a new type from an 
+
+           Without this, we get deserialization errors on migration to do with trying to instantiate a new type from an
            old interface type.
-           
-           This shouldn't cause much of a perf difference for most use because all our types are cached anyway, 
+
+           This shouldn't cause much of a perf difference for most use because all our types are cached anyway,
            and logic to do with this sits beyond the cached types layer.
         */
         public static HashSet<string> disallowedAssemblies = new HashSet<string>();

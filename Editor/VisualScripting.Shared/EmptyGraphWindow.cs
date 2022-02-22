@@ -4,7 +4,6 @@ using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityObject = UnityEngine.Object;
 
@@ -217,8 +216,6 @@ namespace Unity.VisualScripting
             }
 
             GraphWindow.OpenActive(graphReference);
-
-            GUIUtility.ExitGUI();
         }
 
         private void OpenGraphFromPath(string path, bool shouldSetSceneAsDirty)
@@ -396,7 +393,7 @@ namespace Unity.VisualScripting
 
             if (labelStyleDropdownOptions == null)
             {
-                labelStyleDropdownOptions = new GUIStyle("Label")
+                labelStyleDropdownOptions = new GUIStyle("ToolbarButton")
                 {
                     alignment = TextAnchor.MiddleLeft,
                     padding = new RectOffset(20, 0, 0, 0)

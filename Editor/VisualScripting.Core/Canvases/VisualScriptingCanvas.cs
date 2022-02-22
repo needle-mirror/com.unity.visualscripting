@@ -149,6 +149,7 @@ namespace Unity.VisualScripting
 
             foreach (var widget in widgets)
             {
+                widget.Reposition();
                 _widgetsByAscendingZ.Add(widget);
             }
 
@@ -552,18 +553,11 @@ namespace Unity.VisualScripting
 
                     if (zoomDelta != 0)
                     {
-                        if (zoomDelta > 0)
-                        {
-                            var oldZoom = graph.zoom;
-                            var newZoom = graph.zoom + zoomDelta;
-                            var matrix = MathfEx.ScaleAroundPivot(mousePosition, (oldZoom / newZoom) * Vector3.one);
-                            graph.pan = matrix.MultiplyPoint(graph.pan);
-                            graph.zoom = newZoom;
-                        }
-                        else if (zoomDelta < 0)
-                        {
-                            graph.zoom += zoomDelta;
-                        }
+                        var oldZoom = graph.zoom;
+                        var newZoom = graph.zoom + zoomDelta;
+                        var matrix = MathfEx.ScaleAroundPivot(mousePosition, (oldZoom / newZoom) * Vector3.one);
+                        graph.pan = matrix.MultiplyPoint(graph.pan);
+                        graph.zoom = newZoom;
                     }
 
                     HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Zoom);

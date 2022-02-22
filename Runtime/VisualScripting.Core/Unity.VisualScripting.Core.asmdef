@@ -14,6 +14,11 @@
             "define": "PACKAGE_INPUT_SYSTEM_EXISTS"
         },
         {
+            "name": "com.unity.inputsystem",
+            "expression": "1.2.0",
+            "define": "PACKAGE_INPUT_SYSTEM_1_2_0_OR_NEWER_EXISTS"
+        },
+        {
             "name": "com.unity.modules.animation",
             "expression": "1.0.0",
             "define": "MODULE_ANIMATION_EXISTS"

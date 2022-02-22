@@ -9,8 +9,9 @@ namespace Unity.VisualScripting
     [IncludeInSettings(false)]
     public class Variables : LudiqBehaviour, IAotStubbable
     {
-        [Serialize, Inspectable, VariableKind(VariableKind.Object)]
-        public VariableDeclarations declarations { get; internal set; } = new VariableDeclarations();
+        [Serialize, Inspectable]
+        public VariableDeclarations declarations { get; internal set; } =
+            new VariableDeclarations() { Kind = VariableKind.Object };
 
         public static VariableDeclarations Graph(GraphPointer pointer)
         {

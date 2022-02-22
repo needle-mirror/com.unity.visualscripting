@@ -328,7 +328,7 @@ namespace Unity.VisualScripting
                     var declarations = sceneVariables.GetComponent<Variables>().declarations;
                     var owner = sceneVariables;
                     var title = StringUtility.FallbackWhitespace(sceneVariables.gameObject.scene.name, "Untitled");
-
+                    declarations.Kind = VariableKind.Scene;
                     tab.subTabs.Add(new SubTab("Scene", tab, VariableKind.Scene, declarations, owner, null, title));
                 }
             }

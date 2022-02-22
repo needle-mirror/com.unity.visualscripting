@@ -1,4 +1,4 @@
-# Create a new unassigned graph using the empty graph creation flow
+# Create a new unassigned graph with the empty graph creation flow
 
 You can use the empty graph creation flow to create a new unassigned graph for use in your project. 
 
@@ -7,25 +7,29 @@ You can use the empty graph creation flow to create a new unassigned graph for u
 > [!NOTE]
 > To use the graph file, you must [attach it to a Script Machine or State Machine](vs-attach-graph-machine.md).
 
-For more information on other ways to create a graph file, see [Creating a new graph file](vs-create-graph.md).
+For more information on other ways to create a graph file, see [Create a new graph file](vs-create-graph.md).
 
 To create a new unassigned graph: 
 
-1. Go to **Window** &gt; **Visual Scripting** &gt; **Visual Scripting Graph**. 
+1. [!include[visual-scripting-window](./snippets/vs-visual-scripting-window.md)]
 
 2. In the new Visual Scripting window, select one of the following options: 
 
     * To create a new Script Graph, select **Create new Script Graph**. 
     * To create a new State Graph, select **Create new State Graph**. 
 
-3. Choose a location to save your new graph file, enter a name for the graph, and select **Save**.
+3. Choose a location to save the new graph file.
 
-    Your new graph file automatically opens in a new window. 
+1. Enter a name for the graph.
+
+1. Select **Save**.
+
+    The new graph file automatically opens in a new window. 
 
 The new graph file should look similar to the following image: 
 
-![A new Script Graph, created using the empty graph creation flow with starter nodes](images\vs-new-graph-starter-nodes.png)
+![A new Script Graph, created with the empty graph creation flow with starter nodes](images\vs-new-graph-starter-nodes.png)
 
 ## Next steps 
 
-After you create your new Script Graph, attach it to a Script Machine to use it in your application. For more information, see [Attaching a graph file to a Script Machine or State Machine](vs-attach-graph-machine.md).
+After you create a new graph, attach it to a Script Machine or State Machine to use it in your application. For more information, see [Attach a graph file to a Script Machine or State Machine](vs-attach-graph-machine.md).

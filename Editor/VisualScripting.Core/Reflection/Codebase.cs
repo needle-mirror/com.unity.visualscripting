@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
@@ -296,15 +297,19 @@ namespace Unity.VisualScripting
             return typeset;
         }
 
-        private static bool IsUnityEditorAssembly(AssemblyName assemblyName)
+        private static bool IsUnityEditorAssembly(string name)
         {
-            var name = assemblyName.Name;
-
             return
                 name == "Assembly-CSharp-Editor" ||
                 name == "Assembly-CSharp-Editor-firstpass" ||
                 name == "UnityEditor" ||
                 name == "UnityEditor.CoreModule";
+        }
+
+        private static bool IsSpecialCaseRuntimeAssembly(string assemblyName)
+        {
+            return assemblyName == "UnityEngine.UI" || // has a reference to UnityEditor.CoreModule
+                assemblyName == "Unity.TextMeshPro"; // has a reference to UnityEditor.TextCoreFontEngineModule
         }
 
         private static bool IsEditorAssembly(Assembly assembly, HashSet<string> visited)
@@ -315,12 +320,19 @@ namespace Unity.VisualScripting
                 return isEditor;
             }
 
-            if (visited.Contains(assembly.GetName().Name))
+            var name = assembly.GetName().Name;
+            if (visited.Contains(name))
             {
                 return false;
             }
 
-            visited.Add(assembly.GetName().Name);
+            visited.Add(name);
+
+            if (IsSpecialCaseRuntimeAssembly(name))
+            {
+                _editorAssemblyCache.Add(assembly, false);
+                return false;
+            }
 
             if (Attribute.IsDefined(assembly, typeof(AssemblyIsEditorAssembly)))
             {
@@ -328,13 +340,13 @@ namespace Unity.VisualScripting
                 return true;
             }
 
-            if (IsUserAssembly(assembly))
+            if (IsUserAssembly(name))
             {
                 _editorAssemblyCache.Add(assembly, false);
                 return false;
             }
 
-            if (IsUnityEditorAssembly(assembly.GetName()))
+            if (IsUnityEditorAssembly(name))
             {
                 _editorAssemblyCache.Add(assembly, true);
                 return true;
@@ -364,18 +376,11 @@ namespace Unity.VisualScripting
             return false;
         }
 
-        private static bool IsUserAssembly(AssemblyName assemblyName)
+        private static bool IsUserAssembly(string name)
         {
-            var name = assemblyName.Name;
-
             return
                 name == "Assembly-CSharp" ||
                 name == "Assembly-CSharp-firstpass";
-        }
-
-        private static bool IsUserAssembly(Assembly assembly)
-        {
-            return IsUserAssembly(assembly.GetName());
         }
 
         private static bool IsRuntimeAssembly(Assembly assembly)

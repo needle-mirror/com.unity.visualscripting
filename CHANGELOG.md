@@ -2,6 +2,30 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.7.8] - 2022-02-22
+### Fixed
+- Handle ReflectionTypeLoadException for TypeUtility to remove warning [BOLT-1900](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1900)
+- Fixed drag inconsistency in Graph Variables [BOLT-2113](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-2113)
+- Fixed exception after creating a graph from the Welcome Window on Linux [BOLT-1828](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1828)
+- Fixed the Cooldown node not becoming "Ready" when the "Reset" port is triggered
+- Fixed exception thrown after changing Hierarchy selection after removing Saved variable [BOLT-1919](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1919)
+- Fixed old Bolt saved variables not loading when using a build created using a newer version of Visual Scripting [BOLT-2052](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-2052)
+- Fixed a performance issue when using lots of Get/Set Scene variable nodes in an open graph
+- Fixed zooming out in the Graph to be relative to the mouse cursor [BOLT-1667](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1667)
+- Fixed a compilation error when migrating from Visual Scripting 1.7.6 to 1.7.7 with InputSystem-1.1.1 or below installed.
+- Fixed a performance issue when using lots of Get/Set Scene variable nodes in an open graph
+- Fixed default inspectors for nodes not appearing in the correct position after a connected node is deleted [BOLT-1457](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1457)
+- Fixed Scene variables drag and drop in graph having wrong scope [BOLT-2247](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-2247)
+
+### Changed
+- Small optimization of load times involving generic types.
+- Renamed ContinuousNumberDrawer.cs.cs to ContinuousNumberDrawer.cs [BOLT-2288](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-2288)
+
+### Added
+- TextMeshPro assembly is now added by default in Project Settings/Visual Scripting/Node Library
+- Added highlight to new VS graph drop down items [BOLT-2205](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-2205)
+- Added margins to the UI for project settings and editor preferences
+
 ## [1.7.7] - 2021-11-23
 ### Fixed
 - Fix an NullException error that occurs when creating a Variable right after project initialization.

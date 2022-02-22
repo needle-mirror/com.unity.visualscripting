@@ -512,7 +512,6 @@ namespace Unity.VisualScripting
                     // The open-constructed type is a generic type.
 
                     var openConstructedGenericDefinition = openConstructedType.GetGenericTypeDefinition(); // e.g.: Generic<,,>
-                    var openConstructedGenericArguments = openConstructedType.GetGenericArguments(); // e.g.: { T1, int, T2 }
 
                     // Check a list of possible candidate closed-constructed types:
                     //  - the closed-constructed type itself
@@ -531,6 +530,7 @@ namespace Unity.VisualScripting
                             // For each open-constructed generic argument, recursively check if it
                             // can be made into a closed-constructed type via the closed-constructed generic argument.
 
+                            var openConstructedGenericArguments = openConstructedType.GetGenericArguments(); // e.g.: { T1, int, T2 }
                             for (var i = 0; i < openConstructedGenericArguments.Length; i++)
                             {
                                 if (!openConstructedGenericArguments[i].CanMakeGenericTypeVia(inheritedClosedConstructedGenericArguments[i])) // !T1.IsAssignableFromGeneric(float)
@@ -801,10 +801,13 @@ namespace Unity.VisualScripting
             {
                 types = assembly.GetTypes();
             }
+            catch (ReflectionTypeLoadException ex) when (ex.Types.Any(t => t != null))
+            {
+                types = ex.Types.Where(t => t != null).ToArray();
+            }
             catch (Exception ex)
             {
                 Debug.LogWarning($"Failed to load types in assembly '{assembly}'.\n{ex}");
-
                 yield break;
             }
 

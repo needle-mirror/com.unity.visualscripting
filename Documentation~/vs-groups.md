@@ -1,27 +1,82 @@
-# Create a node group
+# Create node groups
 
-You can group nodes together in your graphs to help keep things organized. 
+You can organize the nodes in your Script Graphs and State Graphs with node groups.
+
+![An image of the Graph window. The Graph Inspector is open, and a group named "Compare gold" is selected. The group is set to the default black color, doesn't have a comment, and contains a Set Variable node that retrieves the value of the Gold Saved variable, a Comparison node, and an Integer node with a value of 5.](images/vs-groups.png)
+
+## Create a new group 
 
 To create a new group:
 
-1. With a graph [open in the Graph window](vs-open-graph-edit.md), start in an empty area. Click and hold **CTRL** (macOS: **Cmd** + click) and drag to create a selection around the nodes you want to include in your new group. Release to finish creating the group.
+1. [Open the graph](vs-open-graph-edit.md) where you want to create a new group. 
 
-2. (Optional) Click **Group** in the group's header to edit its name. Press **Enter** to save your changes. 
+1. In an empty area of the Graph Editor, Ctrl+click (macOS: Cmd+click) and drag to create a selection. 
 
-3. (Optional) In the Graph Inspector, in the **(Comment)** field, enter any comments or information you want about your group. The comment is only visible in the Inspector. 
+1. Release the mouse to create the group.
 
-    > [!TIP]
-    > If the Graph Inspector isn't visible in the Graph window, select **Graph Inspector** (![The Graph Inspector icon](images/vs-graph-inspector-icon.png)) from the toolbar.
+After you create a group, you can: 
 
-4. (Optional) In the Graph Inspector, select the **Color** field to open the color picker and select a new color for your group. When not selected, your group appears as this color. You can also select the eyedropper icon to choose a color from somewhere on your screen. 
+- [Change the group name](#change-a-group-name)
+- [Add a comment to the group](#add-a-comment-to-a-group)
+- [Change the color of the group](#change-the-color-of-a-group)
+- [Resize the group](#resize-a-group)
+- [Move the group](#move-a-group)
 
-5. (Optional) To resize the group, click and drag from any edge or corner. To move the group and its nodes, click the group's header and drag. 
+## Change a group name
+
+To change the name of the group in your graph: 
+
+2. In the group header, click **Group**. 
+
+1. Enter a new name for the group.
+
+1. Press **Enter** to save your changes. 
+
+## Add a comment to a group
+
+To add a comment to a group in a graph: 
+
+1. Select the group where you want to add a comment. 
+ 
+1. Open the [Graph Inspector](vs-interface-overview.md#the-graph-inspector). 
+
+1. In the **(Comment)** field in the Graph Inspector, enter comments or information about the group. 
 
 > [!NOTE]
-> You can also move your group without moving any of the nodes inside, but the required input changes depending on your chosen control scheme. For more information, see [Choosing a Visual Scripting control scheme](vs-control-schemes.md)
+> Group comments are only visible in the Graph Inspector. 
 
-![An image of the Graph window with a group called Compare gold containing 3 nodes](images/vs-groups.png)
+## Change the color of a group 
+
+To change the color of a group in a graph: 
+
+1. Select the group you want to edit. 
+
+1. Open the [Graph Inspector](vs-interface-overview.md#the-graph-inspector). 
+
+1. In the Graph Inspector, select the **Color** field.
+
+1. Select a new color for your group through one of the following methods: 
+    
+    - Use the color picker. 
+    - Use the sliders or RGBA value fields. 
+    - Enter a hexadecimal color value. 
+    - Select the eyedropper icon and select a color from anywhere on your screen. 
+
+## Resize a group 
+
+To resize a group in a graph: 
+
+1. Click and drag from any edge or corner on the group. 
+
+## Move a group 
+
+To move a group and its nodes: 
+
+1. Click and drag the group's header to a new location in the Graph Editor. 
+
+> [!NOTE]
+> You can also move a group without moving any of the nodes inside, but the required input changes based on your chosen control scheme. For more information, see [Choose a control scheme](vs-control-schemes.md)
 
 ## Next steps
 
-After you've created a node group, you can [add nodes to your Script Graph](vs-add-node-to-graph.md), [create and add variables](vs-add-variable-graph.md), or [add a Subgraph](vs-add-subgraph.md).
+After you've created a node group, you can [add nodes to your Script Graph](vs-add-node-to-graph.md), [create and add variables](vs-add-variable-graph.md), or [add a Subgraph](vs-nesting-add-subgraph.md).

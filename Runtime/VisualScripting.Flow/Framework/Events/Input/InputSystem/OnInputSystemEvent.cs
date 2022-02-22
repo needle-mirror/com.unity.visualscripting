@@ -60,6 +60,11 @@ namespace Unity.VisualScripting.InputSystem
 
         private InputAction m_Action;
 
+#if !PACKAGE_INPUT_SYSTEM_1_2_0_OR_NEWER_EXISTS
+        private bool m_WasRunning;
+#endif
+
+
         /// <summary>
         ///  Stores the last value, and returned by the output port. This intermediary value is there to enable
         /// "fetching" from the value port, which happens when the value is read, but the node has never been executed.
@@ -121,6 +126,8 @@ namespace Unity.VisualScripting.InputSystem
                 return false;
 
             bool shouldTrigger;
+
+#if PACKAGE_INPUT_SYSTEM_1_2_0_OR_NEWER_EXISTS
             switch (InputActionChangeType)
             {
                 case InputActionChangeOption.OnPressed:
@@ -135,6 +142,26 @@ namespace Unity.VisualScripting.InputSystem
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+#else
+            // "Started" is true while the button is held, triggered is true only one frame. hence what looks like a bug but isn't
+            switch (InputActionChangeType)
+            {
+                case InputActionChangeOption.OnPressed:
+                    shouldTrigger = m_Action.triggered; // started is true too long
+                    break;
+                case InputActionChangeOption.OnHold:
+                    shouldTrigger = m_Action.phase == InputActionPhase.Started; // triggered is only true one frame
+                    break;
+                case InputActionChangeOption.OnReleased:
+                    shouldTrigger = m_WasRunning && m_Action.phase != InputActionPhase.Started; // never equal to InputActionPhase.Cancelled when polling
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            // Hack - can't make sense of the action phase when polled (always Started or Waiting). Fallback on "== Started"
+            m_WasRunning = m_Action.phase == InputActionPhase.Started;
+#endif
 
             DoAssignArguments(flow);
             return shouldTrigger;

@@ -12,6 +12,8 @@ namespace Unity.VisualScripting
             collection = new VariableDeclarationCollection();
         }
 
+        public VariableKind Kind;
+
         [Serialize, InspectorWide(true)]
         private VariableDeclarationCollection collection;
 

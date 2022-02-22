@@ -93,9 +93,9 @@ using Unity.VisualScripting;
 
 ***
 
-### Scope
+## Scope
 
-#### Graph
+### Graph
 
 To access variables on a graph, create a graph reference. This is basically a path to the nested graph from its root machine.
 
@@ -117,7 +117,7 @@ To pass a graph reference:
 Variables.Graph(graphReference)
 ```
 
-#### Object
+### Object
 
 To access variables on an object:
 
@@ -125,7 +125,7 @@ To access variables on an object:
 Variables.Object(gameObject)
 ```
 
-#### Scene
+### Scene
 
 To access scene variables, do one of the following:
 
@@ -145,7 +145,7 @@ Or:
 Variables.ActiveScene
 ```
 
-#### Application
+### Application
 
 To access application variables:
 
@@ -153,7 +153,7 @@ To access application variables:
 Variables.Application
 ```
 
-#### Saved
+### Saved
 
 To access saved variables:
 
@@ -163,11 +163,11 @@ Variables.Saved
 
 ***
 
-### Operations
+## Operations
 
 In these examples, the lowercase scope refers to one of the previous scopes.
 
-#### Get
+### Get
 
 To get the value of a variable, use the Get method with a name parameter:
 
@@ -181,7 +181,7 @@ Note that variables are not strongly typed; they need to be cast manually. For e
 int health = (int)Variables.Object(player).Get("health")
 ```
 
-#### Set
+### Set
 
 To set the value of a variable, use the Set method with the name and value parameters:
 
@@ -200,7 +200,7 @@ Because variables are not strongly typed, pass any value to the second parameter
 > [!NOTE]
 > Using the set method with a variable name that does not yet exist defines a new variable.
 
-#### Is Defined
+### Is Defined
 
 To check if a variable is defined, use the IsDefined method with a name parameter:
 

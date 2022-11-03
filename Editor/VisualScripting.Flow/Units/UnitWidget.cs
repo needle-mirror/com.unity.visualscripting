@@ -640,9 +640,6 @@ namespace Unity.VisualScripting
 
                     switch (mostSevereWarning)
                     {
-                        case WarningLevel.Important:
-                            color = NodeColor.Purple;
-                            break;
                         case WarningLevel.Error:
                             color = NodeColor.Red;
 
@@ -765,7 +762,7 @@ namespace Unity.VisualScripting
         {
             var icon = description.icon ?? BoltFlow.Icons.unit;
 
-            if (icon != null)
+            if (icon != null && icon[(int)iconPosition.width])
             {
                 GUI.DrawTexture(iconPosition, icon[(int)iconPosition.width]);
             }
@@ -965,41 +962,7 @@ namespace Unity.VisualScripting
 
         private void ReplaceUnit()
         {
-            var oldUnit = unit;
-            var unitPosition = oldUnit.position;
-            var preservation = UnitPreservation.Preserve(oldUnit);
-
-            var options = new UnitOptionTree(new GUIContent("Node"));
-            options.reference = reference;
-
-            var activatorPosition = new Rect(e.mousePosition, new Vector2(200, 1));
-
-            var context = this.context;
-
-            LudiqGUI.FuzzyDropdown
-                (
-                    activatorPosition,
-                    options,
-                    null,
-                    delegate (object _option)
-                    {
-                        var option = (IUnitOption)_option;
-
-                        context.BeginEdit();
-                        UndoUtility.RecordEditedObject("Replace Node");
-                        var graph = oldUnit.graph;
-                        oldUnit.graph.units.Remove(oldUnit);
-                        var newUnit = option.InstantiateUnit();
-                        newUnit.guid = Guid.NewGuid();
-                        newUnit.position = unitPosition;
-                        graph.units.Add(newUnit);
-                        preservation.RestoreTo(newUnit);
-                        option.PreconfigureUnit(newUnit);
-                        selection.Select(newUnit);
-                        GUI.changed = true;
-                        context.EndEdit();
-                    }
-                );
+            UnitWidgetHelper.ReplaceUnit(unit, reference, context, selection, e);
         }
 
         #endregion
@@ -1112,6 +1075,48 @@ namespace Unity.VisualScripting
             public static readonly float spaceBeforeSubtitle = 0;
 
             public static readonly float invokeFadeDuration = 0.5f;
+        }
+    }
+
+    internal class UnitWidgetHelper
+    {
+        internal static void ReplaceUnit(IUnit unit, GraphReference reference, IGraphContext context, GraphSelection selection, EventWrapper eventWrapper)
+        {
+            var oldUnit = unit;
+            var unitPosition = oldUnit.position;
+            var preservation = UnitPreservation.Preserve(oldUnit);
+
+            var options = new UnitOptionTree(new GUIContent("Node"));
+            options.filter = UnitOptionFilter.Any;
+            options.filter.NoConnection = false;
+            options.reference = reference;
+
+            var activatorPosition = new Rect(eventWrapper.mousePosition, new Vector2(200, 1));
+
+            LudiqGUI.FuzzyDropdown
+            (
+                activatorPosition,
+                options,
+                null,
+                delegate (object _option)
+                {
+                    var option = (IUnitOption)_option;
+
+                    context.BeginEdit();
+                    UndoUtility.RecordEditedObject("Replace Node");
+                    var graph = oldUnit.graph;
+                    oldUnit.graph.units.Remove(oldUnit);
+                    var newUnit = option.InstantiateUnit();
+                    newUnit.guid = Guid.NewGuid();
+                    newUnit.position = unitPosition;
+                    graph.units.Add(newUnit);
+                    preservation.RestoreTo(newUnit);
+                    option.PreconfigureUnit(newUnit);
+                    selection.Select(newUnit);
+                    GUI.changed = true;
+                    context.EndEdit();
+                }
+            );
         }
     }
 }

@@ -1,6 +1,6 @@
-# Create a custom PropertyDrawer for a custom variable type
+# Create a custom PropertyDrawer for a custom type
 
-If you want to use a custom type from a custom class in Visual Scripting, and you don't have access to its source code, you must have a custom PropertyDrawer. 
+If you want to use a custom type from a custom class in Visual Scripting, and you don't have access to its source code, you must create a custom PropertyDrawer. 
 
 You can't assign a value to a custom type inside the Editor or initialize the value for a variable with a custom type if it doesn't have a PropertyDrawer. 
 
@@ -9,29 +9,68 @@ You can't assign a value to a custom type inside the Editor or initialize the va
 
 To create a custom PropertyDrawer: 
 
-1. (Optional) If your Project window isn't already open, go to **Window** &gt; **General** &gt; **Project**, or press CTRL + 5 (macOS: Cmd + 5).
+1. [!include[open-project-window](./snippets/vs-open-project-window.md)]
 
-2. Right-click a folder in the Project window's folder list, or anywhere in the Project window's preview pane, and go to **Create** &gt; **C# Script**. 
+2. [!include[create-c-script-project](./snippets/vs-create-c-script-project.md)]
 
-4. Enter a name for your new script file and press Enter. <br/>For example, if you want to create a PropertyDrawer for a new custom type called `Counter`, you could call your script file `CounterDrawer`.
+3. Enter a name, such as `CounterDrawer`, for the new script file. 
 
-5. Double-click your new C# file. Unity opens the file in the program you specified in your preferences, under **External Script Editor**. For more information on script editors in Unity, see the [Unity User Manual section on Integrated development environment (IDE) support](https://docs.unity3d.com/Manual/ScriptingToolsIDEs.html).
+4. Press Enter.
 
-6. Remove the `Start` and `Update` functions and their comments from your script file. 
+5. [!include[open-new-external-code](./snippets/vs-open-new-external-code.md)]
 
-7. Above the line that defines your new `public class`, add the following, replacing `<Counter>` with the name of the type you want to assign to this PropertyDrawer, exactly as it appears in Unity: 
+6. Remove the `Start` and `Update` functions and their comments from the script file. 
 
-    ```csharp
-    [CustomPropertyDrawer](type of(<Counter>))]
+7. Above the line that defines your new `public class`, add a `[CustomPropertyDrawer]` attribute.
 
-    ```
+8. In the parameters for the `[CustomPropertyDrawer]` attribute, specify a `type of` parameter with the name of the type you want to assign to this PropertyDrawer, exactly as it appears in Unity. 
 
-8. At the end of the line that defines your new `public class`, change `Monobehavior` to `PropertyDrawer`. 
-
-
-The method for continuing to create your custom PropertyDrawer depends on the fields you need to display, and how you want them to display in the Editor's interface. For example, you might want to use the UIElements module to create your PropertyDrawer, or you might need to use Unity's IMGUI module to display your specific fields.
-
-For more information on creating your custom PropertyDrawer, see the [PropertyDrawer class in the main Unity Scripting API](https://docs.unity3d.com/ScriptReference/PropertyDrawer.html) and its related methods.
+9. Change the `MonoBehaviour` class at the end of your `public class` definition to `PropertyDrawer`.
 
 > [!NOTE]
-> Once you have created your custom PropertyDrawer, you must generate the additional required property provider scripts from your Visual Scripting Project Settings. For more information, see [Configuring your Visual Scripting Project Settings](vs-configuration.md).
+> After you create a custom PropertyDrawer, you must generate the required property provider scripts from your Visual Scripting Project Settings. For more information, see [Configure project settings](vs-configuration.md).
+
+The following is an example of a finished PropertyDrawer script: 
+
+```csharp
+    using UnityEditor;
+    using UnityEngine;
+    [CustomPropertyDrawer](type of(<Counter>))]
+    public class CounterDrawer : PropertyDrawer
+    {
+        // Draw the property inside the given rect
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            // Using BeginProperty / EndProperty on the parent property means that
+            // prefab override logic works on the entire property.
+            EditorGUI.BeginProperty(position, label, property);
+    
+            // Draw label
+            position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
+    
+            // Don't indent child fields
+            var indent = EditorGUI.indentLevel;
+            EditorGUI.indentLevel = 0;
+    
+            // Calculate rects
+            var amountRect = new Rect(position.x, position.y, 30, position.height);
+            var unitRect = new Rect(position.x + 35, position.y, 50, position.height);
+            var nameRect = new Rect(position.x + 90, position.y, position.width - 90, position.height);
+    
+            // Draw fields - passs GUIContent.none to each so they are drawn without labels
+            EditorGUI.PropertyField(amountRect, property.FindPropertyRelative("amount"), GUIContent.none);
+            EditorGUI.PropertyField(unitRect, property.FindPropertyRelative("unit"), GUIContent.none);
+            EditorGUI.PropertyField(nameRect, property.FindPropertyRelative("name"), GUIContent.none);
+    
+            // Set indent back to what it was
+            EditorGUI.indentLevel = indent;
+    
+            EditorGUI.EndProperty();
+        }
+    }
+ ```
+
+To create the rest of your custom PropertyDrawer, you must decide what fields you must display, and how you want them to display in the Editor's interface. For example, you might want to use the UIElements module to create your PropertyDrawer, or decide to use Unity's IMGUI module.
+
+For more information on how to create and design a custom PropertyDrawer, see the [PropertyDrawer class](https://docs.unity3d.com/ScriptReference/PropertyDrawer.html) in the main Unity Scripting API and its related methods.
+

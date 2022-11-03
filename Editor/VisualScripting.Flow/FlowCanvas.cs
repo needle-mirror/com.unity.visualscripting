@@ -123,24 +123,28 @@ namespace Unity.VisualScripting
                 var valueInput = (ValueInput)connectionSource;
                 filter.CompatibleOutputType = valueInput.type;
                 filter.Expose = false;
+                filter.NoConnection = false;
                 NewUnit(mousePosition, GetNewUnitOptions(filter), (unit) => CompleteContextualConnection(valueInput, unit.CompatibleValueOutput(valueInput.type)));
             }
             else if (connectionSource is ValueOutput)
             {
                 var valueOutput = (ValueOutput)connectionSource;
                 filter.CompatibleInputType = valueOutput.type;
+                filter.NoConnection = false;
                 NewUnit(mousePosition, GetNewUnitOptions(filter), (unit) => CompleteContextualConnection(valueOutput, unit.CompatibleValueInput(valueOutput.type)));
             }
             else if (connectionSource is ControlInput)
             {
                 var controlInput = (ControlInput)connectionSource;
                 filter.NoControlOutput = false;
+                filter.NoConnection = false;
                 NewUnit(mousePosition, GetNewUnitOptions(filter), (unit) => CompleteContextualConnection(controlInput, unit.controlOutputs.First()));
             }
             else if (connectionSource is ControlOutput)
             {
                 var controlOutput = (ControlOutput)connectionSource;
                 filter.NoControlInput = false;
+                filter.NoConnection = false;
                 NewUnit(mousePosition, GetNewUnitOptions(filter), (unit) => CompleteContextualConnection(controlOutput, unit.controlInputs.First()));
             }
         }
@@ -174,7 +178,7 @@ namespace Unity.VisualScripting
         protected override IEnumerable<DropdownOption> GetContextOptions()
         {
             yield return new DropdownOption((Action<Vector2>)(NewUnit), "Add Node...");
-
+            yield return new DropdownOption((Action<Vector2>)(NewSticky), "Create Sticky Note");
             foreach (var baseOption in base.GetContextOptions())
             {
                 yield return baseOption;
@@ -206,6 +210,15 @@ namespace Unity.VisualScripting
             return options;
         }
 
+        private void NewSticky(Vector2 position)
+        {
+            UndoUtility.RecordEditedObject("Create Sticky Note");
+            var stickyNote = new StickyNote() { position = new Rect(position, new Vector2(100, 100)) };
+            graph.elements.Add(stickyNote);
+            selection.Select(stickyNote);
+            GUI.changed = true;
+        }
+
         private void NewUnit(Vector2 position)
         {
             var filter = UnitOptionFilter.Any;
@@ -229,13 +242,22 @@ namespace Unity.VisualScripting
                         delegate (object _option)
                         {
                             context.BeginEdit();
-
-                            var option = (IUnitOption)_option;
-                            var unit = option.InstantiateUnit();
-                            AddUnit(unit, unitPosition);
-                            option.PreconfigureUnit(unit);
-                            then?.Invoke(unit);
-                            GUI.changed = true;
+                            if (_option is IUnitOption)
+                            {
+                                var option = (IUnitOption)_option;
+                                var unit = option.InstantiateUnit();
+                                AddUnit(unit, unitPosition);
+                                option.PreconfigureUnit(unit);
+                                then?.Invoke(unit);
+                                GUI.changed = true;
+                            }
+                            else
+                            {
+                                if ((Type)_option == typeof(StickyNote))
+                                {
+                                    NewSticky(unitPosition);
+                                }
+                            }
 
                             context.EndEdit();
                         }

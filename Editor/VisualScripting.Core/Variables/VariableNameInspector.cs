@@ -28,7 +28,9 @@ namespace Unity.VisualScripting
             return EditorGUIUtility.singleLineHeight;
         }
 
-        private List<string> suggestions = new List<string>();
+        private bool mouseInRect;
+        private bool shouldRecalculateSuggestions;
+        private string[] suggestions;
 
         protected override void OnGUI(Rect position, GUIContent label)
         {
@@ -54,19 +56,15 @@ namespace Unity.VisualScripting
 
             var newValue = EditorGUI.TextField(textFieldPosition, (string)metadata.value, Styles.textField);
 
-            // Micro optimizing memory here because it's a pretty substantial alloc
+            CalculateVariableNameSuggestions(position);
 
-            suggestions.Clear();
-            suggestions.AddRange(getSuggestions());
+            EditorGUI.BeginDisabledGroup(suggestions.Length == 0);
 
-            EditorGUI.BeginDisabledGroup(suggestions.Count == 0);
-
-            var suggestionsArray = getSuggestions().ToArray();
-            var currentSuggestionIndex = Array.IndexOf(suggestionsArray, (string)metadata.value);
+            var currentSuggestionIndex = Array.IndexOf(suggestions, (string)metadata.value);
 
             EditorGUI.BeginChangeCheck();
 
-            var newSuggestionIndex = EditorGUI.Popup(popupPosition, currentSuggestionIndex, suggestionsArray, Styles.popup);
+            var newSuggestionIndex = EditorGUI.Popup(popupPosition, currentSuggestionIndex, suggestions, Styles.popup);
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -80,6 +78,36 @@ namespace Unity.VisualScripting
                 metadata.RecordUndo();
                 metadata.value = newValue;
             }
+        }
+
+        private void CalculateVariableNameSuggestions(Rect position)
+        {
+            // Calling getSuggestions() can be *very* expensive because it's a delegate, so we're trying to call it as little as possible.
+            // See BOLT-2201 (https://jira.unity3d.com/browse/BOLT-2201) for details
+
+            // After we've calculated it the first time, we still need to recalculate it when there are potentially new variables
+            // There is no callback for us to check when an enum popup is opened, so instead we recalculate when the user hovers their mouse over the popup
+            if (position.Contains(e.mousePosition))
+            {
+                if (!mouseInRect)
+                {
+                    shouldRecalculateSuggestions = true;
+                }
+                mouseInRect = true;
+            }
+            else
+            {
+                mouseInRect = false;
+            }
+
+            if (shouldRecalculateSuggestions)
+            {
+                suggestions = getSuggestions().ToArray();
+                shouldRecalculateSuggestions = false;
+            }
+
+            // If we haven't calculated it yet, we need to do it even if we don't show the popup so we know whether or not to disable the popup in the first place
+            suggestions ??= getSuggestions().ToArray();
         }
 
         public override float GetAdaptiveWidth()

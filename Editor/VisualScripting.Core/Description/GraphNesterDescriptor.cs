@@ -21,7 +21,7 @@ namespace Unity.VisualScripting
             if (nester.nest.source == GraphSource.Macro && (UnityObject)nester.nest.macro != null)
             {
                 var macroName = ((UnityObject)nester.nest.macro).name;
-                return NameUtility.humanNaming ? macroName.Prettify() : macroName;
+                return BoltCore.Configuration.humanNaming ? macroName.Prettify() : macroName;
             }
 
             return !string.IsNullOrEmpty(defaultName) ? defaultName : nester.GetType().HumanName();

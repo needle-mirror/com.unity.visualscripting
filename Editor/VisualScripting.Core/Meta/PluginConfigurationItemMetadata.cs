@@ -173,6 +173,7 @@ namespace Unity.VisualScripting
 
         public abstract void Load();
 
+        internal abstract void SaveImmediately(bool immediately = true);
         public abstract void Save();
 
         public void Reset(bool force = false)

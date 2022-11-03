@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.Profiling;
 using UnityEngine;
 
 namespace Unity.VisualScripting
@@ -65,12 +64,7 @@ namespace Unity.VisualScripting
             {
                 var reference = stack.ToReference();
                 var hook = GetHook(reference);
-                ProfilerMarker m = new ProfilerMarker("Bolt - " + hook.name);
-                Action<TArgs> handler = args =>
-                {
-                    using (m.Auto())
-                        Trigger(reference, args);
-                };
+                Action<TArgs> handler = args => Trigger(reference, args);
                 EventBus.Register(hook, handler);
 
                 data.hook = hook;

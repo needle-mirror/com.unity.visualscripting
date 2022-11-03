@@ -12,6 +12,8 @@ namespace Unity.VisualScripting
         {
             UnityThread.thread = Thread.CurrentThread;
             UnityThread.editorAsync = Async;
+            while (UnityThread.pendingQueue.TryDequeue(out var action))
+                queue.Enqueue(action);
 
             EditorApplicationUtility.onModeChange += () => queue = new ConcurrentQueue<Action>();
             EditorApplication.update += ProcessDelegates;

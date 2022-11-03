@@ -7,7 +7,6 @@ namespace Unity.VisualScripting
     /// Delays flow by waiting a specified number of seconds.
     /// </summary>
     [UnitTitle("Wait For Seconds")]
-    [UnitShortTitle("Wait")]
     [UnitOrder(1)]
     public class WaitForSecondsUnit : WaitUnit
     {

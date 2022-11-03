@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
@@ -43,7 +44,7 @@ namespace Unity.VisualScripting
                         _assemblies.Add(assembly);
 
                         var isRuntimeAssembly = IsRuntimeAssembly(assembly);
-                        var isEditorAssembly = IsEditorDependentAssembly(assembly);
+                        var isEditorAssembly = IsEditorAssembly(assembly, new HashSet<string>());
                         var isLudiqRuntimeDependentAssembly = IsLudiqRuntimeDependentAssembly(assembly);
                         var isLudiqEditorDependentAssembly = IsLudiqEditorDependentAssembly(assembly);
                         var isLudiqAssembly = isLudiqRuntimeDependentAssembly || isLudiqEditorDependentAssembly;
@@ -144,7 +145,6 @@ namespace Unity.VisualScripting
         private static List<Type> _settingsTypes;
 
         private static readonly Dictionary<Assembly, bool> _editorAssemblyCache = new Dictionary<Assembly, bool>();
-
         #region Serialization
 
         public static string SerializeType(Type type)
@@ -297,10 +297,8 @@ namespace Unity.VisualScripting
             return typeset;
         }
 
-        private static bool IsEditorAssembly(AssemblyName assemblyName)
+        private static bool IsUnityEditorAssembly(string name)
         {
-            var name = assemblyName.Name;
-
             return
                 name == "Assembly-CSharp-Editor" ||
                 name == "Assembly-CSharp-Editor-firstpass" ||
@@ -308,34 +306,81 @@ namespace Unity.VisualScripting
                 name == "UnityEditor.CoreModule";
         }
 
-        private static bool IsUserAssembly(AssemblyName assemblyName)
+        private static bool IsSpecialCaseRuntimeAssembly(string assemblyName)
         {
-            var name = assemblyName.Name;
-
-            return
-                name == "Assembly-CSharp" ||
-                name == "Assembly-CSharp-firstpass";
+            return assemblyName == "UnityEngine.UI" || // has a reference to UnityEditor.CoreModule
+                assemblyName == "Unity.TextMeshPro"; // has a reference to UnityEditor.TextCoreFontEngineModule
         }
 
-        private static bool IsUserAssembly(Assembly assembly)
-        {
-            return IsUserAssembly(assembly.GetName());
-        }
-
-        private static bool IsEditorAssembly(Assembly assembly)
+        private static bool IsEditorAssembly(Assembly assembly, HashSet<string> visited)
         {
             // assembly.GetName() is surprisingly expensive, keep a cache
             if (_editorAssemblyCache.TryGetValue(assembly, out var isEditor))
+            {
                 return isEditor;
+            }
+
+            var name = assembly.GetName().Name;
+            if (visited.Contains(name))
+            {
+                return false;
+            }
+
+            visited.Add(name);
+
+            if (IsSpecialCaseRuntimeAssembly(name))
+            {
+                _editorAssemblyCache.Add(assembly, false);
+                return false;
+            }
+
             if (Attribute.IsDefined(assembly, typeof(AssemblyIsEditorAssembly)))
             {
-                _editorAssemblyCache.Add(assembly, isEditor);
+                _editorAssemblyCache.Add(assembly, true);
                 return true;
             }
 
-            var isEditorAssembly = IsEditorAssembly(assembly.GetName());
-            _editorAssemblyCache.Add(assembly, isEditorAssembly);
-            return isEditorAssembly;
+            if (IsUserAssembly(name))
+            {
+                _editorAssemblyCache.Add(assembly, false);
+                return false;
+            }
+
+            if (IsUnityEditorAssembly(name))
+            {
+                _editorAssemblyCache.Add(assembly, true);
+                return true;
+            }
+
+            AssemblyName[] listOfAssemblyNames = assembly.GetReferencedAssemblies();
+            foreach (var dependencyName in listOfAssemblyNames)
+            {
+                try
+                {
+                    Assembly dependency = Assembly.Load(dependencyName);
+
+                    if (IsEditorAssembly(dependency, visited))
+                    {
+                        _editorAssemblyCache.Add(assembly, true);
+                        return true;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogWarning(e.Message);
+                }
+            }
+
+            _editorAssemblyCache.Add(assembly, false);
+
+            return false;
+        }
+
+        private static bool IsUserAssembly(string name)
+        {
+            return
+                name == "Assembly-CSharp" ||
+                name == "Assembly-CSharp-firstpass";
         }
 
         private static bool IsRuntimeAssembly(Assembly assembly)
@@ -343,25 +388,7 @@ namespace Unity.VisualScripting
             // User assemblies refer to the editor when they include
             // a using UnityEditor / #if UNITY_EDITOR, but they should still
             // be considered runtime.
-            return IsUserAssembly(assembly) || !IsEditorDependentAssembly(assembly);
-        }
-
-        private static bool IsEditorDependentAssembly(Assembly assembly)
-        {
-            if (IsEditorAssembly(assembly))
-            {
-                return true;
-            }
-
-            foreach (var dependency in assembly.GetReferencedAssemblies())
-            {
-                if (IsEditorAssembly(dependency))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return !IsEditorAssembly(assembly, new HashSet<string>());
         }
 
         private static bool IsLudiqRuntimeDependentAssembly(Assembly assembly)
@@ -404,7 +431,7 @@ namespace Unity.VisualScripting
         {
             var rootNamespace = type.RootNamespace();
 
-            return IsEditorAssembly(type.Assembly) ||
+            return IsEditorAssembly(type.Assembly, new HashSet<string>()) ||
                 rootNamespace == "UnityEditor" ||
                 rootNamespace == "UnityEditorInternal";
         }

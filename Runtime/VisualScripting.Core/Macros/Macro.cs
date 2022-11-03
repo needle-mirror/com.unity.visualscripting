@@ -114,5 +114,7 @@ namespace Unity.VisualScripting
         {
             return reference;
         }
+
+        bool ISerializationDependency.IsDeserialized { get; set; }
     }
 }

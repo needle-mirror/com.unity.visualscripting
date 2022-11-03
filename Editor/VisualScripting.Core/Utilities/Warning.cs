@@ -6,14 +6,8 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
-    public sealed class Warning
+    public class Warning
     {
-        internal Warning(WarningLevel level, string message, string buttonTitle, Action onClick) : this(level, message)
-        {
-            _buttonTitle = buttonTitle;
-            this._onClick = onClick;
-        }
-
         public Warning(WarningLevel level, string message)
         {
             Ensure.That(nameof(message)).IsNotNull(message);
@@ -22,11 +16,6 @@ namespace Unity.VisualScripting
             this.message = message;
         }
 
-        public Warning(Exception exception, string buttonTitle, Action onClick) : this(exception)
-        {
-            _buttonTitle = buttonTitle;
-            this._onClick = onClick;
-        }
         public Warning(Exception exception)
         {
             Ensure.That(nameof(exception)).IsNotNull(exception);
@@ -36,13 +25,11 @@ namespace Unity.VisualScripting
             this.message = exception.DisplayName() + ": " + exception.Message;
         }
 
-        private readonly string _buttonTitle;
-        private readonly Action _onClick;
         public WarningLevel level { get; }
         public string message { get; }
         public Exception exception { get; }
 
-        public MessageType messageType
+        public MessageType MessageType
         {
             get
             {
@@ -57,27 +44,10 @@ namespace Unity.VisualScripting
 
                     case WarningLevel.Error:
                         return MessageType.Error;
-                    case WarningLevel.Important:
-                        return MessageType.Info;
 
                     default:
                         return MessageType.None;
                 }
-            }
-        }
-
-        internal static LogType WarningLevelToLogType(WarningLevel l)
-        {
-            switch (l)
-            {
-                case WarningLevel.Info:
-                case WarningLevel.Important:
-                    return LogType.Log;
-                case WarningLevel.Caution:
-                case WarningLevel.Severe:
-                    return LogType.Warning;
-                default:
-                    return LogType.Error;
             }
         }
 
@@ -156,32 +126,57 @@ namespace Unity.VisualScripting
             return mostSevereWarningLevel;
         }
 
-        public float GetHeight(float width)
+        public virtual float GetHeight(float width)
         {
-            return LudiqGUIUtility.GetHelpBoxHeight(message, messageType, width) + (_onClick == null ? 0 : (EditorGUIUtility.singleLineHeight + 2));
+            return LudiqGUIUtility.GetHelpBoxHeight(message, MessageType, width);
         }
 
-        public void OnGUI(Rect position)
+        public virtual void OnGUI(Rect position)
         {
-            EditorGUI.HelpBox(position, message, messageType);
+            EditorGUI.HelpBox(position, message, MessageType);
 
             if (exception != null && GUI.Button(position, GUIContent.none, GUIStyle.none))
             {
                 Debug.LogException(exception);
             }
+        }
+    }
 
-            if (_onClick != null)
+    public sealed class ActionButtonWarning : Warning
+    {
+        internal ActionButtonWarning(WarningLevel level, string message, string buttonTitle, Action onClick) : base(level, message)
+        {
+            m_ButtonTitle = buttonTitle;
+            m_OnClick = onClick;
+        }
+
+        readonly string m_ButtonTitle;
+        readonly Action m_OnClick;
+
+        const int k_ButtonHorizontalMargin = 10;
+        const int k_ButtonVerticalMargin = 5;
+
+        public override float GetHeight(float width)
+        {
+            return LudiqGUIUtility.GetHelpBoxHeight(message, MessageType, width) + (m_OnClick == null ? 0 : (EditorGUIUtility.singleLineHeight + k_ButtonVerticalMargin));
+        }
+
+        public override void OnGUI(Rect position)
+        {
+            EditorGUI.HelpBox(position, message, MessageType);
+
+            if (m_OnClick == null) return;
+
+            var guiContent = new GUIContent(m_ButtonTitle);
+            var style = EditorStyles.miniButton;
+            var width = style.CalcSize(guiContent).x;
+            var rect = new Rect(position.xMax - width - k_ButtonHorizontalMargin,
+                position.yMax - EditorGUIUtility.singleLineHeight - k_ButtonVerticalMargin,
+                width,
+                EditorGUIUtility.singleLineHeight);
+            if (GUI.Button(rect, guiContent, style))
             {
-                var guiContent = new GUIContent(_buttonTitle);
-                var style = EditorStyles.miniButton;
-                var width = style.CalcSize(guiContent).x;
-                // var rect = new Rect(position.x + 4, position.yMax - EditorGUIUtility.singleLineHeight - 2, EditorStyles.miniButton.CalcSize(guiContent).x,
-                var rect = new Rect(position.xMax - width - 2, position.yMax - EditorGUIUtility.singleLineHeight - 2, width,
-                    EditorGUIUtility.singleLineHeight);
-                if (GUI.Button(rect, guiContent, style))
-                {
-                    _onClick();
-                }
+                m_OnClick();
             }
         }
     }

@@ -81,7 +81,7 @@ namespace Unity.VisualScripting
         }
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Visual Scripting/Internal/Force Unlock Assembly Reload", priority = LudiqProduct.DeveloperToolsMenuPriority + 601)]
+        [MenuItem("Tools/Bolt/Internal/Force Unlock Assembly Reload", priority = LudiqProduct.DeveloperToolsMenuPriority + 601)]
 #endif
         public static void ClearProgressBar()
         {

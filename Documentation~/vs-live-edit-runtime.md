@@ -1,4 +1,4 @@
-# Live editing during runtime
+# Live edit during runtime
 
 Live editing in visual scripting goes beyond adjusting values in real-time. Live editing also includes the ability to add and remove nodes as well as connectors; you can code while the game is playing and immediately affect the gameplay.
 

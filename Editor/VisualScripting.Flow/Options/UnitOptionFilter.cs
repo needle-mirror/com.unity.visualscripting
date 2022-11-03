@@ -31,6 +31,7 @@ namespace Unity.VisualScripting
             Members = @default;
             Nesters = @default;
             Expose = @default;
+            NoConnection = @default;
             Obsolete = false;
             AllowSelfNestedGraph = false;
         }
@@ -52,6 +53,7 @@ namespace Unity.VisualScripting
         public bool MultipleValueOutputs { get; set; }
 
         public bool Normals { get; set; }
+        public bool NoConnection { get; set; }
         public bool Self { get; set; }
         public bool Events { get; set; }
         public bool Literals { get; set; }
@@ -97,6 +99,7 @@ namespace Unity.VisualScripting
                 Nesters = Nesters,
                 Expose = Expose,
                 Obsolete = Obsolete,
+                NoConnection = NoConnection,
                 CompatibleInputType = CompatibleInputType,
                 CompatibleOutputType = CompatibleOutputType,
                 AllowSelfNestedGraph = AllowSelfNestedGraph,
@@ -134,6 +137,7 @@ namespace Unity.VisualScripting
                 Nesters == other.Nesters &&
                 Expose == other.Expose &&
                 Obsolete == other.Obsolete &&
+                NoConnection == other.NoConnection &&
                 CompatibleInputType == other.CompatibleInputType &&
                 CompatibleOutputType == other.CompatibleOutputType &&
                 AllowSelfNestedGraph == other.AllowSelfNestedGraph &&
@@ -169,6 +173,7 @@ namespace Unity.VisualScripting
                 hash = hash * 23 + Members.GetHashCode();
                 hash = hash * 23 + Nesters.GetHashCode();
                 hash = hash * 23 + Expose.GetHashCode();
+                hash = hash * 23 + NoConnection.GetHashCode();
                 hash = hash * 23 + Obsolete.GetHashCode();
                 hash = hash * 23 + AllowSelfNestedGraph.GetHashCode();
 
@@ -333,6 +338,7 @@ namespace Unity.VisualScripting
             sb.AppendLine($"Nesters: {Nesters}");
             sb.AppendLine($"Expose: {Expose}");
             sb.AppendLine($"Obsolete: {Obsolete}");
+            sb.AppendLine($"NoConnection: {NoConnection}");
             sb.AppendLine($"AllowSelfNestedGraph: {AllowSelfNestedGraph}");
             sb.AppendLine($"GraphHashCode: {GraphHashCode}");
 

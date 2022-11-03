@@ -812,7 +812,10 @@ namespace Unity.VisualScripting
 
         private void DrawIcon()
         {
-            GUI.DrawTexture(iconPosition, description.icon?[Styles.iconSize]);
+            if (description != null && description.icon[Styles.iconSize])
+            {
+                GUI.DrawTexture(iconPosition, description.icon?[Styles.iconSize]);
+            }
         }
 
         private void DrawLabel()

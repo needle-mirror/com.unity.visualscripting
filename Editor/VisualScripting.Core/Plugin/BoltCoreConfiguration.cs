@@ -342,6 +342,8 @@ namespace Unity.VisualScripting
 
             // Input System
             "Unity.InputSystem",
+
+            "Unity.TextMeshPro"
         };
 
         /// <summary>

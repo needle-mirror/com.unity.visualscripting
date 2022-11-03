@@ -16,18 +16,14 @@ namespace Unity.VisualScripting
         static Icons()
         {
             EditorGUIUtility_GetScriptObjectFromClass = typeof(EditorGUIUtility).GetMethod("GetScript", BindingFlags.Static | BindingFlags.NonPublic);
-
-#if !UNITY_2021_2_OR_NEWER
             EditorGUIUtility_GetIconForObject = typeof(EditorGUIUtility).GetMethod("GetIconForObject", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
-#endif
+
             Load();
         }
 
         private static readonly MethodInfo EditorGUIUtility_GetScriptObjectFromClass; // UnityObject EditorGUIUtility.GetScript(string scriptClass);
 
-#if !UNITY_2021_2_OR_NEWER
         private static readonly MethodInfo EditorGUIUtility_GetIconForObject; // Texture2D EditorGUIUtility.GetIconForObject(UnityObject obj);
-#endif
 
         private static readonly Dictionary<Type, EditorTexture> typeIcons = new Dictionary<Type, EditorTexture>();
 
@@ -324,11 +320,8 @@ namespace Unity.VisualScripting
 
             if (scriptObject != null)
             {
-#if UNITY_2021_2_OR_NEWER
-                var scriptIcon = EditorGUIUtility.GetIconForObject(scriptObject);
-#else
                 var scriptIcon = (Texture2D)EditorGUIUtility_GetIconForObject.Invoke(null, new object[] { scriptObject });
-#endif
+
                 if (scriptIcon != null)
                 {
                     return EditorTexture.Single(scriptIcon);

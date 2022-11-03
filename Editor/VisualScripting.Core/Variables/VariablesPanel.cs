@@ -24,7 +24,7 @@ namespace Unity.VisualScripting
         {
             this.context = context;
 
-            titleContent = new GUIContent("Blackboard", BoltCore.Icons?.variablesWindow?[IconSize.Small]);
+            titleContent = new GUIContent("Blackboard", BoltCore.Icons.variablesWindow?[IconSize.Small]);
 
             tabs.Clear();
 
@@ -163,8 +163,42 @@ namespace Unity.VisualScripting
             return Styles.tab.fixedHeight;
         }
 
+        //TODO: remove once the asset bundle bug is fixed
+        private void ValidateTabHeader(Tab tab)
+        {
+            if (tab.header.image == null)
+            {
+                if (tab.label.text.Trim() == "Graph")
+                {
+                    tab.header.image = BoltCore.Icons.graphVariable[IconSize.Medium];
+                    tab.label.image = BoltCore.Icons.graphVariable[IconSize.Small];
+                }
+                else if (tab.label.text.Trim() == "Object")
+                {
+                    tab.header.image = BoltCore.Icons.objectVariable[IconSize.Medium];
+                    tab.label.image = BoltCore.Icons.objectVariable[IconSize.Small];
+                }
+                else if (tab.label.text.Trim() == "Scene")
+                {
+                    tab.header.image = BoltCore.Icons.sceneVariable[IconSize.Medium];
+                    tab.label.image = BoltCore.Icons.sceneVariable[IconSize.Small];
+                }
+                else if (tab.label.text.Trim() == "App")
+                {
+                    tab.header.image = BoltCore.Icons.applicationVariable[IconSize.Medium];
+                    tab.label.image = BoltCore.Icons.applicationVariable[IconSize.Small];
+                }
+                else if (tab.label.text.Trim() == "Saved")
+                {
+                    tab.header.image = BoltCore.Icons.savedVariable[IconSize.Medium];
+                    tab.label.image = BoltCore.Icons.savedVariable[IconSize.Small];
+                }
+            }
+        }
         private void OnTabButtonGUI(Rect position, Tab tab)
         {
+            ValidateTabHeader(tab);
+
             EditorGUI.BeginDisabledGroup(!tab.enabled);
 
             using (LudiqGUIUtility.iconSize.Override(IconSize.Small))
@@ -189,7 +223,7 @@ namespace Unity.VisualScripting
                 "Graph",
                 "Graph Variables",
                 "These variables are local to the current graph.",
-                BoltCore.Icons?.graphVariable
+                BoltCore.Icons.graphVariable
                 );
 
             if (reference != null)
@@ -294,7 +328,7 @@ namespace Unity.VisualScripting
                     var declarations = sceneVariables.GetComponent<Variables>().declarations;
                     var owner = sceneVariables;
                     var title = StringUtility.FallbackWhitespace(sceneVariables.gameObject.scene.name, "Untitled");
-
+                    declarations.Kind = VariableKind.Scene;
                     tab.subTabs.Add(new SubTab("Scene", tab, VariableKind.Scene, declarations, owner, null, title));
                 }
             }

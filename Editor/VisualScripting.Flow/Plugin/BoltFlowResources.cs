@@ -9,18 +9,6 @@ namespace Unity.VisualScripting
         private BoltFlowResources(BoltFlow plugin) : base(plugin)
         {
             icons = new Icons(this);
-
-            EditorApplication.playModeStateChanged += LogPlayModeState;
-        }
-
-        private void LogPlayModeState(PlayModeStateChange state)
-        {
-            if (state == PlayModeStateChange.EnteredEditMode)
-            {
-                VisualScripting.Icons.Clear();
-
-                icons.Load();
-            }
         }
 
         public Icons icons { get; private set; }

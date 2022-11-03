@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEditor;
-using UnityEngine;
 using UnityObject = UnityEngine.Object;
 
 namespace Unity.VisualScripting
@@ -21,7 +19,6 @@ namespace Unity.VisualScripting
 
             analyserProvider = new AnalyserProvider(reference);
             graphMetadata = Metadata.Root().StaticObject(reference.graph);
-
             extensions = this.Extensions().ToList().AsReadOnly();
             sidebarPanels = SidebarPanels().ToList().AsReadOnly();
         }
@@ -64,8 +61,6 @@ namespace Unity.VisualScripting
         IEnumerable<ISidebarPanelContent> IGraphContext.sidebarPanels => sidebarPanels;
 
         public bool isPrefabInstance => reference.serializedObject?.IsConnectedPrefabInstance() ?? false;
-
-        protected internal virtual void Translate() { }
 
         #region Lifecycle
 
@@ -112,20 +107,6 @@ namespace Unity.VisualScripting
             analyserProvider.AnalyzeAll();
 
             reference.parent.Describe();
-
-            try
-            {
-                Translate();
-            }
-            catch (Exception e)
-            {
-                Debug.LogException(e); // TODO add that to FlowGraphEditor warnings
-                // analyserProvider.
-            }
-        }
-
-        public virtual void OnRecordFrameTrace(uint hash, int frame, GameObject gameObject, DotsFrameTrace.RecordedStep step)
-        {
         }
 
         #endregion

@@ -1,13 +1,20 @@
-# Add the Inspectable attribute to the source code for a custom type
+# Add the Inspectable attribute to a custom type
 
-If you have access to the source code for your custom type, you can add the `[Inspectable]` attribute to the relevant fields and classes that should be accessible in the Unity Editor. By adding the attribute, you can avoid creating a custom PropertyDrawer for your custom type. 
+If you have access to the source code for a custom type, add the `[Inspectable]` attribute to its fields and classes. The `[Inspectable]` attribute makes these fields and classes accessible to the [Inspector window](https://docs.unity3d.com/Manual/UsingTheInspector.html) in the Unity Editor. You don't need to create a [custom PropertyDrawer](vs-create-custom-drawer.md) as Unity generates a basic UI for the custom type.
 
-To add the `[Inspectable]` attribute to your source code for your custom type: 
+For more information about how to use custom types in Visual Scripting, see [Use a custom type](vs-using-custom-types.md) or [Custom types](vs-custom-types.md)
 
-1. Open the script file or files where you defined your custom classes and types in an external editor. 
-    If you double-click the file or files inside your Unity project, Unity opens the file in the program you specified in your preferences, under **External Script Editor**. For more information on script editors in Unity, see the [Unity User Manual section on Integrated development environment (IDE) support](https://docs.unity3d.com/Manual/ScriptingToolsIDEs.html).
+To add the `[Inspectable]` attribute to the source code for a custom type: 
 
-2. In your external editor, on a line above your class definition, and any properties you want to have available in the Unity Inspector, add the `[Inspectable]` attribute, as shown in the example below: 
+1. [!include[open-existing-external-code](./snippets/vs-open-existing-external-code.md)]
+
+2. In your external editor, on a line above your `public class` definition, add the `[Inspectable]` attribute.
+
+1. On a line above the properties you want to have available in the Unity Inspector, add the `[Inspectable]` attribute. 
+
+1. [!include[regen-node-library](./snippets/vs-regen-node-library.md)]
+
+The following is an example of a public class, with fields `name` and `amount` that are accessible and can be modified through Unity's Inspector window. 
 
     ```csharp
 
@@ -28,7 +35,3 @@ To add the `[Inspectable]` attribute to your source code for your custom type:
     }
 
     ```
-
-3. In Unity, follow the process for regenerating your Node Library, as described in [Configuring your Visual Scripting project settings](vs-configuration.md).
-
-Any variables using your custom types should now be modifiable from the Unity Inspector.

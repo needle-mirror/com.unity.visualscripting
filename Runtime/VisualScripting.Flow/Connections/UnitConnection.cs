@@ -140,7 +140,12 @@ namespace Unity.VisualScripting
             {
                 source.InvalidlyConnectTo(destination);
 
-                Debug.LogWarning($"Could not load connection between '{source.key}' of '{sourceUnit}' and '{destination.key}' of '{destinationUnit}'.");
+                // Silence this warning if a unit with a missing type is involved (as it will not have any defined ports).
+                // This is to avoid drowning users in warning and error messages if a unit's script goes missing.
+                if (source.unit.GetType() != typeof(MissingType) && destination.unit.GetType() != typeof(MissingType))
+                {
+                    Debug.LogWarning($"Could not load connection between '{source.key}' of '{sourceUnit}' and '{destination.key}' of '{destinationUnit}'.");
+                }
             }
 
             return valid;

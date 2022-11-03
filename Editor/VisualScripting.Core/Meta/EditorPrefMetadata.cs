@@ -34,6 +34,11 @@ namespace Unity.VisualScripting
             }
         }
 
+        internal override void SaveImmediately(bool immediately = true)
+        {
+            Save();
+        }
+
         public override void Save()
         {
             EditorPrefs.SetString(namespacedKey, value.Serialize().json);

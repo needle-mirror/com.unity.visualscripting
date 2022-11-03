@@ -13,10 +13,12 @@ namespace Unity.VisualScripting
             states = new GraphElementCollection<IState>(this);
             transitions = new GraphConnectionCollection<IStateTransition, IState, IState>(this);
             groups = new GraphElementCollection<GraphGroup>(this);
+            sticky = new GraphElementCollection<StickyNote>(this);
 
             elements.Include(states);
             elements.Include(transitions);
             elements.Include(groups);
+            elements.Include(sticky);
         }
 
         public override IGraphData CreateData()
@@ -68,6 +70,8 @@ namespace Unity.VisualScripting
         [DoNotSerialize]
         public GraphElementCollection<GraphGroup> groups { get; internal set; }
 
+        [DoNotSerialize]
+        public GraphElementCollection<StickyNote> sticky { get; private set; }
         #endregion
 
 

@@ -21,8 +21,7 @@ namespace Unity.VisualScripting
 
             value = storage[key];
         }
-
-        public override void Save()
+        internal override void SaveImmediately(bool immediately = true)
         {
             if (storage == null)
                 configuration.LoadOrCreateProjectSettingsAsset();
@@ -35,7 +34,12 @@ namespace Unity.VisualScripting
                 storage.Add(key, value);
             }
 
-            configuration.SaveProjectSettingsAsset();
+            configuration.SaveProjectSettingsAsset(immediately);
+        }
+
+        public override void Save()
+        {
+            SaveImmediately(false);
         }
     }
 }

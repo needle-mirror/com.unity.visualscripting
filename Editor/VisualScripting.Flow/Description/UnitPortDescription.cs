@@ -14,7 +14,11 @@ namespace Unity.VisualScripting
         {
             get
             {
-                _icon ??= GetIcon(portType);
+                if (_icon == null || !_icon.IsValid())
+                {
+                    _icon = GetIcon(portType);
+                }
+
                 return _icon;
             }
             set => _icon = value;

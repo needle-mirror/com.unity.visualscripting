@@ -10,7 +10,7 @@ namespace Unity.VisualScripting
     {
         public const float MinZoomForControls = 0.7f;
 
-        public const float MinZoom = 0.25f;
+        public const float MinZoom = 0.1f;
 
         public const float MaxZoom = 1;
 
@@ -666,12 +666,10 @@ namespace Unity.VisualScripting
 
                 foreach (var nodeColor in nodeColors)
                 {
-                    // no purple style in base unity
-                    NodeColor nodeColorForExistingStyles = nodeColor == NodeColor.Purple ? NodeColor.Red : nodeColor;
-                    var squareOff = (GUIStyle)($"flow node {(int)nodeColorForExistingStyles}");
-                    var squareOn = (GUIStyle)($"flow node {(int)nodeColorForExistingStyles} on");
-                    var hexOff = (GUIStyle)($"flow node hex {(int)nodeColorForExistingStyles}");
-                    var hexOn = (GUIStyle)($"flow node hex {(int)nodeColorForExistingStyles} on");
+                    var squareOff = (GUIStyle)($"flow node {(int)nodeColor}");
+                    var squareOn = (GUIStyle)($"flow node {(int)nodeColor} on");
+                    var hexOff = (GUIStyle)($"flow node hex {(int)nodeColor}");
+                    var hexOn = (GUIStyle)($"flow node hex {(int)nodeColor} on");
 
                     // For node styles:
                     //  - Border: 9-slice coordinates

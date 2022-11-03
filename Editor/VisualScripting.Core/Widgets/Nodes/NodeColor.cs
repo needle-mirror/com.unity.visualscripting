@@ -8,7 +8,6 @@ namespace Unity.VisualScripting
         Green = 3,
         Yellow = 4,
         Orange = 5,
-        Red = 6,
-        Purple = 7
+        Red = 6
     }
 }

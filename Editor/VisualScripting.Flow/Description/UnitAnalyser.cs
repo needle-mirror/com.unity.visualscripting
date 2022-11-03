@@ -78,6 +78,20 @@ namespace Unity.VisualScripting
                     yield return Warning.Caution("Node is not properly configured.");
                 }
             }
+            else if (unit is MissingType)
+            {
+                var formerType = $"{(unit as MissingType)?.formerType}";
+                formerType = string.IsNullOrEmpty(formerType) ? string.Empty : $"'{formerType}'";
+                yield return new ActionButtonWarning(
+                    WarningLevel.Error,
+                    $"The source script for this node type can't be found. Did you remove its script?\n" +
+                    $"Replace the node or add the {formerType} script file back to your project files.",
+                    "Replace Node",
+                    () =>
+                    { UnitWidgetHelper.ReplaceUnit(unit, reference, context, context.selection, new EventWrapper(unit)); }
+                );
+                yield break;
+            }
 
             if (!isEntered)
             {

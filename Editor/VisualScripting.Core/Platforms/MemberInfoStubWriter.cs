@@ -16,7 +16,5 @@ namespace Unity.VisualScripting
         public override string stubMethodComment => stub.ReflectedType.CSharpFullName() + "." + stub.Name;
 
         public override string stubMethodName => stubMethodComment.FilterReplace('_', true, symbols: false, whitespace: false, punctuation: false);
-
-        public override bool skip => !Codebase.IsRuntimeType(stub.ReflectedType);
     }
 }

@@ -35,7 +35,7 @@ namespace Unity.VisualScripting
             if (emptyRect == null)
             {
                 emptyRect = new GUIStyle();
-                emptyRect.normal.background = ColorUtility.CreateBox(ColorPalette.transparent, Color.white);
+                emptyRect.normal.background = ColorUtility.CreateBox($"{EmbeddedResourceProvider.VISUAL_SCRIPTING_PACKAGE}.emptyRect", ColorPalette.transparent, Color.white);
                 emptyRect.border = new RectOffset(1, 1, 1, 1);
             }
 
@@ -955,7 +955,10 @@ namespace Unity.VisualScripting
 
         private static void OnHeaderIconGUI(EditorTexture icon, Rect iconPosition)
         {
-            GUI.DrawTexture(iconPosition, icon?[IconSize.Medium]);
+            if (icon != null && icon[IconSize.Medium])
+            {
+                GUI.DrawTexture(iconPosition, icon?[IconSize.Medium]);
+            }
         }
 
         #region Static

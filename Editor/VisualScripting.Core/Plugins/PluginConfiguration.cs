@@ -54,6 +54,8 @@ namespace Unity.VisualScripting
 #if VISUAL_SCRIPT_DEBUG_MIGRATION
             Debug.Log($"Found no legacy versions for {this.plugin.id}, setting to {plugin.manifest.version}");
 #endif
+            projectSettingsAssetDirty = true;
+
             savedVersion = plugin.manifest.version;
         }
 
@@ -138,9 +140,9 @@ namespace Unity.VisualScripting
         public List<ProjectSettingMetadata> projectSettings;
 
         private string projectSettingsStoragePath => PluginPaths.projectSettings;
+        private bool projectSettingsAssetDirty = false;
 
         internal DictionaryAsset projectSettingsAsset { get; set; }
-        private bool _projectSettingsAssetDirty = false;
 
         internal void LoadProjectSettings()
         {
@@ -186,29 +188,19 @@ namespace Unity.VisualScripting
                 // The file doesn't exist, so create a new asset
                 projectSettingsAsset = ScriptableObject.CreateInstance<DictionaryAsset>();
             }
-
-            projectSettingsAsset.OnDestroyActions += SerializeProjectSettingsAssetToDisk;
         }
 
         public void SaveProjectSettingsAsset(bool immediately = false)
         {
-            if (immediately)
+            if (projectSettingsAssetDirty || immediately)
             {
-                _projectSettingsAssetDirty = true;
-                SerializeProjectSettingsAssetToDisk();
-                return;
-            }
-
-            if (!_projectSettingsAssetDirty)
-            {
-                _projectSettingsAssetDirty = true;
                 EditorApplication.delayCall += SerializeProjectSettingsAssetToDisk;
             }
         }
 
         private void SerializeProjectSettingsAssetToDisk()
         {
-            if (_projectSettingsAssetDirty)
+            if (VSUsageUtility.isVisualScriptingUsed)
             {
                 // make sure the path exists or file write will fail
                 PathUtility.CreateParentDirectoryIfNeeded(projectSettingsStoragePath);
@@ -217,9 +209,6 @@ namespace Unity.VisualScripting
                 InternalEditorUtility.SaveToSerializedFileAndForget(new UnityEngine.Object[] { projectSettingsAsset },
                     projectSettingsStoragePath, saveAsText);
             }
-
-            _projectSettingsAssetDirty = false;
-            EditorApplication.delayCall -= SerializeProjectSettingsAssetToDisk;
         }
 
         #endregion
@@ -253,7 +242,7 @@ namespace Unity.VisualScripting
         #region Menu
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Visual Scripting/Internal/Delete All Project Settings", priority = LudiqProduct.DeveloperToolsMenuPriority + 401)]
+        [MenuItem("Tools/Bolt/Internal/Delete All Project Settings", priority = LudiqProduct.DeveloperToolsMenuPriority + 401)]
 #endif
         public static void DeleteAllProjectSettings()
         {
@@ -264,7 +253,7 @@ namespace Unity.VisualScripting
         }
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Visual Scripting/Internal/Delete All Editor Prefs", priority = LudiqProduct.DeveloperToolsMenuPriority + 402)]
+        [MenuItem("Tools/Bolt/Internal/Delete All Editor Prefs", priority = LudiqProduct.DeveloperToolsMenuPriority + 402)]
 #endif
         public static void DeleteAllEditorPrefs()
         {
@@ -291,7 +280,7 @@ namespace Unity.VisualScripting
         }
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Visual Scripting/Internal/Delete All Player Prefs", priority = LudiqProduct.DeveloperToolsMenuPriority + 403)]
+        [MenuItem("Tools/Bolt/Internal/Delete All Player Prefs", priority = LudiqProduct.DeveloperToolsMenuPriority + 403)]
 #endif
         public static void DeleteAllPlayerPrefs()
         {

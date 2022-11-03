@@ -29,7 +29,8 @@ namespace Unity.VisualScripting
                 target == BuildTarget.StandaloneLinux64;
         }
 
-        public static bool allowJit => !BoltCore.Configuration.aotSafeMode || isTargettingJit;
+        public static bool allowJit => !(BoltCore.Configuration?.aotSafeMode).GetValueOrDefault(false)
+                                       || isTargettingJit;
     }
 
     public class EditorPlatformWatcher : IActiveBuildTargetChanged

@@ -162,10 +162,8 @@ namespace Unity.VisualScripting
 
         #region Drag & Drop
 
-        private const float MouseDragThreshold = 0.6f;
         private static MetadataListAdaptor selectedList;
         private static object selectedItem;
-        private static Vector2 mouseDragStartPosition;
 
         public bool CanDropInsert(int insertionIndex)
         {
@@ -254,7 +252,6 @@ namespace Unity.VisualScripting
                         if (alwaysDragAndDrop || Event.current.alt)
                         {
                             GUIUtility.hotControl = controlID;
-                            mouseDragStartPosition = Event.current.mousePosition;
                             Event.current.Use();
                         }
                     }
@@ -265,16 +262,11 @@ namespace Unity.VisualScripting
                     if (GUIUtility.hotControl == controlID)
                     {
                         GUIUtility.hotControl = 0;
-
-                        if (Vector2.Distance(mouseDragStartPosition, Event.current.mousePosition) >= MouseDragThreshold)
-                        {
-                            DragAndDrop.PrepareStartDrag();
-                            DragAndDrop.objectReferences = new UnityObject[0];
-                            DragAndDrop.paths = new string[0];
-                            DragAndDrop.SetGenericData(DraggedListItem.TypeName, new DraggedListItem(this, index, item));
-                            DragAndDrop.StartDrag(metadata.path);
-                        }
-
+                        DragAndDrop.PrepareStartDrag();
+                        DragAndDrop.objectReferences = new UnityObject[0];
+                        DragAndDrop.paths = new string[0];
+                        DragAndDrop.SetGenericData(DraggedListItem.TypeName, new DraggedListItem(this, index, item));
+                        DragAndDrop.StartDrag(metadata.path);
                         Event.current.Use();
                     }
 

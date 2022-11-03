@@ -277,6 +277,11 @@ namespace Unity.VisualScripting
                 }
             }
 
+            if (filter.NoConnection)
+            {
+                yield return new StickyNoteOption();
+            }
+
             if (UnityAPI.Await
                 (
                     () =>

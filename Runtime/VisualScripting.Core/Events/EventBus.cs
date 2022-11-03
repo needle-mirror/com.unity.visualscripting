@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 namespace Unity.VisualScripting
 {
@@ -69,9 +68,7 @@ namespace Unity.VisualScripting
                         continue;
                     }
 
-                    Profiler.BeginSample(hook.name);
                     handler.Invoke(args);
-                    Profiler.EndSample();
                 }
 
                 handlers.Free();

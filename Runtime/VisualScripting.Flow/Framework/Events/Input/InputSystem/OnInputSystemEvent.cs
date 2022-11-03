@@ -60,7 +60,10 @@ namespace Unity.VisualScripting.InputSystem
 
         private InputAction m_Action;
 
+#if !PACKAGE_INPUT_SYSTEM_1_2_0_OR_NEWER_EXISTS
         private bool m_WasRunning;
+#endif
+
 
         /// <summary>
         ///  Stores the last value, and returned by the output port. This intermediary value is there to enable
@@ -122,29 +125,46 @@ namespace Unity.VisualScripting.InputSystem
             if (m_Action == null)
                 return false;
 
-            bool shouldtrigger;
+            bool shouldTrigger;
+
+#if PACKAGE_INPUT_SYSTEM_1_2_0_OR_NEWER_EXISTS
+            switch (InputActionChangeType)
+            {
+                case InputActionChangeOption.OnPressed:
+                    shouldTrigger = m_Action.WasPressedThisFrame();
+                    break;
+                case InputActionChangeOption.OnHold:
+                    shouldTrigger = m_Action.IsPressed();
+                    break;
+                case InputActionChangeOption.OnReleased:
+                    shouldTrigger = m_Action.WasReleasedThisFrame();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+#else
             // "Started" is true while the button is held, triggered is true only one frame. hence what looks like a bug but isn't
             switch (InputActionChangeType)
             {
                 case InputActionChangeOption.OnPressed:
-                    shouldtrigger = m_Action.triggered; // started is true too long
+                    shouldTrigger = m_Action.triggered; // started is true too long
                     break;
                 case InputActionChangeOption.OnHold:
-                    shouldtrigger = m_Action.phase == InputActionPhase.Started; // triggered is only true one frame
+                    shouldTrigger = m_Action.phase == InputActionPhase.Started; // triggered is only true one frame
                     break;
                 case InputActionChangeOption.OnReleased:
-                    shouldtrigger = m_WasRunning && m_Action.phase != InputActionPhase.Started; // never equal to InputActionPhase.Cancelled when polling
+                    shouldTrigger = m_WasRunning && m_Action.phase != InputActionPhase.Started; // never equal to InputActionPhase.Cancelled when polling
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            DoAssignArguments(flow);
-
             // Hack - can't make sense of the action phase when polled (always Started or Waiting). Fallback on "== Started"
             m_WasRunning = m_Action.phase == InputActionPhase.Started;
+#endif
 
-            return shouldtrigger;
+            DoAssignArguments(flow);
+            return shouldTrigger;
         }
 
         private void DoAssignArguments(Flow flow)

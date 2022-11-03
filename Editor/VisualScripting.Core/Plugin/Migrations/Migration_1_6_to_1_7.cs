@@ -56,7 +56,7 @@ namespace Unity.VisualScripting
         private static void MigrateProjectSettings()
         {
             var legacyProjectSettingPluginIds = new string[]
-                {"VisualScripting.Core", "VisualScripting.Flow", "VisualScripting.State"};
+            {"VisualScripting.Core", "VisualScripting.Flow", "VisualScripting.State"};
 
             BoltCore.Configuration.LoadOrCreateProjectSettingsAsset();
 

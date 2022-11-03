@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting.FullSerializer.Internal;
+using UnityEngine;
 using UnityObject = UnityEngine.Object;
 
 #if !UNITY_EDITOR && UNITY_WSA
@@ -778,35 +780,7 @@ namespace Unity.VisualScripting.FullSerializer
             // deserialization we run it on the proper type.
             if (IsTypeSpecified(data))
             {
-                var typeNameData = data.AsDictionary[Key_InstanceType];
-
-                // we wrap everything in a do while false loop so we can break
-                // out it
-                do
-                {
-                    if (typeNameData.IsString == false)
-                    {
-                        deserializeResult.AddMessage(Key_InstanceType + " value must be a string (in " + data + ")");
-                        break;
-                    }
-
-                    var typeName = typeNameData.AsString;
-
-                    if (!RuntimeCodebase.TryDeserializeType(typeName, out var type))
-                    {
-                        deserializeResult += fsResult.Fail("Unable to find type: '" + typeName + "'");
-                        break;
-                    }
-
-                    if (storageType.IsAssignableFrom(type) == false)
-                    {
-                        deserializeResult.AddMessage("Ignoring type specifier; a field/property of type " + storageType + " cannot hold an instance of " + type);
-                        break;
-                    }
-
-                    objectType = type;
-                }
-                while (false);
+                objectType = GetDataType(ref data, storageType, ref deserializeResult);
             }
             RemapAbstractStorageTypeToDefaultType(ref objectType);
 
@@ -828,7 +802,8 @@ namespace Unity.VisualScripting.FullSerializer
             }
             catch (Exception ex)
             {
-                return deserializeResult += fsResult.Fail(ex.ToString());
+                deserializeResult += fsResult.Fail(ex.ToString());
+                return deserializeResult;
             }
 
             // Construct an object instance if we don't have one already. We also
@@ -848,7 +823,8 @@ namespace Unity.VisualScripting.FullSerializer
             }
             catch (Exception ex)
             {
-                return deserializeResult += fsResult.Fail(ex.ToString());
+                deserializeResult += fsResult.Fail(ex.ToString());
+                return deserializeResult;
             }
 
             // NOTE: It is critically important that we pass the actual
@@ -859,7 +835,8 @@ namespace Unity.VisualScripting.FullSerializer
             //       default behavior for structs is to just return the type of
             //       the struct).
 
-            return deserializeResult += InternalDeserialize_4_Cycles(overrideConverterType, data, objectType, ref result);
+            deserializeResult += InternalDeserialize_4_Cycles(overrideConverterType, data, objectType, ref result);
+            return deserializeResult;
         }
 
         private fsResult InternalDeserialize_4_Cycles(Type overrideConverterType, fsData data, Type resultType, ref object result)
@@ -895,6 +872,117 @@ namespace Unity.VisualScripting.FullSerializer
             }
 
             return GetConverter(resultType, overrideConverterType).TryDeserialize(data, ref result, resultType);
+        }
+
+
+        // This method only really exists to make the InternalDeserialize_3_Inheritance() method cleaner.
+        private static Type GetDataType(ref fsData data, Type defaultType, ref fsResult deserializeResult)
+        {
+            var objectType = defaultType;
+            var dict = data.AsDictionary;
+
+            var typeNameData = dict[Key_InstanceType];
+            if (typeNameData.IsString == false)
+            {
+                deserializeResult.AddMessage(Key_InstanceType + " value must be a string (in " + data + ")");
+                return objectType;
+            }
+
+            var typeName = typeNameData.AsString;
+
+            if (!RuntimeCodebase.TryDeserializeType(typeName, out var markedType))
+            {
+                if (IsVisualScriptingUnit(data))
+                {
+                    //We store a copy of the node as a string in the hopes of being able to re-instantiate it later.
+                    dict[Key_UnitFormerValue] = new fsData(data.ToString());
+
+                    // We store the type that the unit should be, we will try to re-instantiate it if it becomes available again.
+                    dict[Key_UnitFormerType] = typeNameData;
+                    dict[Key_InstanceType] = new fsData(TypeName_MissingType);
+
+                    // TODO: Ideally this would display as an error in the console instead of a warning. Using fsResult.Fail() aborts the deserialization.
+                    deserializeResult += fsResult.Warn($"Type definition for '{typeName}' is missing.\nConverted '{typeName}' unit to '{TypeName_MissingType}'. Did you delete the type's script file?");
+
+                    return Type_MissingType;
+                }
+
+                // This message is redundant if the above warning gets logged.
+                deserializeResult += fsResult.Warn("Unable to find type: \"" + typeName + "\"");
+
+                return objectType;
+            }
+            // Check if the former type of the MissingType unit is defined again (if the user added back the unit script).
+            else if (typeName == TypeName_MissingType)
+            {
+                if (dict.ContainsKey(Key_UnitFormerType) && IsVisualScriptingUnit(data))
+                {
+                    var formerTypeName = dict[Key_UnitFormerType].AsString;
+                    if (RuntimeCodebase.TryDeserializeType(formerTypeName, out var formerType))
+                    {
+                        // If the user tries to create a new script for the type, we must ensure that it derives from VS units so that it can be properly deserialized.
+                        if (defaultType.IsAssignableFrom(formerType))
+                        {
+                            //TODO: Add checks if the json can't be parsed to a unit.
+                            if (dict.ContainsKey(Key_UnitFormerValue))
+                            {
+                                // The node may have been moved while in dummy form.
+                                fsData newPosition = dict[Key_UnitPosition];
+
+                                data = fsJsonParser.Parse(dict[Key_UnitFormerValue].AsString);
+                                dict = data.AsDictionary; // 'dict' and 'data' are meant to represent the same object.
+
+                                dict[Key_UnitPosition] = newPosition;
+
+                                deserializeResult += fsResult.Warn($"Missing unit type '{formerTypeName}' was found.\nConverted '{TypeName_MissingType}' unit back to '{formerTypeName}'");
+                            }
+                            else
+                            {
+                                // We want to restore the unit to its correct type.
+                                dict[Key_InstanceType] = new fsData(formerTypeName);
+                                deserializeResult += fsResult.Warn($"Missing unit type '{formerTypeName}' was found.\nConverted '{TypeName_MissingType}' unit back to '{formerTypeName}'\nNo former state can be found. Reverting node to defaults.\n" + data);
+                            }
+
+                            objectType = formerType;
+                            return objectType;
+                        }
+
+                        // TODO: Ideally this would display as an error in the console instead of a warning. Using fsResult.Fail() aborts the deserialization.
+                        deserializeResult += fsResult.Warn($"Missing unit type '{formerTypeName}' was found, but is not assignable to '{defaultType.FullName}'. Did you forget to inherit from '{TypeName_Unit}'?");
+                    }
+                    else
+                    {
+                        // TODO: Ideally this would display as an error in the console instead of a warning. Using fsResult.Fail() aborts the deserialization.
+                        deserializeResult += fsResult.Warn($"Type definition for '{formerTypeName}' unit is missing. Did you remove its script file?");
+                    }
+                }
+                else
+                {
+                    deserializeResult += fsResult.Warn($"Serialized '{TypeName_MissingType}' unit has an unrecognized format.");
+                }
+            }
+
+            if (defaultType.IsAssignableFrom(markedType) == false)
+            {
+                // It's possible that the user removes their custom node's inheritance from the VS unit type.
+                if (IsVisualScriptingUnit(data))
+                {
+                    // We store the type that the unit should be, we will try to re-instantiate it if it becomes valid again.
+                    dict[Key_UnitFormerType] = typeNameData;
+                    dict[Key_InstanceType] = new fsData(TypeName_MissingType);
+
+                    // TODO: Ideally this would display as an error in the console instead of a warning. Using fsResult.Fail() aborts the deserialization.
+                    deserializeResult += fsResult.Warn($"Type '{typeName}' is no longer assignable to '{defaultType.FullName}'. Did you remove inheritance from '{TypeName_Unit}'?\nConverted '{typeName}' unit to '{TypeName_MissingType}'.");
+
+                    return Type_MissingType;
+                }
+
+                deserializeResult.AddMessage("Ignoring type specifier; a field/property of type " + defaultType + " cannot hold an instance of " + markedType);
+                return objectType;
+            }
+
+            objectType = markedType;
+            return objectType;
         }
 
         /// <summary>
@@ -1015,6 +1103,60 @@ namespace Unity.VisualScripting.FullSerializer
         /// </summary>
         private static readonly string Key_Content = $"{fsGlobalConfig.InternalFieldPrefix}content";
 
+
+        // THESE KEYS ARE SPECIFIC TO VISUAL SCRIPTING UNIT DESERIALIZATION
+        // It's important to note here that VS-specific fields should not get the internal FullSerializer field prefix when serialized to avoid ambiguity.
+
+        /// <summary>
+        /// Dictionary for the default values of each of the unit's value port.
+        /// </summary>
+        internal static readonly string Key_UnitDefault = "defaultValues";
+
+        /// <summary>
+        /// Specifies the position of a unit in its respective graph.
+        /// </summary>
+        internal static readonly string Key_UnitPosition = "position";
+
+        /// <summary>
+        /// Unique guid of the unit instance.
+        /// </summary>
+        internal static readonly string Key_UnitGuid = "guid";
+
+        /// <summary>
+        /// Meant for 'missing type' units to remember the type of node they are supposed to be.
+        /// This will allow us to try and convert back if the correct type becomes available again.
+        /// </summary>
+        internal static readonly string Key_UnitFormerType = "formerType";
+
+        /// <summary>
+        /// Meant for 'missing type' units to remember the state of the node they are supposed to be.
+        /// This will allow to preserve the serialized instance values of the node when its type was lost.
+        /// </summary>
+        internal static readonly string Key_UnitFormerValue = "formerValue";
+
+        /// <summary>
+        /// Hard-coded fully qualified name of the 'unit' type.
+        /// </summary>
+        internal static readonly string TypeName_Unit = "Unity.VisualScripting.Unit";
+
+        /// <summary>
+        /// The 'Unit' type defined in VS.
+        /// Made static as to only be deserialized once and potentially used multiple times.
+        /// </summary>
+        static readonly Type Type_Unit = RuntimeCodebase.DeserializeType(TypeName_Unit);
+
+        /// <summary>
+        /// Hard-coded fully qualified name of the 'missing type unit' type.
+        /// </summary>
+        internal static readonly string TypeName_MissingType = "Unity.VisualScripting.MissingType";
+
+        /// <summary>
+        /// The 'MissingType' type defined in VS.
+        /// Made static as to only be deserialized once and potentially used multiple times.
+        /// </summary>
+        static readonly Type Type_MissingType = RuntimeCodebase.DeserializeType(TypeName_MissingType);
+
+
         private static bool IsObjectReference(fsData data)
         {
             if (data.IsDictionary == false)
@@ -1059,6 +1201,36 @@ namespace Unity.VisualScripting.FullSerializer
             }
             return data.AsDictionary.ContainsKey(Key_Content);
         }
+
+        /// <summary>
+        /// Makes a guess as to if the data represents a VS unit.
+        ///
+        /// If this turns out to be too general and objects that are not meant to be units get
+        /// converted to MissingType units, consider adding a dedicated serialized field exclusive to units
+        /// as to be able to check against it. (Something named like "isVisualScriptingUnit")
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private static bool IsVisualScriptingUnit(fsData data)
+        {
+            if (data.IsDictionary == false)
+            {
+                return false;
+            }
+
+            var dictionary = data.AsDictionary;
+
+            // If the following are true, we can make a reasonable
+            // assumption that the dictionary represents a VS unit.
+            return
+                dictionary.ContainsKey(Key_UnitDefault) &&
+                dictionary.ContainsKey(Key_UnitPosition) &&
+                dictionary.ContainsKey(Key_UnitGuid) &&
+                // Maybe don't hard-code these?
+                dictionary[Key_UnitPosition].AsDictionary.ContainsKey("x") &&
+                dictionary[Key_UnitPosition].AsDictionary.ContainsKey("y");
+        }
+
 
         /// <summary>
         /// Strips all deserialization metadata from the object, like $type and

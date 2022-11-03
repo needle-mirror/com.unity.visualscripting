@@ -47,7 +47,7 @@ namespace Unity.VisualScripting
 
         public TPort Single()
         {
-            if (Count != 1)
+            if (Count != 0)
             {
                 throw new InvalidOperationException("Port collection does not have a single port.");
             }

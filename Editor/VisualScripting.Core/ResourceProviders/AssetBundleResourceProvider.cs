@@ -17,7 +17,7 @@ namespace Unity.VisualScripting
         {
             get
             {
-                if (_assetBundle.IsUnityNull())
+                if (_assetBundle == null)
                 {
                     _assetBundle = AssetUtility.AssetBundleEditor;
                 }
@@ -26,8 +26,17 @@ namespace Unity.VisualScripting
             }
         }
 
+        public AssetBundleResourceProvider()
+        {
+            Analyze();
+        }
+
         public AssetBundleResourceProvider(AssetBundle assetBundle)
         {
+            if (_assetBundle != null)
+            {
+                _assetBundle.Unload(true);
+            }
             _assetBundle = assetBundle;
 
             Analyze();
@@ -66,6 +75,24 @@ namespace Unity.VisualScripting
             {
                 yield return subDirectory.Value.path;
             }
+        }
+
+        public string GetPersonalPath(string path, float width)
+        {
+            var name = Path.GetFileNameWithoutExtension(path).PartBefore('@');
+            var extension = Path.GetExtension(path);
+            var directory = Path.GetDirectoryName(path);
+
+            return Path.Combine(directory, $"{name}@{width}x{extension}");
+        }
+
+        public string GetProfessionalPath(string path, float width)
+        {
+            var name = Path.GetFileNameWithoutExtension(path).PartBefore('@');
+            var extension = Path.GetExtension(path);
+            var directory = Path.GetDirectoryName(path);
+
+            return Path.Combine(directory, $"{name}_Pro@{width}x{extension}");
         }
 
         public bool FileExists(string path)

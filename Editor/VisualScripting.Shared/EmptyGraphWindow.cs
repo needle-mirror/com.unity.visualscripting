@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.IMGUI.Controls;
+using UnityEditor.SceneManagement;
 using UnityEngine;
-using Object = UnityEngine.Object;
+using UnityEngine.SceneManagement;
 using UnityObject = UnityEngine.Object;
 
 namespace Unity.VisualScripting
@@ -127,6 +126,10 @@ namespace Unity.VisualScripting
         private SplitDropdown splitDropdownScriptGraph;
         private SplitDropdown splitDropdownStateGraph;
 
+        const string k_OnSelectedGameObject = "...on selected GameObject";
+        const string k_OnNewGameObject = "...on new GameObject";
+        const string k_SelectedGameObject = "Please, select a GameObject";
+
         [MenuItem("Window/Visual Scripting/Visual Scripting Graph", false, 3010)]
         private static void ShowWindow()
         {
@@ -139,7 +142,7 @@ namespace Unity.VisualScripting
         {
             string pathRoot = PathUtility.GetPackageRootPath();
 
-            Object icon = EditorGUIUtility.Load(Path.Combine(pathRoot,
+            UnityObject icon = EditorGUIUtility.Load(Path.Combine(pathRoot,
                 "Editor/VisualScripting.Shared/EditorAssetResources/SplitButtonArrow.png"));
 
             dropdownIcon = new GUIContent(icon as Texture2D);
@@ -150,32 +153,42 @@ namespace Unity.VisualScripting
             toggleOnState = false;
             shouldCloseWindow = false;
 
-            List<DropdownOptions> listOfOptions = new List<DropdownOptions>();
-            listOfOptions.Add(new DropdownOptions()
+            var listOfOptions = new List<DropdownOptions>
             {
-                label = "...on selected game object",
-                tooltip = "Please, select a gameObject",
-                callback = CreateScriptGraphOnSelectedGameObject
-            });
-            listOfOptions.Add(new DropdownOptions()
-            { label = "...on new game object", callback = CreateScriptGraphOnNewGameObject });
+                new DropdownOptions
+                {
+                    label = k_OnSelectedGameObject,
+                    tooltip = k_SelectedGameObject,
+                    callback = CreateScriptGraphOnSelectedGameObject
+                },
+                new DropdownOptions
+                {
+                    label = k_OnNewGameObject,
+                    callback = CreateScriptGraphOnNewGameObject
+                }
+            };
 
             splitDropdownScriptGraph = new SplitDropdown(listOfOptions);
 
-            listOfOptions = new List<DropdownOptions>();
-            listOfOptions.Add(new DropdownOptions()
+            listOfOptions = new List<DropdownOptions>
             {
-                label = "...on selected game object",
-                tooltip = "Please, select a gameObject",
-                callback = CreateStateGraphOnSelectedGameObject
-            });
-            listOfOptions.Add(new DropdownOptions()
-            { label = "...on new game object", callback = CreateStateGraphOnNewGameObject });
+                new DropdownOptions
+                {
+                    label = k_OnSelectedGameObject,
+                    tooltip = k_SelectedGameObject,
+                    callback = CreateStateGraphOnSelectedGameObject
+                },
+                new DropdownOptions
+                {
+                    label = k_OnNewGameObject,
+                    callback = CreateStateGraphOnNewGameObject
+                }
+            };
 
             splitDropdownStateGraph = new SplitDropdown(listOfOptions);
         }
 
-        private void OpenGraphAsset(UnityObject unityObject)
+        private void OpenGraphAsset(UnityObject unityObject, bool shouldSetSceneAsDirty)
         {
             shouldCloseWindow = true;
 
@@ -197,18 +210,21 @@ namespace Unity.VisualScripting
                 }
             }
 
-            GraphWindow.OpenActive(graphReference);
+            if (shouldSetSceneAsDirty)
+            {
+                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+            }
 
-            GUIUtility.ExitGUI();
+            GraphWindow.OpenActive(graphReference);
         }
 
-        private void OpenGraphFromPath(string path)
+        private void OpenGraphFromPath(string path, bool shouldSetSceneAsDirty)
         {
             path = path.Replace(Application.dataPath, "Assets");
 
             UnityObject unityObject = AssetDatabase.LoadAssetAtPath(path, typeof(UnityObject));
 
-            OpenGraphAsset(unityObject);
+            OpenGraphAsset(unityObject, shouldSetSceneAsDirty);
         }
 
         private void OpenGraph()
@@ -226,7 +242,9 @@ namespace Unity.VisualScripting
                 return false;
             }
 
-            var macro = (IMacro)ScriptableObject.CreateInstance(typeof(ScriptGraphAsset));
+            VSUsageUtility.isVisualScriptingUsed = true;
+
+            var macro = (IMacro)CreateInstance(typeof(ScriptGraphAsset));
             var macroObject = (UnityObject)macro;
             macro.graph = FlowGraph.WithStartUpdate();
 
@@ -248,7 +266,9 @@ namespace Unity.VisualScripting
 
             AssetDatabase.CreateAsset(macroObject, path);
 
-            OpenGraphFromPath(path);
+            bool shouldSetSceneAsDirty = gameObject != null;
+
+            OpenGraphFromPath(path, shouldSetSceneAsDirty);
 
             return true;
         }
@@ -273,10 +293,6 @@ namespace Unity.VisualScripting
             {
                 DestroyImmediate(newGameObject);
             }
-            else
-            {
-                shouldCloseWindow = true;
-            }
         }
 
         private void CreateScriptGraphOnSelectedGameObject()
@@ -299,7 +315,9 @@ namespace Unity.VisualScripting
                 return false;
             }
 
-            var macro = (IMacro)ScriptableObject.CreateInstance(typeof(StateGraphAsset));
+            VSUsageUtility.isVisualScriptingUsed = true;
+
+            var macro = (IMacro)CreateInstance(typeof(StateGraphAsset));
             var macroObject = (UnityObject)macro;
             macro.graph = StateGraph.WithStart();
 
@@ -321,7 +339,9 @@ namespace Unity.VisualScripting
 
             AssetDatabase.CreateAsset(macroObject, path);
 
-            OpenGraphFromPath(path);
+            bool shouldSetSceneAsDirty = gameObject != null;
+
+            OpenGraphFromPath(path, shouldSetSceneAsDirty);
 
             return true;
         }
@@ -345,10 +365,6 @@ namespace Unity.VisualScripting
             if (!CreateStateGraphAsset(newGameObject, true))
             {
                 DestroyImmediate(newGameObject);
-            }
-            else
-            {
-                shouldCloseWindow = true;
             }
         }
 
@@ -377,7 +393,7 @@ namespace Unity.VisualScripting
 
             if (labelStyleDropdownOptions == null)
             {
-                labelStyleDropdownOptions = new GUIStyle("Label")
+                labelStyleDropdownOptions = new GUIStyle("ToolbarButton")
                 {
                     alignment = TextAnchor.MiddleLeft,
                     padding = new RectOffset(20, 0, 0, 0)
@@ -416,7 +432,7 @@ namespace Unity.VisualScripting
             {
                 UnityObject selectedObject = EditorGUIUtility.GetObjectPickerObject();
 
-                OpenGraphAsset(selectedObject);
+                OpenGraphAsset(selectedObject, false);
             }
         }
 

@@ -1,22 +1,22 @@
 * [About Visual Scripting](index.md)
 
-    *[Configuring your project settings](vs-configuration.md)
+    *[Configure project settings](vs-configuration.md)
 
-        *[Add or remove nodes in your Node Library](vs-add-remove-node-library.md)
+        *[Add or remove available nodes](vs-add-remove-node-library.md)
 
-        *[Add or remove types from your Type Options](vs-add-remove-type-options.md)
+        *[Add or remove types](vs-add-remove-type-options.md)
 
         *[Create or restore a backup](vs-create-restore-backups.md)
 
-    *[Choosing a control scheme](vs-control-schemes.md)
+    *[Choose a control scheme](vs-control-schemes.md)
 
-    *[Configuring your preferences](vs-set-preferences.md)
+    *[Configure your preferences](vs-set-preferences.md)
     
-    *[Update your version of Visual Scripting](vs-update.md)
+    *[Update Visual Scripting](vs-update.md)
     
-    *[Using a version control system](vs-version-control.md)
+    *[Version control systems](vs-version-control.md)
     
-    *[Using Visual Scripting with Ahead-of-Time platforms](vs-aot.md)
+    *[Use Visual Scripting with Unity Cloud Build](vs-aot.md)
 
 * [Basic concepts in Visual Scripting](vs-basic-concepts.md)
 
@@ -26,7 +26,7 @@
 
     *[Graphs](vs-graph-types.md)
 
-        *[Subgraphs](vs-subgraphs.md)
+        *[Subgraphs and State Units](vs-nesting-subgraphs-state-units.md)
 
         *[Transitions](vs-transitions.md)
 
@@ -38,13 +38,13 @@
     
     *[Variables](vs-variables.md)
 
-* [Developing application logic using Script Graphs](vs-script-graphs-intro.md)
+* [Develop application logic with Script Graphs](vs-script-graphs-intro.md)
 
-    *[Creating a new graph file](vs-create-graph.md)
+    *[Create a new graph file](vs-create-graph.md)
 
-        *[Create a new blank graph using the Project window](vs-create-graph-project-window.md)
+        *[Create a new blank graph with the Project window](vs-create-graph-project-window.md)
 
-        *[Create a new unassigned graph using the empty graph creation flow](vs-create-graph-unassigned-flow.md)
+        *[Create a new unassigned graph with the empty graph creation flow](vs-create-graph-unassigned-flow.md)
 
         *[Create and assign a graph to an existing GameObject](vs-create-graph-assign-existing-gameobject.md)
 
@@ -54,7 +54,7 @@
 
     *[Attach a graph file to a Script Machine or State Machine](vs-attach-graph-machine.md)
 
-    *[Open a graph file for editing](vs-open-graph-edit.md)
+    *[Open a graph file](vs-open-graph-edit.md)
 
         *[Add a node to a Script Graph](vs-add-node-to-graph.md)
 
@@ -62,47 +62,75 @@
 
         *[Create and add a variable to a Script Graph](vs-add-variable-graph.md)
 
-        *[Create a node group](vs-groups.md)
+        *[Create node groups](vs-groups.md)
+        
+        *[Add comments to a graph](vs-sticky-notes.md)
 
-    *[Add a Subgraph to a Script Graph](vs-add-subgraph.md)
+    *[Add a Subgraph to a Script Graph](vs-nesting-add-subgraph.md)
 
-        *[Add a Trigger or Data port to a Script Graph](vs-add-triggers-data-graph.md)
+       *[Add a Trigger or Data port to a Script Graph](vs-nesting-add-triggers-data-graph.md)
     
-    *[Using relations to debug](vs-relations.md)
+    *[Add a State Unit to a Script Graph](vs-nesting-add-state-unit.md)
+
+    *[Custom Events](vs-custom-events.md)
+
+        *[Add a Custom Event node](vs-add-custom-event-node.md)
+
+        *[Add a Trigger Custom Event node](vs-add-custom-event-node-trigger.md)
+
+    *[Capture user input in an application](vs-capture-player-input.md)
+
+        *[Capture input using the Input Manager](vs-capturing-player-inputs-old.md)
+
+        *[Add and configure a Player Input component](vs-capture-player-input-add-component.md)
+
+        *[Capture input using the Input System package](vs-capturing-player-inputs-new.md)
+    
+    *[Use relations to debug](vs-relations.md)
     
         *[Predictive and live debugging](vs-debugging.md)
         
         *[Working with debug messages](vs-debug-messages.md)
         
-    *[Live editing](vs-live.md)
+    *[Live edit](vs-live.md)
     
-        *[Live editing during runtime](vs-live-edit-runtime.md)
-        
-    *[Refactoring the script](vs-refactoring.md)
+         *[Live edit during runtime](vs-live-edit-runtime.md)
     
-    *[Capturing player inputs using the input system](vs-capturing-player-inputs-new.md)
-    
-    *[Capturing player inputs using the input manager](vs-capturing-player-inputs-old.md)
-    
-* [Developing transitions using state graphs](vs-state-graphs-intro.md)
+* [Develop logic transitions with state graphs](vs-state-graphs-intro.md)
 
     *[Create a new state](vs-create-state.md)
     
     *[Create a transition between states](vs-creating-transition.md)
-        
-    *[The State Unit node](vs-state-unit-nodes.md)
-        
-        *[Creating a state node](vs-creating-state-node.md)
 
 * [Advanced customization and development](vs-advanced-topics-intro.md)
 
-    *[Create a Script Graph node](vs-creating-visual-script-graph-node.md)
+    *[Refactor a C# script with Visual Scripting](vs-refactoring.md)
 
-    *[Create a custom event node](vs-creating-custom-event-node.md)
+        *[Add the RenamedFrom attribute to a C# script](vs-refactor-add-attribute.md)
 
-    *[Create your own custom event node](vs-creating-custom-visual-script-event-node.md)
+    *[Custom C# nodes](vs-create-custom-node.md)
 
-    *[Using custom types](vs-using-custom-types.md)
+        *[Create a new simple Custom C# node](vs-create-custom-node-empty.md)
+
+        *[Add ports to your Custom C# node](vs-create-custom-node-add-ports.md)
+        
+        *[Add logic to your Custom C# node](vs-create-custom-node-add-logic.md)
+
+        *[Add relations to your Custom C# node](vs-create-custom-node-add-relations.md)
+
+        *[Add documentation to your Custom C# node](vs-create-custom-node-add-docs.md)
+
+        *[Custom C# node attributes reference](vs-create-custom-node-attributes-reference.md)
+
+    *[Create a Custom Scripting Event node](vs-create-own-custom-event-node.md)
+
+        *[Create a Custom Scripting Event Sender node](vs-create-own-custom-event-send-node.md)
+
+        *[Trigger a Custom Scripting Event from a C# script](vs-create-own-custom-event-node-trigger-code.md)
+
+        *[Listen to a Custom Scripting Event from a C# script](vs-create-own-custom-event-listen-code.md)
+
+    *[Use a custom type](vs-using-custom-types.md)
 
         *[Add the Inspectable attribute to a custom type](vs-add-inspectable-attribute-custom-types.md)
             
@@ -116,13 +144,53 @@
     
     *[Time node](vs-time.md)
 
-    *[Event node](vs-events-reference.md)
+    *Events
+
+        *[Event nodes](vs-events-reference.md)
+
+        *[Input Event nodes](vs-input-nodes.md)
+
+            *[On Input System Event Button](vs-nodes-events-input-system-button.md)
+
+            *[On Input System Event Float](vs-nodes-events-input-system-float.md)
+
+            *[On Input System Event Vector 2](vs-nodes-events-input-system-vector2.md)
+            
+            *[On Button Input](vs-nodes-events-on-button-input.md)
+
+            *[On Keyboard Input](vs-nodes-events-on-keyboard-input.md)
+
+            *[On Mouse Down](vs-nodes-events-on-mouse-down.md)
+
+            *[On Mouse Drag](vs-nodes-events-on-mouse-drag.md)
+
+            *[On Mouse Enter](vs-nodes-events-on-mouse-enter.md)
+
+            *[On Mouse Exit](vs-nodes-events-on-mouse-exit.md)
+
+            *[On Mouse Input](vs-nodes-events-on-mouse-input.md)
+
+            *[On Mouse Over](vs-nodes-events-on-mouse-over.md)
+
+            *[On Mouse Up As Button](vs-nodes-events-on-mouse-up-button.md)
+
+            *[On Mouse Up](vs-nodes-events-on-mouse-up.md)
     
     *[Variable node](vs-variables-reference.md)
     
     *[Nulls node](vs-nulls.md)
     
     *[Formula node](vs-formula.md)
+
+    *[Nesting](vs-nesting-nodes.md)
+
+        *[Input node](vs-nesting-input-node.md)
+
+        *[Output node](vs-nesting-output-node.md)
+
+        *[State Unit node](vs-nesting-state-unit-node.md)
+
+        *[Subgraph node](vs-nesting-subgraph-node.md)
 
     *[Script graph nodes](vs-scripts-reference.md)
 

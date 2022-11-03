@@ -13,7 +13,7 @@ namespace Unity.VisualScripting
     public static class EditorSerializationUtility
     {
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Visual Scripting/Internal/Log Stuck Serialization Dependers", priority = LudiqProduct.DeveloperToolsMenuPriority + 901)]
+        [MenuItem("Tools/Bolt/Internal/Log Stuck Serialization Dependers", priority = LudiqProduct.DeveloperToolsMenuPriority + 901)]
 #endif
         public static void LogStuckDependers()
         {

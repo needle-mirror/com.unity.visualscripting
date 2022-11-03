@@ -41,7 +41,7 @@ namespace Unity.VisualScripting
 
         public override bool canDefine => type != null;
 
-        private IEnumerable<object> GetaotStubs()
+        public override IEnumerable<object> GetAotStubs(HashSet<object> visited)
         {
             if (members != null)
             {

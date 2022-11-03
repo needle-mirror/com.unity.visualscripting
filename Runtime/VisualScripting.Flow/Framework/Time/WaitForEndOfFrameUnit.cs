@@ -7,7 +7,6 @@ namespace Unity.VisualScripting
     /// Delays flow by waiting until the end of the frame.
     /// </summary>
     [UnitTitle("Wait For End of Frame")]
-    [UnitShortTitle("End of Frame")]
     [UnitOrder(5)]
     public class WaitForEndOfFrameUnit : WaitUnit
     {

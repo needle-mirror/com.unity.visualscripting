@@ -57,7 +57,7 @@ namespace Unity.VisualScripting
                     Codebase.UpdateSettings();
                 }
 
-                if (GUILayout.Button("Reset to Defaults", Styles.defaultsButton))
+                if (GUILayout.Button("Reset to Defaults", Styles.defaultsButton) && EditorUtility.DisplayDialog("Reset the Node Library", "Reset the Node Library to its default state?", "Reset to Default", "Cancel"))
                 {
                     _assemblyOptionsMetadata.Reset(true);
                     _assemblyOptionsMetadata.Save();

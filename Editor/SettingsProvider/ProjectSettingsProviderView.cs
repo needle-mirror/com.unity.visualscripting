@@ -8,6 +8,7 @@ namespace Unity.VisualScripting
         private const string Path = "Project/Visual Scripting";
         private const string Title = "Visual Scripting";
         private const string TitleGroup = "Generate Nodes";
+        private readonly GUIStyle marginStyle = new GUIStyle() { margin = new RectOffset(10, 10, 10, 10) };
 
         private AssemblyOptionsSettings _assemblyOptionsSettings;
         private TypeOptionsSettings _typeOptionsSettings;
@@ -48,40 +49,71 @@ namespace Unity.VisualScripting
 
         public override void OnGUI(string searchContext)
         {
-            EnsureConfig();
+            GUILayout.BeginVertical(marginStyle);
 
-            GUILayout.Space(5f);
-
-            GUILayout.Label(TitleGroup, EditorStyles.boldLabel);
-
-            GUILayout.Space(10f);
-
-            // happens when opening unity with the settings window already opened. there's a delay until the singleton is assigned
-            if (_vsCoreConfig == null)
+            if (VSUsageUtility.isVisualScriptingUsed)
             {
-                EditorGUILayout.HelpBox("Loading Configuration...", MessageType.Info);
-                return;
+                EnsureConfig();
+
+                GUILayout.Space(5f);
+
+                GUILayout.Label(TitleGroup, EditorStyles.boldLabel);
+
+                GUILayout.Space(10f);
+
+                // happens when opening unity with the settings window already opened. there's a delay until the singleton is assigned
+                if (_vsCoreConfig == null)
+                {
+                    EditorGUILayout.HelpBox("Loading Configuration...", MessageType.Info);
+                    return;
+                }
+
+                CreateOptionsIfNeeded();
+
+                _typeOptionsSettings.OnGUI();
+
+                GUILayout.Space(10f);
+
+                _assemblyOptionsSettings.OnGUI();
+
+                GUILayout.Space(10f);
+
+                _customPropertyProviderSettings.OnGUI();
+
+                GUILayout.Space(10f);
+
+                _backupSettings.OnGUI();
+
+                GUILayout.Space(10f);
+
+                _scriptReferenceResolverSettings.OnGUI();
+            }
+            else
+            {
+                GUILayout.Space(5f);
+
+                GUILayout.BeginHorizontal(EditorStyles.label);
+                if (GUILayout.Button("Initialize Visual Scripting", Styles.defaultsButton))
+                {
+                    VSUsageUtility.isVisualScriptingUsed = true;
+                }
+
+                GUILayout.Space(5f);
+                GUILayout.EndHorizontal();
             }
 
-            CreateOptionsIfNeeded();
+            GUILayout.EndVertical();
+        }
 
-            _typeOptionsSettings.OnGUI();
+        private static class Styles
+        {
+            static Styles()
+            {
+                defaultsButton = new GUIStyle("Button");
+                defaultsButton.padding = new RectOffset(10, 10, 4, 4);
+            }
 
-            GUILayout.Space(10f);
-
-            _assemblyOptionsSettings.OnGUI();
-
-            GUILayout.Space(10f);
-
-            _customPropertyProviderSettings.OnGUI();
-
-            GUILayout.Space(10f);
-
-            _backupSettings.OnGUI();
-
-            GUILayout.Space(10f);
-
-            _scriptReferenceResolverSettings.OnGUI();
+            public static readonly GUIStyle defaultsButton;
         }
     }
 }

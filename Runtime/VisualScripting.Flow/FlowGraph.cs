@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
-using Unity.VisualScripting.Interpreter;
 
 namespace Unity.VisualScripting
 {
@@ -11,8 +10,6 @@ namespace Unity.VisualScripting
     [DisplayName("Script Graph")]
     public sealed class FlowGraph : Graph, IGraphWithVariables, IGraphEventListener
     {
-        public RuntimeGraphAsset RuntimeGraphAsset;
-
         public FlowGraph()
         {
             units = new GraphElementCollection<IUnit>(this);
@@ -20,12 +17,14 @@ namespace Unity.VisualScripting
             valueConnections = new GraphConnectionCollection<ValueConnection, ValueOutput, ValueInput>(this);
             invalidConnections = new GraphConnectionCollection<InvalidConnection, IUnitOutputPort, IUnitInputPort>(this);
             groups = new GraphElementCollection<GraphGroup>(this);
+            sticky = new GraphElementCollection<StickyNote>(this);
 
             elements.Include(units);
             elements.Include(controlConnections);
             elements.Include(valueConnections);
             elements.Include(invalidConnections);
             elements.Include(groups);
+            elements.Include(sticky);
 
             controlInputDefinitions = new UnitPortDefinitionCollection<ControlInputDefinition>();
             controlOutputDefinitions = new UnitPortDefinitionCollection<ControlOutputDefinition>();
@@ -100,6 +99,8 @@ namespace Unity.VisualScripting
         [DoNotSerialize]
         public GraphElementCollection<GraphGroup> groups { get; private set; }
 
+        [DoNotSerialize]
+        public GraphElementCollection<StickyNote> sticky { get; private set; }
         #endregion
 
 

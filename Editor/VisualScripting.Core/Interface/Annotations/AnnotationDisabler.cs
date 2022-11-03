@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     public class AnnotationDisabler
     {
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Visual Scripting/Internal/Disable Gizmos", priority = LudiqProduct.DeveloperToolsMenuPriority + 502)]
+        [MenuItem("Tools/Bolt/Internal/Disable Gizmos", priority = LudiqProduct.DeveloperToolsMenuPriority + 502)]
 #endif
         public static void DisableGizmos()
         {

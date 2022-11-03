@@ -14,7 +14,10 @@ namespace Unity.VisualScripting
 
             adaptor = new ListAdaptor(metadata["collection"], this);
 
+#pragma warning disable 618
             kind = metadata.GetAttribute<VariableKindAttribute>()?.kind;
+#pragma warning restore 618
+            kind ??= (metadata.value as VariableDeclarations)?.Kind;
         }
 
         private ListAdaptor adaptor;

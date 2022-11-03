@@ -127,7 +127,7 @@ namespace Unity.VisualScripting
             yield return new DropdownOption((Action<Vector2>)CreateFlowState, "Create Script State");
             yield return new DropdownOption((Action<Vector2>)CreateSuperState, "Create Super State");
             yield return new DropdownOption((Action<Vector2>)CreateAnyState, "Create Any State");
-
+            yield return new DropdownOption((Action<Vector2>)(NewSticky), "Create Sticky Note");
             foreach (var baseOption in base.GetContextOptions())
             {
                 yield return baseOption;
@@ -163,6 +163,14 @@ namespace Unity.VisualScripting
         private void CreateAnyState(Vector2 position)
         {
             AddState(new AnyState(), position);
+        }
+
+        private void NewSticky(Vector2 position)
+        {
+            var stickyNote = new StickyNote() { position = new Rect(position, new Vector2(100, 100)) };
+            graph.elements.Add(stickyNote);
+            selection.Select(stickyNote);
+            GUI.changed = true;
         }
 
         public void AddState(IState state, Vector2 position)

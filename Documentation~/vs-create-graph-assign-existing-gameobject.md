@@ -4,27 +4,54 @@ You can use the empty graph creation flow to create a new graph file and assign 
 
 ![The Empty Graph Creation Flow window](images\vs-empty-graph-create-flow.png)
 
-For more information on other ways to create a graph file, see [Creating a new graph file](vs-create-graph.md).
+For more information on other ways to create a graph file, see [Create a new graph file](vs-create-graph.md).
 
-To create a new graph and assign it to an existing GameObject:
+## Create a Script Graph
 
-1. In the Editor's Hierarchy window, select the GameObject where you want to assign your new graph. If the Hierarchy window isn't visible, go to **Window** &gt; **General** &gt; **Hierarchy**, or press CTRL + 4 (macOS: Cmd + 4). 
+To create a new Script Graph and assign it to an existing GameObject:
 
-2. Go to **Window** &gt; **Visual Scripting** &gt; **Visual Scripting Graph**. 
+1. [!include[open-hierarchy-window](./snippets/vs-open-hierarchy-window.md)]
 
-3. In the new Visual Scripting window, select one of the following options: 
+1. In the Hierarchy window, select the GameObject where you want to assign the new graph. 
 
-    * To create a new Script Graph, open the **Create new Script Graph** dropdown and select **on selected game object**.
-    * To create a new State Graph, open the **Create new State Graph** dropdown and select **on selected game object**. 
+2. [!include[visual-scripting-window](./snippets/vs-visual-scripting-window.md)]
 
-4. Choose a location to save your new graph file, enter a name for the graph, and select **Save**.
+3. Expand **Create new Script Graph**.
 
-    Your new graph file automatically opens in a new window. 
+1. Select **on selected game object**. 
 
-The new graph file should look similar to the following image: 
+4. Choose a location to save the new graph file. 
 
-![A new Script Graph, created using the empty graph creation flow with starter nodes](images\vs-new-graph-starter-nodes.png)
+1. Enter a name for the graph. 
+
+1. Select **Save**.
+
+    The new graph file automatically opens in a new window. 
+
+![A new Script Graph, created with the empty graph creation flow with starter On Update and On Start Event nodes.](images\vs-new-graph-starter-nodes.png)
+
+## Create a State Graph
+
+To create a new State Graph and assign it to an existing GameObject:
+
+1. [!include[open-hierarchy-window](./snippets/vs-open-hierarchy-window.md)]
+
+1. In the Hierarchy window, select the GameObject where you want to assign the new graph. 
+
+2. [!include[visual-scripting-window](./snippets/vs-visual-scripting-window.md)]
+
+3. Expand **Create new State Graph**.
+
+1. Select **on selected game object**. 
+
+4. Choose a location to save the new graph file. 
+
+1. Enter a name for the graph. 
+
+1. Select **Save**.
+
+    The new graph file automatically opens in a new window. 
 
 ## Next steps 
 
-After you create your new Script Graph, attach it to a Script Machine to use it in your application. For more information, see [Attaching a graph file to a Script Machine or State Machine](vs-attach-graph-machine.md).
+After you create a new graph, attach it to a Script Machine or State Machine to use it in your application. For more information, see [Attach a graph file to a Script Machine or State Machine](vs-attach-graph-machine.md).

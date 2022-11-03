@@ -1,82 +1,40 @@
-# Refactoring the script
+# Refactor a C# script with Visual Scripting
 
-> [!NOTE]
-> For versions 2019/2020 LTS, download the Visual Scripting package from the [Unity Asset Store](https://assetstore.unity.com/packages/tools/visual-bolt-163802).
+Visual Scripting creates nodes from methods, fields, and properties from C# script in your project. Visual Scripting creates these nodes after you [regenerate your Node Library](vs-configuration.md) and [add any relevant types to your Type Options](vs-add-remove-type-options.md). 
 
-Visual scripting automatically calls methods, fields and properties from any custom script in the project. For example, you can create a node from a custom Player class with a TakeDamage method.
+For example, Visual Scripting created the following Take Damage node from a custom C# script that defines the `Player` class.
 
-```
-    using UnityEngine;
+![An image of the Graph window, that displays a node created from a custom C# script. The node is called Player Take Damage. It has an input trigger port, a GameObject input port set to This, and an input integer port called Damage. It has a single output trigger port.](images/vs-refactoring-script-node-example.png)
+
+Visual Scripting generated the node with the following code, which creates a `Player` class with a `TakeDamage` member. 
+
+``` C# 
+    using UnityEngine; 
 
     public class Player : MonoBehaviour
     {
         public void TakeDamage(int damage)
         {
-            // ...
+            //...
         }
     }
 ```
 
-![](images/vs-refactoring-script-node-example.png)
+> [!TIP]
+> You can [create your own custom node](vs-create-custom-node.md) or [create a custom event](vs-custom-events.md) to customize the ports and information displayed on your nodes.
 
-In the script graph, if you change your script and rename or remove the TakeDamage method or the Player class, such as in the example below:
+If you change the name of the `TakeDamage` member in the C# script, Visual Scripting displays an error in Script Graphs that use the Take Damage node. 
 
-```
-    using UnityEngine;
+![An image of the Graph window, that displays the Take Damage node and the Graph Inspector. The node is red, its ports no longer display, and the Graph Inspector states that "No matching member found."](images/vs-refactoring-script-node-error-example.png)
 
-    public class Player : MonoBehaviour
-    {
-        public void InflictDamage(int damage)
-        {
-            // ...
-        }
-    }
-```
+To rename a member, type, class, struct, enum, or other API element that a Visual Scripting node uses in a project, add the `[RenamedFrom]` attribute to the relevant API element in the script file. To avoid issues with Unity's serialization, the `[RenamedFrom]` attribute tells Visual Scripting that an API or one of its elements has been renamed. 
 
-The node turns red in the graph window and a warning appears in the Graph Inspector:  
+For more information on how to add the `[RenamedFrom]` attribute to a C# script, see [Add the RenamedFrom attribute to a C# script](vs-refactor-add-attribute.md).
 
-![](images/vs-refactoring-script-node-error-example.png)
+## Additional resources
 
-
-## Renaming Members
-
-To continue the previous example, to fix the failure, reopen the script file and map the new name to the previous name with the `[RenamedFrom]` attribute. It takes a single string parameter,... that is the previous name of the member.
-
-```
-    using UnityEngine;
-    using Unity.VisualScripting;
-
-    public class Player : MonoBehaviour
-    {
-        [RenamedFrom("TakeDamage")]
-        public void InflictDamage(int damage)
-        {
-            // ...
-        }
-    }
-```
-
-It is recommended to leave the attribute in your source even after a successful recompile. Visual scripting cannot guarantee Unity reserializes all the graphs with the corrected name. Visual scripting's `[RenamedFrom]` attribute works much like Unity's own [`[FormerlySerializedAs]`](https://docs.unity3d.com/ScriptReference/Serialization.FormerlySerializedAsAttribute.html) attribute in that regard.
-
-## Renaming Types
-
-You can rename types (including classes, structs and enums) using the `[RenamedFrom]` attribute.
-
-For example, `Player` class is renamed to `Character`:
-
-```
-    using UnityEngine;
-    using Unity.VisualScripting;
-
-    [RenamedFrom("Player")]
-    public class Character : MonoBehaviour
-    {
-        [RenamedFrom("TakeDamage")]
-        public void InflictDamage(int damage)
-        {
-            // ...
-        }
-    }
-```
-> [!NOTE]
-> The old name must include the namespace. In the previous example, this wasn't required as the name was in the global namespace.
+- [Add the RenamedFrom attribute to a C# script](vs-refactor-add-attribute.md)
+- [Configure project settings](vs-configuration.md)
+- [Add or remove types from your Type Options](vs-add-remove-type-options.md)
+- [Custom C# nodes](vs-create-custom-node.md)
+- [Custom events](vs-custom-events.md)

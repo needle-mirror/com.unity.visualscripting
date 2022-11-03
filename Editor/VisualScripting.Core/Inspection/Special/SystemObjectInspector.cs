@@ -14,11 +14,13 @@ namespace Unity.VisualScripting
     class ValueInspector : ISystemObjectInspector
     {
         SystemObjectInspector parent { get; }
-        Metadata typeMetadata => parent.metadata.parent[nameof(VariableDeclaration.typeHandle)];
+        private Metadata typeMetadata;
 
         public ValueInspector(SystemObjectInspector parent)
         {
             this.parent = parent;
+
+            typeMetadata = parent.metadata.parent[nameof(VariableDeclaration.typeHandle)];
             typeMetadata.valueChanged += OnTypeChanged;
         }
 

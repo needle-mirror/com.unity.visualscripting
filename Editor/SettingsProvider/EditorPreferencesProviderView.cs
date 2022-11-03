@@ -8,6 +8,7 @@ namespace Unity.VisualScripting
         private const string Path = "Preferences/Visual Scripting";
         private const string Title = "Visual Scripting";
         private const string ID = "Bolt";
+        private readonly GUIStyle marginStyle = new GUIStyle() { margin = new RectOffset(10, 10, 10, 10) };
 
         public EditorPreferencesProviderView() : base(Path, SettingsScope.User)
         {
@@ -26,9 +27,7 @@ namespace Unity.VisualScripting
         {
             EnsureConfig();
 
-            GUILayout.Space(5f);
-
-            GUILayout.Space(10f);
+            GUILayout.BeginVertical(marginStyle);
 
             // happens when opening unity with the settings window already opened. there's a delay until the singleton is assigned
             if (BoltCore.instance == null)
@@ -40,6 +39,8 @@ namespace Unity.VisualScripting
             var instance = (BoltProduct)ProductContainer.GetProduct(ID);
 
             instance.configurationPanel.PreferenceItem();
+
+            GUILayout.EndVertical();
         }
     }
 }

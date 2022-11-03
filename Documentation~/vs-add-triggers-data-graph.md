@@ -10,8 +10,7 @@ To add a Trigger Input, Trigger Output, Data Input, or Data Output port to a Scr
 
 2. With no nodes selected, in the Graph Inspector, select **Add** (+) under the port type you want to add to your Script Graph: **Trigger Inputs**, **Trigger Outputs**, **Data Inputs**, or **Data Outputs**. 
 
-    > [!TIP]
-    > If the Graph Inspector isn't visible in the Graph window, select **Graph Inspector** (![The Graph Inspector icon](images/vs-graph-inspector-icon.png)) from the toolbar.
+    [!include[graph-inspector-tip](./snippets/vs-graph-inspector-tip.md)]
 
 3. In the **Key** field, enter a unique key name for your port. This name can't be the same as any existing ports on your currently selected Script Graph. 
 
@@ -27,6 +26,6 @@ To add a Trigger Input, Trigger Output, Data Input, or Data Output port to a Scr
 
 ## Next steps
 
-You can now specify triggers and data for your Script Graph when you use it as a Subgraph in another Script Graph. For more information on each port type, see Subgraph inputs and outputs in [Subgraphs](vs-subgraphs.md#subgraph-inputs-and-outputs). 
+You can now specify triggers and data for your Script Graph when you use it as a Subgraph in another Script Graph. For more information on each port type, see [Subgraph inputs and outputs](vs-nesting-subgraphs-state-units.md#subgraph-inputs-and-outputs). 
 
 For more information on adding a Script Graph as a Subgraph, see [Add a Subgraph to a Script Graph](vs-add-subgraph.md).

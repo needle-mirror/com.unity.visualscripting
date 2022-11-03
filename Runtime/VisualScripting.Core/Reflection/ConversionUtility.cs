@@ -91,12 +91,12 @@ namespace Unity.VisualScripting
         {
             var query = new ConversionQuery(source, destination);
 
-            if (!userConversionMethodsCache.TryGetValue(query, out var result))
+            if (!userConversionMethodsCache.ContainsKey(query))
             {
-                userConversionMethodsCache.Add(query, result = FindUserDefinedConversionMethods(query).ToArray());
+                userConversionMethodsCache.Add(query, FindUserDefinedConversionMethods(query).ToArray());
             }
 
-            return result;
+            return userConversionMethodsCache[query];
         }
 
         private static ConversionType GetUserDefinedConversionType(Type source, Type destination)
@@ -229,27 +229,21 @@ namespace Unity.VisualScripting
                 result = Convert(value, type, conversionType);
                 return true;
             }
-            else
-            {
-                result = value;
-                return false;
-            }
+
+            result = value;
+            return false;
         }
 
         public static bool TryConvert<T>(object value, out T result, bool guaranteed)
         {
-            object _result;
+            if (TryConvert(value, typeof(T), out var res, guaranteed))
+            {
+                result = (T)res;
+                return true;
+            }
 
-            if (TryConvert(value, typeof(T), out _result, guaranteed))
-            {
-                result = (T)_result;
-                return false;
-            }
-            else
-            {
-                result = default(T);
-                return false;
-            }
+            result = default;
+            return false;
         }
 
         public static bool IsConvertibleTo(this Type source, Type destination, bool guaranteed)

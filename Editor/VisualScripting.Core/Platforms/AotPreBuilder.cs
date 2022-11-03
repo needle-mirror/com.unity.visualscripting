@@ -18,6 +18,22 @@ using JetBrains.Annotations;
 
 namespace Unity.VisualScripting
 {
+    internal class AotCommentStub : AotStubWriter
+    {
+        public AotCommentStub(string wrapper) : base(null)
+        {
+            stubMethodComment = wrapper;
+            stubMethodName = "";
+        }
+
+        public override string stubMethodComment { get; }
+        public override string stubMethodName { get; }
+        public override IEnumerable<CodeStatement> GetStubStatements()
+        {
+            return Enumerable.Empty<CodeStatement>();
+        }
+    }
+
     //Intended to be invoked through build-time reflection
     public class AotPreBuilder : IPreprocessBuildWithReport
     {
@@ -43,9 +59,7 @@ namespace Unity.VisualScripting
             instance.DeleteAotStubs();
         }
 
-#if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Visual Scripting/Internal/AOT Pre-Build", priority = LudiqProduct.DeveloperToolsMenuPriority + 1001)]
-#endif
+        [MenuItem("internal:Visual Scripting/Run AOT Pre-Build", priority = LudiqProduct.DeveloperToolsMenuPriority + 1001)]
         public static void GenerateFromInternalMenu()
         {
             if (instance == null)
@@ -69,11 +83,6 @@ namespace Unity.VisualScripting
                 return;
             }
 
-            if (PlayerSettings.GetScriptingBackend(report.summary.platformGroup) != ScriptingImplementation.IL2CPP)
-            {
-                return;
-            }
-
             GenerateAotStubs();
         }
 
@@ -82,7 +91,7 @@ namespace Unity.VisualScripting
             try
             {
                 GenerateLinker();
-                GenerateStubScript(aotStubsPath, FindAllProjectStubs().Distinct().Select(s => AotStubWriterProvider.instance.GetDecorator(s)));
+                GenerateStubScript(aotStubsPath);
             }
             catch (Exception ex)
             {
@@ -143,7 +152,12 @@ namespace Unity.VisualScripting
             File.WriteAllText(linkerPath, linker.ToString());
         }
 
-        private IEnumerable<object> FindAllProjectStubs()
+        private IEnumerable<AotStubWriter> FindAllDistinctProjectStubs()
+        {
+            return FindAllProjectStubs().Distinct();
+        }
+
+        private IEnumerable<AotStubWriter> FindAllProjectStubs()
         {
             EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
 
@@ -151,35 +165,36 @@ namespace Unity.VisualScripting
 
             EditorUtility.DisplayProgressBar("AOT Pre-Build", "Finding AOT stubs in settings...", 0);
 
+            yield return new AotCommentStub("--------------- Setting Stubs");
             foreach (var settingStub in FindAllSettingsStubs())
             {
-                yield return settingStub;
+                yield return AotStubWriterProvider.instance.GetDecorator(settingStub);
             }
 
             // Plugins
 
             EditorUtility.DisplayProgressBar("AOT Pre-Build", "Finding AOT stubs in plugins...", 0);
 
+            yield return new AotCommentStub("--------------- Plugin Stubs");
             foreach (var pluginStub in FindAllPluginStubs())
             {
-                yield return pluginStub;
+                yield return AotStubWriterProvider.instance.GetDecorator(pluginStub);
             }
 
             // Assets
 
             EditorUtility.DisplayProgressBar("AOT Pre-Build", "Finding AOT stubs in assets...", 0);
 
+            yield return new AotCommentStub("--------------- Asset Stubs");
             foreach (var assetStub in FindAllAssetStubs())
             {
-                yield return assetStub;
+                yield return AotStubWriterProvider.instance.GetDecorator(assetStub);
             }
 
             // Scenes
 
             var activeScenePath = SceneManager.GetActiveScene().path;
-
             var scenePaths = EditorBuildSettings.scenes.Select(s => s.path).ToArray();
-
             var sceneIndex = 0;
 
             foreach (var scenePath in scenePaths)
@@ -200,9 +215,10 @@ namespace Unity.VisualScripting
                     Debug.LogWarning($"Failed to open scene '{scenePath}' during AOT pre-build, skipping.\n{ex}");
                 }
 
+                yield return new AotCommentStub("--------------- Scene Stubs");
                 foreach (var sceneStub in FindAllSceneStubs())
                 {
-                    yield return sceneStub;
+                    yield return AotStubWriterProvider.instance.GetDecorator(sceneStub);
                 }
             }
 
@@ -255,7 +271,33 @@ namespace Unity.VisualScripting
                 .SelectMany(aot => aot.GetAotStubs(visited));
         }
 
-        private void GenerateStubScript(string scriptPath, IEnumerable<AotStubWriter> stubWriters)
+        private void GenerateStubScript(string scriptFilePath)
+        {
+            var scriptDirectory = Path.GetDirectoryName(scriptFilePath);
+            PathUtility.CreateDirectoryIfNeeded(scriptDirectory);
+            PathUtility.DeleteProjectFileIfExists(scriptFilePath, true);
+
+            using (var scriptWriter = new StreamWriter(scriptFilePath))
+            {
+                FindAndWriteAotStubs(scriptWriter);
+            }
+
+            AssetDatabase.Refresh();
+        }
+
+        internal void FindAndWriteAotStubs(TextWriter writer)
+        {
+            var stubWriters = FindAllDistinctProjectStubs();
+            GenerateCodeAndWriteToStream(stubWriters, writer);
+        }
+
+        private void GenerateCodeAndWriteToStream(IEnumerable<AotStubWriter> stubWriters, TextWriter writer)
+        {
+            var unit = CreateCodeCompileUnitFromStubWriters(stubWriters);
+            GenerateStubCodeFromCompileUnit(unit, writer);
+        }
+
+        private CodeCompileUnit CreateCodeCompileUnitFromStubWriters(IEnumerable<AotStubWriter> stubWriters)
         {
             Ensure.That(nameof(stubWriters)).IsNotNull(stubWriters);
 
@@ -276,7 +318,7 @@ namespace Unity.VisualScripting
 
             var usedMethodNames = new HashSet<string>();
 
-            foreach (var stubWriter in stubWriters.OrderBy(sw => sw.stubMethodComment))
+            foreach (var stubWriter in stubWriters)
             {
                 if (stubWriter.skip)
                 {
@@ -296,45 +338,44 @@ namespace Unity.VisualScripting
 
                 @class.Comments.Add(new CodeCommentStatement(stubWriter.stubMethodComment));
 
-                var @method = new CodeMemberMethod
+                if (stubWriter.stub != null)
                 {
-                    Name = methodName,
-                    ReturnType = new CodeTypeReference(typeof(void)),
-                    Attributes = MemberAttributes.Public | MemberAttributes.Static
-                };
+                    var @method = new CodeMemberMethod
+                    {
+                        Name = methodName,
+                        ReturnType = new CodeTypeReference(typeof(void)),
+                        Attributes = MemberAttributes.Public | MemberAttributes.Static
+                    };
 
-                @method.CustomAttributes.Add(new CodeAttributeDeclaration(new CodeTypeReference(typeof(PreserveAttribute), CodeTypeReferenceOptions.GlobalReference)));
+                    @method.CustomAttributes.Add(new CodeAttributeDeclaration(new CodeTypeReference(typeof(PreserveAttribute), CodeTypeReferenceOptions.GlobalReference)));
 
-                @method.Comments.Add(new CodeCommentStatement(stubWriter.stubMethodComment));
+                    @method.Comments.Add(new CodeCommentStatement(stubWriter.stubMethodComment));
 
-                @method.Statements.AddRange(stubWriter.GetStubStatements().ToArray());
+                    @method.Statements.AddRange(stubWriter.GetStubStatements().ToArray());
 
-                @class.Members.Add(@method);
-            }
-
-            PathUtility.CreateDirectoryIfNeeded(BoltCore.Paths.transientGenerated);
-
-            PathUtility.DeleteProjectFileIfExists(aotStubsPath, true);
-
-            using (var provider = CodeDomProvider.CreateProvider("CSharp"))
-            {
-                var options = new CodeGeneratorOptions
-                {
-                    BracingStyle = "C",
-                    IndentString = "\t",
-                    BlankLinesBetweenMembers = true,
-                    ElseOnClosing = false,
-                    VerbatimOrder = true
-                };
-
-                using (var scriptWriter = new StreamWriter(scriptPath))
-                {
-                    provider.GenerateCodeFromCompileUnit(new CodeSnippetCompileUnit("#pragma warning disable 219"), scriptWriter, options); // Disable unused variable warning
-                    provider.GenerateCodeFromCompileUnit(unit, scriptWriter, options);
+                    @class.Members.Add(@method);
                 }
             }
 
-            AssetDatabase.Refresh();
+            return unit;
+        }
+
+        private void GenerateStubCodeFromCompileUnit(CodeCompileUnit unit, TextWriter writer)
+        {
+            using var provider = CodeDomProvider.CreateProvider("CSharp");
+
+            var options = new CodeGeneratorOptions
+            {
+                BracingStyle = "C",
+                IndentString = "\t",
+                BlankLinesBetweenMembers = true,
+                ElseOnClosing = false,
+                VerbatimOrder = true
+            };
+
+            provider.GenerateCodeFromCompileUnit(new CodeSnippetCompileUnit("#pragma warning disable 219"), writer,
+                options); // Disable unused variable warning
+            provider.GenerateCodeFromCompileUnit(unit, writer, options);
         }
     }
 }

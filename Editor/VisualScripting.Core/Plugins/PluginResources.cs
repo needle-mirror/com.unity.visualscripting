@@ -22,6 +22,8 @@ namespace Unity.VisualScripting
 
             if (plugin.id == BoltCore.ID)
             {
+                _providers.Add(new EmbeddedResourceProvider());
+
                 var pluginType = plugin.GetType();
                 assembly = new AssemblyResourceProvider(pluginType.Assembly, pluginType.Namespace, assemblyRoot);
 
@@ -38,9 +40,7 @@ namespace Unity.VisualScripting
                     /*
                      * TODO: To be removed when the asset bundle team fix the issue JIRA: BOLT-1650
                      */
-                    AssetUtility.AssetBundleEditor.Unload(true);
-
-                    assetBundleResourceProvider = new AssetBundleResourceProvider(AssetUtility.AssetBundleEditor);
+                    assetBundleResourceProvider = new AssetBundleResourceProvider();
 
                     _providers.Add(assetBundleResourceProvider);
                 }
@@ -64,7 +64,6 @@ namespace Unity.VisualScripting
         public virtual void LateInitialize() { }
 
         public Plugin plugin { get; }
-
 
         #region Types
 

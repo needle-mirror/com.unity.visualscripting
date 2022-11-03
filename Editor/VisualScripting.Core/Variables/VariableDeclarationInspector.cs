@@ -10,7 +10,11 @@ namespace Unity.VisualScripting
         private Metadata valueMetadata => metadata[nameof(VariableDeclaration.value)];
         private Metadata typeMetadata => metadata[nameof(VariableDeclaration.typeHandle)];
 
-        public VariableDeclarationInspector(Metadata metadata) : base(metadata) { }
+        public VariableDeclarationInspector(Metadata metadata)
+            : base(metadata)
+        {
+            VSUsageUtility.isVisualScriptingUsed = true;
+        }
 
         protected override float GetHeight(float width, GUIContent label)
         {

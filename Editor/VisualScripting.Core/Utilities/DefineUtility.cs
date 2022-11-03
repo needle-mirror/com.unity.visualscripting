@@ -70,7 +70,7 @@ namespace Unity.VisualScripting
         }
 
 #if VISUAL_SCRIPT_INTERNAL
-        [MenuItem("Visual Scripting/Internal/Delete All Script Defines", priority = LudiqProduct.DeveloperToolsMenuPriority + 404)]
+        [MenuItem("Tools/Bolt/Internal/Delete All Script Defines", priority = LudiqProduct.DeveloperToolsMenuPriority + 404)]
 #endif
         public static void ClearAllDefines()
         {

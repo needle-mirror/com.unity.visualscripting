@@ -221,34 +221,6 @@ namespace Unity.VisualScripting
 
         private static readonly HashSet<ISerializationDepender> awaitingDependers = new HashSet<ISerializationDepender>();
 
-        private static readonly HashSet<object> availableDependencies = new HashSet<object>();
-
-        private static object WeakenSerializationDependencyReference(ISerializationDependency dependency)
-        {
-            /*
-             We need to use weak references to UnityEngine.Object dependencies, because otherwise
-             Unity will consider them to be always used, and never call OnDisable() on them when unloading,
-             which in turn will never unregister them from our available dependencies.
-             Using WeakReference is overkill and not actually helpful. We don't need to access the actual dependency
-             object later on, and anyway the only way we could immmutably compare for equality in the hash set is based on the
-             original hash code, which is not guaranteed to be unique... Except for UnityEngine.Objects,
-             in which case the hash code is the native instance ID, which is guaranteed to be unique within a given assembly session.
-             https://support.ludiq.io/communities/5/topics/4150-flowmachine-memory-leak#comment-11626
-            */
-            if (dependency is UnityObject uo)
-            {
-                return uo.GetHashCode();
-            }
-            else
-            {
-                // In this case, we can't actually weaken the reference.
-                // But it shouldn't be a problem, because in non-UO cases, the
-                // dependency should be able to unregister itself as it doesn't rely
-                // on the native unload callbacks of unused assets.
-                return dependency;
-            }
-        }
-
         public static void AwaitDependencies(ISerializationDepender depender)
         {
             awaitingDependers.Add(depender);
@@ -268,12 +240,12 @@ namespace Unity.VisualScripting
 
         public static void NotifyDependencyUnavailable(ISerializationDependency dependency)
         {
-            availableDependencies.Remove(WeakenSerializationDependencyReference(dependency));
+            dependency.IsDeserialized = false;
         }
 
         public static void NotifyDependencyAvailable(ISerializationDependency dependency)
         {
-            availableDependencies.Add(WeakenSerializationDependencyReference(dependency));
+            dependency.IsDeserialized = true;
 
             foreach (var awaitingDepender in awaitingDependers.ToArray())
             {
@@ -300,9 +272,7 @@ namespace Unity.VisualScripting
 
             foreach (var requiredDependency in depender.deserializationDependencies)
             {
-                var weakRequiredDependency = WeakenSerializationDependencyReference(requiredDependency);
-
-                if (!availableDependencies.Contains(weakRequiredDependency))
+                if (!requiredDependency.IsDeserialized)
                 {
                     areDependenciesMet = false;
                     break;
@@ -329,9 +299,7 @@ namespace Unity.VisualScripting
 
                     foreach (var requiredDependency in depender.deserializationDependencies)
                     {
-                        var weakRequiredDependency = WeakenSerializationDependencyReference(requiredDependency);
-
-                        if (!availableDependencies.Contains(weakRequiredDependency))
+                        if (!requiredDependency.IsDeserialized)
                         {
                             missingDependencies.Add(requiredDependency);
                             break;

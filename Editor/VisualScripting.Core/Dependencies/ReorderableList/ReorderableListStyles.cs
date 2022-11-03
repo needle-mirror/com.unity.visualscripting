@@ -52,7 +52,12 @@ namespace Unity.VisualScripting.ReorderableList
             FooterButton2.clipping = TextClipping.Overflow;
 
             ItemButton = new GUIStyle();
-            ItemButton.active.background = ReorderableListResources.CreatePixelTexture("Dark Pixel (List GUI)", new Color32(18, 18, 18, 255));
+
+            string name = $"{EmbeddedResourceProvider.VISUAL_SCRIPTING_PACKAGE}.Dark Pixel (List GUI)";
+
+            Texture2D background = EmbeddedResourceProvider.CreatePixelTexture(name, new Color32(18, 18, 18, 255), 1, 1);
+
+            ItemButton.active.background = background;
             ItemButton.imagePosition = ImagePosition.ImageOnly;
             ItemButton.alignment = TextAnchor.MiddleCenter;
             ItemButton.overflow = new RectOffset(0, 0, -1, 0);

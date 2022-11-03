@@ -52,14 +52,14 @@ namespace Unity.VisualScripting
 
                 if (EditorGUI.EndChangeCheck())
                 {
-                    _typeOptionsMetadata.Save();
+                    _typeOptionsMetadata.SaveImmediately(true);
                     Codebase.UpdateSettings();
                 }
 
-                if (GUILayout.Button("Reset to Defaults", Styles.defaultsButton))
+                if (GUILayout.Button("Reset to Defaults", Styles.defaultsButton) && EditorUtility.DisplayDialog("Reset Included Types", "Reset the included types to their defaults?", "Reset to Default", "Cancel"))
                 {
                     _typeOptionsMetadata.Reset(true);
-                    _typeOptionsMetadata.Save();
+                    _typeOptionsMetadata.SaveImmediately(true);
                 }
 
                 LudiqGUI.EndVertical();

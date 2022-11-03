@@ -1,18 +1,15 @@
-# Developing logic transitions using State Graphs
-
-> [!NOTE]
-> For versions 2019/2020 LTS, download the Visual Scripting package from the [Unity Asset Store](https://assetstore.unity.com/packages/tools/visual-bolt-163802).
+# Develop logic transitions with State Graphs
 
 You can use State Graphs to change behaviors of GameObjects based on specific conditions. 
 
 ## Create a new state 
 
-After [creating a new graph file](vs-create-graph.md), you can [create states](vs-create-state.md) to tell Visual Scripting what a GameObject should do, and when. 
+After you [create a new graph file](vs-create-graph.md) for a State Graph, you can [create states](vs-create-state.md) to tell Visual Scripting what a GameObject does, and when. 
 
 ## Create a transition 
 
-Use [transitions](vs-transitions.md) to tell Visual Scripting when a GameObject should change states. You can [create transitions](vs-creating-transition.md) between just about any state type, and there's no restriction on how many transitions you can create. 
+Use [transitions](vs-transitions.md) to tell Visual Scripting when a GameObject changes states. There's no restriction on how many transitions you can create. 
 
 ## State Unit nodes 
 
-You can use a [State Unit node](vs-state-unit-nodes.md) to nest a State Graph inside a Script Graph. 
+You can use a [State Unit node](vs-nesting-state-unit-node.md) to nest a State Graph inside a Script Graph. 

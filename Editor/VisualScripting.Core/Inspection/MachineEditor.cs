@@ -1,5 +1,3 @@
-using System;
-using UnityEditor;
 using UnityEngine;
 
 namespace Unity.VisualScripting
@@ -9,7 +7,6 @@ namespace Unity.VisualScripting
     {
         public MachineEditor(Metadata metadata) : base(metadata) { }
 
-        private Metadata UseNewInterpreterMetadata => metadata["UseNewInterpreter"];
         private Metadata nestMetadata => metadata[nameof(IMachine.nest)];
 
         private Metadata graphMetadata => nestMetadata[nameof(IGraphNest.graph)];
@@ -30,13 +27,6 @@ namespace Unity.VisualScripting
             {
                 height += GetHeaderHeight(width);
             }
-
-            try
-            {
-                height += LudiqGUI.GetEditorHeight(this, UseNewInterpreterMetadata, width);
-            }
-            // We expect an exception if it's a machine that doesn't have new interpreter support (like state machines)
-            catch (MissingMemberException) { }
 
             height += GetNestHeight(width);
 
@@ -59,16 +49,6 @@ namespace Unity.VisualScripting
                 headerPosition.width = LudiqGUIUtility.currentInspectorWidthWithoutScrollbar;
                 OnHeaderGUI(headerPosition);
             }
-
-            try
-            {
-                var useNewInterpreterPosition = position.VerticalSection(ref y,
-                    LudiqGUI.GetEditorHeight(this, UseNewInterpreterMetadata, position.width));
-                LudiqGUI.Inspector(UseNewInterpreterMetadata, useNewInterpreterPosition);
-
-            }
-            // We expect an exception if it's a machine that doesn't have new interpreter support (like state machines)
-            catch (MissingMemberException) { }
 
             var nestPosition = position.VerticalSection(ref y, LudiqGUI.GetEditorHeight(this, nestMetadata, position.width));
             OnNestGUI(nestPosition);

@@ -1,6 +1,7 @@
 using System;
+using System.Collections.Concurrent;
+using System.Diagnostics;
 using System.Threading;
-using UnityEngine;
 
 namespace Unity.VisualScripting
 {
@@ -12,14 +13,20 @@ namespace Unity.VisualScripting
 
         public static bool allowsAPI => !Serialization.isUnitySerializing && Thread.CurrentThread == thread;
 
+        public static ConcurrentQueue<Action> pendingQueue = new ConcurrentQueue<Action>();
+
         internal static void RuntimeInitialize()
         {
             thread = Thread.CurrentThread;
         }
 
+        [Conditional("UNITY_EDITOR")]
         public static void EditorAsync(Action action)
         {
-            editorAsync?.Invoke(action);
+            if (editorAsync == null)
+                pendingQueue.Enqueue(action);
+            else
+                editorAsync.Invoke(action);
         }
     }
 }

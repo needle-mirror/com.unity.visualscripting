@@ -35,7 +35,7 @@ For strings, optionally choose to ignore the case of the selector.
 
 ### Select
 
-Select nodes are the opposite of switch nodes. Yoiu can select a single value from a set of options based on a selector.
+Select nodes are the opposite of switch nodes. You can select a single value from a set of options based on a selector.
 
 For example, a Select On Integer node that chooses a color based on a player number.
 

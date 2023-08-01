@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+#if UNITY_EDITOR
+using UnityEditor.SceneManagement;
+#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityObject = UnityEngine.Object;
@@ -75,19 +78,36 @@ namespace Unity.VisualScripting
             }
         }
 
+        private static T[] FindObjectsOfType()
+        {
+#if UNITY_2023_1_OR_NEWER
+            return UnityObject.FindObjectsByType<T>(FindObjectsSortMode.None);
+#else
+            return UnityObject.FindObjectsOfType<T>();
+#endif
+        }
+
         private static T[] FindInstances(Scene scene)
         {
             EnsureSceneValid(scene);
 
             // Fails here on hidden hide flags
-            return UnityObject.FindObjectsOfType<T>().Where(o => o.gameObject.scene == scene).ToArray();
+            return FindObjectsOfType().Where(o => o.gameObject.scene == scene).ToArray();
         }
 
         private static T FindOrCreateInstance(Scene scene)
         {
-            EnsureSceneValid(scene);
+#if UNITY_EDITOR
+            var prefabStage = PrefabStageUtility.GetCurrentPrefabStage();
 
-            var instances = FindInstances(scene);
+            var targetScene = prefabStage == null ? scene : SceneManager.GetActiveScene();
+#else
+            var targetScene = scene;
+#endif
+
+            EnsureSceneValid(targetScene);
+
+            var instances = FindInstances(targetScene);
 
             if (instances.Length == 1)
             {
@@ -110,7 +130,7 @@ namespace Unity.VisualScripting
                     singleton.hideFlags = hideFlags;
 
                     // Immediately move it to the proper scene so that Register can determine dictionary key
-                    SceneManager.MoveGameObjectToScene(singleton, scene);
+                    SceneManager.MoveGameObjectToScene(singleton, targetScene);
 
                     // Instantiate the component, letting Awake register the instance if we're in play mode
                     var instance = singleton.AddComponent<T>();

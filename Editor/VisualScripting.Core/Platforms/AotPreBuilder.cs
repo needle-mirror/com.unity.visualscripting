@@ -41,7 +41,6 @@ namespace Unity.VisualScripting
 
         public int callbackOrder => 1;
 
-        private string linkerPath => Path.Combine(BoltCore.Paths.persistentGenerated, "link.xml");
         private string aotStubsPath => Path.Combine(BoltCore.Paths.persistentGenerated, "AotStubs.cs");
 
         [UsedImplicitly]
@@ -90,7 +89,6 @@ namespace Unity.VisualScripting
         {
             try
             {
-                GenerateLinker();
                 GenerateStubScript(aotStubsPath);
             }
             catch (Exception ex)
@@ -102,54 +100,7 @@ namespace Unity.VisualScripting
 
         private void DeleteAotStubs()
         {
-            PathUtility.DeleteProjectFileIfExists(linkerPath, true);
             PathUtility.DeleteProjectFileIfExists(aotStubsPath, true);
-        }
-
-        // Automatically generates the link.xml file to prevent stripping.
-        // Currently only used for plugin assemblies, because blanket preserving
-        // all setting assemblies sometimes causes the IL2CPP process to fail.
-        // For settings assemblies, the AOT stubs are good enough to fool
-        // the static code analysis without needing this full coverage.
-        // https://docs.unity3d.com/Manual/iphone-playerSizeOptimization.html
-        // However, for FullSerializer, we need to preserve our custom assemblies.
-        // This is mostly because IL2CPP will attempt to transform non-public
-        // property setters used in deserialization into read-only accessors
-        // that return false on PropertyInfo.CanWrite, but only in stripped builds.
-        // Therefore, in stripped builds, FS will skip properties that should be
-        // deserialized without any error (and that took hours of debugging to figure out).
-        private void GenerateLinker()
-        {
-            var linker = new XDocument();
-
-            var linkerNode = new XElement("linker");
-
-            if (!PluginContainer.initialized)
-                PluginContainer.Initialize();
-
-            foreach (var pluginAssembly in PluginContainer.plugins
-                     .SelectMany(plugin => plugin.GetType()
-                         .GetAttributes<PluginRuntimeAssemblyAttribute>()
-                         .Select(a => a.assemblyName))
-                     .Distinct())
-            {
-                var assemblyNode = new XElement("assembly");
-                var fullnameAttribute = new XAttribute("fullname", pluginAssembly);
-                var preserveAttribute = new XAttribute("preserve", "all");
-                assemblyNode.Add(fullnameAttribute);
-                assemblyNode.Add(preserveAttribute);
-                linkerNode.Add(assemblyNode);
-            }
-
-            linker.Add(linkerNode);
-
-            PathUtility.CreateDirectoryIfNeeded(BoltCore.Paths.transientGenerated);
-
-            PathUtility.DeleteProjectFileIfExists(linkerPath, true);
-
-            // Using ToString instead of Save to omit the <?xml> declaration,
-            // which doesn't appear in the Unity documentation page for the linker.
-            File.WriteAllText(linkerPath, linker.ToString());
         }
 
         private IEnumerable<AotStubWriter> FindAllDistinctProjectStubs()

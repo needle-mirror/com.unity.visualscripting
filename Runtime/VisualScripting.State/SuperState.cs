@@ -44,11 +44,16 @@ namespace Unity.VisualScripting
             }
         }
 
-        public void StopListening(GraphStack stack)
+        void IGraphEventListener.StopListening(GraphStack stack, bool destroyed)
+            => StopListening(stack, destroyed);
+
+        public void StopListening(GraphStack stack) => StopListening(stack, true);
+
+        private void StopListening(GraphStack stack, bool destroyed)
         {
             if (stack.TryEnterParentElement(this))
             {
-                nest.graph.StopListening(stack);
+                (nest.graph as IGraphEventListener).StopListening(stack, destroyed);
                 stack.ExitParentElement();
             }
         }

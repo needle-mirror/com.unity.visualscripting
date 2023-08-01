@@ -8,6 +8,7 @@ namespace Unity.VisualScripting
         static GraphDebugDataProvider()
         {
             GraphPointer.fetchRootDebugDataBinding = FetchRootDebugData;
+            GraphPointer.releaseDebugDataBinding = ReleaseRootDebugData;
         }
 
         private static IGraphDebugData FetchRootDebugData(IGraphRoot root)
@@ -19,6 +20,11 @@ namespace Unity.VisualScripting
             }
 
             return rootData;
+        }
+
+        private static void ReleaseRootDebugData(IGraphRoot root)
+        {
+            rootDatas.Remove(root);
         }
 
         private static Dictionary<IGraphRoot, IGraphDebugData> rootDatas = new Dictionary<IGraphRoot, IGraphDebugData>();

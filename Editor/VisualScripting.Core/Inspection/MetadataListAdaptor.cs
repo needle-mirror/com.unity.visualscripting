@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using Unity.VisualScripting.ReorderableList;
 using UnityEditor;
 using UnityEngine;
@@ -285,5 +286,40 @@ namespace Unity.VisualScripting
         }
 
         #endregion
+    }
+
+    public class ProjectAssemblyOptionsListAdaptor : MetadataListAdaptor
+    {
+        public ProjectAssemblyOptionsListAdaptor(Metadata metadata, Inspector parentInspector) : base((Metadata)metadata,
+            parentInspector)
+        { }
+
+        public override void DrawItem(Rect position, int index)
+        {
+            base.DrawItem(position, index);
+
+            var assemblyName = ((LooseAssemblyName)metadata[index].value).name;
+            if (assemblyName == null) // Can be null when we're adding new items to the list (the last entry is empty)
+                return;
+            var shouldShowWarning =
+                !assemblyName.StartsWith("Unity.VisualScripting.") &&
+                Codebase.editorAssemblies.FirstOrDefault(a => a.GetName().Name == assemblyName) != null;
+            if (shouldShowWarning)
+            {
+                DrawAssemblyReferencingEditorWarning(position, assemblyName);
+            }
+        }
+
+        void DrawAssemblyReferencingEditorWarning(Rect position, string assemblyName)
+        {
+            var warningIcon = EditorGUIUtility.IconContent("console.warnicon");
+            warningIcon.tooltip =
+                "Nodes from this assembly can use editor-only APIs. Using them might cause errors in builds.";
+            var warningIconRect = position;
+            warningIconRect.width = 20;
+            warningIconRect.x -= 45;
+
+            GUI.Button(warningIconRect, warningIcon, GUIStyle.none);
+        }
     }
 }

@@ -40,6 +40,8 @@ namespace Unity.VisualScripting
             using (var stack = reference.ToStackPooled())
             {
                 stack.TriggerEventHandler(_hook => _hook == hook, args, parent => true, true);
+
+                stack.ClearReference();
             }
         }
 

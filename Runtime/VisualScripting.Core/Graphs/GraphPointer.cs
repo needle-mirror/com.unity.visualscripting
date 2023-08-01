@@ -354,6 +354,7 @@ namespace Unity.VisualScripting
         }
 
         public static Func<IGraphRoot, IGraphDebugData> fetchRootDebugDataBinding { get; set; }
+        internal static Action<IGraphRoot> releaseDebugDataBinding;
 
         public bool hasDebugData => _debugData != null;
 

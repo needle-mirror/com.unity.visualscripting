@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.9.0] - 2023-08-01
+### Fixed
+- Fixed code for custom nodes being stripped in AOT builds when Managed Stripping Level is set to High [UVSB-2439](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2437)
+- Fixed OnInputSystemEvent doesn't trigger until Input Vector variates from 0.5 [UVSB-2435](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2435)
+- Fixed assembly disappearing from Node Library after domain reload. [UVSB-2459](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2459)
+- Fixed custom inspectors not being generated [UVSB-2466](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2466)
+- Fixed error when trying to load exceptions for TryCatch node dropdown [2463] (https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2463)
+- Fixed infinite amount of GameObjects created in Prefab mode when performing a null check of a scene variable in editor with an "OnDrawGizmos" event [UVSB-2453](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2453)
+- Removed corrupt mdb which caused the ScriptUpdater to fail [UVSB-2360](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2360)
+- Fixed Gradient graph variables resetting when entering PlayMode [UVSB-2334](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2334)
+- Fixed Memory leak after destroying object [UVSB-2427] (https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2427)
+- Fixed migration deserialization bug introduced in 1.8.0 [UVSB-2492](https://issuetracker.unity3d.com/issues/deserialization-error-when-upgrading-to-1-dot-8-0)
+
+### Added
+- Added a warning icon next to assemblies in Project Settings that reference Editor assemblies [UVSB-2382](https://issuetracker.unity3d.com/issues/nodes-from-runtime-assemblies-that-reference-unity-editor-are-not-visible-in-the-fuzzy-finder)
+
+### Changed
+- Script Graph Asset string data is unloaded after deserialization [UVSB-2367](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2366)
+- AOT Prebuild should take less memory and be faster (Added an optimization to AssetUtility.GetAllAssetsOfType<T>)
+
 ## [1.8.0] - 2022-11-03
 ### Fixed
 - Fixed graphs being corrupted on deserialization if containing a node whose type cannot be found. [UVSB-2332](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2332)
@@ -9,7 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fixed the problem that was preventing link.xml creation when building for Mono backend [UVSB-2348](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2348)
 - Moved Events/MessageListeners files to a Listeners folder to avoid to exceed some OS path limit
 - Fixed Grandient.mode serialization. Fix available for Unity 2021.3.9f1 or newer [UVSB-2356](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2356)
-- Fixed Visual Scripting settings now only save to disk when modified 
+- Fixed Visual Scripting settings now only save to disk when modified
 - Fixed sub graphs being shown with broken connections on first load as of Unity 2021.2 [UVSB-2345](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2345)
 - Fixed documentation links for Script Graph and State Graphs assets [UVSB-2422](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2422)
 
@@ -39,6 +59,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fixed a performance issue when using lots of Get/Set Scene variable nodes in an open graph
 - Fixed default inspectors for nodes not appearing in the correct position after a connected node is deleted [BOLT-1457](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1457)
 - Fixed Scene variables drag and drop in graph having wrong scope [BOLT-2247](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-2247)
+- OnDestroy events are now properly triggered in script graphs [BOLT-1783](https://issuetracker.unity3d.com/issues/visual-scripting-ondestroy-unit-does-not-trigger-when-a-game-object-is-deleted)
+
 
 ### Changed
 - Small optimization of load times involving generic types.

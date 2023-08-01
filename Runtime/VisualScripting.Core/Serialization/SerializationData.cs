@@ -40,6 +40,12 @@ namespace Unity.VisualScripting
 
         public SerializationData(string json, params UnityObject[] objectReferences) : this(json, ((IEnumerable<UnityObject>)objectReferences)) { }
 
+        internal void Clear()
+        {
+            _json = null;
+            _objectReferences = null;
+        }
+
         public string ToString(string title)
         {
             using (var writer = new StringWriter())

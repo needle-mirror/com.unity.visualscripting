@@ -241,6 +241,26 @@ namespace Unity.VisualScripting
         public HashSet<Member> favoriteMembers { get; set; } = new HashSet<Member>();
 
         /// <summary>
+        /// Link.xml type scan target.
+        /// </summary>
+        internal enum LinkerScanTarget
+        {
+            GraphAssets = 0,
+            EmbeddedSceneGraphs = 1,
+            EmbeddedPrefabGraphs = 2
+        }
+        [ProjectSetting(visible = false, resettable = false)]
+        public List<bool> LinkerPropertyProviderSettings { get; private set; } = new List<bool>()
+        {
+            // Graph Assets
+            true,
+            // Scenes
+            true,
+            // prefabs
+            true
+        };
+
+        /// <summary>
         /// The assemblies available for reflection.
         /// </summary>
         [ProjectSetting(visible = false, resettable = false)]
@@ -338,7 +358,7 @@ namespace Unity.VisualScripting
 
             // Cinemachine
             "Cinemachine",
-            "com.unity.cinemachine.Editor",
+            "com.unity.cinemachine.editor",
 
             // Input System
             "Unity.InputSystem",

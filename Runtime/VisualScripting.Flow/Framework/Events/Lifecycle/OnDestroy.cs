@@ -8,5 +8,13 @@ namespace Unity.VisualScripting
     public sealed class OnDestroy : MachineEventUnit<EmptyEventArgs>
     {
         protected override string hookName => EventHooks.OnDestroy;
+
+        protected override void StopListening(GraphStack stack, bool destroyed)
+        {
+            if (!destroyed)
+                return;
+
+            base.StopListening(stack, destroyed);
+        }
     }
 }

@@ -74,11 +74,17 @@ namespace Unity.VisualScripting
 
             // In the past we did not serialize parameter names explicitly (only parameter types), however, if we have
             // exactly the same number of defaults as parameters, we happen to know what the original parameter names were.
-            if (parameterNames == null && member.parameterTypes.Length == defaultValues.Count)
+            // Note there is one specific exception that must be handled carefully, the base class (MemberUnit) adds a
+            // default value for the "target" (aka. the "this" instance) of the invocation; this does not correspond to
+            // a real parameter member so it is excluded here when trying to reconstruct the missing parameter names.
+            if (parameterNames == null && member.parameterTypes.Length == defaultValues.Count(d => d.Key != nameof(target)))
             {
                 // Note that we strip the "%" prefix from the parameter name in the default values (the "%" denotes that
                 // it is a parameter input)
-                parameterNames = defaultValues.Select(defaultValue => defaultValue.Key.Substring(1)).ToList();
+                parameterNames = defaultValues
+                    .Where(d => d.Key != nameof(target))
+                    .Select(defaultValue => defaultValue.Key.Substring(1))
+                    .ToList();
             }
 
             return true;

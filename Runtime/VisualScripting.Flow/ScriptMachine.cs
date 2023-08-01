@@ -41,7 +41,7 @@ namespace Unity.VisualScripting
 
             if (hasGraph)
             {
-                graph.StopListening(reference);
+                graph.StopListening(reference, true);
             }
         }
 
@@ -51,7 +51,16 @@ namespace Unity.VisualScripting
 
             if (hasGraph)
             {
-                graph.StopListening(reference);
+                graph.StopListening(reference, false);
+            }
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            if (hasGraph)
+            {
+                graph.StopListening(reference, true);
             }
         }
 

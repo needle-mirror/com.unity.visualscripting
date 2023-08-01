@@ -55,6 +55,7 @@ namespace Unity.VisualScripting
                 // paths that are outside the assets folder, hence the where filter.
                 var result = AssetDatabase.GetAllAssetPaths()
                     .Where(p => p.StartsWith("Assets"))
+                    .Where(p => typeof(T).IsAssignableFrom(AssetDatabase.GetMainAssetTypeAtPath(p)))
                     .Select(AssetDatabase.LoadMainAssetAtPath)
                     .OfType<T>();
 

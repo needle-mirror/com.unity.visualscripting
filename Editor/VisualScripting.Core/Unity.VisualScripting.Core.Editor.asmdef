@@ -1,12 +1,18 @@
 {
     "name": "Unity.VisualScripting.Core.Editor",
+    "rootNamespace": "",
     "references": [
         "Unity.VisualScripting.Core"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [
         "Editor"
     ],
     "excludePlatforms": [],
-    "allowUnsafeCode": false
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

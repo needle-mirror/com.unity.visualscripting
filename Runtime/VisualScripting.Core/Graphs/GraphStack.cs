@@ -83,6 +83,11 @@ namespace Unity.VisualScripting
             return GraphReference.Intern(this);
         }
 
+        internal void ClearReference()
+        {
+            GraphReference.ClearIntern(this);
+        }
+
         #endregion
 
         #region Traversal

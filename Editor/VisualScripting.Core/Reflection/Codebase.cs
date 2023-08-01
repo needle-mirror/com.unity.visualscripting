@@ -145,6 +145,7 @@ namespace Unity.VisualScripting
         private static List<Type> _settingsTypes;
 
         private static readonly Dictionary<Assembly, bool> _editorAssemblyCache = new Dictionary<Assembly, bool>();
+        private static readonly Dictionary<Assembly, string> _assemblyNameCache = new Dictionary<Assembly, string>();
         #region Serialization
 
         public static string SerializeType(Type type)
@@ -297,6 +298,18 @@ namespace Unity.VisualScripting
             return typeset;
         }
 
+        private static bool IsUnityEditorAssembly(Assembly assembly)
+        {
+            // Cache because .GetName() is expensive
+            if (!_assemblyNameCache.TryGetValue(assembly, out var name))
+            {
+                name = assembly.GetName().Name;
+                _assemblyNameCache.Add(assembly, name);
+            }
+
+            return IsUnityEditorAssembly(name);
+        }
+
         private static bool IsUnityEditorAssembly(string name)
         {
             return
@@ -427,6 +440,7 @@ namespace Unity.VisualScripting
             return false;
         }
 
+        // Need to keep this to avoid breaking the public API
         public static bool IsEditorType(Type type)
         {
             var rootNamespace = type.RootNamespace();
@@ -436,17 +450,27 @@ namespace Unity.VisualScripting
                 rootNamespace == "UnityEditorInternal";
         }
 
+        // Need to keep this to avoid breaking the public API
+        public static bool IsRuntimeType(Type type)
+        {
+            return !IsEditorType(type) && !IsInternalType(type);
+        }
+
+        internal static bool IsUnityEditorType(Type type)
+        {
+            var rootNamespace = type.RootNamespace();
+
+            return rootNamespace == "UnityEditor" || rootNamespace == "UnityEditorInternal" ||
+                   Attribute.IsDefined(type.Assembly, typeof(AssemblyIsEditorAssembly)) ||
+                   IsUnityEditorAssembly(type.Assembly);
+        }
+
         public static bool IsInternalType(Type type)
         {
             var rootNamespace = type.RootNamespace();
 
             return rootNamespace == "UnityEngineInternal" ||
                 rootNamespace == "UnityEditorInternal";
-        }
-
-        public static bool IsRuntimeType(Type type)
-        {
-            return !IsEditorType(type) && !IsInternalType(type);
         }
 
         private static string RootNamespace(this Type type)
@@ -521,7 +545,7 @@ namespace Unity.VisualScripting
             // check the attribute last, attempt to early-out
             if ((t.IsEnum || typeof(UnityObject).IsAssignableFrom(t)) && (GetAttributeInclude() ?? true))
             {
-                return !IsEditorType(t) && !IsInternalType(t);
+                return !IsUnityEditorType(t) && !IsInternalType(t);
             }
 
             return GetAttributeInclude() ?? false;

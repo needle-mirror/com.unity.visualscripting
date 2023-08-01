@@ -280,7 +280,7 @@ namespace Unity.VisualScripting
                     }
                     else if (Matching == TypesMatching.AssignableToAll)
                     {
-                        valid &= allowedType.IsAssignableFrom(type);
+                        valid &= type.IsSubclassOf(allowedType);
 
                         if (!valid)
                         {

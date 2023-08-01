@@ -114,9 +114,11 @@ namespace Unity.VisualScripting.InputSystem
                 : inputAction.actionMap != null ? inputAction : null;
         }
 
-        public override void StopListening(GraphStack stack)
+        public void StopListening(GraphStack stack) => StopListening(stack, true);
+
+        protected override void StopListening(GraphStack stack, bool destroyed)
         {
-            base.StopListening(stack);
+            base.StopListening(stack, destroyed);
             m_Action = null;
         }
 
@@ -134,8 +136,13 @@ namespace Unity.VisualScripting.InputSystem
                     shouldTrigger = m_Action.WasPressedThisFrame();
                     break;
                 case InputActionChangeOption.OnHold:
-                    shouldTrigger = m_Action.IsPressed();
+#if PACKAGE_INPUT_SYSTEM_1_4_0_OR_NEWER_EXISTS
+                        shouldTrigger = OutputType == OutputType.Vector2 ? m_Action.IsInProgress() : m_Action.IsPressed();
+#else
+                        shouldTrigger = OutputType == OutputType.Vector2 ? m_Action.triggered : m_Action.IsPressed();
+#endif
                     break;
+
                 case InputActionChangeOption.OnReleased:
                     shouldTrigger = m_Action.WasReleasedThisFrame();
                     break;

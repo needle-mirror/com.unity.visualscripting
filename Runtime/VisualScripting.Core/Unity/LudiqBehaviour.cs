@@ -47,6 +47,7 @@ namespace Unity.VisualScripting
                 OnBeforeDeserialize();
                 _data.DeserializeInto(ref @this, true);
                 OnAfterDeserialize();
+                _data.Clear();
             }
             catch (Exception ex)
             {
@@ -67,7 +68,9 @@ namespace Unity.VisualScripting
 
         protected virtual void ShowData()
         {
-            _data.ShowString(ToString());
+            var data = this.Serialize(true);
+            data.ShowString(ToString());
+            data.Clear();
         }
 
         public override string ToString()

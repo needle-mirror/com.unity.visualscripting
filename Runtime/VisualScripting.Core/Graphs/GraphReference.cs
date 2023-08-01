@@ -97,6 +97,11 @@ namespace Unity.VisualScripting
             return GraphStack.New(this);
         }
 
+        internal void Release()
+        {
+            releaseDebugDataBinding?.Invoke(root);
+        }
+
         #endregion
 
 
@@ -325,6 +330,27 @@ namespace Unity.VisualScripting
                 var reference = New(pointer);
                 internPool.Add(reference.hashCode, new List<GraphReference>() { reference });
                 return reference;
+            }
+        }
+
+        internal static void ClearIntern(GraphPointer pointer)
+        {
+            var hash = pointer.ComputeHashCode();
+
+            if (!internPool.TryGetValue(hash, out var interns)) return;
+
+            for (var i = interns.Count - 1; i >= 0; i--)
+            {
+                if (interns[i].InstanceEquals(pointer))
+                {
+                    interns.RemoveAt(i);
+                    break;
+                }
+            }
+
+            if (interns.Count == 0)
+            {
+                internPool.Remove(hash);
             }
         }
 

@@ -141,7 +141,12 @@ namespace Unity.VisualScripting
             data.isListening = true;
         }
 
-        public void StopListening(GraphStack stack)
+        void IGraphEventListener.StopListening(GraphStack stack, bool destroyed)
+            => StopListening(stack, destroyed);
+
+        public void StopListening(GraphStack stack) => StopListening(stack, true);
+
+        private void StopListening(GraphStack stack, bool destroyed)
         {
             var data = stack.GetElementData<Data>(this);
 
@@ -152,6 +157,9 @@ namespace Unity.VisualScripting
 
             var hook = new EventHook(EventHooks.Update, stack.machine);
             EventBus.Unregister(hook, data.update);
+
+            stack.ClearReference();
+
             data.update = null;
             data.isListening = false;
         }

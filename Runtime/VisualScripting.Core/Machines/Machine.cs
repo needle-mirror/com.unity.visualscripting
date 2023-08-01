@@ -151,7 +151,11 @@ namespace Unity.VisualScripting
 
         private void ClearCachedReference()
         {
-            _reference = null;
+            if (_reference != null)
+            {
+                _reference.Release();
+                _reference = null;
+            }
         }
 
         public virtual void InstantiateNest()

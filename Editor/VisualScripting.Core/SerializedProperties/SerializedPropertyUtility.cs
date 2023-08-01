@@ -29,10 +29,10 @@ namespace Unity.VisualScripting
             {
                 if (_drawerTypeAttributes == null)
                 {
-                    _drawerTypeAttributes = Codebase.editorTypes
-                        .Select(type => type.GetAttribute<CustomPropertyDrawer>())
-                        .NotNull()
-                        .ToHashSet();
+                    _drawerTypeAttributes = Codebase.types
+                       .Select(type => type.GetAttribute<CustomPropertyDrawer>())
+                       .NotNull()
+                       .ToHashSet();
                 }
 
                 return _drawerTypeAttributes;

@@ -15,6 +15,7 @@ namespace Unity.VisualScripting
             cloners.Add(enumerableCloner);
             cloners.Add(listCloner);
             cloners.Add(animationCurveCloner);
+            cloners.Add(gradientCloner);
         }
 
         // Cloning has to be really fast, and skippable takes a while.
@@ -27,6 +28,8 @@ namespace Unity.VisualScripting
         public static EnumerableCloner enumerableCloner { get; } = new EnumerableCloner();
         public static ListCloner listCloner { get; } = new ListCloner();
         public static AnimationCurveCloner animationCurveCloner { get; } = new AnimationCurveCloner();
+        internal static GradientCloner gradientCloner { get; } = new GradientCloner();
+
 
         public static FieldsCloner fieldsCloner { get; } = new FieldsCloner();
         public static FakeSerializationCloner fakeSerializationCloner { get; } = new FakeSerializationCloner();

@@ -62,7 +62,7 @@ namespace Unity.VisualScripting
 
             foreach (var type in typeset.Where(SerializedPropertyUtility.HasCustomDrawer))
             {
-                var directory = Codebase.IsEditorType(type) ? BoltCore.Paths.propertyProvidersEditor : BoltCore.Paths.propertyProviders;
+                var directory = Codebase.IsUnityEditorType(type) ? BoltCore.Paths.propertyProvidersEditor : BoltCore.Paths.propertyProviders;
                 var path = Path.Combine(directory, GetProviderScriptName(type) + ".cs");
 
                 VersionControlUtility.Unlock(path);

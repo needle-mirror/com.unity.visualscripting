@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     public abstract class LudiqScriptableObject : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField, DoNotSerialize] // Serialize with Unity, but not with FullSerializer.
-        protected SerializationData _data;
+        private SerializationData _data;
 
         internal event Action OnDestroyActions;
 
@@ -51,6 +51,9 @@ namespace Unity.VisualScripting
                 OnBeforeDeserialize();
                 _data.DeserializeInto(ref @this, true);
                 OnAfterDeserialize();
+
+                _data.Clear();
+
                 UnityThread.EditorAsync(OnPostDeserializeInEditor);
             }
             catch (Exception ex)
@@ -79,7 +82,10 @@ namespace Unity.VisualScripting
 
         protected virtual void ShowData()
         {
-            _data.ShowString(ToString());
+            var data = this.Serialize(true);
+            data.ShowString(ToString());
+
+            data.Clear();
         }
 
         public override string ToString()

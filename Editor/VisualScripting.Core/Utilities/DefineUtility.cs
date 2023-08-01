@@ -31,18 +31,38 @@ namespace Unity.VisualScripting
             }
         }
 
+        private static string GetScriptingDefineSymbolsForGroup(BuildTargetGroup targetGroup)
+        {
+#if UNITY_2023_1_OR_NEWER
+            var namedBuildTarget = UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(targetGroup);
+            return PlayerSettings.GetScriptingDefineSymbols(namedBuildTarget);
+#else
+            return PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);
+#endif
+        }
+
+        private static void SetScriptingDefineSymbolsForGroup(BuildTargetGroup targetGroup, string defines)
+        {
+#if UNITY_2023_1_OR_NEWER
+            var namedBuildTarget = UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(targetGroup);
+            PlayerSettings.SetScriptingDefineSymbols(namedBuildTarget, defines);
+#else
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, defines);
+#endif
+        }
+
         public static bool AddDefine(string define)
         {
             var added = false;
 
             foreach (var group in buildTargetGroups)
             {
-                var defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(group).Split(';').Select(d => d.Trim()).ToList();
+                var defines = GetScriptingDefineSymbolsForGroup(group).Split(';').Select(d => d.Trim()).ToList();
 
                 if (!defines.Contains(define))
                 {
                     defines.Add(define);
-                    PlayerSettings.SetScriptingDefineSymbolsForGroup(group, string.Join(";", defines.ToArray()));
+                    SetScriptingDefineSymbolsForGroup(group, string.Join(";", defines.ToArray()));
                     added = true;
                 }
             }
@@ -56,12 +76,12 @@ namespace Unity.VisualScripting
 
             foreach (var group in buildTargetGroups)
             {
-                var defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(group).Split(';').Select(d => d.Trim()).ToList();
+                var defines = GetScriptingDefineSymbolsForGroup(group).Split(';').Select(d => d.Trim()).ToList();
 
                 if (defines.Contains(define))
                 {
                     defines.Remove(define);
-                    PlayerSettings.SetScriptingDefineSymbolsForGroup(group, string.Join(";", defines.ToArray()));
+                    SetScriptingDefineSymbolsForGroup(group, string.Join(";", defines.ToArray()));
                     removed = true;
                 }
             }
@@ -76,7 +96,7 @@ namespace Unity.VisualScripting
         {
             foreach (var group in buildTargetGroups)
             {
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(group, string.Empty);
+                SetScriptingDefineSymbolsForGroup(group, string.Empty);
             }
         }
     }

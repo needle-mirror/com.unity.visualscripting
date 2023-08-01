@@ -13,6 +13,7 @@ namespace Unity.VisualScripting
         private AssemblyOptionsSettings _assemblyOptionsSettings;
         private TypeOptionsSettings _typeOptionsSettings;
         private CustomPropertyProviderSettings _customPropertyProviderSettings;
+        private LinkerPropertyProviderSettings _linkerPropertyProviderSettings;
         private BackupSettings _backupSettings;
         private ScriptReferenceResolverSettings _scriptReferenceResolverSettings;
 
@@ -29,6 +30,7 @@ namespace Unity.VisualScripting
             _assemblyOptionsSettings ??= new AssemblyOptionsSettings(_vsCoreConfig);
             _typeOptionsSettings ??= new TypeOptionsSettings(_vsCoreConfig);
             _customPropertyProviderSettings ??= new CustomPropertyProviderSettings();
+            _linkerPropertyProviderSettings ??= new LinkerPropertyProviderSettings(_vsCoreConfig);
             _backupSettings ??= new BackupSettings();
             _scriptReferenceResolverSettings ??= new ScriptReferenceResolverSettings();
         }
@@ -79,6 +81,10 @@ namespace Unity.VisualScripting
                 GUILayout.Space(10f);
 
                 _customPropertyProviderSettings.OnGUI();
+
+                GUILayout.Space(10f);
+
+                _linkerPropertyProviderSettings.OnGUI();
 
                 GUILayout.Space(10f);
 

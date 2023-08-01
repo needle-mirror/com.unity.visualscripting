@@ -14,9 +14,12 @@ namespace Unity.VisualScripting
             + "By default, all project and Unity assemblies are included.\n"
             + "Unless you use a third-party plugin distributed as a DLL, you shouldn't need to change this.";
 
+        private ProjectAssemblyOptionsListInspector _assemblyOptionsInspector;
+
         public AssemblyOptionsSettings(BoltCoreConfiguration coreConfig)
         {
             _assemblyOptionsMetadata = coreConfig.GetMetadata(nameof(coreConfig.assemblyOptions));
+            _assemblyOptionsInspector = new ProjectAssemblyOptionsListInspector(_assemblyOptionsMetadata);
         }
 
         private static class Styles
@@ -43,24 +46,24 @@ namespace Unity.VisualScripting
             {
                 GUILayout.BeginVertical(Styles.background, GUILayout.ExpandHeight(true));
 
-                float height = LudiqGUI.GetInspectorHeight(null, _assemblyOptionsMetadata, Styles.OptionsWidth, GUIContent.none);
+                var height = _assemblyOptionsInspector.GetCachedHeight(Styles.OptionsWidth, GUIContent.none, null);
 
                 EditorGUI.BeginChangeCheck();
 
                 var position = GUILayoutUtility.GetRect(Styles.OptionsWidth, height);
 
-                LudiqGUI.Inspector(_assemblyOptionsMetadata, position, GUIContent.none);
+                _assemblyOptionsInspector.Draw(position, GUIContent.none);
 
                 if (EditorGUI.EndChangeCheck())
                 {
-                    _assemblyOptionsMetadata.Save();
+                    _assemblyOptionsMetadata.SaveImmediately(true);
                     Codebase.UpdateSettings();
                 }
 
                 if (GUILayout.Button("Reset to Defaults", Styles.defaultsButton) && EditorUtility.DisplayDialog("Reset the Node Library", "Reset the Node Library to its default state?", "Reset to Default", "Cancel"))
                 {
                     _assemblyOptionsMetadata.Reset(true);
-                    _assemblyOptionsMetadata.Save();
+                    _assemblyOptionsMetadata.SaveImmediately(true);
                 }
 
                 LudiqGUI.EndVertical();

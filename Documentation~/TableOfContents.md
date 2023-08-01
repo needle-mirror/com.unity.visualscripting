@@ -198,3 +198,4 @@
 
 * [Developer's guide](vs-developers-guide.md)
 
+* [Known Issues](vs-editor-script-issues.md)

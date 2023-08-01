@@ -30,7 +30,7 @@ namespace Unity.VisualScripting
             if (flow.stack.TryEnterParentElement(this))
             {
                 flow.stack.TriggerEventHandler(hook => hook == StateEventHooks.OnExitState, new EmptyEventArgs(), parent => parent is SubgraphUnit, false);
-                nest.graph.StopListening(flow.stack);
+                (nest.graph as IGraphEventListener).StopListening(flow.stack, true);
                 flow.stack.ExitParentElement();
             }
         }
@@ -44,11 +44,16 @@ namespace Unity.VisualScripting
             }
         }
 
-        public void StopListening(GraphStack stack)
+        void IGraphEventListener.StopListening(GraphStack stack, bool destroyed)
+            => StopListening(stack, destroyed);
+
+        public void StopListening(GraphStack stack) => StopListening(stack, true);
+
+        public void StopListening(GraphStack stack, bool destroyed)
         {
             if (stack.TryEnterParentElement(this))
             {
-                nest.graph.StopListening(stack);
+                (nest.graph as IGraphEventListener).StopListening(stack, destroyed);
                 stack.ExitParentElement();
             }
         }

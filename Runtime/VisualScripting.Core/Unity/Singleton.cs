@@ -78,10 +78,19 @@ namespace Unity.VisualScripting
             }
         }
 
+        private static T[] FindObjectsOfType()
+        {
+#if UNITY_2023_1_OR_NEWER
+            return UnityObject.FindObjectsByType<T>(FindObjectsSortMode.None);
+#else
+            return UnityObject.FindObjectsOfType<T>();
+#endif
+        }
+
         private static T[] FindInstances()
         {
             // Fails here on hidden hide flags
-            return UnityObject.FindObjectsOfType<T>();
+            return FindObjectsOfType();
         }
 
         public static T Instantiate()

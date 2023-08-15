@@ -40,18 +40,13 @@ namespace Unity.VisualScripting
             activeStates.Free();
         }
 
-        void IGraphEventListener.StopListening(GraphStack stack, bool destroyed)
-            => StopListening(stack, destroyed);
-
-        public void StopListening(GraphStack stack) => StopListening(stack, true);
-
-        private void StopListening(GraphStack stack, bool destroyed)
+        public void StopListening(GraphStack stack)
         {
             var activeStates = GetActiveStatesNoAlloc(stack);
 
             foreach (var state in activeStates)
             {
-                (state as IGraphEventListener)?.StopListening(stack, destroyed);
+                (state as IGraphEventListener)?.StopListening(stack);
             }
 
             activeStates.Free();

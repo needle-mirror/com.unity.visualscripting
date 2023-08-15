@@ -74,12 +74,7 @@ namespace Unity.VisualScripting
             data.isListening = true;
         }
 
-        void IGraphEventListener.StopListening(GraphStack stack, bool destroyed)
-            => StopListening(stack, destroyed);
-
-        public void StopListening(GraphStack stack) => StopListening(stack, true);
-
-        protected virtual void StopListening(GraphStack stack, bool destroyed)
+        public virtual void StopListening(GraphStack stack)
         {
             var data = stack.GetElementData<Data>(this);
 
@@ -148,6 +143,11 @@ namespace Unity.VisualScripting
         }
 
         public void Trigger(GraphReference reference, TArgs args)
+        {
+            InternalTrigger(reference, args);
+        }
+
+        private protected virtual void InternalTrigger(GraphReference reference, TArgs args)
         {
             var flow = Flow.New(reference);
 

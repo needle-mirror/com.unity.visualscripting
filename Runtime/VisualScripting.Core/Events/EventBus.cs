@@ -12,6 +12,7 @@ namespace Unity.VisualScripting
         }
 
         private static readonly Dictionary<EventHook, HashSet<Delegate>> events;
+        internal static Dictionary<EventHook, HashSet<Delegate>> testAccessEvents => events;
 
         public static void Register<TArgs>(EventHook hook, Action<TArgs> handler)
         {

@@ -49,16 +49,11 @@ namespace Unity.VisualScripting
             }
         }
 
-        void IGraphEventListener.StopListening(GraphStack stack, bool destroyed)
-            => StopListening(stack, destroyed);
-
-        public void StopListening(GraphStack stack) => StopListening(stack, true);
-
-        private void StopListening(GraphStack stack, bool destroyed)
+        public void StopListening(GraphStack stack)
         {
             foreach (var unit in units)
             {
-                (unit as IGraphEventListener)?.StopListening(stack, destroyed);
+                (unit as IGraphEventListener)?.StopListening(stack);
             }
 
             stack.GetGraphData<FlowGraphData>().isListening = false;

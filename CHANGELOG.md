@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.9.1] - 2023-08-15
+### Fixed
+- Reverted a breaking change where `LudiqScriptableObject._data` was marked as `private`
+- Reverted a breaking change related to `IGraphEventListener`
+
 ## [1.9.0] - 2023-08-01
 ### Fixed
 - Fixed code for custom nodes being stripped in AOT builds when Managed Stripping Level is set to High [UVSB-2439](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2437)
@@ -60,7 +65,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fixed default inspectors for nodes not appearing in the correct position after a connected node is deleted [BOLT-1457](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-1457)
 - Fixed Scene variables drag and drop in graph having wrong scope [BOLT-2247](https://issuetracker.unity3d.com/product/unity/issues/guid/BOLT-2247)
 - OnDestroy events are now properly triggered in script graphs [BOLT-1783](https://issuetracker.unity3d.com/issues/visual-scripting-ondestroy-unit-does-not-trigger-when-a-game-object-is-deleted)
-
 
 ### Changed
 - Small optimization of load times involving generic types.

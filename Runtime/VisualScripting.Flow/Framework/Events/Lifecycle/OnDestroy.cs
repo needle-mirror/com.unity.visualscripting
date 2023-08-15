@@ -9,12 +9,21 @@ namespace Unity.VisualScripting
     {
         protected override string hookName => EventHooks.OnDestroy;
 
-        protected override void StopListening(GraphStack stack, bool destroyed)
+        public override void StopListening(GraphStack stack)
         {
-            if (!destroyed)
-                return;
+            // StopListening is typically triggered when the object is disabled or destroyed
+            // OnDestroy is a special case event where we want it to continue listening even when the object
+            // is disabled. It only unregisters itself on destruction and not before.
+            // That's why this method is overriden to do nothing.
+        }
 
-            base.StopListening(stack, destroyed);
+        private protected override void InternalTrigger(GraphReference reference, EmptyEventArgs args)
+        {
+            base.InternalTrigger(reference, args);
+
+            // Stop listening for events after we're triggered (i.e when we're destroyed)
+            using var stack = reference.ToStackPooled();
+            base.StopListening(stack);
         }
     }
 }

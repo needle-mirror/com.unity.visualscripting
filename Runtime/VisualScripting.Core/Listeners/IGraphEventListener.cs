@@ -4,9 +4,7 @@ namespace Unity.VisualScripting
     {
         void StartListening(GraphStack stack);
 
-        void StopListening(GraphStack stack) => StopListening(stack, true);
-
-        internal void StopListening(GraphStack stack, bool destroyed);
+        void StopListening(GraphStack stack);
 
         bool IsListening(GraphPointer pointer);
     }
@@ -26,14 +24,6 @@ namespace Unity.VisualScripting
             using (var stack = reference.ToStackPooled())
             {
                 listener.StopListening(stack);
-            }
-        }
-
-        internal static void StopListening(this IGraphEventListener listener, GraphReference reference, bool destroyed)
-        {
-            using (var stack = reference.ToStackPooled())
-            {
-                listener.StopListening(stack, destroyed);
             }
         }
 

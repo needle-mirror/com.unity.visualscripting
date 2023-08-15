@@ -61,7 +61,7 @@ namespace Unity.VisualScripting
             {
                 if (wasListening)
                 {
-                    StopListening(stack, true);
+                    StopListening(stack);
                 }
 
                 data.target = newTarget;

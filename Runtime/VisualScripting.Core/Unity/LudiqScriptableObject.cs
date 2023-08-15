@@ -6,7 +6,7 @@ namespace Unity.VisualScripting
     public abstract class LudiqScriptableObject : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField, DoNotSerialize] // Serialize with Unity, but not with FullSerializer.
-        private SerializationData _data;
+        protected SerializationData _data;
 
         internal event Action OnDestroyActions;
 

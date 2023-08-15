@@ -114,11 +114,9 @@ namespace Unity.VisualScripting.InputSystem
                 : inputAction.actionMap != null ? inputAction : null;
         }
 
-        public void StopListening(GraphStack stack) => StopListening(stack, true);
-
-        protected override void StopListening(GraphStack stack, bool destroyed)
+        public override void StopListening(GraphStack stack)
         {
-            base.StopListening(stack, destroyed);
+            base.StopListening(stack);
             m_Action = null;
         }
 

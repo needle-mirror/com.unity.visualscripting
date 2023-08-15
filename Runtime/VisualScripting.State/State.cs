@@ -72,7 +72,7 @@ namespace Unity.VisualScripting
         {
             if (this is IGraphEventListener listener)
             {
-                listener.StopListening(instance, true);
+                listener.StopListening(instance);
             }
 
             base.Uninstantiate(instance);

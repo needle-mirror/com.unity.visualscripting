@@ -160,12 +160,7 @@ namespace Unity.VisualScripting
             data.isListening = true;
         }
 
-        void IGraphEventListener.StopListening(GraphStack stack, bool destroyed)
-            => StopListening(stack, destroyed);
-
-        public void StopListening(GraphStack stack) => StopListening(stack, true);
-
-        private void StopListening(GraphStack stack, bool destroyed)
+        public void StopListening(GraphStack stack)
         {
             var data = stack.GetElementData<Data>(this);
 

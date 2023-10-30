@@ -1,6 +1,7 @@
 namespace Unity.VisualScripting
 {
     [UnityEngine.AddComponentMenu("")]
+    [VisualScriptingHelpURL(typeof(UnityOnMouseExitMessageListener))]
     public sealed class UnityOnMouseExitMessageListener : MessageListener
     {
         private void OnMouseExit()

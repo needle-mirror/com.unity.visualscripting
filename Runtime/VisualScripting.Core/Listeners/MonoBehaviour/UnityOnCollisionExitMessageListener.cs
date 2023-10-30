@@ -4,6 +4,7 @@ namespace Unity.VisualScripting
 {
 #if MODULE_PHYSICS_EXISTS
     [AddComponentMenu("")]
+    [VisualScriptingHelpURL(typeof(UnityOnCollisionExitMessageListener))]
     public sealed class UnityOnCollisionExitMessageListener : MessageListener
     {
         private void OnCollisionExit(Collision collision)

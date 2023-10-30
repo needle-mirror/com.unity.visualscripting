@@ -7,6 +7,7 @@ namespace Unity.VisualScripting
     [AddComponentMenu("")]
     [IncludeInSettings(false)]
     [TypeIcon(typeof(MessageListener))]
+    [VisualScriptingHelpURL(typeof(GlobalMessageListener))]
     public sealed class GlobalMessageListener : MonoBehaviour, ISingleton
     {
         private void OnGUI()

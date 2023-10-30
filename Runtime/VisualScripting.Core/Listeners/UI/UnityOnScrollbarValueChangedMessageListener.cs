@@ -3,6 +3,7 @@ using UnityEngine.UI;
 namespace Unity.VisualScripting
 {
     [UnityEngine.AddComponentMenu("")]
+    [VisualScriptingHelpURL(typeof(UnityOnScrollbarValueChangedMessageListener))]
     public sealed class UnityOnScrollbarValueChangedMessageListener : MessageListener
     {
         private void Start()

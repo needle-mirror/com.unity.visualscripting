@@ -3,7 +3,7 @@
 > [!NOTE]
 > For versions 2019/2020 LTS, download the Visual Scripting package from the [Unity Asset Store](https://assetstore.unity.com/packages/tools/visual-bolt-163802).
 
-Visual scripting can predict and indicate nodes in the script that can cause an error before entering play mode. It also analyzes your graphs to anticipate missing components or null references. If an error occurs at runtime, visual scripting  pin-points the source of the euro by highlighting it in the graph.
+Visual scripting can predict and indicate nodes in the script that can cause an error before entering play mode. It also analyzes your graphs to anticipate missing components or null references. If an error occurs at runtime, visual scripting  pin-points the source of the error by highlighting it in the graph.
 
 ## Predictive Debugging
 

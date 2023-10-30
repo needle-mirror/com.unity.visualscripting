@@ -8,6 +8,7 @@ namespace Unity.VisualScripting
     [DisableAnnotation]
     [AddComponentMenu("")]
     [IncludeInSettings(false)]
+    [VisualScriptingHelpURL(typeof(SceneVariables))]
     public sealed class SceneVariables : MonoBehaviour, ISingleton
     {
         public static SceneVariables Instance(Scene scene)

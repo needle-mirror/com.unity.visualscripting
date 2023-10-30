@@ -3,6 +3,7 @@ using UnityEngine.UI;
 namespace Unity.VisualScripting
 {
     [UnityEngine.AddComponentMenu("")]
+    [VisualScriptingHelpURL(typeof(UnityOnInputFieldValueChangedMessageListener))]
     public sealed class UnityOnInputFieldValueChangedMessageListener : MessageListener
     {
         private void Start()

@@ -10,6 +10,7 @@ namespace Unity.VisualScripting
     [AddComponentMenu("")]
     [DisableAnnotation]
     [IncludeInSettings(false)]
+    [VisualScriptingHelpURL(typeof(VariablesSaver))]
     public class VariablesSaver : MonoBehaviour, ISingleton
     {
         private void Awake()

@@ -11,7 +11,7 @@ namespace Unity.VisualScripting
     [UnitCategory("Events/Animation")]
     [UnitShortTitle("Animation Event")]
     [UnitTitle("Animation Event")]
-    [TypeIcon(typeof(Animation))]
+    [TypeIcon(typeof(AnimationClip))]
     [DisplayName("Visual Scripting Animation Event")]
     public sealed class BoltAnimationEvent : MachineEventUnit<AnimationEvent>
     {

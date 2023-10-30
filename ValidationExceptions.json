@@ -2,8 +2,8 @@
     "ErrorExceptions":
     [
         {
-             "ValidationTest": "API Validation",
-             "PackageVersion": "1.9.1"
+             "ValidationTest": "Xmldoc Validation",
+             "PackageVersion": "1.9.2"
         }
     ]
 }

@@ -6,6 +6,7 @@ namespace Unity.VisualScripting
     [AddComponentMenu("")]
     [DisableAnnotation]
     [IncludeInSettings(false)]
+    [VisualScriptingHelpURL(typeof(CoroutineRunner))]
     public sealed class CoroutineRunner : MonoBehaviour, ISingleton
     {
         private void Awake()

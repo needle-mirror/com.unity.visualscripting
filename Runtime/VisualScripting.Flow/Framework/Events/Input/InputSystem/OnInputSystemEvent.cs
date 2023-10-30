@@ -26,6 +26,16 @@ namespace Unity.VisualScripting.InputSystem
     [UnitCategory("Events/Input")]
     public abstract class OnInputSystemEvent : MachineEventUnit<EmptyEventArgs>
     {
+        new class Data : EventUnit<EmptyEventArgs>.Data
+        {
+            internal InputAction Action;
+        }
+
+        public override IGraphElementData CreateData()
+        {
+            return new Data();
+        }
+
         protected override string hookName =>
             UnityEngine.InputSystem.InputSystem.settings.updateMode ==
             InputSettings.UpdateMode.ProcessEventsInDynamicUpdate
@@ -57,8 +67,6 @@ namespace Unity.VisualScripting.InputSystem
         public ValueOutput FloatValue { get; private set; }
         [PortLabelHidden]
         public ValueOutput Vector2Value { get; private set; }
-
-        private InputAction m_Action;
 
 #if !PACKAGE_INPUT_SYSTEM_1_2_0_OR_NEWER_EXISTS
         private bool m_WasRunning;
@@ -109,7 +117,9 @@ namespace Unity.VisualScripting.InputSystem
             var inputAction = Flow.FetchValue<InputAction>(InputAction, graphReference);
             if (inputAction == null)
                 return;
-            m_Action = pi
+
+            var data = stack.GetElementData<Data>(this);
+            data.Action = pi
                 ? pi.actions.FindAction(inputAction.id)
                 : inputAction.actionMap != null ? inputAction : null;
         }
@@ -117,12 +127,14 @@ namespace Unity.VisualScripting.InputSystem
         public override void StopListening(GraphStack stack)
         {
             base.StopListening(stack);
-            m_Action = null;
+            var data = stack.GetElementData<Data>(this);
+            data.Action = null;
         }
 
         protected override bool ShouldTrigger(Flow flow, EmptyEventArgs args)
         {
-            if (m_Action == null)
+            var data = flow.stack.GetElementData<Data>(this);
+            if (data.Action == null)
                 return false;
 
             bool shouldTrigger;
@@ -131,18 +143,18 @@ namespace Unity.VisualScripting.InputSystem
             switch (InputActionChangeType)
             {
                 case InputActionChangeOption.OnPressed:
-                    shouldTrigger = m_Action.WasPressedThisFrame();
+                    shouldTrigger = data.Action.WasPressedThisFrame();
                     break;
                 case InputActionChangeOption.OnHold:
 #if PACKAGE_INPUT_SYSTEM_1_4_0_OR_NEWER_EXISTS
                         shouldTrigger = OutputType == OutputType.Vector2 ? m_Action.IsInProgress() : m_Action.IsPressed();
 #else
-                        shouldTrigger = OutputType == OutputType.Vector2 ? m_Action.triggered : m_Action.IsPressed();
+                        shouldTrigger = OutputType == OutputType.Vector2 ? data.Action.triggered : data.Action.IsPressed();
 #endif
                     break;
 
                 case InputActionChangeOption.OnReleased:
-                    shouldTrigger = m_Action.WasReleasedThisFrame();
+                    shouldTrigger = data.Action.WasReleasedThisFrame();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -168,23 +180,23 @@ namespace Unity.VisualScripting.InputSystem
             m_WasRunning = m_Action.phase == InputActionPhase.Started;
 #endif
 
-            DoAssignArguments(flow);
+            DoAssignArguments(flow, data);
             return shouldTrigger;
         }
 
-        private void DoAssignArguments(Flow flow)
+        private void DoAssignArguments(Flow flow, Data data)
         {
             switch (OutputType)
             {
                 case OutputType.Button:
                     break;
                 case OutputType.Float:
-                    var readValue = m_Action.ReadValue<float>();
+                    var readValue = data.Action.ReadValue<float>();
                     m_Value.Set(readValue, 0);
                     flow.SetValue(FloatValue, readValue);
                     break;
                 case OutputType.Vector2:
-                    var vector2 = m_Action.ReadValue<Vector2>();
+                    var vector2 = data.Action.ReadValue<Vector2>();
                     m_Value = vector2;
                     flow.SetValue(Vector2Value, vector2);
                     break;

@@ -4,6 +4,7 @@ namespace Unity.VisualScripting
 {
 #if MODULE_PHYSICS_2D_EXISTS
     [AddComponentMenu("")]
+    [VisualScriptingHelpURL(typeof(UnityOnTriggerEnter2DMessageListener))]
     public sealed class UnityOnTriggerEnter2DMessageListener : MessageListener
     {
         private void OnTriggerEnter2D(Collider2D other)

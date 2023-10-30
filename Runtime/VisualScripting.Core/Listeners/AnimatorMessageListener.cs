@@ -14,6 +14,7 @@ namespace Unity.VisualScripting
      * The only solution seems to be to separate the listener as a manual component.
      */
     [AddComponentMenu("Visual Scripting/Listeners/Animator Message Listener")]
+    [VisualScriptingHelpURL(typeof(AnimatorMessageListener))]
     public sealed class AnimatorMessageListener : MonoBehaviour
     {
         private void OnAnimatorMove()

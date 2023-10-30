@@ -21,12 +21,12 @@ When in live mode, Visual Scripting is displayed the flow as droplets on connect
 
 ![](images/vs-live-editing-droplets.png)
 
-To disable these animations on either the value connections, the control connections, or both,  uncheck the **Animate Control Connections** or the **Animate Value Connections** from the editor preferences window (**Unity** > **Preferences** > **Visual Scripting** > **Script Graphs**).
+To disable these animations on either the value connections, the control connections, or both,  deselect the **Animate Control Connections** or the **Animate Value Connections** from the editor preferences window (**Edit** > **Preferences** > **Visual Scripting** > **Script Graphs**).
 
 ## Saving changes through persistence
 
-Visual Scripting graphs automatically saves the changes made during play mode.
+Visual Scripting graphs automatically save the changes made during play mode.
 
 ## Propagation across graphs
 
-Changes made to graphs are instantly shared across all instances of that graph.
+Changes made to a graph are instantly shared across all instances of that graph.

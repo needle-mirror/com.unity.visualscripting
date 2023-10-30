@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.9.2] - 2023-10-30
+### Fixed
+- Fixed a bug where the second player input device controlled all objects when using InputSystem event nodes [UVSB-2499](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2499)
+- Documentation links have been fixed for Visual Scripting MonoBehaviours [UVSB-2475](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2475) [UVSB-2496](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2496)
+
+### Changed
+- AnimationEvent and NamedAnimationEvent Nodes icon changed in favor of the AnimationClip icon instead of the Animation Component icon.
+
 ## [1.9.1] - 2023-08-15
 ### Fixed
 - Reverted a breaking change where `LudiqScriptableObject._data` was marked as `private`
@@ -13,19 +21,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fixed OnInputSystemEvent doesn't trigger until Input Vector variates from 0.5 [UVSB-2435](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2435)
 - Fixed assembly disappearing from Node Library after domain reload. [UVSB-2459](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2459)
 - Fixed custom inspectors not being generated [UVSB-2466](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2466)
-- Fixed error when trying to load exceptions for TryCatch node dropdown [2463] (https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2463)
-- Fixed infinite amount of GameObjects created in Prefab mode when performing a null check of a scene variable in editor with an "OnDrawGizmos" event [UVSB-2453](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2453)
+- Fixed error when trying to load exceptions for TryCatch node dropdown [UVSB-2463](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2463)
+- Fixed infinite amount of GameObjects created in Prefab mode when performing a null check of a scene variable in editor with an `OnDrawGizmos` event [UVSB-2453](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2453)
 - Removed corrupt mdb which caused the ScriptUpdater to fail [UVSB-2360](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2360)
 - Fixed Gradient graph variables resetting when entering PlayMode [UVSB-2334](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2334)
-- Fixed Memory leak after destroying object [UVSB-2427] (https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2427)
+- Fixed Memory leak after destroying object [UVSB-2427](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2427)
 - Fixed migration deserialization bug introduced in 1.8.0 [UVSB-2492](https://issuetracker.unity3d.com/issues/deserialization-error-when-upgrading-to-1-dot-8-0)
 
 ### Added
 - Added a warning icon next to assemblies in Project Settings that reference Editor assemblies [UVSB-2382](https://issuetracker.unity3d.com/issues/nodes-from-runtime-assemblies-that-reference-unity-editor-are-not-visible-in-the-fuzzy-finder)
 
 ### Changed
-- Script Graph Asset string data is unloaded after deserialization [UVSB-2367](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2366)
-- AOT Prebuild should take less memory and be faster (Added an optimization to AssetUtility.GetAllAssetsOfType<T>)
+- Script Graph Asset string data is unloaded after deserialization [UVSB-2366](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2366)
+- AOT Prebuild should take less memory and be faster (Added an optimization to `AssetUtility.GetAllAssetsOfType<T>`) [UVSB-2417](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2417)
 
 ## [1.8.0] - 2022-11-03
 ### Fixed

@@ -69,11 +69,12 @@ For example, the following graph generates a new random name until the result is
 
 For Each iterates over every element of a collection. It outputs the current index and item that is being looped over.
 
-For example, the following graph outputs three messages to the console:
+For example, the following graph outputs four messages to the console:
 
-*   *I like cats*
-*   *I like dogs*
-*   *I like birds*
+*   *I love my cat*
+*   *I love my dog*
+*   *I love my bird*
+*   *I love my fish*
 
 ![](images/vs-control-for-each-loop-node.png)
 
@@ -87,14 +88,16 @@ For example, this graph counts to ten by skipping odd numbers because of its ste
 
 ![](images/vs-control-for-loop-node.png)
 
-The for loop can also be very useful when combined to the Get List Item and Count Items nodes.
+The For loop can also be very useful when combined with the Get List Item and Count Items nodes.
 
-For example, the folllowing graph is very similar to the last graph as the output to the console is "I like {animal}s".
+For example, the following graph is very similar to the last graph as the output to the console is "I like {animal}s".
 
-Instead of using the for each node that outputs each item, the graph outputs each item manually by its index in the list. This specifies a different increment (in this case 2) and skips some items. This graph  outputs two messages:
+Instead of using the For Each node that outputs each item, the graph outputs each item manually by its index in the list. This graph outputs the following messages:
 
 *   *I like cats*
+*   *I like dogs*
 *   *I like birds*
+*   *I like horses*
 
 ![](images/vs-control-for-loop-node-get-count-list-items-node.png)
 
@@ -141,16 +144,14 @@ Toggle nodes are similar in principle to light-switches: they can be turned on a
 
 The Toggle Flow node gates the flow of control. When on, the flow passes through; when off, the flow does  not.
 
-There are many inputs and outputs that allow fine grain control over the logic. In the previous example, Toggle is used to show the same event (a keypress) turns the toggle on and off. This can be done by using On and Off through two different events.
-
-There are many inputs and outputs that allow fine grain control over the logic. In a previous example, Toggle is used to show the same event (a keypress) turns the toggle on and off; for the same results using two different events, use On and Off instead.
+There are many inputs and outputs that allow fine grained control over the logic. In the previous example, Toggle is used to show how the same event (a keypress) turns the toggle on and off. Instead you can use On and Off with two different events to get the same results.
 
 On the output side, the Is On boolean port indicates the toggle status, that is turned on or off. The control outputs are triggered according to the table below:  
 
-| Port       | Triggered When                                                                                                       |
-|---|---|
-| On| Flow enters the toggle via the unmarked input while it is on.|
-| Off| Flow enters the toggle via the unmarked input while it is off.|
+| Port       | Triggered When     |
+|------------|--------------------|
+| On         | Flow enters the toggle via the unmarked input while it is on.    |
+| Off        | Flow enters the toggle via the unmarked input while it is off.   |
 | Turned On  | The toggle gets turned on, either via the On or Toggle inputs.   |
 | Turned Off | The toggle gets turned off, either via the Off or Toggle inputs. |
 

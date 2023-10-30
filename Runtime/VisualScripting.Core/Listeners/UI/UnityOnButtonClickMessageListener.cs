@@ -3,6 +3,7 @@ using UnityEngine.UI;
 namespace Unity.VisualScripting
 {
     [UnityEngine.AddComponentMenu("")]
+    [VisualScriptingHelpURL(typeof(UnityOnButtonClickMessageListener))]
     public sealed class UnityOnButtonClickMessageListener : MessageListener
     {
         private void Start()

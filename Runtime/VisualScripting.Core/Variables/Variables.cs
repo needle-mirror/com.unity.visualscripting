@@ -7,6 +7,7 @@ namespace Unity.VisualScripting
     [AddComponentMenu("Visual Scripting/Variables")]
     [DisableAnnotation]
     [IncludeInSettings(false)]
+    [VisualScriptingHelpURL(typeof(Variables))]
     public class Variables : LudiqBehaviour, IAotStubbable
     {
         [Serialize, Inspectable]

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 namespace Unity.VisualScripting
 {
     [UnityEngine.AddComponentMenu("")]
+    [VisualScriptingHelpURL(typeof(UnityOnInputFieldEndEditMessageListener))]
     public sealed class UnityOnInputFieldEndEditMessageListener : MessageListener
     {
         private void Start()

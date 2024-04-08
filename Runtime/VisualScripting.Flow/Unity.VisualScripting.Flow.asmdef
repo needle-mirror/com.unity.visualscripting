@@ -23,6 +23,11 @@
             "define": "PACKAGE_INPUT_SYSTEM_1_2_0_OR_NEWER_EXISTS"
         },
         {
+            "name": "com.unity.inputsystem",
+            "expression": "1.4.0",
+            "define": "PACKAGE_INPUT_SYSTEM_1_4_0_OR_NEWER_EXISTS"
+        },
+        {
             "name": "com.unity.modules.ai",
             "expression": "1.0.0",
             "define": "MODULE_AI_EXISTS"

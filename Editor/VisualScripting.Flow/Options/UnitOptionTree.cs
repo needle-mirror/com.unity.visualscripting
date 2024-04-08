@@ -675,6 +675,7 @@ namespace Unity.VisualScripting
 
         public override void OnFavoritesChange()
         {
+            BoltFlow.Configuration.SetDirty();
             BoltFlow.Configuration.Save();
         }
 

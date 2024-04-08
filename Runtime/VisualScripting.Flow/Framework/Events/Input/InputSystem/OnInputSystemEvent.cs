@@ -147,9 +147,9 @@ namespace Unity.VisualScripting.InputSystem
                     break;
                 case InputActionChangeOption.OnHold:
 #if PACKAGE_INPUT_SYSTEM_1_4_0_OR_NEWER_EXISTS
-                        shouldTrigger = OutputType == OutputType.Vector2 ? m_Action.IsInProgress() : m_Action.IsPressed();
+                        shouldTrigger = OutputType == OutputType.Vector2 ? data.Action.IsInProgress() : data.Action.IsPressed();
 #else
-                        shouldTrigger = OutputType == OutputType.Vector2 ? data.Action.triggered : data.Action.IsPressed();
+                        shouldTrigger = OutputType == OutputType.Vector2 ? data.Action.ReadValue<Vector2>().magnitude > Mathf.Epsilon : data.Action.IsPressed();
 #endif
                     break;
 

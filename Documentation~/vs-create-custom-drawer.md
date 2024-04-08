@@ -35,7 +35,7 @@ The following is an example of a finished PropertyDrawer script:
 ```csharp
     using UnityEditor;
     using UnityEngine;
-    [CustomPropertyDrawer](type of(<Counter>))]
+    [CustomPropertyDrawer(type of(<Counter>))]
     public class CounterDrawer : PropertyDrawer
     {
         // Draw the property inside the given rect

@@ -228,6 +228,7 @@ namespace Unity.VisualScripting
 
         public override void OnFavoritesChange()
         {
+            BoltCore.Configuration.SetDirty();
             BoltCore.Configuration.Save();
         }
 

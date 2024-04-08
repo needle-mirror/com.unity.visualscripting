@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.9.4] - 2024-04-08
+### Fixed
+- Fixed sqlite dll changes not being recognized correctly by the 2022.3 Unity Editor
+
+## [1.9.3] - 2024-03-19
+### Fixed
+- Fixed errors related to the sqlite dll when using the Windows ARM64 Editor
+- Favorites are now kept when entering play mode [UVSB-2519](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2519)
+- Fixed continuous input when using an OnInputSystemEventVector2 node with OnHold [UVSB-2518](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2518)
+
 ## [1.9.2] - 2023-10-30
 ### Fixed
 - Fixed a bug where the second player input device controlled all objects when using InputSystem event nodes [UVSB-2499](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2499)

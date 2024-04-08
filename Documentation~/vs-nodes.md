@@ -40,7 +40,7 @@ You can make multiple connections to or from the same port, with some restrictio
 
 - You can connect a single Data Output port to multiple Data Input ports. 
 - You can't connect multiple Data Output ports to a single Data Input port. Visual Scripting can't choose which value to use. 
-- You can connect multiple Control Output ports a single Control Input port.
+- You can connect multiple Control Output ports to a single Control Input port.
 - You can't connect a single Control Output port to multiple Control Input ports. Visual Scripting can't choose which node to run first. 
 
 ![An image of the Graph Editor. An On Update Event node connects its trigger output port to the trigger input port on a Transform Rotate node. A Per Second node, with its Input set to 30, connects its output port to the X Angle, Y Angle, and Z Angle input ports on the Transform Rotate node. An On Keyboard Input Event node with its Key set to Space and its Action set to Down connects its trigger output port to the trigger input port on a Rigidbody Add Force node. An On Mouse Down Event node also connects its trigger output port to the trigger input on the Rigidbody Add Force node.](images\vs-multiple-connections-example.png)

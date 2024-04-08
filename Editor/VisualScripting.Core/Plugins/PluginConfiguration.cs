@@ -75,6 +75,11 @@ namespace Unity.VisualScripting
             LoadProjectSettings();
         }
 
+        internal void SetDirty()
+        {
+            projectSettingsAssetDirty = true;
+        }
+
         public void Reset()
         {
             foreach (var item in allItems)

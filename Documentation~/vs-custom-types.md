@@ -36,5 +36,5 @@ These values can be different across different instances of `Player` objects in 
 
 If you tried to represent the same data with basic variables, you must create a lot of nodes, as in the following example. With a custom class, you can create a single node to represent a player character's information, instead of four separate nodes. 
 
-![An image of the Graph Editor. A Get Variable node set to get the value of Player1 is compared to a group of four nodes that represent the same information captured in the single variable node: Player1Name, Player1Color, Player1Type, and Player1Level. A second Get Variable node set to get the value of Player2 is compared to another group of four nodes. ](images\vs-custom-class-example.png)
+![An image of the Graph Editor. A Get Variable node set to get the value of Player1 is compared to a group of four nodes that represent the same information captured in the single variable node: Player1Name, Player1Color, Player1Type, and Player1Level. A second Get Variable node set to get the value of Player2 is compared to another group of four nodes. ](images/vs-custom-class-example.png)
 

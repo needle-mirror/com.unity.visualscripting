@@ -60,7 +60,7 @@ Custom events do not require a receiver and do not cause an error if there isn't
 
 ## Animation Events
 
-Use animation events to trigger Bolt graphs when you reach a certain point in your animation. Select an object with a machine and an animator. Then, from the animation window, add an animation event.
+Use animation events to trigger script graphs when you reach a certain point in your animation. Select an object with a machine and an animator. Then, from the animation window, add an animation event.
 
 
 ![](images/vs-events-animation-window-add-event.png)

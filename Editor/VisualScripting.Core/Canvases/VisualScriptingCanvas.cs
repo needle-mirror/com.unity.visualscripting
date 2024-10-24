@@ -1680,7 +1680,7 @@ namespace Unity.VisualScripting
                 Overview();
             }
 
-            if (GUILayout.Toggle(window.maximized, "Full Screen", LudiqStyles.toolbarButton) != window.maximized)
+            if (window != null && GUILayout.Toggle(window.maximized, "Full Screen", LudiqStyles.toolbarButton) != window.maximized)
             {
                 ToggleMaximized();
             }

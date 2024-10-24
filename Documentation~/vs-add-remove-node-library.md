@@ -8,7 +8,7 @@ Visual Scripting can generate nodes from assemblies in packages and third-party 
 
  To add a new assembly and its nodes to the Node Library: 
 
- 1. [!include[open-project-settings](./snippets/vs-open-project-settings.md)]
+ 1. [!include[vs-open-project-settings](./snippets/vs-open-project-settings.md)]
  1. Select **Visual Scripting**.
  1. Expand **Node Library**. 
  1. At the end of the assemblies list, select **Add** (+). 
@@ -21,7 +21,7 @@ Visual Scripting adds the assembly and its nodes to the Node Library. To use the
 
  To remove an assembly and its nodes from your Node Library: 
 
- 1. [!include[open-project-settings](./snippets/vs-open-project-settings.md)]
+ 1. [!include[vs-open-project-settings](./snippets/vs-open-project-settings.md)]
  1. Select **Visual Scripting**.
  1. Expand **Node Library**. 
  1. In the assemblies list, locate the entry for the assembly you want to remove. 

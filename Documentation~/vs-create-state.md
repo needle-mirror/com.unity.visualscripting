@@ -9,7 +9,7 @@ You can also add a [Sticky Note](vs-sticky-notes.md) to add comments to a graph.
 To create a new blank Script State: 
 
 <ol>
-<li><p>[!include[open-state-menu](./snippets/vs-open-state-menu.md)]</p></li>
+<li><p>[!include[vs-open-state-menu](./snippets/vs-open-state-menu.md)]</p></li>
 <li><p>Select <strong>Create Script State</strong>. <br/>Visual Scripting creates a new Script State node.</p></li>
 <li><p>Open the <a href="vs-interface-overview.md#the-graph-inspector">Graph Inspector</a>.</p></li>
 <li><p>In the Graph Inspector, choose a source for the Script State node:</p>
@@ -33,7 +33,7 @@ To create a new blank Script State:
 To create a Script State from an existing Script Graph: 
 
 <ol>
-<li><p>[!include[open-state-menu](./snippets/vs-open-state-menu.md)]</p></li>
+<li><p>[!include[vs-open-state-menu](./snippets/vs-open-state-menu.md)]</p></li>
 <li><p>Select <strong>Create Script State</strong>. <br/>Visual Scripting creates a new Script State node.</p></li>
 <li><p>Open the <a href="vs-interface-overview.md#the-graph-inspector">Graph Inspector</a>.</p></li>
 <li><p>In the Graph Inspector, set the source for the Script State node to <strong>Graph</strong>.</p></li>
@@ -54,7 +54,7 @@ To create a Script State from an existing Script Graph:
 
 To create a new Any State node: 
 
-1. [!include[open-state-menu](./snippets/vs-open-state-menu.md)] 
+1. [!include[vs-open-state-menu](./snippets/vs-open-state-menu.md)] 
 
 2. Select **Create Any State**. 
 
@@ -66,7 +66,7 @@ To create a new Any State node:
 To create a new blank Super State: 
 
 <ol>
-<li><p>[!include[open-state-menu](./snippets/vs-open-state-menu.md)]</p></li>
+<li><p>[!include[vs-open-state-menu](./snippets/vs-open-state-menu.md)]</p></li>
 <li><p>Select <strong>Create Super State</strong>. <br/>Visual Scripting creates a new Super State node.</p></li>
 <li><p>Open the <a href="vs-interface-overview.md#the-graph-inspector">Graph Inspector</a>.</p></li>
 <li><p>In the Graph Inspector, choose a source for the Super State node:</p>
@@ -89,7 +89,7 @@ To create a new blank Super State:
 To create a Super State from an existing State Graph: 
 
 <ol>
-<li><p>[!include[open-state-menu](./snippets/vs-open-state-menu.md)]</p></li>
+<li><p>[!include[vs-open-state-menu](./snippets/vs-open-state-menu.md)]</p></li>
 <li><p>Select <strong>Create Super State</strong>. <br/>Visual Scripting creates a new Super State node.</p></li>
 <li><p>Open the <a href="vs-interface-overview.md#the-graph-inspector">Graph Inspector</a>.</p></li>
 <li><p>In the Graph Inspector, set the source for the Super State node to <strong>Graph</strong>.</p></li>

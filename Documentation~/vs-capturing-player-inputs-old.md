@@ -9,12 +9,12 @@ To create a basic Script Graph that uses the Input Manager to capture input:
 <li><p><a href="vs-open-graph-edit.md">Open</a> or <a href="vs-create-graph.md">create</a> a Script Graph attached to the GameObject that you want your users to move.</p></li>
 <li><p>If there isn't an <strong>On Update</strong> or similar Event node in your graph:</p>
     <ol type="a">
-        <li><p>[!include[open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]</p></li>
+        <li><p>[!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]</p></li>
         <li><p>Go to <strong>Events</strong> &gt; <strong>Lifecycle</strong>, or enter <strong>On Update</strong> in the search field.</p></li>
         <li><p>Select the <strong>On Update</strong> Event node to add it to the graph.</p></li>
     </ol>
 </li>
-<li><p>[!include[open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]</p></li>
+<li><p>[!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]</p></li>
 <div class="TIP"><h5>TIP</h5><p>If you right-click and the context menu appears, select <strong>Add Node</strong> to open the fuzzy finder.</p></div>
 <li><p>Go to <strong>Codebase</strong> &gt; <strong>Unity Engine</strong> &gt; <strong>Input</strong>, or enter <strong>Get Axis</strong> in the search field.</p></li>
 <li><p>Select <strong>Get Axis (Axis Name)</strong> to add the Get Axis node to the graph.</p></li>
@@ -22,7 +22,7 @@ To create a basic Script Graph that uses the Input Manager to capture input:
 <li><p>On the first Get Axis node, in the <strong>Axis Name</strong> input field, enter <code>Horizontal</code>.</p></li>
 <li><p>On the second Get Axis node, in the <strong>Axis Name</strong> input field, enter <code>Vertical</code>.</p></li>
 <div class="NOTE"><h5>NOTE</h5><p>If an Axis Name doesn't match the name in the Input Manager's Project Settings, Visual Scripting displays an error in the Graph Inspector. When you enter Play mode, the Unity Editor also displays an error in the Console window.</p></div>
-<li><p>[!include[open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]</p></li>
+<li><p>[!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]</p></li>
 <li><p>Go to <strong>Codebase</strong> &gt; <strong>Unity Engine</strong> &gt; <strong>Transform</strong> or search for <strong>Translate</strong>.</p></li>
 <li><p>Select <strong>Translate (X, Y, Z)</strong> to add a Translate node to the graph.</p></li>
 <li><p>Select the <strong>Result</strong> float output port on the <code>Horizontal</code> Get Axis node.</p></li>

@@ -282,6 +282,11 @@ namespace Unity.VisualScripting
             }
         }
 
+        internal static void Uninitialize_ForTesting()
+        {
+            initialized = false;
+        }
+
         private static void PerformUpdate()
         {
             if (plugins.Any(plugin => plugin.manifest.savedVersion != plugin.manifest.currentVersion))

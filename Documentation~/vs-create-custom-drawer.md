@@ -9,15 +9,15 @@ You can't assign a value to a custom type inside the Editor or initialize the va
 
 To create a custom PropertyDrawer: 
 
-1. [!include[open-project-window](./snippets/vs-open-project-window.md)]
+1. [!include[vs-open-project-window](./snippets/vs-open-project-window.md)]
 
-2. [!include[create-c-script-project](./snippets/vs-create-c-script-project.md)]
+2. [!include[vs-create-c-script-project](./snippets/vs-create-c-script-project.md)]
 
 3. Enter a name, such as `CounterDrawer`, for the new script file. 
 
 4. Press Enter.
 
-5. [!include[open-new-external-code](./snippets/vs-open-new-external-code.md)]
+5. [!include[vs-open-new-external-code](./snippets/vs-open-new-external-code.md)]
 
 6. Remove the `Start` and `Update` functions and their comments from the script file. 
 

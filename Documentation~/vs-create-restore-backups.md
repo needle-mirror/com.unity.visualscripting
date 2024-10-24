@@ -8,7 +8,7 @@ Back up your data before you update Visual Scripting to a new version. For more 
 
 To create a new backup of your Visual Scripting assets and settings: 
 
-1. [!include[open-project-settings](./snippets/vs-open-project-settings.md)]
+1. [!include[vs-open-project-settings](./snippets/vs-open-project-settings.md)]
 1. Select **Visual Scripting**.
 1. Select **Create Backup**, then select **OK**. 
 
@@ -18,7 +18,7 @@ Visual Scripting creates a .zip file, with a name in the format `Assets_YYYY_MM_
 
 To restore an existing backup of your Visual Scripting assets and settings: 
 
-1. [!include[open-project-settings](./snippets/vs-open-project-settings.md)] 
+1. [!include[vs-open-project-settings](./snippets/vs-open-project-settings.md)] 
 1. Select **Visual Scripting**.
 1. Select **Restore Backup**. 
 

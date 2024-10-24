@@ -4,7 +4,7 @@ You can also add [Graph Inspector](vs-interface-overview.md#the-graph-inspector)
 
 To add documentation to a node: 
 
-1. [!include[open-project-window](./snippets/vs-open-project-window.md)]
+1. [!include[vs-open-project-window](./snippets/vs-open-project-window.md)]
 
     > [!NOTE]
     > If you already have an **Editor** folder in your project, you can skip Steps 2-3. 
@@ -18,13 +18,13 @@ To add documentation to a node:
     - Right-click your **Editor** folder in the Project window's folder list. 
     - Right-click anywhere in the Project window's preview pane with your **Editor** folder selected.
 
-4. [!include[create-c-script](./snippets/vs-create-c-script-project.md)]
+4. [!include[vs-create-c-script](./snippets/vs-create-c-script-project.md)]
 
 5. Enter a name, such as `MyNodeDescriptor` for the new script file.
 
 1.  Press Enter.
 
-6. [!include[open-new-external-code](./snippets/vs-open-new-external-code.md)]
+6. [!include[vs-open-new-external-code](./snippets/vs-open-new-external-code.md)]
 
 7. In your external editor, copy and paste the following code into the C# script: 
 
@@ -64,14 +64,14 @@ To add documentation to a node:
     ```
     You can modify the script to suit the specifics of your own node.<br/>
 
-8. [!include[save-script](./snippets/vs-save-script.md)]
+8. [!include[vs-save-script](./snippets/vs-save-script.md)]
 
-1. [!include[return-unity](./snippets/vs-return-unity.md)]
+1. [!include[vs-return-unity](./snippets/vs-return-unity.md)]
 
 9. Do one of the following: 
 
-    - [!include[open-graph-w-node](./snippets/custom-c-nodes/vs-open-graph-w-node.md)].
-    - [!include[ff-add-node](./snippets/custom-c-nodes/vs-ff-add-node.md)]
+    - [!include[vs-open-graph-w-node](./snippets/custom-c-nodes/vs-open-graph-w-node.md)].
+    - [!include[vs-ff-add-node](./snippets/custom-c-nodes/vs-ff-add-node.md)]
 
 10. Select the node and open the [Graph Inspector](vs-interface-overview.md#the-graph-inspector) to view your documentation. 
 

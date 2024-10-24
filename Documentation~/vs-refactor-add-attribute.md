@@ -5,7 +5,7 @@ To use nodes generated from a custom C# script in a project after you rename a m
 To add the attribute to a C# script:
 
 <ol>
-<li><p>[!include[open-project-window](./snippets/vs-open-project-window.md)]</p></li>
+<li><p>[!include[vs-open-project-window](./snippets/vs-open-project-window.md)]</p></li>
 <li><p>In the Project window, double-click the C# script file you want to refactor. Unity opens the file in the program you specified in your preferences, under <strong>External Script Editor</strong>.</p>
 <div class="NOTE"><h5>NOTE</h5><p>For more information on script editors in Unity, see <a href="https://docs.unity3d.com/Manual/ScriptingToolsIDEs.html">Integrated development environment (IDE) support</a> in the Unity User Manual.</p></div>
 </li>
@@ -28,9 +28,9 @@ public class Player : MonoBehaviour
 }
 </code></pre>
 </ol></li>
-<li><p>[!include[save-script](./snippets/vs-save-script.md)]</p></li>
-<li><p>[!include[return-unity](./snippets/vs-return-unity.md)]</p></li>
-<li><p>[!include[regen-node-library](./snippets/vs-regen-node-library.md)]</p></li>
+<li><p>[!include[vs-save-script](./snippets/vs-save-script.md)]</p></li>
+<li><p>[!include[vs-return-unity](./snippets/vs-return-unity.md)]</p></li>
+<li><p>[!include[vs-regen-node-library](./snippets/vs-regen-node-library.md)]</p></li>
 </ol>
 
 > [!NOTE]

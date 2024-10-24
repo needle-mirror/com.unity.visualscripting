@@ -1,7 +1,7 @@
 # Create a Custom Scripting Event Sender node
 
 > [!NOTE] 
-> Before you create a Custom Scripting Event Sender node, you must create a Custom Scripting Event node. [!include[tasks-note-end](./snippets/custom-events/vs-tasks-note-end.md)].
+> Before you create a Custom Scripting Event Sender node, you must create a Custom Scripting Event node. [!include[vs-tasks-note-end](./snippets/custom-events/vs-tasks-note-end.md)].
 
 After you create a Custom Scripting Event node, you can create a Custom Scripting Event Sender node to trigger the Event from any other Script Graph in the same scene, or the same Script Graph. 
 
@@ -11,17 +11,17 @@ You can also choose to create a separate script to trigger the Event from code. 
 
 To create a Custom Scripting Event Sender node and add it to the fuzzy finder:
 
-1. [!include[open-project-window](./snippets/vs-open-project-window.md)]
+1. [!include[vs-open-project-window](./snippets/vs-open-project-window.md)]
 
-1. [!include[right-click-project](./snippets/custom-events/vs-right-click-project.md)]
+1. [!include[vs-right-click-project](./snippets/custom-events/vs-right-click-project.md)]
 
-1. [!include[create-c-script-project](./snippets/vs-create-c-script-project.md)]
+1. [!include[vs-create-c-script-project](./snippets/vs-create-c-script-project.md)]
 
 1. Enter a name, such as `SendMyEventNode`, for the new script file. 
 
 1. Press Enter. 
 
-1. [!include[open-new-external-code](./snippets/vs-open-new-external-code.md)]
+1. [!include[vs-open-new-external-code](./snippets/vs-open-new-external-code.md)]
 
 1. In your external editor, copy and paste the following code into the C# script: 
 
@@ -60,11 +60,11 @@ To create a Custom Scripting Event Sender node and add it to the fuzzy finder:
       }
    }
     ```
-1. [!include[save-script](./snippets/vs-save-script.md)] 
+1. [!include[vs-save-script](./snippets/vs-save-script.md)] 
 
-1. [!include[return-unity](./snippets/vs-return-unity.md)]
+1. [!include[vs-return-unity](./snippets/vs-return-unity.md)]
 
-1. [!include[regen-node-library](./snippets/vs-regen-node-library.md)]
+1. [!include[vs-regen-node-library](./snippets/vs-regen-node-library.md)]
 
 After you regenerate your Node Library, the Custom Scripting Event Sender node appears in the fuzzy finder. If you didn't change the `[UnitCategory]` or `[UnitTitle]` from the sample code, then the fuzzy finder displays the node under **Events** &gt; **MyEvents**, as the **Send My Custom Event** node. For more information on the fuzzy finder, see [The interface](vs-interface-overview.md#the-fuzzy-finder).
 
@@ -74,7 +74,7 @@ You might use your **Send My Custom Event** node to trigger your Event based on 
 
 1. [Open a Script Graph](vs-open-graph-edit.md) where you want to add the new node. This can be the same or a different Script Graph from the one that contains your Custom Scripting Event node. 
 
-2. [!include[open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]. 
+2. [!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]. 
 
 1. Go to **Events** &gt; **Input**.
 

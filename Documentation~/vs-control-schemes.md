@@ -41,19 +41,19 @@ You can also set your zoom level with the toolbar in the Graph window. For more 
 
 After you select a node or another item in your graph, press Home to center your selected item in the Graph Editor.
 
-![An image of the Graph window, with a Set Variable node selected and framed in the center of the Graph Editor.](images\vs-frame-selected.png)
+![An image of the Graph window, with a Set Variable node selected and framed in the center of the Graph Editor.](images/vs-frame-selected.png)
 
 ## Frame All 
 
 With no nodes or items selected, press Home to center your entire graph in the Graph Editor. Your zoom level automatically adjusts to accommodate the size of your graph. 
 
-![An image of the Graph window, with its entire Script Graph displayed in the Graph Editor. The zoom level has been set to 0.4x to display the entire graph.](images\vs-frame-all.png)
+![An image of the Graph window, with its entire Script Graph displayed in the Graph Editor. The zoom level has been set to 0.4x to display the entire graph.](images/vs-frame-all.png)
 
 ## Create Selection
 
 Click and drag to create a selection box around any nodes or items in your graph that you want to select. 
 
-![An image of the Graph window, with a selection box created around 4 nodes in the Graph Editor](images\vs-create-selection.png)
+![An image of the Graph window, with a selection box created around 4 nodes in the Graph Editor](images/vs-create-selection.png)
 
 When you have multiple items selected, click and drag a single item to move the entire selection. 
 
@@ -65,13 +65,13 @@ Press Ctrl+A (macOS: Cmd+A) to select all items in your current graph.
 
 You can open the context menu to perform certain actions on State Graphs or manipulate a selection in a Script Graph. You can create new states and add transitions.
 
-![An image of the Graph window. The context menu is open and displays the options for a selection in a Script Graph.](images\vs-context-menu.png)
+![An image of the Graph window. The context menu is open and displays the options for a selection in a Script Graph.](images/vs-context-menu.png)
 
 ## Create Node Group 
 
 Create a group of nodes to keep related sections of your graph together, or move multiple nodes at a time. For more information on node groups, see [Create node groups](vs-groups.md).
 
-![An image of the Graph window. A node group has been created around three nodes and named "Variable Input."](images\vs-node-group.png)
+![An image of the Graph window. A node group has been created around three nodes and named "Variable Input."](images/vs-node-group.png)
 
 ## Copy Selected 
 
@@ -88,7 +88,7 @@ Cut your current selection to move it to another graph, or another location on y
 
 Duplicate a selection to instantly create a copy of your current selection to use elsewhere in your current graph. 
 
-![An image of the Graph window. Three selected nodes have been duplicated and sit on top of the original nodes.](images\vs-duplicate-selection.png)
+![An image of the Graph window. Three selected nodes have been duplicated and sit on top of the original nodes.](images/vs-duplicate-selection.png)
 
 ## Delete Selected
 
@@ -102,7 +102,7 @@ After you dock the Graph window in the Unity Editor, press Shift+Space or double
 
 You can move a group in your graph without any of the nodes contained inside that group. 
 
-![An image of the Graph window with a node group moved to another location without its child nodes.](images\vs-move-group.png)
+![An image of the Graph window with a node group moved to another location without its child nodes.](images/vs-move-group.png)
 
 ## Move Node on One Axis 
 

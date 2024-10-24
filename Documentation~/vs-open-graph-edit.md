@@ -8,7 +8,7 @@ For information on how to create a new graph file, see [Create a new graph file]
 
 To open a graph from the Project window: 
 
-1. [!include[open-project-window](./snippets/vs-open-project-window.md)] 
+1. [!include[vs-open-project-window](./snippets/vs-open-project-window.md)] 
 
 2. Find the location in your Project window's folders where you saved the graph file you want to edit.
 
@@ -34,11 +34,11 @@ If you have a nested or embedded graph inside another graph file, you can open i
 
 If you've attached or embedded a graph in a Script Machine or State Machine on a GameObject, you can open the graph from the component on the GameObject: 
 
-1. [!include[open-hierarchy-window](./snippets/vs-open-hierarchy-window.md)]
+1. [!include[vs-open-hierarchy-window](./snippets/vs-open-hierarchy-window.md)]
 
 1. In the Hierarchy window, select the GameObject that has the Script Machine or State Machine with the graph you want to edit.   
 
-1. [!include[open-inspector-window](./snippets/vs-open-inspector-window.md)]
+1. [!include[vs-open-inspector-window](./snippets/vs-open-inspector-window.md)]
 
 2. On the Script Machine or State Machine component, select **Edit Graph**. 
 

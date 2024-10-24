@@ -2,7 +2,7 @@
 
 Visual Scripting's main window is the Graph window. 
 
-![An image of the Visual Scripting Graph window. The Graph Inspector and Blackboard are open and a graph is visible in the other half of the window.](images\vs-graph-window-overview.png)
+![An image of the Visual Scripting Graph window. The Graph Inspector and Blackboard are open and a graph is visible in the other half of the window.](images/vs-graph-window-overview.png)
 
 The Graph window has five main elements: 
 
@@ -16,7 +16,7 @@ The Graph window has five main elements:
 
 The Graph Editor is the center editing area of the Graph window.
 
-![An image of the Graph Editor. It displays a graph with multiple nodes and connections.](images\vs-graph-editor.png)
+![An image of the Graph Editor. It displays a graph with multiple nodes and connections.](images/vs-graph-editor.png)
 
 You can use the Graph Editor to create your Visual Scripting graphs. You can create nodes and connect them with edges. 
 
@@ -26,7 +26,7 @@ You can change some default shortcuts and behaviors in the Graph Editor through 
 
 The fuzzy finder is a searchable menu that lists every node available in Visual Scripting. Right-click anywhere in the Graph Editor to open the fuzzy finder. 
 
-![An image of the Graph Editor, with the fuzzy finder menu open](images\vs-fuzzy-finder.png)
+![An image of the Graph Editor, with the fuzzy finder menu open](images/vs-fuzzy-finder.png)
 
 Search for a node by name with the Search bar, or open a category from the list to view related nodes. For example, nodes related to the creation or manipulation of variables are in the **Variables** category.
 
@@ -38,7 +38,7 @@ The Graph toolbar lets you display or hide the Graph Inspector and Blackboard. T
 
 You can also configure some additional settings that control how nodes display in the Graph Editor.
 
-![An image of the Graph toolbar](images\vs-toolbar.png)
+![An image of the Graph toolbar](images/vs-toolbar.png)
 
 <table>
 <thead>
@@ -165,23 +165,23 @@ Your Visual Scripting preferences can change some settings in the Graph toolbar 
 
 The Graph Inspector provides additional information about an open graph, or about any node you select in the Graph Editor.
 
-![An image of the Graph Inspector with a Switch on String node selected](images\vs-graph-inspector-switch-node.png)
+![An image of the Graph Inspector with a Switch on String node selected](images/vs-graph-inspector-switch-node.png)
 
 If a node requires additional configuration, you can use the Graph Inspector to set these values. 
 
-To display or hide the Graph Inspector, select **Graph Inspector** (![The Graph Inspector icon, of a grey circle with a black, lower case letter "i" in the center.](images\vs-graph-inspector-icon.png)) from the toolbar.
+To display or hide the Graph Inspector, select **Graph Inspector** (![The Graph Inspector icon, of a grey circle with a black, lower case letter "i" in the center.](images/vs-graph-inspector-icon.png)) from the toolbar.
 
-To move the Graph Inspector to the other side of the Graph window, select either **Dock Right** (![The Dock Right button. An arrow points to the right side of a rectangle.](images\VS-RightSide.png)) or **Dock Left** (![The Dock Left button. An arrow points to the left side of a rectangle.](images\VS-LeftSide.png)).
+To move the Graph Inspector to the other side of the Graph window, select either **Dock Right** (![The Dock Right button. An arrow points to the right side of a rectangle.](images/VS-RightSide.png)) or **Dock Left** (![The Dock Left button. An arrow points to the left side of a rectangle.](images/VS-LeftSide.png)).
 
 ## The Blackboard 
 
 The Blackboard provides options to configure and manage variables in a graph. The Blackboard divides variables into five distinct scopes, across five tabs: **Graph**, **Object**, **Scene**, **App**, and **Saved**. 
 
-![An image of the Blackboard open to the Graph variables tab](images\vs-blackboard.png)
+![An image of the Blackboard open to the Graph variables tab](images/vs-blackboard.png)
 
 For more information on the available variable scopes in Visual Scripting, see [Variables](vs-variables.md).
 
-To display or hide the Blackboard, select **Blackboard** (![The Blackboard icon. A letter "x" is surrounded by angled brackets.](images\vs-blackboard-icon.png)) from the toolbar.
+To display or hide the Blackboard, select **Blackboard** (![The Blackboard icon. A letter "x" is surrounded by angled brackets.](images/vs-blackboard-icon.png)) from the toolbar.
 
-To move the Blackboard to the other side of the Graph window, select either **Dock Right** (![The Dock Right button. An arrow points to the right side of a rectangle.](images\VS-RightSide.png)) or **Dock Left** (![The Dock Left button. An arrow points to the left side of a rectangle.](images\VS-LeftSide.png)).
+To move the Blackboard to the other side of the Graph window, select either **Dock Right** (![The Dock Right button. An arrow points to the right side of a rectangle.](images/VS-RightSide.png)) or **Dock Left** (![The Dock Left button. An arrow points to the left side of a rectangle.](images/VS-LeftSide.png)).
 

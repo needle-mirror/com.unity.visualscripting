@@ -2,7 +2,7 @@
 
 You can use the empty graph creation flow to create a new unassigned graph for use in your project. 
 
-![The Empty Graph Creation Flow window](images\vs-empty-graph-create-flow.png)
+![The Empty Graph Creation Flow window](images/vs-empty-graph-create-flow.png)
 
 > [!NOTE]
 > To use the graph file, you must [attach it to a Script Machine or State Machine](vs-attach-graph-machine.md).
@@ -11,7 +11,7 @@ For more information on other ways to create a graph file, see [Create a new gra
 
 To create a new unassigned graph: 
 
-1. [!include[visual-scripting-window](./snippets/vs-visual-scripting-window.md)]
+1. [!include[vs-visual-scripting-window](./snippets/vs-visual-scripting-window.md)]
 
 2. In the new Visual Scripting window, select one of the following options: 
 
@@ -28,7 +28,7 @@ To create a new unassigned graph:
 
 The new graph file should look similar to the following image: 
 
-![A new Script Graph, created with the empty graph creation flow with starter nodes](images\vs-new-graph-starter-nodes.png)
+![A new Script Graph, created with the empty graph creation flow with starter nodes](images/vs-new-graph-starter-nodes.png)
 
 ## Next steps 
 

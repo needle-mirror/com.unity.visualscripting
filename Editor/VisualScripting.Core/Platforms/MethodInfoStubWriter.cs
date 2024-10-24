@@ -77,7 +77,7 @@ namespace Unity.VisualScripting
                     direction = FieldDirection.Out;
                     includesOutOrRef = true;
                 }
-                else if (parameterInfo.ParameterType.IsByRef)
+                else if (parameterInfo.ParameterType.IsByRef && !parameterInfo.IsIn)
                 {
                     direction = FieldDirection.Ref;
                     includesOutOrRef = true;

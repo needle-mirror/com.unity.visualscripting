@@ -7,9 +7,9 @@ After you [add ports](vs-create-custom-node-add-ports.md) and [add logic](vs-cre
 
 To add relations to a node: 
 
-1. [!include[open-project-window](./snippets/vs-open-project-window.md)]
+1. [!include[vs-open-project-window](./snippets/vs-open-project-window.md)]
 
-2. [!include[open-existing-external-code](./snippets/vs-open-existing-external-code.md)]
+2. [!include[vs-open-existing-external-code](./snippets/vs-open-existing-external-code.md)]
 
 3. In your external editor, add relations in the format `$RelationType$($Port1$, $Port2$)`, where `$RelationType$` is the relation type you want to assign between the ports you specify as `$Port1$` or `$Port2$`. 
 
@@ -62,14 +62,14 @@ To add relations to a node:
 
     For more information on relation types, see [Custom C# nodes](vs-create-custom-node.md#relation-types).
 
-4. [!include[save-script](./snippets/vs-save-script.md)]
+4. [!include[vs-save-script](./snippets/vs-save-script.md)]
 
-1. [!include[return-unity](./snippets/vs-return-unity.md)]
+1. [!include[vs-return-unity](./snippets/vs-return-unity.md)]
 
 5. Do one of the following: 
 
-    - [!include[open-graph-w-node](./snippets/custom-c-nodes/vs-open-graph-w-node.md)].
-    - [!include[ff-add-node](./snippets/custom-c-nodes/vs-ff-add-node.md)]
+    - [!include[vs-open-graph-w-node](./snippets/custom-c-nodes/vs-open-graph-w-node.md)].
+    - [!include[vs-ff-add-node](./snippets/custom-c-nodes/vs-ff-add-node.md)]
 
 6. In the [Graph toolbar](vs-interface-overview.md#the-graph-toolbar), enable **Relations**. 
 

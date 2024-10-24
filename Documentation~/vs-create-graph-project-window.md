@@ -6,7 +6,7 @@ For more information on other ways to create a new graph file, see [Create a new
 
 To create a new blank graph: 
 
-1. [!include[open-project-window](./snippets/vs-open-project-window.md)]
+1. [!include[vs-open-project-window](./snippets/vs-open-project-window.md)]
 
 2. Right-click a folder in the Project window's folder list, or anywhere in the Project window's preview pane, and go to **Create** &gt; **Visual Scripting**.
 
@@ -21,7 +21,7 @@ To create a new blank graph:
 
 When you open the new graph file, the graph might look similar to the following example.
 
-![A new empty Script Graph, created with the Project window. It has no starter nodes](images\vs-new-graph-empty.png)
+![A new empty Script Graph, created with the Project window. It has no starter nodes](images/vs-new-graph-empty.png)
 
 ## Next steps 
 

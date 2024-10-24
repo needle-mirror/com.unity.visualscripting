@@ -8,7 +8,7 @@ You can add a Subgraph to a Script Graph in two ways: create an entirely new Scr
 
 To add a new blank Subgraph to an existing Script Graph: 
 
-1. [!include[with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]. Go to **Nesting** and select **Subgraph**. 
+1. [!include[vs-with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]. Go to **Nesting** and select **Subgraph**. 
 
 2. In the Graph Inspector, choose the **Source** for your Subgraph: 
 
@@ -16,7 +16,7 @@ To add a new blank Subgraph to an existing Script Graph:
    - **Graph**: The Subgraph exists in a separate file. You can modify the Subgraph outside of its parent graph and reuse the graph in other areas of your application. 
    <br/>
 
-   [!include[graph-inspector-tip.md](./snippets/vs-graph-inspector-tip.md)]
+   [!include[vs-graph-inspector-tip.md](./snippets/vs-graph-inspector-tip.md)]
 
 3. If you chose **Graph**, select **New**, enter a name for your graph file, and choose where you want to save it. Select **Save**. 
 
@@ -29,12 +29,12 @@ To add an existing graph file as a Subgraph in a Script Graph:
 > [!NOTE]
 > You can't nest a Script Graph as a Subgraph in its own graph file. 
 
-1. [!include[with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]. Go to **Nesting** and select **Subgraph**. 
+1. [!include[vs-with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]. Go to **Nesting** and select **Subgraph**. 
 
 2. In the Graph Inspector, set your **Source** to **Graph**. 
    <br/>
 
-   [!include[graph-inspector-tip.md](./snippets/vs-graph-inspector-tip.md)]
+   [!include[vs-graph-inspector-tip.md](./snippets/vs-graph-inspector-tip.md)]
 
 3. In the **Graph** field, select the object picker (circle icon) and choose a compatible Script Graph from your project. You can also click and drag a Script Graph file from your Project window and drop it into the **Graph** field. 
 

@@ -258,6 +258,12 @@ namespace Unity.VisualScripting.Dependencies.NCalc
                     Result = Mathf.Floor(ConversionUtility.Convert<float>(Evaluate(function.Expressions[0])));
                     break;
 
+                case "truncate":
+                    CheckCase(function, "Truncate");
+                    CheckExactArgumentCount(function, 1);
+                    Result = Mathf.FloorToInt(ConversionUtility.Convert<float>(Evaluate(function.Expressions[0])));
+                    break;
+
                 case "log":
                     CheckCase(function, "Log");
                     CheckExactArgumentCount(function, 2);

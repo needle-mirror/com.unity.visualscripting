@@ -9,11 +9,11 @@ You must add the Player Input component and create the Input Actions asset befor
 
 To add a Player Input component to a GameObject:
 
-1. [!include[open-hierarchy-window](./snippets/vs-open-hierarchy-window.md)]
+1. [!include[vs-open-hierarchy-window](./snippets/vs-open-hierarchy-window.md)]
 
 2. In the Hierarchy window, select the GameObject that you want to move with the Script Graph.
 
-3. [!include[open-inspector-window](./snippets/vs-open-inspector-window.md)]
+3. [!include[vs-open-inspector-window](./snippets/vs-open-inspector-window.md)]
 
 4. Select **Add Component**. 
     The Components menu opens. 

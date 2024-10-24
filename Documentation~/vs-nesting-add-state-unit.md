@@ -9,7 +9,7 @@ You can add a new State Graph to a State Unit node, or use an existing State Gra
 To add a new blank State Graph as a State Unit node to a Script Graph: 
 
 <ol>
-<li><p>[!include[with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]</p></li>
+<li><p>[!include[vs-with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]</p></li>
 <li><p>Go to <strong>Nesting</strong>.</p></li>
 <li><p>Select <strong>State Unit</strong> to add a State Unit node to the graph.</p></li>
 <li><p>Open the <a href="vs-interface-overview.md#the-graph-inspector">Graph Inspector</a>.</p></li>
@@ -35,7 +35,7 @@ To add a new blank State Graph as a State Unit node to a Script Graph:
 
 To add an existing State Graph file as a State Unit node in a Script Graph: 
 
-1. [!include[with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)] 
+1. [!include[vs-with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)] 
 
 2. Go to **Nesting**.
 

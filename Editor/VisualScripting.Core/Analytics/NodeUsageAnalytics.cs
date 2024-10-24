@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Unity.CodeEditor;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 namespace Unity.VisualScripting.Analytics
 {
@@ -11,7 +13,9 @@ namespace Unity.VisualScripting.Analytics
         private const int MaxNumberOfElements = 1000;
         private const string VendorKey = "unity.visualscripting";
         private const string EventName = "VScriptNodeUsage";
+#if !UNITY_2023_2_OR_NEWER
         private static bool _isRegistered = false;
+#endif
 
         private const int NodeUseLimitBeforeSend = 100;
         private static bool _interruptEventsRegistered = false;
@@ -61,6 +65,17 @@ namespace Unity.VisualScripting.Analytics
             return aid.Hashcode.ToString();
         }
 
+#if UNITY_2023_2_OR_NEWER
+        private static void Send()
+        {
+            if (!EditorAnalytics.enabled)
+                return;
+
+            EditorAnalytics.SendAnalytic(new NodeUsageAnalytic(_collectedData));
+
+            ResetCollectedData();
+        }
+#else
         private static void Send()
         {
             if (!EditorAnalytics.enabled)
@@ -87,6 +102,7 @@ namespace Unity.VisualScripting.Analytics
 
             return _isRegistered;
         }
+#endif
 
         private static void EnsureInterruptEventsRegistered()
         {
@@ -111,8 +127,31 @@ namespace Unity.VisualScripting.Analytics
             };
         }
 
+#if UNITY_2023_2_OR_NEWER
+        [AnalyticInfo(eventName: EventName, vendorKey: VendorKey, maxEventsPerHour:MaxEventsPerHour, maxNumberOfElements:MaxNumberOfElements)]
+        class NodeUsageAnalytic : IAnalytic
+        {
+            private Data data;
+
+            public NodeUsageAnalytic(Data data)
+            {
+                this.data = data;
+            }
+
+            public bool TryGatherData(out IAnalytic.IData data, out Exception error)
+            {
+                error = null;
+                data = this.data;
+                return data != null;
+            }
+        }
+
+        [Serializable]
+        private class Data : IAnalytic.IData
+#else
         [Serializable]
         private class Data
+#endif
         {
             [SerializeField]
             internal List<NodeCount> nodeUsageCount;

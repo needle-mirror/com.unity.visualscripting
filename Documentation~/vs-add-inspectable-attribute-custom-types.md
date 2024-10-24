@@ -6,13 +6,13 @@ For more information about how to use custom types in Visual Scripting, see [Use
 
 To add the `[Inspectable]` attribute to the source code for a custom type: 
 
-1. [!include[open-existing-external-code](./snippets/vs-open-existing-external-code.md)]
+1. [!include[vs-open-existing-external-code](./snippets/vs-open-existing-external-code.md)]
 
 2. In your external editor, on a line above your `public class` definition, add the `[Inspectable]` attribute.
 
 1. On a line above the properties you want to have available in the Unity Inspector, add the `[Inspectable]` attribute. 
 
-1. [!include[regen-node-library](./snippets/vs-regen-node-library.md)]
+1. [!include[vs-regen-node-library](./snippets/vs-regen-node-library.md)]
 
 The following is an example of a public class, with fields `name` and `amount` that are accessible and can be modified through Unity's Inspector window. 
 

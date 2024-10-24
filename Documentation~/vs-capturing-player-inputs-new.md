@@ -7,7 +7,7 @@ To use the Input System package with Visual Scripting to capture input in your p
 
 1. [Open](vs-open-graph-edit.md) or [create](vs-create-graph.md) a Script Graph attached to the GameObject that you want your users to move. 
 
-2. [!include[open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]
+2. [!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]
 
 3. Go to **Events** &gt; **Input** or search for **On Input System Event**.
 
@@ -22,7 +22,7 @@ To use the Input System package with Visual Scripting to capture input in your p
     > [!NOTE]
     > By default, Visual Scripting displays all Input Actions from the Input Action asset attached to your current GameObject's Player Input component. 
 
-7. [!include[open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]
+7. [!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]
 
    > [!TIP]
    > If a context menu appears when you right-click, select **Add Node** to open the fuzzy finder.
@@ -31,7 +31,7 @@ To use the Input System package with Visual Scripting to capture input in your p
 
 9. Select **Get X** to add the **Vector 3 Get X** node to the graph.  
 
-10. [!include[open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]
+10. [!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]
 
 11. Go to **Codebase** &gt; **Unity Engine** &gt; **Vector 3** or search for **Vector 3 Get Z**. 
     
@@ -47,7 +47,7 @@ To use the Input System package with Visual Scripting to capture input in your p
  
 16. [Make a connection](vs-creating-connections.md) to the **Target** port on the **Vector 3 Get Z** node. 
 
-17. [!include[open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)] 
+17. [!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)] 
 
 18. Go to **Codebase** &gt; **Unity Engine** &gt; **Transform** or search for **Translate**. 
 

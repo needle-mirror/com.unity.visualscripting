@@ -7,7 +7,7 @@ Use the Project Settings window with Visual Scripting to manage backups, node as
 
 To open your Project Settings: 
 
-1. [!include[open-project-settings](./snippets/vs-open-project-settings.md)]
+1. [!include[vs-open-project-settings](./snippets/vs-open-project-settings.md)]
 1. Select **Visual Scripting**.  
 
 You can find the following configuration options in your Visual Scripting Project Settings. To use Visual Scripting in a project for the first time, you must [regenerate your Node Library](#Regen), as described in the table below. 

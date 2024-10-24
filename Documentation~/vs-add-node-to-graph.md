@@ -7,7 +7,7 @@ All logic in a Script Graph starts with a node.
 
 To add a node to a Script Graph: 
 
-1. [!include[with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]
+1. [!include[vs-with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]
 
 2. In the fuzzy finder, enter a search term into the Search bar or select a category from the list to find related nodes. 
   Categories have an arrow (>) at the end of their entry in the fuzzy finder. 

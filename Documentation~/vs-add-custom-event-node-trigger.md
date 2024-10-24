@@ -9,7 +9,7 @@ To add a Custom Event Trigger node to a Script Graph:
 
 1. [Open the Script Graph](vs-open-graph-edit.md) where you want to add a Custom Event Trigger node. This can be the same graph or a different graph from where you added a Custom Event node.
 
-2. [!include[open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]. 
+2. [!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]. 
 
 1. Go to **Events**.
 

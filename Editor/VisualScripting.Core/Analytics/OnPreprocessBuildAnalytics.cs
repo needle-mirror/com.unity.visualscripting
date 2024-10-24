@@ -1,6 +1,7 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 namespace Unity.VisualScripting.Analytics
 {
@@ -10,8 +11,19 @@ namespace Unity.VisualScripting.Analytics
         private const int MaxNumberOfElements = 1000;
         private const string VendorKey = "unity.visualscripting";
         private const string EventName = "VScriptOnPreprocessBuild";
+#if !UNITY_2023_2_OR_NEWER
         private static bool _isRegistered = false;
+#endif
 
+#if UNITY_2023_2_OR_NEWER
+        internal static void Send(Data data)
+        {
+            if (!EditorAnalytics.enabled)
+                return;
+            
+            EditorAnalytics.SendAnalytic(new OnPreprocessBuildAnalytic(data));
+        }
+#else
         internal static void Send(Data data)
         {
             if (!EditorAnalytics.enabled)
@@ -36,9 +48,33 @@ namespace Unity.VisualScripting.Analytics
 
             return _isRegistered;
         }
+#endif
+
+#if UNITY_2023_2_OR_NEWER
+        [AnalyticInfo(eventName: EventName, vendorKey: VendorKey, maxEventsPerHour:MaxEventsPerHour, maxNumberOfElements:MaxNumberOfElements)]
+        class OnPreprocessBuildAnalytic : IAnalytic
+        {
+            private Data data;
+
+            public OnPreprocessBuildAnalytic(Data data)
+            {
+                this.data = data;
+            }
+
+            public bool TryGatherData(out IAnalytic.IData data, out Exception error)
+            {
+                error = null;
+                data = this.data;
+                return data != null;
+            }
+        }
 
         [Serializable]
+        internal struct Data : IAnalytic.IData
+#else
+        [Serializable]
         internal struct Data
+#endif
         {
             [SerializeField]
             internal string guid;

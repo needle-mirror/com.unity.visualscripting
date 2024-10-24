@@ -6,11 +6,11 @@ You can create a new graph file directly from a Script Machine or State Machine 
 
 To create a new graph file from an existing Script Machine or State Machine: 
 
-1. [!include[open-hierarchy-window](./snippets/vs-open-hierarchy-window.md)]
+1. [!include[vs-open-hierarchy-window](./snippets/vs-open-hierarchy-window.md)]
 
 1. In the Hierarchy window, select a GameObject that has a Script Machine or State Machine. 
 
-2. [!include[open-inspector-window](./snippets/vs-open-inspector-window.md)] 
+2. [!include[vs-open-inspector-window](./snippets/vs-open-inspector-window.md)] 
 
 3. In the Inspector window, on your Script Machine or State Machine component, set the **Source** set to **Graph**. 
 
@@ -22,17 +22,17 @@ To create a new graph file from an existing Script Machine or State Machine:
 
 1. Select **Save**.
 
-![A new Script Machine with an attached Script Graph](images\vs-script-machine.png)
+![A new Script Machine with an attached Script Graph](images/vs-script-machine.png)
 
 ## Create a new embedded graph on a Script Machine or State Machine 
 
 You can create an embedded graph on a Script Machine or State Machine component instead of  an external graph file: 
 
-1. [!include[open-hierarchy-window](./snippets/vs-open-hierarchy-window.md)]
+1. [!include[vs-open-hierarchy-window](./snippets/vs-open-hierarchy-window.md)]
 
 1. In the Hierarchy window, select a GameObject that has a Script Machine or State Machine. 
 
-2. [!include[open-inspector-window](./snippets/vs-open-inspector-window.md)] 
+2. [!include[vs-open-inspector-window](./snippets/vs-open-inspector-window.md)] 
 
 3. In the Inspector window, on your Script Machine or State Machine component, set the **Source** to **Embed**. 
 

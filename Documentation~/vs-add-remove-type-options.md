@@ -8,7 +8,7 @@ You can't use a node that has an input or output type that isn't listed in your 
 
 To add a new type to your Type Options list: 
 
-1. [!include[open-project-settings](./snippets/vs-open-project-settings.md)]
+1. [!include[vs-open-project-settings](./snippets/vs-open-project-settings.md)]
 1. Select **Visual Scripting**.
 1. Expand **Type Options**. 
 1. At the end of the types list, select **Add** (+).
@@ -21,7 +21,7 @@ Visual Scripting adds the new type to your Type Options. To use nodes with the t
 
 To remove a type from your Type Options list: 
 
-1. [!include[open-project-settings](./snippets/vs-open-project-settings.md)]
+1. [!include[vs-open-project-settings](./snippets/vs-open-project-settings.md)]
 1. Select **Visual Scripting**.
 1. Expand **Type Options**. 
 1. In the types list, locate the entry for the type you want to remove. 

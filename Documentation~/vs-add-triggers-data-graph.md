@@ -10,7 +10,7 @@ To add a Trigger Input, Trigger Output, Data Input, or Data Output port to a Scr
 
 2. With no nodes selected, in the Graph Inspector, select **Add** (+) under the port type you want to add to your Script Graph: **Trigger Inputs**, **Trigger Outputs**, **Data Inputs**, or **Data Outputs**. 
 
-    [!include[graph-inspector-tip](./snippets/vs-graph-inspector-tip.md)]
+    [!include[vs-graph-inspector-tip](./snippets/vs-graph-inspector-tip.md)]
 
 3. In the **Key** field, enter a unique key name for your port. This name can't be the same as any existing ports on your currently selected Script Graph. 
 

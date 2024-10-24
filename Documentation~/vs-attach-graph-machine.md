@@ -6,11 +6,11 @@ A Script Machine or State Machine is a component. Components attach to GameObjec
 
 ## Add a Script Machine or State Machine component to a GameObject
 
-1. [!include[open-hierarchy](./snippets/vs-open-hierarchy-window.md)]
+1. [!include[vs-open-hierarchy](./snippets/vs-open-hierarchy-window.md)]
 
 1. In the Hierarchy window, select a GameObject where you'd like to add a Script Machine or State Machine. 
 
-2. [!include[open-inspector-window](./snippets/vs-open-inspector-window.md)]  
+2. [!include[vs-open-inspector-window](./snippets/vs-open-inspector-window.md)]  
 
 3. In the GameObject's Inspector window, select **Add Component**. 
     
@@ -22,7 +22,7 @@ A Script Machine or State Machine is a component. Components attach to GameObjec
 
 The new Script Machine or State Machine component appears in the Inspector window for the GameObject:
 
-![A new blank Script Machine component in the Inspector window for a GameObject](images\vs-script-machine-blank.png)
+![A new blank Script Machine component in the Inspector window for a GameObject](images/vs-script-machine-blank.png)
 
 ## Attach a graph file to the Script Machine or State Machine 
 

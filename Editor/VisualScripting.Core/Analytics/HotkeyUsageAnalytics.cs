@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 namespace Unity.VisualScripting.Analytics
 {
@@ -11,7 +12,9 @@ namespace Unity.VisualScripting.Analytics
         private const int MaxNumberOfElements = 1000;
         private const string VendorKey = "unity.visualscripting";
         private const string EventName = "VScriptHotkeyUsage";
+#if !UNITY_2023_2_OR_NEWER
         private static bool _isRegistered = false;
+#endif
 
         private const int HotkeyUseLimitBeforeSend = 10000;
         private static bool _interruptEventsRegistered = false;
@@ -47,6 +50,26 @@ namespace Unity.VisualScripting.Analytics
                 Send();
         }
 
+#if UNITY_2023_2_OR_NEWER
+        private static void Send()
+        {
+            if (!EditorAnalytics.enabled)
+                return;
+
+            // Because dicts aren't serializable, convert it to a list right before we send
+            foreach (var count in _collectedData.HotkeyUsageCountDict)
+            {
+                var c = new HotkeyStringUsageCount();
+                c.hotkey = count.Key;
+                c.count = count.Value;
+                _collectedData.hotkeyUsageCount.Add(c);
+            }
+
+            EditorAnalytics.SendAnalytic(new HotkeyUsageAnalytic(_collectedData));
+
+            ResetCollectedData();
+        }
+#else
         private static void Send()
         {
             if (!EditorAnalytics.enabled)
@@ -82,6 +105,7 @@ namespace Unity.VisualScripting.Analytics
 
             return _isRegistered;
         }
+#endif
 
         private static void EnsureInterruptEventsRegistered()
         {
@@ -119,8 +143,30 @@ namespace Unity.VisualScripting.Analytics
             };
         }
 
+#if UNITY_2023_2_OR_NEWER
+        [AnalyticInfo(eventName: EventName, vendorKey: VendorKey, maxEventsPerHour:MaxEventsPerHour, maxNumberOfElements:MaxNumberOfElements)]
+        class HotkeyUsageAnalytic : IAnalytic
+        {
+            private Data data;
+            public HotkeyUsageAnalytic(Data data)
+            {
+                this.data = data;
+            }
+
+            public bool TryGatherData(out IAnalytic.IData data, out Exception error)
+            {
+                error = null;
+                data = this.data;
+                return data != null;
+            }
+        }
+
+        [Serializable]
+        private class Data : IAnalytic.IData
+#else
         [Serializable]
         private class Data
+#endif
         {
             // Note: using strings instead of enums to make it resilient to enum order changing
             [SerializeField]

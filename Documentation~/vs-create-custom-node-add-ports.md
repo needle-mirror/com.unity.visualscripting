@@ -7,9 +7,9 @@ After you create a Custom C# node, add ports to allow the node to send and recei
 
 To add ports to a node: 
 
-1. [!include[open-project-window](./snippets/vs-open-project-window.md)]
+1. [!include[vs-open-project-window](./snippets/vs-open-project-window.md)]
 
-2. [!include[open-existing-external-code](./snippets/vs-open-existing-external-code.md)]
+2. [!include[vs-open-existing-external-code](./snippets/vs-open-existing-external-code.md)]
 
 ## Add control ports 
 
@@ -40,13 +40,13 @@ To add ports to a node:
     }
 
     ```
-5. [!include[save-script](./snippets/vs-save-script.md)]
+5. [!include[vs-save-script](./snippets/vs-save-script.md)]
 
-1. [!include[return-unity](./snippets/vs-return-unity.md)]
+1. [!include[vs-return-unity](./snippets/vs-return-unity.md)]
 
 6. Do one of the following: 
-    - [!include[open-graph-w-node](./snippets/custom-c-nodes/vs-open-graph-w-node.md)].
-    - [!include[ff-add-node](./snippets/custom-c-nodes/vs-ff-add-node.md)]
+    - [!include[vs-open-graph-w-node](./snippets/custom-c-nodes/vs-open-graph-w-node.md)].
+    - [!include[vs-ff-add-node](./snippets/custom-c-nodes/vs-ff-add-node.md)]
 
     If you used the previous code sample, Visual Scripting adds input and output control ports to the node. 
 
@@ -101,13 +101,13 @@ To add ports to a node:
     }
 
     ```
-5. [!include[save-script](./snippets/vs-save-script.md)]
+5. [!include[vs-save-script](./snippets/vs-save-script.md)]
 
-1. [!include[return-unity](./snippets/vs-return-unity.md)]
+1. [!include[vs-return-unity](./snippets/vs-return-unity.md)]
 
 11. Do one of the following: 
-    - [!include[open-graph-w-node](./snippets/custom-c-nodes/vs-open-graph-w-node.md)].
-    - [!include[ff-add-node](./snippets/custom-c-nodes/vs-ff-add-node.md)]
+    - [!include[vs-open-graph-w-node](./snippets/custom-c-nodes/vs-open-graph-w-node.md)].
+    - [!include[vs-ff-add-node](./snippets/custom-c-nodes/vs-ff-add-node.md)]
 
     If you used the previous code sample, Visual Scripting adds two input ports, **My Value A** and **My Value B**, and one output port, **Result** to the node. 
 

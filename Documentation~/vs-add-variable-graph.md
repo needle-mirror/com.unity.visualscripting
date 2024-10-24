@@ -35,7 +35,7 @@ Visual Scripting adds a new Get Variable node for your variable to your graph.
 
 To create a Flow variable or another new variable directly in a graph: 
 
-1. [!include[with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]
+1. [!include[vs-with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]
 
 2. Select the **Variables** category. 
 

@@ -298,7 +298,7 @@ namespace Unity.VisualScripting
 
         private static EditorTexture GetBuiltInUnityTypeIcon(Type type)
         {
-            var icon = (Texture2D)EditorGUIUtility.ObjectContent(null, type).image;
+            var icon = AssetPreview.GetMiniTypeThumbnail(type);
 
             // Change the blank file icon to a Unity-logo file icon
             if (icon == EditorGUIUtility.FindTexture("DefaultAsset Icon"))

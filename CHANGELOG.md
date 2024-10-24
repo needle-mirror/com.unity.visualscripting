@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.9.5] - 2024-10-24
+### Fixed
+- Fixed "NullReferenceException" error when returning to the State Graph from the Script Graph. [UVSB-1905](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-1905)
+- Fixed compilation error when a graph contains a reference to a method with an "in" parameter. [UVSB-2544](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2487)
+- Added missing truncate function to Formula node [UVSB-2526](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2525)
+- Fixed an error when creating a Script Graph asset in an empty project
+
+### Changed
+- Updated deprecated EditorAnalytics APIs to new ones
+
 ## [1.9.4] - 2024-04-08
 ### Fixed
 - Fixed sqlite dll changes not being recognized correctly by the 2022.3 Unity Editor

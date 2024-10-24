@@ -1,4 +1,6 @@
+using System;
 using UnityEditor;
+using UnityEngine.Analytics;
 
 namespace Unity.VisualScripting
 {
@@ -8,11 +10,38 @@ namespace Unity.VisualScripting
         const int k_MaxNumberOfElements = 1000;
         const string k_VendorKey = "unity.bolt";
         const string k_EventName = "BoltUsage";
+#if !UNITY_2023_2_OR_NEWER
         static bool isRegistered = false;
+#endif
 
+        internal static void CollectAndSendForType<T>(string[] paths)
+        {
+            if (!EditorAnalytics.enabled || !VSUsageUtility.isVisualScriptingUsed)
+                return;
+
+            foreach (string path in paths)
+            {
+                Type assetType = AssetDatabase.GetMainAssetTypeAtPath(path);
+                if (assetType == typeof(T))
+                {
+                    CollectAndSend();
+                    return;
+                }
+            }
+        }
+
+#if UNITY_2023_2_OR_NEWER
         public static void CollectAndSend()
         {
-            if (!EditorAnalytics.enabled)
+            if (!EditorAnalytics.enabled || !VSUsageUtility.isVisualScriptingUsed)
+                return;
+
+            EditorAnalytics.SendAnalytic(new UsageAnalytic(CollectData()));
+        }
+#else
+        public static void CollectAndSend()
+        {
+            if (!EditorAnalytics.enabled || !VSUsageUtility.isVisualScriptingUsed)
                 return;
 
             if (!RegisterEvent())
@@ -36,6 +65,7 @@ namespace Unity.VisualScripting
 
             return isRegistered;
         }
+#endif
 
         private static UsageAnalyticsData CollectData()
         {
@@ -47,7 +77,27 @@ namespace Unity.VisualScripting
             return data;
         }
 
+#if UNITY_2023_2_OR_NEWER
+        [AnalyticInfo(eventName: k_EventName, vendorKey: k_VendorKey, maxEventsPerHour:k_MaxEventsPerHour, maxNumberOfElements:k_MaxNumberOfElements)]
+        class UsageAnalytic : IAnalytic
+        {
+            private UsageAnalyticsData data;
+            public UsageAnalytic(UsageAnalyticsData data)
+            {
+                this.data = data;
+            }
+
+            public bool TryGatherData(out IAnalytic.IData data, out Exception error)
+            {
+                error = null;
+                data = this.data;
+                return data != null;
+            }
+        }
+        private struct UsageAnalyticsData: IAnalytic.IData
+#else
         private struct UsageAnalyticsData
+#endif
         {
             public string productVersion;
         }

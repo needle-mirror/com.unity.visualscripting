@@ -77,7 +77,7 @@ For this example, **Move** uses the W, A, S, and D keys. The GameObject moves up
 
 ## Related nodes 
 
-[!include[vs-nodes-related](./snippets/nodes-related.md)] On Input System Event Vector 2 node:
+[!include[nodes-related](./snippets/nodes-related.md)] On Input System Event Vector 2 node:
 
 - [On Input System Event Button node](vs-nodes-events-input-system-button.md)
 - [On Input System Event Float node](vs-nodes-events-input-system-float.md)

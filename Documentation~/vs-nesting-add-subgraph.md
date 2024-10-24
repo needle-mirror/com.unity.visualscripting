@@ -9,7 +9,7 @@ You can add a Subgraph to a Script Graph in two ways: create a new Script Graph,
 To add a new blank Subgraph to an existing Script Graph: 
 
 <ol>
-<li><p>[!include[with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]</p></li>
+<li><p>[!include[vs-with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]</p></li>
 <li><p>Go to <strong>Nesting</strong>.</p></li>
 <li><p>Select <strong>Subgraph</strong> to add a Subgraph node to the graph.</p></li>
 <li><p>Open the <a href="vs-interface-overview.md#the-graph-inspector">Graph Inspector</a>.</p></li>
@@ -38,7 +38,7 @@ To add an existing graph file as a Subgraph in a Script Graph:
 > [!NOTE]
 > You can't nest a Script Graph as a Subgraph in its own graph file. 
 
-1. [!include[with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)] 
+1. [!include[vs-with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)] 
 
 1. Go to **Nesting**.
 

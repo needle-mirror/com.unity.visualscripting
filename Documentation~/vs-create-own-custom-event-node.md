@@ -4,17 +4,17 @@ You can create a Custom Scripting Event node with a C# script. With C#, you can 
 
 To create a Custom Scripting Event node: 
 
-1. [!include[open-project-window](./snippets/vs-open-project-window.md)]
+1. [!include[vs-open-project-window](./snippets/vs-open-project-window.md)]
 
-1. [!include[right-click-project](./snippets/custom-events/vs-right-click-project.md)]
+1. [!include[vs-right-click-project](./snippets/custom-events/vs-right-click-project.md)]
 
-1. [!include[create-c-script-project](./snippets/vs-create-c-script-project.md)]
+1. [!include[vs-create-c-script-project](./snippets/vs-create-c-script-project.md)]
 
 1. Enter a name, such as `MyEventNode`, for the new script file.
 
 1. Press Enter.
 
-1. [!include[open-new-external-code](./snippets/vs-open-new-external-code.md)]
+1. [!include[vs-open-new-external-code](./snippets/vs-open-new-external-code.md)]
 
 1. In your external editor, copy and paste the following code into the C# script: 
 
@@ -54,15 +54,15 @@ To create a Custom Scripting Event node:
       }
    }
     ```
-1. [!include[save-script](./snippets/vs-save-script.md)] 
+1. [!include[vs-save-script](./snippets/vs-save-script.md)] 
 
-1. [!include[return-unity](./snippets/vs-return-unity.md)]
+1. [!include[vs-return-unity](./snippets/vs-return-unity.md)]
 
-1. [!include[regen-node-library](./snippets/vs-regen-node-library.md)]
+1. [!include[vs-regen-node-library](./snippets/vs-regen-node-library.md)]
 
 1. [Open a Script Graph](vs-open-graph-edit.md) where you want to add your new node.
 
-1. [!include[open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)].
+1. [!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)].
 
 1. Go to **Events** &gt; **My Events**. 
 

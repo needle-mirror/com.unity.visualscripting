@@ -49,7 +49,7 @@ You can also use an [Input node](vs-nesting-input-node.md) or an [Output node](v
 
 <ol>
 <li><p><a href="vs-open-graph-edit.md">Open the Script Graph</a> you want to edit in the Graph window.</p></li>
-<li><p>[!include[open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]</p></li>
+<li><p>[!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]</p></li>
 <li><p>Go to <strong>Nesting</strong>.</p></li> 
 <li><p>Do one of the following:</p>
     <ul>

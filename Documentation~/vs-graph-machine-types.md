@@ -4,11 +4,11 @@ A Script Machine is a GameObject component that lets you use a Script Graph in a
 
 Script Machines can either link to a graph asset, or they can contain an embedded Script Graph asset.
 
-![An image of the Unity Inspector that displays a blank Script Machine component on a GameObject.](images\vs-script-machine-blank.png)
+![An image of the Unity Inspector that displays a blank Script Machine component on a GameObject.](images/vs-script-machine-blank.png)
 
 A State Machine is the same as a Script Machine, except it contains a State Graph.
 
-![An image of the Unity Inspector that displays a blank State Machine component on a GameObject.](images\vs-state-machine-blank.png)
+![An image of the Unity Inspector that displays a blank State Machine component on a GameObject.](images/vs-state-machine-blank.png)
 
 For more information on the difference between a Script Graph and a State Graph, see [Graphs](vs-graph-types.md).
 

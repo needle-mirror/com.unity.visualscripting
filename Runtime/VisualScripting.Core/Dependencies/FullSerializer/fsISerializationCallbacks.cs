@@ -47,7 +47,6 @@ namespace Unity.VisualScripting.FullSerializer
         /// <param name="storageType">
         /// The field/property type that is storing the instance.
         /// </param>
-        /// <param name="instance">The type of the instance.</param>
         void OnAfterDeserialize(Type storageType);
     }
 

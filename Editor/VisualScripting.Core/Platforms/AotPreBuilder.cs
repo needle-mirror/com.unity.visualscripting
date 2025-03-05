@@ -85,7 +85,8 @@ namespace Unity.VisualScripting
             GenerateAotStubs();
         }
 
-        private void GenerateAotStubs()
+        // internal for testing
+        internal void GenerateAotStubs()
         {
             try
             {
@@ -98,7 +99,8 @@ namespace Unity.VisualScripting
             }
         }
 
-        private void DeleteAotStubs()
+        // internal for testing
+        internal void DeleteAotStubs()
         {
             PathUtility.DeleteProjectFileIfExists(aotStubsPath, true);
         }
@@ -144,13 +146,16 @@ namespace Unity.VisualScripting
 
             // Scenes
 
-            var activeScenePath = SceneManager.GetActiveScene().path;
-            var scenePaths = EditorBuildSettings.scenes.Select(s => s.path).ToArray();
+            var openedScenePaths = new List<string>(SceneManager.sceneCount);
+            for (var i = 0; i < SceneManager.sceneCount; i++)
+                openedScenePaths.Add(SceneManager.GetSceneAt(i).path);
+
+            var buildSettingsScenePaths = EditorBuildSettings.scenes.Select(s => s.path).ToArray();
             var sceneIndex = 0;
 
-            foreach (var scenePath in scenePaths)
+            foreach (var scenePath in buildSettingsScenePaths)
             {
-                EditorUtility.DisplayProgressBar("AOT Pre-Build", $"Finding AOT stubs in '{scenePath}'...", (float)sceneIndex++ / scenePaths.Length);
+                EditorUtility.DisplayProgressBar("AOT Pre-Build", $"Finding AOT stubs in '{scenePath}'...", (float)sceneIndex++ / buildSettingsScenePaths.Length);
 
                 if (string.IsNullOrEmpty(scenePath))
                 {
@@ -159,7 +164,7 @@ namespace Unity.VisualScripting
 
                 try
                 {
-                    EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
+                    EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
                 }
                 catch (Exception ex)
                 {
@@ -173,9 +178,14 @@ namespace Unity.VisualScripting
                 }
             }
 
-            if (!string.IsNullOrEmpty(activeScenePath))
+            // Remove any scene that wasn't previously opened
+            for (var i = SceneManager.sceneCount - 1; i >= 0; i--)
             {
-                EditorSceneManager.OpenScene(activeScenePath);
+                var scene = SceneManager.GetSceneAt(i);
+                if (openedScenePaths.Contains(scene.path))
+                    continue;
+
+                EditorSceneManager.CloseScene(scene, true);
             }
 
             EditorUtility.ClearProgressBar();

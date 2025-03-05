@@ -10,7 +10,7 @@ namespace Unity.VisualScripting.ReorderableList
     /// </summary>
     /// <example>
     ///     <para>Multiple flags can be specified if desired:</para>
-    ///     <code language="csharp"><![CDATA[
+    ///     <code lang="csharp"><![CDATA[
     /// var flags = ReorderableListFlags.HideAddButton | ReorderableListFlags.HideRemoveButtons;
     /// ReorderableListGUI.ListField(list, flags);
     /// ]]></code>
@@ -53,7 +53,6 @@ namespace Unity.VisualScripting.ReorderableList
         /// </summary>
         ShowIndices = 0x0040,
 
-        /// <exclude />
         [Obsolete("This flag is redundant because the clipping optimization was removed.")]
         DisableClipping = 0x0080,
 

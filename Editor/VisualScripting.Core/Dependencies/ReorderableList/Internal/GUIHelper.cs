@@ -11,7 +11,6 @@ namespace Unity.VisualScripting.ReorderableList.Internal
     /// <summary>
     /// Utility functions to assist with GUIs.
     /// </summary>
-    /// <exclude />
     public static class GUIHelper
     {
         static GUIHelper()

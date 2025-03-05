@@ -16,7 +16,7 @@ namespace Unity.VisualScripting
 
             GUILayout.Space(5f);
 
-            string label = "Inspectors in Visual Scripting plugins can handle many custom types besides Unity primites and objects. ";
+            string label = "Inspectors in Visual Scripting plugins can handle many custom types besides Unity primitives and objects. ";
             label += "However, to be compatible with your custom editor drawers, some additional property provider scripts must be generated. ";
 
             GUILayout.BeginHorizontal(EditorStyles.helpBox);

@@ -43,3 +43,5 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("Unity.VisualScripting.State.Editor")]
 [assembly: InternalsVisibleTo("Unity.VisualScripting.SettingsProvider.Editor")]
 [assembly: InternalsVisibleTo("Unity.VisualScripting.Tests.Editor")]
+[assembly: InternalsVisibleTo("Unity.VisualScripting.Tests.Editor.Core")]
+[assembly: InternalsVisibleTo("Unity.VisualScripting.Tests.Performance.Editor")]

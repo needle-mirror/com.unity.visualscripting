@@ -8,7 +8,7 @@ namespace Unity.VisualScripting.ReorderableList
     /// <summary>
     /// Adaptor allowing reorderable list control to interface with list data.
     /// </summary>
-    /// <see cref="IReorderableListDropTarget" />
+    /// <seealso cref="IReorderableListDropTarget" />
     public interface IReorderableListAdaptor
     {
         /// <summary>
@@ -101,7 +101,7 @@ namespace Unity.VisualScripting.ReorderableList
         /// <remarks>
         ///     <para>This method is only used to handle GUI repaint events.</para>
         /// </remarks>
-        /// <see cref="EndGUI()" />
+        /// <seealso cref="EndGUI()" />
         void BeginGUI();
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Unity.VisualScripting.ReorderableList
         /// <remarks>
         ///     <para>This method is only used to handle GUI repaint events.</para>
         /// </remarks>
-        /// <see cref="BeginGUI()" />
+        /// <seealso cref="BeginGUI()" />
         void EndGUI();
 
         /// <summary>

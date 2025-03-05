@@ -34,9 +34,9 @@ namespace Unity.VisualScripting.FullSerializer.Internal
         /// Returns a pretty name for the type in the style of one that you'd see
         /// in C#.
         /// </summary>
-        /// <parparam name="includeNamespace">
+        /// <param name="includeNamespace">
         /// Should the name include namespaces?
-        /// </parparam>
+        /// </param>
         public static string CSharpName(this Type type, bool includeNamespace)
         {
             // we special case some of the common type names

@@ -157,7 +157,7 @@ namespace Unity.VisualScripting.ReorderableList
         public int DestinationItemIndex { get; internal set; }
 
         /// <summary>
-        /// Gets zero-based index of item <strong>after</strong> it has been moved.
+        /// Gets zero-based index of item <b>after</b> it has been moved.
         /// </summary>
         /// <seealso cref="DestinationItemIndex" />
         public int NewItemIndex

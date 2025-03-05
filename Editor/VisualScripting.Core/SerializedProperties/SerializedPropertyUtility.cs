@@ -41,17 +41,17 @@ namespace Unity.VisualScripting
 
         public static bool HasCustomDrawer(Type type)
         {
+            // Exclude:
+            //  - Invisible types (internal, non-public nested)
+            //  - Open-constructed generics, which Unity can't serialize
+            //  - Attributes, which have a drawer but can't provide a property
+            if (!type.IsVisible || type.IsGenericType || typeof(Attribute).IsAssignableFrom(type))
+            {
+                return false;
+            }
+
             return drawerTypeAttributes.Any(attribute =>
             {
-                // Exclude:
-                //  - Invisible types (internal, non-public nested)
-                //  - Open-constructed generics, which Unity can't serialize
-                //  - Attributes, which have a drawer but can't provide a property
-                if (!type.IsVisible || type.IsGenericType || typeof(Attribute).IsAssignableFrom(type))
-                {
-                    return false;
-                }
-
                 var drawnType = (Type)CustomPropertyDrawer_m_Type.GetValueOptimized(attribute);
                 var useForChildren = (bool)CustomPropertyDrawer_m_UseForChildren.GetValueOptimized(attribute);
 
@@ -264,7 +264,17 @@ namespace Unity.VisualScripting
 
             var field = GetSerializedFieldInfo(parent.GetType(), fieldName);
 
+            var previousValue = field.GetValue(parent);
             field.SetValue(parent, value);
+
+            // Since we're using reflection to set the value of the serialized objects directly,
+            // we should dirty the object if the value is changed by our action. 
+            // Otherwise, any external code has no way of knowing the data was changed and that may break caching. 
+            // An example: LocalizedAudioClip property drawer caches parts of TableReference and only updates if dirty.
+            if (!previousValue.Equals(value))
+            {
+                EditorUtility.SetDirty(property.serializedObject.targetObject);
+            }
 
             // Deserialize the object for continued operations after this call
             property.serializedObject.Update();

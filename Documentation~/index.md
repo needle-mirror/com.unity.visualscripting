@@ -6,9 +6,7 @@ Visual Scripting nodes can represent functions, operators, and variables. Connec
 
 ## Installation
 
-From Unity Editor version 2021.1 onward, Visual Scripting is installed by default as a package. For more information on packages, see the [Packages section](https://docs.unity3d.com/Manual/PackagesList.html) in the Unity User Manual.
-
-For earlier versions of Unity, including 2019 LTS and 2020 LTS, you must install the Visual Scripting package from the [Unity Asset Store](https://assetstore.unity.com/packages/tools/visual-bolt-163802).
+Starting from Unity 2021 LTS onward, Visual Scripting is installed as a package in all new projects. For more information on packages, see the [Packages section](https://docs.unity3d.com/Manual/PackagesList.html) in the Unity User Manual. For earlier versions of Unity, Visual Scripting was available on the Asset Store, but that option has been deprecated. 
 
 ## Configure Visual Scripting
 
@@ -19,7 +17,7 @@ To get started with Visual Scripting, [configure your project settings](vs-confi
 
 ## Choose a control scheme
 
-Learn the common keyboard shortcuts and [choose a control scheme](vs-control-schemes.md) that suits your needs.
+Learn about the common keyboard shortcuts and [choose the control scheme](vs-control-schemes.md) that suits your needs.
 
 ## Update Visual Scripting
 

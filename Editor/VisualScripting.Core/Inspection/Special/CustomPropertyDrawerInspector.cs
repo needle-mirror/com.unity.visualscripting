@@ -54,8 +54,6 @@ namespace Unity.VisualScripting
 
             property.SetUnderlyingValue(metadata.value);
 
-            property.serializedObject.Update();
-
             EditorGUI.BeginChangeCheck();
 
             EditorGUI.PropertyField(position, property, label);

@@ -1,3 +1,5 @@
+[![codecov](https://codecov.unity3d.com/ghe/unity/com.unity.visualscripting/graph/badge.svg?token=M3WZU9607U)](https://codecov.unity3d.com/ghe/unity/com.unity.visualscripting)
+
 # Visual Scripting (com.unity.visualscripting)
 
 Visual Scripting, previously known as BOLT, is an alternative workflow to design behaviours. Instead of the classic method of writing a C# script, visual scripting offers a way to design behaviours intuitively without code, by connecting events, actions, and data together in a graph. 

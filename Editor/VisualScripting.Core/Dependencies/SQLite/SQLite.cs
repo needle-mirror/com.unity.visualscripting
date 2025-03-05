@@ -542,8 +542,12 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
 
         /// <summary>
         /// Creates an index for the specified object property.
-        /// e.g. CreateIndex<Client>(c => c.Name);
         /// </summary>
+        /// <example>
+        /// <code lang="csharp">
+        /// <![CDATA[CreateIndex<Client>(c => c.Name);]]>
+        /// </code>
+        /// </example>
         /// <typeparam name="T">Type to reflect to a database table.</typeparam>
         /// <param name="property">Property to index</param>
         /// <param name="unique">Whether the index should be unique</param>
@@ -644,7 +648,7 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
         /// <param name="cmdText">
         /// The fully escaped SQL.
         /// </param>
-        /// <param name="args">
+        /// <param name="ps">
         /// Arguments to substitute for the occurences of '?' in the command text.
         /// </param>
         /// <returns>
@@ -942,7 +946,7 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
         /// <summary>
         /// Begins a new transaction. Call <see cref="Commit"/> to end the transaction.
         /// </summary>
-        /// <example cref="System.InvalidOperationException">Throws if a transaction has already begun.</example>
+        /// <example>Throws <see cref="System.InvalidOperationException"/> if a transaction has already begun.</example>
         public void BeginTransaction()
         {
             // The BEGIN command only works if the transaction stack is empty,
@@ -1142,12 +1146,12 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
         }
 
         /// <summary>
-        /// Executes <param name="action"> within a (possibly nested) transaction by wrapping it in a SAVEPOINT. If an
+        /// Executes <paramref name="action"/> within a (possibly nested) transaction by wrapping it in a SAVEPOINT. If an
         /// exception occurs the whole transaction is rolled back, not just the current savepoint. The exception
         /// is rethrown.
         /// </summary>
         /// <param name="action">
-        /// The <see cref="Action"/> to perform within a transaction. <param name="action"> can contain any number
+        /// The <see cref="Action"/> to perform within a transaction. <paramref name="action"/> can contain any number
         /// of operations on the connection but should never call <see cref="BeginTransaction"/> or
         /// <see cref="Commit"/>.
         /// </param>
@@ -1170,7 +1174,7 @@ namespace Unity.VisualScripting.Dependencies.Sqlite
         }
 
         /// <summary>
-        /// Executes <param name="action"> while blocking other threads to access the same database.
+        /// Executes <paramref name="action"/> while blocking other threads to access the same database.
         /// </summary>
         /// <param name="action">
         /// The <see cref="Action"/> to perform within a lock.

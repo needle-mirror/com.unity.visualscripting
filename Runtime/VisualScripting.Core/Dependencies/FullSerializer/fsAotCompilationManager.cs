@@ -18,7 +18,7 @@ namespace Unity.VisualScripting.FullSerializer
         /// object type the generated converter will serialize/deserialize, and
         /// the string is the text content for a converter that will do the
         /// serialization.
-        /// <para />
+        ///
         /// The generated serializer is completely independent and you don't need
         /// to do anything. Simply add the file to your project and it'll get
         /// used instead of the reflection based one.

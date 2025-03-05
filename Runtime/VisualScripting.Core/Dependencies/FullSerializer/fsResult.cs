@@ -34,7 +34,7 @@ namespace Unity.VisualScripting.FullSerializer
         /// <summary>
         /// Adds a new message to this result.
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="message">The new message to be added.</param>
         public void AddMessage(string message)
         {
             if (_messages == null)

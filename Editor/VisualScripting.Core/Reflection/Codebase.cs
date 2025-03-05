@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
@@ -380,7 +379,7 @@ namespace Unity.VisualScripting
                 }
                 catch (Exception e)
                 {
-                    Debug.LogWarning(e.Message);
+                    Debug.LogWarning($"(Visual Scripting) Unable to load {assembly.GetName().Name}'s referenced assembly {dependencyName.Name} while scanning for Editor assemblies, skipping over this referenced assembly. Exception Information :\n{e.GetType().Name}\n{e.Message}");
                 }
             }
 
@@ -461,8 +460,8 @@ namespace Unity.VisualScripting
             var rootNamespace = type.RootNamespace();
 
             return rootNamespace == "UnityEditor" || rootNamespace == "UnityEditorInternal" ||
-                   Attribute.IsDefined(type.Assembly, typeof(AssemblyIsEditorAssembly)) ||
-                   IsUnityEditorAssembly(type.Assembly);
+                Attribute.IsDefined(type.Assembly, typeof(AssemblyIsEditorAssembly)) ||
+                IsUnityEditorAssembly(type.Assembly);
         }
 
         public static bool IsInternalType(Type type)
@@ -567,6 +566,13 @@ namespace Unity.VisualScripting
         public static CodebaseSubset Subset(IEnumerable<Type> typeSet, TypeFilter typeFilter, MemberFilter memberFilter, TypeFilter memberTypeFilter = null)
         {
             return CodebaseSubset.Get(typeSet, typeFilter, memberFilter, memberTypeFilter);
+        }
+
+        // For Testing
+        internal static void ClearCache()
+        {
+            _editorAssemblyCache.Clear();
+            _assemblyNameCache.Clear();
         }
     }
 }

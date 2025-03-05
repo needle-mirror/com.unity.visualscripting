@@ -41,9 +41,9 @@ namespace Unity.VisualScripting.ReorderableList
         /// Gets element from list.
         /// </summary>
         /// <param name="index">Zero-based index of element.</param>
-        /// <returns>
+        /// <value>
         /// Serialized property wrapper for array element.
-        /// </returns>
+        /// </value>
         public SerializedProperty this[int index] => _arrayProperty.GetArrayElementAtIndex(index);
 
         /// <summary>

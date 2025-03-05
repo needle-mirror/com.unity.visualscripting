@@ -1,7 +1,7 @@
 using System;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
-using NCalc = Unity.VisualScripting.Dependencies.NCalc.Expression;
+using NCalcExpression = Unity.VisualScripting.Dependencies.NCalc.Expression;
 
 namespace Unity.VisualScripting
 {
@@ -13,7 +13,7 @@ namespace Unity.VisualScripting
         [SerializeAs(nameof(Formula))]
         private string _formula;
 
-        private NCalc ncalc;
+        private NCalcExpression ncalc;
 
         /// <summary>
         /// A mathematical or logical expression tree.
@@ -73,7 +73,7 @@ namespace Unity.VisualScripting
                 return;
             }
 
-            ncalc = new NCalc(formula);
+            ncalc = new NCalcExpression(formula);
             ncalc.Options = EvaluateOptions.IgnoreCase;
             ncalc.EvaluateParameter += EvaluateTreeParameter;
             ncalc.EvaluateFunction += EvaluateTreeFunction;

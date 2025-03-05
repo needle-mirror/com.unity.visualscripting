@@ -60,9 +60,10 @@ namespace Unity.VisualScripting
             PathUtility.CreateDirectoryIfNeeded(BoltCore.Paths.propertyProviders);
             PathUtility.CreateDirectoryIfNeeded(BoltCore.Paths.propertyProvidersEditor);
 
+
             foreach (var type in typeset.Where(SerializedPropertyUtility.HasCustomDrawer))
             {
-                var directory = Codebase.IsUnityEditorType(type) ? BoltCore.Paths.propertyProvidersEditor : BoltCore.Paths.propertyProviders;
+                var directory = GetProviderScriptDirectory(type);
                 var path = Path.Combine(directory, GetProviderScriptName(type) + ".cs");
 
                 VersionControlUtility.Unlock(path);
@@ -71,6 +72,9 @@ namespace Unity.VisualScripting
 
             AssetDatabase.Refresh();
         }
+
+        // Internal for tests
+        internal static string GetProviderScriptDirectory(Type type) => Codebase.IsUnityEditorType(type) || Codebase.IsEditorType(type) ? BoltCore.Paths.propertyProvidersEditor : BoltCore.Paths.propertyProviders;
 
         private static string GetProviderScriptName(Type type)
         {

@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.9.6] - 2025-03-05
+### Fixed
+- Fixed the output path for Property Providers generated from User Editor code. [UVSB-2550](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2550)
+- Fixed a minor spelling issue in the Project Settings section [UVSB-2523](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2523)
+- Fixed an unexpected MissingComponentException thrown when using GetOrAddComponent [UVSB-2575](https://jira.unity3d.com/browse/UVSB-2575)
+- Fixed scenes not reopening after a Build when more than one Scene was opened and Visual Scripting with variables is used. [UVSB-2561](https://jira.unity3d.com/browse/UVSB-2561)
+- Fixed values of LocalizedAudioClip type being shown as None after selecting another game object and returning back [UVSB-2528](https://jira.unity3d.com/browse/UVSB-2528)
+- Fixed a compilation issue that happened when a project had another version of NCalc already installed. [UVSB-2583](https://jira.unity3d.com/browse/UVSB-2583)
+- Fixed an 'AudioMixerController' is inaccessible due to its protection level' error thrown when generating the AotStubs. [UVSB-2577](https://jira.unity3d.com/browse/UVSB-2577)
+- Fixed compilation error when AotStubs references Unity.NetworkManager.__rpc_func_table and Unity.NetworkManager.__rpc_name_table fields [UVSB-2563](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2563)
+
+### Changed
+- Improved the warning message when a library fails to load while scanning for Editor assemblies.
+
 ## [1.9.5] - 2024-10-24
 ### Fixed
 - Fixed "NullReferenceException" error when returning to the State Graph from the Script Graph. [UVSB-1905](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-1905)

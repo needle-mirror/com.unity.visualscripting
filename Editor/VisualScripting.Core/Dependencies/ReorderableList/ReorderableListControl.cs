@@ -21,7 +21,7 @@ namespace Unity.VisualScripting.ReorderableList
         /// </remarks>
         /// <example>
         ///     <para>The following listing displays a label for empty list control:</para>
-        ///     <code language="csharp"><![CDATA[
+        ///     <code lang="csharp"><![CDATA[
         /// using Unity.VisualScripting.Dependencies.ReorderableList;
         /// using System.Collections.Generic;
         /// using UnityEditor;
@@ -42,7 +42,7 @@ namespace Unity.VisualScripting.ReorderableList
         ///     }
         /// }
         /// ]]></code>
-        ///     <code language="unityscript"><![CDATA[
+        ///     <code lang="unityscript"><![CDATA[
         /// import Rotorz.ReorderableList;
         /// import System.Collections.Generic;
         ///
@@ -81,7 +81,7 @@ namespace Unity.VisualScripting.ReorderableList
         /// </remarks>
         /// <example>
         ///     <para>The following listing presents a text field for each list item:</para>
-        ///     <code language="csharp"><![CDATA[
+        ///     <code lang="csharp"><![CDATA[
         /// using Unity.VisualScripting.Dependencies.ReorderableList;
         /// using System.Collections.Generic;
         /// using UnityEditor;
@@ -102,7 +102,7 @@ namespace Unity.VisualScripting.ReorderableList
         ///     }
         /// }
         /// ]]></code>
-        ///     <code language="unityscript"><![CDATA[
+        ///     <code lang="unityscript"><![CDATA[
         /// import Rotorz.ReorderableList;
         /// import System.Collections.Generic;
         ///
@@ -180,7 +180,7 @@ namespace Unity.VisualScripting.ReorderableList
         ///     type events when using reorderable list controls with automatic layout.
         ///     </para>
         /// </remarks>
-        /// <see cref="CurrentItemTotalPosition" />
+        /// <seealso cref="CurrentItemTotalPosition" />
         public static Rect CurrentListPosition => s_CurrentListStack.Peek().Position;
 
         /// <summary>
@@ -201,8 +201,8 @@ namespace Unity.VisualScripting.ReorderableList
         ///     type events when using reorderable list controls with automatic layout.
         ///     </para>
         /// </remarks>
-        /// <see cref="CurrentItemIndex" />
-        /// <see cref="CurrentListPosition" />
+        /// <seealso cref="CurrentItemIndex" />
+        /// <seealso cref="CurrentListPosition" />
         public static Rect CurrentItemTotalPosition => s_CurrentItemStack.Peek().ItemPosition;
 
         private struct ListInfo
@@ -1889,13 +1889,13 @@ namespace Unity.VisualScripting.ReorderableList
         /// </summary>
         /// <example>
         ///     <para>Can be used when adding custom items to the context menu:</para>
-        ///     <code language="csharp"><![CDATA[
+        ///     <code lang="csharp"><![CDATA[
         /// protected override void AddItemsToMenu(GenericMenu menu, int itemIndex, IReorderableListAdaptor adaptor) {
         ///     var specialCommand = new GUIContent("Special Command");
         ///     menu.AddItem(specialCommand, false, defaultContextHandler, specialCommand);
         /// }
         /// ]]></code>
-        ///     <code language="unityscript"><![CDATA[
+        ///     <code lang="unityscript"><![CDATA[
         /// function AddItemsToMenu(menu:GenericMenu, itemIndex:int, list:IReorderableListAdaptor) {
         ///     var specialCommand = new GUIContent('Special Command');
         ///     menu.AddItem(specialCommand, false, defaultContextHandler, specialCommand);
@@ -1987,7 +1987,7 @@ namespace Unity.VisualScripting.ReorderableList
         ///     changes are made by command handler.
         ///     </para>
         ///     <para>Default command handling functionality can be inherited:</para>
-        ///     <code language="csharp"><![CDATA[
+        ///     <code lang="csharp"><![CDATA[
         /// protected override bool HandleCommand(string commandName, int itemIndex, IReorderableListAdaptor adaptor) {
         ///     if (base.HandleCommand(itemIndex, adaptor))
         ///         return true;
@@ -2001,7 +2001,7 @@ namespace Unity.VisualScripting.ReorderableList
         ///     return false;
         /// }
         /// ]]></code>
-        ///     <code language="unityscript"><![CDATA[
+        ///     <code lang="unityscript"><![CDATA[
         /// function HandleCommand(commandName:String, itemIndex:int, adaptor:IReorderableListAdaptor):boolean {
         ///     if (base.HandleCommand(itemIndex, adaptor))
         ///         return true;

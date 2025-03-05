@@ -55,7 +55,7 @@ namespace Unity.VisualScripting.ReorderableList
         ///     type events when using reorderable list controls with automatic layout.
         ///     </para>
         /// </remarks>
-        /// <see cref="CurrentItemTotalPosition" />
+        /// <seealso cref="CurrentItemTotalPosition" />
         public static Rect CurrentListPosition => ReorderableListControl.CurrentListPosition;
 
         /// <summary>
@@ -73,8 +73,8 @@ namespace Unity.VisualScripting.ReorderableList
         ///     type events when using reorderable list controls with automatic layout.
         ///     </para>
         /// </remarks>
-        /// <see cref="CurrentItemIndex" />
-        /// <see cref="CurrentListPosition" />
+        /// <seealso cref="CurrentItemIndex" />
+        /// <seealso cref="CurrentListPosition" />
         public static Rect CurrentItemTotalPosition => ReorderableListControl.CurrentItemTotalPosition;
 
         /// <summary>
@@ -141,11 +141,11 @@ namespace Unity.VisualScripting.ReorderableList
         ///     <para>When needed, should be shown immediately before list field.</para>
         /// </remarks>
         /// <example>
-        ///     <code language="csharp"><![CDATA[
+        ///     <code lang="csharp"><![CDATA[
         /// ReorderableListGUI.Title(titleContent);
         /// ReorderableListGUI.ListField(list, DynamicListGU.TextFieldItemDrawer);
         /// ]]></code>
-        ///     <code language="unityscript"><![CDATA[
+        ///     <code lang="unityscript"><![CDATA[
         /// ReorderableListGUI.Title(titleContent);
         /// ReorderableListGUI.ListField(list, DynamicListGU.TextFieldItemDrawer);
         /// ]]></code>
@@ -165,11 +165,11 @@ namespace Unity.VisualScripting.ReorderableList
         ///     <para>When needed, should be shown immediately before list field.</para>
         /// </remarks>
         /// <example>
-        ///     <code language="csharp"><![CDATA[
+        ///     <code lang="csharp"><![CDATA[
         /// ReorderableListGUI.Title("Your Title");
         /// ReorderableListGUI.ListField(list, DynamicListGU.TextFieldItemDrawer);
         /// ]]></code>
-        ///     <code language="unityscript"><![CDATA[
+        ///     <code lang="unityscript"><![CDATA[
         /// ReorderableListGUI.Title('Your Title');
         /// ReorderableListGUI.ListField(list, DynamicListGU.TextFieldItemDrawer);
         /// ]]></code>

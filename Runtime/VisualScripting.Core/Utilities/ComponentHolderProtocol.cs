@@ -52,7 +52,10 @@ namespace Unity.VisualScripting
 
         public static T GetOrAddComponent<T>(this UnityObject uo) where T : Component
         {
-            return uo.GetComponent<T>() ?? uo.AddComponent<T>();
+            var comp = uo.GetComponent<T>();
+            if (!comp)
+                comp = uo.AddComponent<T>();
+            return comp;
         }
 
         public static T GetComponent<T>(this UnityObject uo)

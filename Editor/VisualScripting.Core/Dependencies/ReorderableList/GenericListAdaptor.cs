@@ -55,9 +55,9 @@ namespace Unity.VisualScripting.ReorderableList
         /// Gets element from list.
         /// </summary>
         /// <param name="index">Zero-based index of element.</param>
-        /// <returns>
+        /// <value>
         /// The element.
-        /// </returns>
+        /// </value>
         public T this[int index] => _list[index];
 
         /// <summary>

@@ -15,7 +15,7 @@ namespace Unity.VisualScripting.ReorderableList
     ///     dragging and dropping from the Unity "Project" window.
     ///     </para>
     /// </remarks>
-    /// <see cref="IReorderableListAdaptor" />
+    /// <seealso cref="IReorderableListAdaptor" />
     public interface IReorderableListDropTarget
     {
         /// <summary>
@@ -29,7 +29,7 @@ namespace Unity.VisualScripting.ReorderableList
         /// <returns>
         /// A value of <c>true</c> if item can be dropped; otherwise <c>false</c>.
         /// </returns>
-        /// <see cref="UnityEditor.DragAndDrop" />
+        /// <seealso cref="UnityEditor.DragAndDrop" />
         bool CanDropInsert(int insertionIndex);
 
         /// <summary>
@@ -44,8 +44,8 @@ namespace Unity.VisualScripting.ReorderableList
         ///     </para>
         /// </remarks>
         /// <param name="insertionIndex">Zero-based index of insertion.</param>
-        /// <see cref="ReorderableListGUI.CurrentListControlID" />
-        /// <see cref="UnityEditor.DragAndDrop" />
+        /// <seealso cref="ReorderableListGUI.CurrentListControlID" />
+        /// <seealso cref="UnityEditor.DragAndDrop" />
         void ProcessDropInsertion(int insertionIndex);
     }
 }

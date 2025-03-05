@@ -4,6 +4,34 @@ using UnityEngine;
 
 namespace Unity.VisualScripting
 {
+    /// <summary>
+    /// A global container that maps Event names and Component references to actions for registered listeners.
+    /// </summary>
+    /// <remarks>
+    /// <para>It is the EventMachine base class for ScriptMachine and StateMachine that triggers events.
+    /// This overrides almost all Unity callbacks (such as Awake, OnEnable, Update, etc.) and triggers an event
+    /// on the EventBus.</para>
+    /// </remarks>
+    /// <example>
+    /// <para>The following example shows how to use the EventBus to send a custom event from a script to a node in
+    /// a graph. It also shows how to use the EventBus as a global event manager by executing a callback in a 
+    /// script, not just a node.
+    ///
+    /// For more information on how to create custom event nodes refer to the
+    /// <a href="../Manual/vs-create-own-custom-event-node.html">User Manual</a>.
+    ///
+    /// In this example we've added some code to a GameObject. This code checks for when the user presses a sequence of
+    /// keys to enable a cheat code, then triggers the <c>CheatCodeActivated</c> event. We register the
+    /// <c>CheatCodeActivated</c> event in the <c>Start</c> method. The <c>Update</c> method triggers the event twice
+    /// with 2 different targets: one for the <c>CheatCodeActivated</c> callback and the other to trigger the
+    /// CheatCodeEnabled Node.</para>
+    ///
+    /// <code source="../../../Tests/Runtime/Documentation/EventBus/CheatCodeController.cs"/>
+    ///
+    /// <para>The CheatCodeEnabled Node:</para>
+    ///
+    /// <code source="../../../Tests/Runtime/Documentation/EventBus/CheatCodeEnabled.cs"/>
+    /// </example>
     public static class EventBus
     {
         static EventBus()

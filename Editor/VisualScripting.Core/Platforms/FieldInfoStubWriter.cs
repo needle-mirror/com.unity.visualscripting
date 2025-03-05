@@ -2,6 +2,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 
 namespace Unity.VisualScripting
 {
@@ -58,5 +59,15 @@ namespace Unity.VisualScripting
             foreach (var statement in base.GetStubStatements())
                 yield return statement;
         }
+
+        // RuntimeAccessModifiersILPP makes NetworkManager.__rpc_func_table and NetworkManager.__rpc_name_table public
+        // which causes a problem when AotStubs are generated as it leads to a compilation error. There is no way to
+        // identify that those fields have changed their accessors so we just deny those APIs.
+        /// <summary>
+        ///    Don't use this field. It is for Unity Visual Scripting internal usage only.
+        /// </summary>
+        public override bool skip =>
+            stub.ReflectedType is { Name: "NetworkManager", Namespace: "Unity.Netcode" }
+            && stub.Name is "__rpc_func_table" or "__rpc_name_table";
     }
 }

@@ -233,7 +233,7 @@ namespace Unity.VisualScripting
         /// Whether some types, including generics, should be filtered out
         /// when targetting AOT platforms.
         /// </summary>
-        [ProjectSetting]
+        [ProjectSetting(visible = false, resettable = true)]
         [InspectorLabel("AOT Safe Mode")]
         public bool aotSafeMode { get; set; } = true;
 

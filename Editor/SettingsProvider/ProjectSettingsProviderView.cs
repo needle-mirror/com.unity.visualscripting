@@ -7,9 +7,9 @@ namespace Unity.VisualScripting
     {
         private const string Path = "Project/Visual Scripting";
         private const string Title = "Visual Scripting";
-        private const string TitleGroup = "Generate Nodes";
         private readonly GUIStyle marginStyle = new GUIStyle() { margin = new RectOffset(10, 10, 10, 10) };
 
+        private CoreSettings _coreSettings;
         private AssemblyOptionsSettings _assemblyOptionsSettings;
         private TypeOptionsSettings _typeOptionsSettings;
         private CustomPropertyProviderSettings _customPropertyProviderSettings;
@@ -27,6 +27,7 @@ namespace Unity.VisualScripting
 
         private void CreateOptionsIfNeeded()
         {
+            _coreSettings ??= new CoreSettings(_vsCoreConfig);
             _assemblyOptionsSettings ??= new AssemblyOptionsSettings(_vsCoreConfig);
             _typeOptionsSettings ??= new TypeOptionsSettings(_vsCoreConfig);
             _customPropertyProviderSettings ??= new CustomPropertyProviderSettings();
@@ -59,10 +60,6 @@ namespace Unity.VisualScripting
 
                 GUILayout.Space(5f);
 
-                GUILayout.Label(TitleGroup, EditorStyles.boldLabel);
-
-                GUILayout.Space(10f);
-
                 // happens when opening unity with the settings window already opened. there's a delay until the singleton is assigned
                 if (_vsCoreConfig == null)
                 {
@@ -71,6 +68,10 @@ namespace Unity.VisualScripting
                 }
 
                 CreateOptionsIfNeeded();
+
+                _coreSettings.OnGUI();
+
+                GUILayout.Space(10f);
 
                 _typeOptionsSettings.OnGUI();
 

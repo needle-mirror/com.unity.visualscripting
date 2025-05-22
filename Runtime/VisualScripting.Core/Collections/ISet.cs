@@ -21,42 +21,98 @@ namespace Unity.VisualScripting
 {
     /// <summary>
     /// Generic collection that guarantees the uniqueness of its elements, as defined
-    /// by some comparer. It also supports basic set operations such as Union, Intersection,
-    /// Complement and Exclusive Complement.
+    /// by a comparer. It also supports basic set operations such as Union, Intersection,
+    /// Difference, and Symmetric Difference.
     /// </summary>
+    /// <typeparam name="T">The type of elements contained in the set.</typeparam>
     public interface ISet<T> : ICollection<T>
     {
-        //Add ITEM to the set, return true if added, false if duplicate
+        /// <summary>
+        /// Adds the specified item to the set.
+        /// </summary>
+        /// <param name="item">The item to add to the set.</param>
+        /// <returns>
+        /// <c>true</c> if the item was added to the set (i.e., it was not already present);
+        /// otherwise, <c>false</c>.
+        /// </returns>
         new bool Add(T item);
 
-        //Transform this set into its union with the IEnumerable<T> other
+        /// <summary>
+        /// Modifies the current set to contain all elements that are present in either the current set or the specified collection.
+        /// </summary>
+        /// <param name="other">The collection to compare to the current set.</param>
         void UnionWith(IEnumerable<T> other);
 
-        //Transform this set into its intersection with the IEnumberable<T> other
+        /// <summary>
+        /// Modifies the current set to contain only elements that are present in both the current set and the specified collection.
+        /// </summary>
+        /// <param name="other">The collection to compare to the current set.</param>
         void IntersectWith(IEnumerable<T> other);
 
-        //Transform this set so it contains no elements that are also in other
+        /// <summary>
+        /// Modifies the current set to contain only elements that are not present in the specified collection.
+        /// </summary>
+        /// <param name="other">The collection to compare to the current set.</param>
         void ExceptWith(IEnumerable<T> other);
 
-        //Transform this set so it contains elements initially in this or in other, but not both
+        /// <summary>
+        /// Modifies the current set to contain only elements that are present either in the current set or in the specified collection, but not both.
+        /// </summary>
+        /// <param name="other">The collection to compare to the current set.</param>
         void SymmetricExceptWith(IEnumerable<T> other);
 
-        //Check if this set is a subset of other
+        /// <summary>
+        /// Determines whether the current set is a subset of the specified collection.
+        /// </summary>
+        /// <param name="other">The collection to compare to the current set.</param>
+        /// <returns>
+        /// <c>true</c> if the current set is a subset of the specified collection; otherwise, <c>false</c>.
+        /// </returns>
         bool IsSubsetOf(IEnumerable<T> other);
 
-        //Check if this set is a superset of other
+        /// <summary>
+        /// Determines whether the current set is a superset of the specified collection.
+        /// </summary>
+        /// <param name="other">The collection to compare to the current set.</param>
+        /// <returns>
+        /// <c>true</c> if the current set is a superset of the specified collection; otherwise, <c>false</c>.
+        /// </returns>
         bool IsSupersetOf(IEnumerable<T> other);
 
-        //Check if this set is a subset of other, but not the same as it
-        bool IsProperSupersetOf(IEnumerable<T> other);
-
-        //Check if this set is a superset of other, but not the same as it
+        /// <summary>
+        /// Determines whether the current set is a proper subset of the specified collection. A proper subset is a subset that is not equal to the other set.
+        /// </summary>
+        /// <param name="other">The collection to compare to the current set.</param>
+        /// <returns>
+        /// <c>true</c> if the current set is a proper subset of the specified collection; otherwise, <c>false</c>.
+        /// </returns>
         bool IsProperSubsetOf(IEnumerable<T> other);
 
-        //Check if this set has any elements in common with other
+        /// <summary>
+        /// Determines whether the current set is a proper superset of the specified collection. A proper superset is a superset that is not equal to the other set.
+        /// </summary>
+        /// <param name="other">The collection to compare to the current set.</param>
+        /// <returns>
+        /// <c>true</c> if the current set is a proper superset of the specified collection; otherwise, <c>false</c>.
+        /// </returns>
+        bool IsProperSupersetOf(IEnumerable<T> other);
+
+        /// <summary>
+        /// Determines whether the current set has any elements in common with the specified collection.
+        /// </summary>
+        /// <param name="other">The collection to compare to the current set.</param>
+        /// <returns>
+        /// <c>true</c> if the current set and the specified collection share at least one common element; otherwise, <c>false</c>.
+        /// </returns>
         bool Overlaps(IEnumerable<T> other);
 
-        //Check if this set contains the same and only the same elements as other
+        /// <summary>
+        /// Determines whether the current set and the specified collection contain the same elements.
+        /// </summary>
+        /// <param name="other">The collection to compare to the current set.</param>
+        /// <returns>
+        /// <c>true</c> if the current set and the specified collection contain the same elements; otherwise, <c>false</c>.
+        /// </returns>
         bool SetEquals(IEnumerable<T> other);
     }
 }

@@ -10,10 +10,12 @@ namespace Unity.VisualScripting
     [VisualScriptingHelpURL(typeof(GlobalMessageListener))]
     public sealed class GlobalMessageListener : MonoBehaviour, ISingleton
     {
+#if !PLATFORM_VISIONOS
         private void OnGUI()
         {
             EventBus.Trigger(EventHooks.OnGUI);
         }
+#endif
 
         private void OnApplicationFocus(bool focus)
         {

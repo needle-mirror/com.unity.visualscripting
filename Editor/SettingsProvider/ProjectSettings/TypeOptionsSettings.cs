@@ -8,6 +8,7 @@ namespace Unity.VisualScripting
         private readonly PluginConfigurationItemMetadata _typeOptionsMetadata;
 
         private bool _showTypeOption = false;
+        private const string NodeGenerationSettingsTitle = "Generate Nodes";
         private const string TitleTypeOption = "Type Options";
         private const string DescriptionTypeOption = "Choose the types you want to use for variables and nodes.\n"
             + "MonoBehaviour types are always included.";
@@ -35,6 +36,12 @@ namespace Unity.VisualScripting
 
         public void OnGUI()
         {
+            GUILayout.Space(5f);
+
+            GUILayout.Label(NodeGenerationSettingsTitle, EditorStyles.boldLabel);
+
+            GUILayout.Space(5f);
+
             _showTypeOption = EditorGUILayout.Foldout(_showTypeOption, new GUIContent(TitleTypeOption, DescriptionTypeOption));
 
             if (_showTypeOption)

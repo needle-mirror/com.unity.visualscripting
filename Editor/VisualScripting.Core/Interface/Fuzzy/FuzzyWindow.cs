@@ -611,20 +611,6 @@ namespace Unity.VisualScripting
             }
             position.height += footerHeight;
 
-            if (Application.platform == RuntimePlatform.OSXEditor && BoltCore.Configuration.limitFuzzyFinderHeight)
-            {
-                // OSX disregards the Y entirely if the window is higher than the desktop space
-                // and will try to move it up until it fits. Therefore, we'll cut the window down here.
-                // However, we can't use the screen resolution, because it doesn't include the dock.
-
-                var maxY = LudiqGUIUtility.mainEditorWindowPosition.yMax;
-
-                if (position.yMax > maxY)
-                {
-                    position.height -= (position.yMax - maxY);
-                }
-            }
-
             if (this.position != position || minSize != position.size)
             {
                 minSize = maxSize = position.size;

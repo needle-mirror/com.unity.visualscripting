@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.9.7] - 2025-05-22
+### Fixed
+- Fixed a warning "Unable to load Unity.Android.Gradle's referenced assembly NiceIO" when scanning assemblies. [UVSB-2594](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2594)
+- Fixed error when trying to load fuzzy finder on multi screen setup on Mac. [UVSB-2419](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2419)
+- Fixed the `AOTSafeMode` project setting appearing in the Editor Preferences window. It is now shown in the Project Settings tab for Visual Scripting. [UVSB-2590](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2590)
+- Fixed possible crash on VisionOS. [UVSB-2565](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2565)
+
+### Changed
+- The `AOTSafeMode` project setting has been marked as not visible, it will no longer be included when calling `ConfigurationPanel.GetSearchKeywords`. [UVSB-2590](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2590)
+
 ## [1.9.6] - 2025-03-05
 ### Fixed
 - Fixed the output path for Property Providers generated from User Editor code. [UVSB-2550](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2550)

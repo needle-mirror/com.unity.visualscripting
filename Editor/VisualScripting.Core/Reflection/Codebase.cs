@@ -379,13 +379,61 @@ namespace Unity.VisualScripting
                 }
                 catch (Exception e)
                 {
-                    Debug.LogWarning($"(Visual Scripting) Unable to load {assembly.GetName().Name}'s referenced assembly {dependencyName.Name} while scanning for Editor assemblies, skipping over this referenced assembly. Exception Information :\n{e.GetType().Name}\n{e.Message}");
+                    var loadedFromDirectory =
+                        TryLoadAssemblyReferenceFromAssemblyDirectory(dependencyName, assembly, out var dependency);
+                    if (loadedFromDirectory)
+                    {
+                        if (IsEditorAssembly(dependency, visited))
+                        {
+                            _editorAssemblyCache.Add(assembly, true);
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"(Visual Scripting) Unable to load {assembly.GetName().Name}'s referenced assembly {dependencyName.Name} while scanning for Editor assemblies, skipping over this referenced assembly. Exception Information :\n{e.GetType().Name}\n{e.Message}");
+                    }
                 }
             }
 
             _editorAssemblyCache.Add(assembly, false);
 
             return false;
+        }
+
+        /// <summary>
+        /// This is used to load an assembly reference (dependency) that is located in the same folder as the parent assembly
+        /// but not loaded by the Editor's AppDomain. The out param dependency can be null if this fails.
+        /// </summary>
+        /// <remarks>
+        /// This is primarily used for Android builds, see Bug UVSB_2594 and UUM-98843.
+        /// Ex: Unity.Android.Gradle.dll references NiceIO. NiceIO is not a "scripting" assembly that is explicitly
+        /// loaded by Unity and is instead loaded dynamically at runtime when some code is jitted that requires the
+        /// assembly to be loaded. This means the assembly is not in the search path, but is in the same directory as
+        /// Unity.Android.Gradle.dll. Trying to call Assembly.Load("NiceIO") would fail, but this method would succeed.
+        /// </remarks>
+        private static bool TryLoadAssemblyReferenceFromAssemblyDirectory(AssemblyName referenceName, Assembly assembly, out Assembly dependency)
+        {
+            dependency = null;
+
+            var assemblyLocation = assembly.Location;
+            var directory = System.IO.Path.GetDirectoryName(assemblyLocation);
+            if (directory == null)
+                return false;
+
+            var dependencyPath = System.IO.Path.Combine(directory, referenceName.Name + ".dll");
+            if (!System.IO.File.Exists(dependencyPath))
+                return false;
+
+            try
+            {
+                dependency = Assembly.LoadFrom(dependencyPath);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         private static bool IsUserAssembly(string name)

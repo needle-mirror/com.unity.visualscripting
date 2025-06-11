@@ -27,14 +27,14 @@ namespace Unity.VisualScripting
     ///    includes the <see cref="SceneVariables"/> (Script). If you do this, the Blackboard displays Scene
     ///    Variables that are also present in Object Variables and this can cause confusion.</para>
     ///
-    ///    <para>For more information on how to interact with Variables, refer to the <a href="../Manual/vs-variables.html">User Manual</a>.</para>
+    ///    <para>For more information on how to interact with Variables, refer to the <a href="../manual/vs-variables.html">User Manual</a>.</para>
     /// </remarks>
     /// <example>
     ///     <para>The following example shows how to programmatically change the value of a variable used in a Visual Scripting graph.
     ///     Every time you press the Space key, we double the value of the velocity variable.
     ///     <b>Note</b>: You can try this example in a Script Graph.</para>
     ///
-    ///     <code source="../../../Tests/Runtime/Documentation/Variables/PlayerController.cs"/>
+    ///     <code source="../../../DocCodeExamples/VariableExamples.cs" region="PlayerController" title="PlayerController"/>
     /// </example>
     [AddComponentMenu("Visual Scripting/Variables")]
     [DisableAnnotation]

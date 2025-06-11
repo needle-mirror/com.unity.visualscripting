@@ -12,7 +12,7 @@ Branching nodes split the control flow based on a value.
 ### If
 The common if node uses a boolean condition. Consider them as an "if the condition is true, do something, otherwise, do something else."
 
-![](images/vs-control-if-control-node.png)
+![An If node, with True and False branches.](images/vs-control-if-control-node.png)
 
 ### Switch
 
@@ -20,11 +20,11 @@ Branch on the value of an enum, a string, or an integer. These nodes are called 
 
 To switch on an enum, decide on the type of the enum. The branch output ports appears.
 
-![](images/vs-control-switch-enum-control-node.png)
+![A Switch node branching based on an enum value.](images/vs-control-switch-enum-control-node.png)
 
-To switch on a string or number, create each branch option in the graph inspector.
+To switch on a string or number, create each branch option in the Graph Inspector.
 
-![](images/vs-control-switch-string-control-node.png)
+![A Switch node branching based on string values.](images/vs-control-switch-string-control-node.png)
 
 The node is updated with each output port.
 
@@ -40,7 +40,7 @@ Select nodes are the opposite of switch nodes. You can select a single value fro
 For example, a Select On Integer node that chooses a color based on a player number.
 
 
-![](images/vs-control-select-control-node.png)
+![A Select node outputs a color based on player number input.](images/vs-control-select-control-node.png)
 
 >[!NOTE]
 > In the above example predictive debugging warns of a crash if playerNo is not within 1, 2, 3, or 4, because the Default port is not connected.
@@ -60,7 +60,7 @@ The while loop is the simplest form of loop. It repeats its body while its condi
 
 For example, the following graph generates a new random name until the result isn't contained in the names application variable.
 
-![](images/vs-control-while-loop-node.png)
+![The While Loop runs until the Get Variable's list of names and the Set Variable new name don't match.](images/vs-control-while-loop-node.png)
 
 > [!WARNING]
 > Do not create an infinite loop. If the condition is always true, the editor hangs. As loop bodies are synchronous, not parallel, there are few uses for while loops in visual scripting.
@@ -76,7 +76,7 @@ For example, the following graph outputs four messages to the console:
 *   *I love my bird*
 *   *I love my fish*
 
-![](images/vs-control-for-each-loop-node.png)
+![A For Each Loop node iterates the strings from the List node and prints each one to the console.](images/vs-control-for-each-loop-node.png)
 
 To access the key and value from dictionaries in the loop, check the Dictionary box.
 
@@ -86,7 +86,7 @@ For is a numeric loop and requires three integers: a start index, an end index, 
 
 For example, this graph counts to ten by skipping odd numbers because of its step. In other words, its output is 0, 2, 4, 6, then 8.
 
-![](images/vs-control-for-loop-node.png)
+![A For Loop node's First value is 0, its Last value is 10, and moves in steps of 2.](images/vs-control-for-loop-node.png)
 
 The For loop can also be very useful when combined with the Get List Item and Count Items nodes.
 
@@ -99,7 +99,7 @@ Instead of using the For Each node that outputs each item, the graph outputs eac
 *   *I like birds*
 *   *I like horses*
 
-![](images/vs-control-for-loop-node-get-count-list-items-node.png)
+![A For Loop prints to console from a list by stepping along the list's index.](images/vs-control-for-loop-node-get-count-list-items-node.png)
 
 ### Break Loop
 
@@ -107,7 +107,7 @@ A loop can finish early by using the Break Loop node. As soon as this node is en
 
 For example, even though this for loop is supposed to count to 10, it stops at 5 because of the break. Its output is 0, 1, 2, 3, then 4.
 
-![](images/vs-control-break-loop-node.png)
+![A Break Loop node terminating a For Loop node before completion.](images/vs-control-break-loop-node.png)
 
 ## Exception Handling
 
@@ -117,7 +117,7 @@ The Try Catch node handles [Exceptions](https://docs.microsoft.com/en-us/dotnet/
 
 Anything that gets executed in the Try branch is considered "safe": the script continues from the Catch branch instead if it fails. The Exception port captures information about the failure when that happens. A common way of handling this is to log a warning with the exception message.
 
-![](images/vs-control-try-catch-node.png)
+![A Try Catch node outputs a log if an exception happens.](images/vs-control-try-catch-node.png)
 
 > [!NOTE] 
 > By default, this node catches all exceptions. Be specific in your handling by changing the exception type in the dropdown.
@@ -132,7 +132,7 @@ It is good practice to "fail early" by throwing as soon as something unexpected 
 
 For example, to ensure damage is positive before applying it:
 
-![](images/vs-control-throw-node.png)
+![A Throw node checks a condition before allowing the flow to continue.](images/vs-control-throw-node.png)
 
 If the Custom checkbox is selected, you can pass a custom Exception object that contains more data than a simple message. Most often, this is not required. By default, the thrown exception is of type `System.Exception`.
 
@@ -164,28 +164,28 @@ Another way of implementing the same logic as the previous example: clicking Spa
 > [!NOTE]
 > Turn on relations in the toolbar as a means to visualize the flow between the toggle ports.
 
-![](images/vs-control-toggle-flow-value-node.png)
+![A Toggle Flow node starts on, and the same input can turn it on or off, depending on its current state.](images/vs-control-toggle-flow-value-node.png)
 
 ## Once
 
 The Once node executes different logic the first time it is traversed from any subsequent times. 
 
-![](images/vs-control-once-node.png)
+![A Once node sends a different string to the console depending on whether this is the first time the node is traversed.](images/vs-control-once-node.png)
 
 It can be reset by entering the Reset port.
 
 ## Cache
 
-The Cache node saves the result of an expensive operating and reuses it instead of fetching it again each time you need it.
+The Cache node saves the result of an expensive operation and reuses it instead of fetching it again each time you need it.
 
 For example, using this graph, the formula is calculated twice:
 
-![](images/vs-control-cache-node-example.png)
+![A graph that calculates the same formula each time an update event runs.](images/vs-control-cache-node-example.png)
 
 By using the Cache node, the result is saved and calculated only once, optimizing performance.
 
 
-![](images/vs-control-cache-node.png)
+![A graph that checks the cache before running the formula. If the cache has a value, the formula isn't calculated.](images/vs-control-cache-node.png)
 
 > [!NOTE] 
 > It is important to note that caching only lasts within the scope of the current flow. The value of the cache is not shared or available from another event.

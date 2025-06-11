@@ -11,7 +11,8 @@ Wait nodes delay the execution of the rest of the script. The delay can be a set
 
 Asynchronicity (delayed execution) in Unity is handled by [coroutines](https://docs.unity3d.com/Manual/Coroutines.html) (not multithreading). You need to inform visual scripting to run the script as a coroutine in order to support wait nodes. To do this enable the **Coroutine checkbox** on the initial event that starts the script. Do this in the graph inspector.
 
-![](images/vs-time-coroutine-wait-nodes.png)
+![A small dual-arrow icon appears on the event, indicating that it runs as a coroutine.
+](images/vs-time-coroutine-wait-nodes.png)
 
 A small dual-arrow icon appears on the event, indicating that it runs as a coroutine.
 
@@ -23,22 +24,20 @@ All wait nodes are also used inside loops and sequences.
 
 The Wait For Seconds node is the simplest and most common wait node. It delays the execution by a certain number of seconds.
 
-
-![](images/vs-time-wait-for-seconds-node.png)
+![A mouse down event triggers a Wait node, which delays the next action by five seconds.](images/vs-time-wait-for-seconds-node.png)
 
 ### Wait Until
 
 The Wait Until node stops execution until a given condition is met. For example, you could wait until an object is close enough.
 
-
-![](images/vs-time-wait-until-node.png)
+![A Wait Until node stops execution until a GameObject's distance is below the value in the Less node.](images/vs-time-wait-until-node.png)
 
 ### Wait While
 
 The Wait While node is the opposite of the Wait Until node: it stops execution as long as a given condition is met. For example, you can wait while an object is out of range.
 
 
-![](images/vs-time-wait-while-node.png)
+![A Wait While node stops execution until a GameObject's is farther than the value in the Greater node.](images/vs-time-wait-while-node.png)
 
 ### Wait For Frame
 
@@ -49,11 +48,6 @@ As the name implies, Wait For End Of Frame and Wait For Next Frame nodes delays 
 The Wait For Script node delays execution until all input scripts have been entered at least once. It's a useful way of grouping conditions that occur over multiple events or frames. In other languages, this concept is sometimes called "promises".
 
 ## Cooldown
-
-
-
-
-![](images/vs-time-cooldown-node.png)
 
 The Cooldown node implements a time restriction when the input script can only be triggered a limited number of times.
 
@@ -73,14 +67,9 @@ Finally, you can force the cooldown to become ready and reset its internal timer
 For example, a simple cooldown firing mechanic with a masked sprite and text that indicates how much time is remaining until it can fire again.
 
 
-![](images/vs-time-cooldown-node-example.png)
+![A Cooldown checks the remaining time until it can fire when a keyboard input event arrives.](images/vs-time-cooldown-node-example.png)
 
 ## Timer
-
-
-
-
-![](images/vs-time-timer-node.png)
 
 The Timer node implements and monitors a time pausable progression.  
 
@@ -102,4 +91,4 @@ As soon as the timer finishes, the Completed port is triggered.
 For example, a simple autodestroy mechanic on a sprite that is progressively colored red before being destroyed.
 
 
-![](images/vs-time-timer-node-example.png)
+![A Timer changes the color of a sprite as it prepares to destroy it.](images/vs-time-timer-node-example.png)

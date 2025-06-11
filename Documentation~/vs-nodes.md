@@ -63,12 +63,12 @@ A node might have additional controls that display on its header or in the [Grap
 <tbody>
 <tr>
 <td><strong>Control</strong></td>
-<td> <img src="images\vs-node-container-type.png"></td>
+<td> <img src="images\vs-node-container-type.png" alt="Game Object control dropdown"></td>
 <td>A control appears as a dropdown option on the header of a node. For example, a Container Type control might tell a node to expect to receive a GameObject instead of a Script Machine.</td>
 </tr>
 <tr>
 <td><strong>Inline Value</strong></td>
-<td> <img src="images\vs-node-inline-value.png"></td>
+<td> <img src="images\vs-node-inline-value.png" alt="Inline value field"></td>
 <td>An inline value appears as an object picker field next to a port. You can use an inline value instead of a node connection to specify a value for a node. Not all Visual Scripting types support inline values.</td>
 </tr>
 </tbody>

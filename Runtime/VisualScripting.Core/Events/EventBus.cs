@@ -14,11 +14,11 @@ namespace Unity.VisualScripting
     /// </remarks>
     /// <example>
     /// <para>The following example shows how to use the EventBus to send a custom event from a script to a node in
-    /// a graph. It also shows how to use the EventBus as a global event manager by executing a callback in a 
+    /// a graph. It also shows how to use the EventBus as a global event manager by executing a callback in a
     /// script, not just a node.
     ///
     /// For more information on how to create custom event nodes refer to the
-    /// <a href="../Manual/vs-create-own-custom-event-node.html">User Manual</a>.
+    /// <a href="../manual/vs-create-own-custom-event-node.html">User Manual</a>.
     ///
     /// In this example we've added some code to a GameObject. This code checks for when the user presses a sequence of
     /// keys to enable a cheat code, then triggers the <c>CheatCodeActivated</c> event. We register the
@@ -26,11 +26,11 @@ namespace Unity.VisualScripting
     /// with 2 different targets: one for the <c>CheatCodeActivated</c> callback and the other to trigger the
     /// CheatCodeEnabled Node.</para>
     ///
-    /// <code source="../../../Tests/Runtime/Documentation/EventBus/CheatCodeController.cs"/>
+    /// <code source="../../../DocCodeExamples/EventBusExamples.cs" region="CheatCodeController" title="CheatCodeController"/>
     ///
     /// <para>The CheatCodeEnabled Node:</para>
     ///
-    /// <code source="../../../Tests/Runtime/Documentation/EventBus/CheatCodeEnabled.cs"/>
+    /// <code source="../../../DocCodeExamples/EventBusExamples.cs" region="CheatCodeEnabled" title="CheatCodeEnabled"/>
     /// </example>
     public static class EventBus
     {

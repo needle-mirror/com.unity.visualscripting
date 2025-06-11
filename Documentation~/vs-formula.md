@@ -10,7 +10,7 @@ Formula is a powerful node that evaluates logical and mathematical expressions d
 
 Although a formula can return either a boolean for logic, or a number for math, formulas can return any type of value.
 
-![](images/vs-formula-node.png)
+![A Formula node has two text fields: one for the formula itself, and one for the number of arguments.](images/vs-formula-node.png)
 
 The first text field in the header is the formula itself.
 
@@ -21,7 +21,7 @@ For example, this formula returns a boolean indicating:
 - whether, at a minimum, 10 seconds have elapsed since the start of the game and 
 - the current object's name is Player.
 
-![](images/vs-formula-node-example.png)
+![A boolean formula with two inputs.](images/vs-formula-node-example.png)
 
 ## Arguments
 

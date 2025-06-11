@@ -37,6 +37,6 @@ Whenever the graph is run and the Event is fired, the debug node executes and th
 > [!NOTE]
 > The debug bar indicates the number of messages of each debug type (in the following order Message, Error, Warning).
 
-![](images/vs-unity-console-w-warnings.png)
+![The debug bar show a count of zero messages, two errors, and zero warnings.](images/vs-unity-console-w-warnings.png)
 
 

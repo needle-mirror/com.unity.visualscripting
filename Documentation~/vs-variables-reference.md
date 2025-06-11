@@ -19,12 +19,12 @@ Variable nodes are teal colored.
 For get / set nodes, variables are not statically typed, meaning their type can change at runtime. Their type displays as an object when defined from the blackboard window.
 
 ### Get Variable
-![](images/vs-variables-get-variable-node.png)
+![The Get Variable Node returning the value of the score variable.](images/vs-variables-get-variable-node.png)
 
 The get variable node requires the name of the variable as an input and returns the **Value** as an output.
 
 ### Set Variable
-![](images/vs-variables-set-variable-node.png)
+![The Set Variable node setting a new value to the score variable.](images/vs-variables-set-variable-node.png)
 
 
 The set variable nodes require the name of the variable and the new value assigned to it as inputs. For convenience in layouting, it returns this same value as an output. 
@@ -37,13 +37,13 @@ Using a set node with a variable name that doesn't yet exist creates the variabl
 
 The Has Variable nodes require the name of the variable as an input and returns an Is Defined boolean as an output. They're useful to check if a variable has been created, and often, provide a fallback value if it hasn't. 
 
-![](images/vs-variables-has-variable-node.png)
+![The Has Variable node checks whether the score variable exists. It triggers Get Variable if the variable exists, and prints a message to the console of the variable doesn't exist.](images/vs-variables-has-variable-node.png)
 
 
 Do the same thing more easily by checking the Fallback box in the graph inspector for a Get Variable node. This adds a Fallback input to the node that is returned if the variable hasn't been defined:
 
 
-![](images/vs-variables-get-variable-fallback-option.png)
+![The Graphc Inspector window with a selected Fallback option, and the Get Variable node showing the Fallback.](images/vs-variables-get-variable-fallback-option.png)
 
 ## Dynamic Variables
 
@@ -55,13 +55,13 @@ Object variable nodes require an additional input for the Source. That port indi
 
 For example, the Get Variable node gets the value of the health variable on the player2 object.
 
-![](images/vs-variables-get-object-variable-object.png)
+![A Get Variable node that checks a specific object for the variable.](images/vs-variables-get-object-variable-object.png)
 
 ## Dropdowns
 
 The kind and the name dropdowns can quickly configure the variable nodes. The name suggestions are contextual and are based on the existing variables of this kind and on the other variable nodes in the current graph.
 
-![](images/vs-variables-change-scope-node.png)
+![The Kind dropdown in a get Variable node, with Object selected.](images/vs-variables-change-scope-node.png)
 
 ## Drag and Drop
 

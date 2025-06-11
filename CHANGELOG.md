@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.9.8] - 2025-06-11
+### Fixed
+- Fixed broken links to example codes in API documentation.
+
+### Changed
+- Adds alt texts to images in documentation to increase accessibility for screen readers.
+
 ## [1.9.7] - 2025-05-22
 ### Fixed
 - Fixed a warning "Unable to load Unity.Android.Gradle's referenced assembly NiceIO" when scanning assemblies. [UVSB-2594](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2594)

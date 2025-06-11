@@ -2,13 +2,13 @@
 
 Relations are a useful tool to understand the dependencies between each port of a node. For example, to get the result of A + B with the Add node, you need to provide a value for A and B. Likewise, before invoking the Log node, you should provide a value for its Message input port.
 
-![](images/vs-relations-debugging-show-relations.png)
+![A correct Add node, with two inputs: A and B.](images/vs-relations-debugging-show-relations.png)
 
 
 
 Visual scripting uses this information in the background for Predictive Debugging. For example, if you tried to get the value of A + B without providing a value for A, the node would show up as orange to indicate that it fails in play mode.
 
-![](images/vs-relations-debugging-predictive.png)
+![An Add node that's missing an input shows up in orange in the Graph Inspector.](images/vs-relations-debugging-predictive.png)
 
 
 When that happens, you can use the warnings shown in the Graph Inspector to know what is missing.

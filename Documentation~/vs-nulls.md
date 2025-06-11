@@ -16,7 +16,7 @@ The null check is a shortcut for a branch on an equality comparison with null. I
 
 For example, it can be used to handle a situation differently whether a transform has a parent in the hierarchy or not.
 
-![](images/vs-nulls-null-check-node.png)
+![The Null Check node triggers different actions, depending on whether the value is null or not.](images/vs-nulls-null-check-node.png)
 
 ## Null Coalesce
 
@@ -24,4 +24,4 @@ The null coalesce node provides a fallback value in case the original input is n
 
 For example, the null coalesce node defines a default fallback audio clip in case the one on the audio source is missing.
 
-![](images/vs-nulls-null-coalesce-node.png)
+![The Null Coalesce node can fall back to a default audio clip, if the correct audio file is missing.](images/vs-nulls-null-coalesce-node.png)

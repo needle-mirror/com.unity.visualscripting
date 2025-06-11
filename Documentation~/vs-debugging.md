@@ -12,19 +12,19 @@ When a node is not properly configured or may cause an error, it is colored yell
 Example: The Log node is colored orange because it's missing the Message that it should output to the console.
 
 
-![](images/vs-debug-log-node-error.png)
+![The Log node is colored orange because it's missing the Message that it should output to the console.](images/vs-debug-log-node-error.png)
 
 
 If you connect the result of A + B to Message, the Log node goes back to normal. However, the Add node  turns orange, because it's missing its first operand, A.
 
 
-![](images/vs-debug-add-node-error.png)
+![The Add node is missing an operand, so it's orange.](images/vs-debug-add-node-error.png)
 
 
 If values are provided for both operands, all colors return to normal.
 
 
-![](images/vs-debug-nodes-correct.png)
+![All nodes are in normal color, because there are no missing operands.](images/vs-debug-nodes-correct.png)
 
 The B input port does not need to be connected as it has a default inline value.
 
@@ -36,15 +36,15 @@ Visual scripting attempts to predict null references if the Predict Potential Nu
 
 Example: Even though the Destroy node has an inline value, as it is set to "None" (null), it is colored orange.
 
-![](images/vs-debug-null-reference.png)
+![The Null node's inline value is set to None, so it's displayed in orange.](images/vs-debug-null-reference.png)
 
 There are some rarer nodes that allow for null parameters. Unfortunately, because there is no way to know that from codebase analysis, visual scripting colors them orange as a false positive. If this is a recurring issue, turn off Predict Potential Null References.
 
 ### Missing Components
 
-When nodes are used that require components and pass a game object or a component that does not have the specified component, the node is colored yellow as a warning. For example, even though there are default values for each value input of the Add Force node, visual scripting detects that the owner game object does not have a rigidbody and provides a warning.
+When nodes are used that require components and pass a game object or a component that does not have the specified component, the node is colored yellow as a warning. For example, even though there are default values for each value input of the Add Force node, visual scripting detects that the owner GameObject doesn't have a rigidbody and provides a warning.
 
-![](images/vs-debug-missing-component.png)
+![The owner GameObject doesn't have a rigidbody, which is a required component, so the node is in yellow.](images/vs-debug-missing-component.png)
 
 Visual scripting does not color the node orange because it is possible to add components to game objects at runtime, so the node is not guaranteed to cause a crash if you add the required component before calling it. If this use case happens often in the project, you can disable Predict Potential Missing Components debugging from **Unity** > **Preferences** > **Visual Scripting** > **Flow Graphs**.
 
@@ -54,19 +54,19 @@ When in play mode, the currently active nodes are highlighted in blue. If an err
 
 Example: The following is an example of a faulty graph. The result logs "my 3rd third favorite fruit" to the console when you press space. 
 
-![](images/vs-debug-faulty-node-example.png)
+![The List node has an index value of 3, but the list of strings stops at index 2.](images/vs-debug-faulty-node-example.png)
 
 
 Here's what happens when play is selected and the object is clicked.
 
 
-![](images/vs-debug-faulty-node-highlighted.png)
+![The List node is in red, because it caused an error.](images/vs-debug-faulty-node-highlighted.png)
 
 
 All nodes are highlighted in blue as soon as you click because they were activated. However, there was an error in the console.
 
 
-![](images/vs-debug-faulty-node-console-error.png)
+![The console shows an error of Index out of range.](images/vs-debug-faulty-node-console-error.png)
 
 
 Visual scripting highlights the faulty node in red.

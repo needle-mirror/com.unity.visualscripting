@@ -17,9 +17,9 @@ In accordance with the Unity convention:
 > [!TIP]
 > To preserve the changes made to a component graph, copy the modified nodes before exiting play mode. You'll then be able to paste back while in edit mode.
 
-When in live mode, Visual Scripting is displayed the flow as droplets on connections.
+When in live mode, Visual Scripting displays the flow as droplets on connections.
 
-![](images/vs-live-editing-droplets.png)
+![Visual Scripting in live mode displays flows as droplets on connections.](images/vs-live-editing-droplets.png)
 
 To disable these animations on either the value connections, the control connections, or both,  deselect the **Animate Control Connections** or the **Animate Value Connections** from the editor preferences window (**Edit** > **Preferences** > **Visual Scripting** > **Script Graphs**).
 

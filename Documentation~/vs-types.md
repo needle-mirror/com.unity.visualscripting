@@ -20,72 +20,19 @@ Unity has hundreds of types. You can also add your own custom types. For more in
 
 The following table includes some commonly used types in Visual Scripting. 
 
-<table>
-<thead>
-<tr>
-<th><strong>Type</strong></th>
-<th colspan="2"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Float</strong></td>
-<td colspan="2">A float is a numeric value, with or without decimal places. <br/>For example, <code>0.25</code> or <code>13.1</code>.</td>
-</tr>
-<tr>
-<td><strong>Integer</strong></td>
-<td colspan="2">An integer is a numeric value without decimal places. <br/>For example, <code>3</code> or <code>200</code>.</td>
-</tr>
-<tr>
-<td><strong>Boolean</strong></td>
-<td colspan="2"> A Boolean is a <code>true</code> or <code>false</code> value. Use a Boolean to create logic in a Script Graph and for toggles. <br/>For example, a Script Graph can trigger an event only if a condition is <code>true</code>.</td>
-</tr>
-<tr>
-<td><strong>String</strong></td>
-<td colspan="2">A string is a sequence of characters or piece of text. <br/>For example, <code>string</code>, <code>string123</code>, and <code>s</code>.</td>
-</tr>
-<tr>
-<td><strong>Char</strong></td>
-<td colspan="2">A char is a single alphanumeric character from a string. <br/>For example, <code>s</code> or <code>1</code>.</td>
-</tr>
-<tr>
-<td><strong>Enum</strong></td>
-<td colspan="2">An enum is a finite enumeration of options. Enums are usually represented as dropdowns. <br/>For example, a <strong>Force Mode</strong> enum can have a value of either <code>Force</code>, <code>Impulse</code>, <code>Acceleration</code>, or <code>Velocity Change</code>.</td>
-</tr>
-<tr>
-<td rowspan="4"><strong>Vector</strong></td>
-<td colspan="2">A vector represents a set of float coordinates. Unity uses vectors for positions or directions.</td>
-</tr>
-<tr>
-<td><strong>Vector 2</strong></td>
-<td>A Vector 2 has X and Y values. You can use a Vector 2 for coordinates in 2D spaces.</td>
-</tr>
-<tr>
-<td><strong>Vector 3</strong></td>
-<td>A Vector 3 has X, Y, and Z values. You can use a Vector 3 for coordinates in 3D spaces.</td>
-</tr>
-<tr>
-<td><strong>Vector 4</strong></td>
-<td>A Vector 4 has X, Y, Z, and W values. You can use a Vector 4 for coordinates in 4D spaces, such as parameters for shaders.</td>
-</tr>
-<tr>
-<td><strong>GameObject</strong></td>
-<td colspan="2">A GameObject is the basic entity used in Unity scenes. All GameObjects have a name, a transform for their position and rotation in the scene, and a list of components.</td>
-</tr>
-<tr>
-<td><strong>List</strong></td>
-<td colspan="2">A list is an ordered collection of elements. The elements in a list can each have their own type or all have the same type. <br/>Visual Scripting indexes items in a list with the first position at 0. This means that the first element of a list is at the <code>0</code> index of the list. The second item is at the <code>1</code> index, the third is at the <code>2</code> index, and so on.</td>
-</tr>
-<tr>
-<td><strong>Dictionary</strong></td>
-<td colspan="2">A dictionary is a collection of elements. Each element has a unique key and a value. Use a key to access and assign the values for an element in a dictionary. <br/>For example, you can use a dictionary to organize the names and ages of a group of people. The person's name is the key to the value of their age. A single element in the dictionary can be <code>John</code> and <code>33</code>.</td>
-</tr>
-<tr>
-<td><strong>Object</strong></td>
-<td colspan="2">An Object is a special type in Unity. If a data input port on a node has its type set to <code>Object</code>, the node doesn't need a specific type as an input.</td>
-</tr>
-</tbody>
-</table>
+| Type | Description |
+| :--- | :--- |
+| **Float** | A float is a numeric value, with or without decimal places. <br/>For example, `0.25` or `13.1`. |
+| **Integer** | An integer is a numeric value without decimal places. <br/>For example, `3` or `200`. |
+| **Boolean** | A Boolean is a `true` or `false` value. Use a Boolean to create logic in a Script Graph and for toggles. <br/>For example, a Script Graph can trigger an event only if a condition is `true`. |
+| **String** | A string is a sequence of characters or piece of text. <br/>For example, `string`, `string123`, and `s`. |
+| **Char** | A char is a single alphanumeric character from a string. <br/>For example, `s` or `1`. |
+| **Enum** | An enum is a finite enumeration of options. Enums are usually represented as dropdowns. <br/>For example, a <strong>Force Mode</strong> enum can have a value of either `Force`, `Impulse`, `Acceleration`, or `Velocity Change`. |
+| **Vector** | A vector represents a set of float coordinates. Unity uses vectors for positions or directions.</br>**Vector 2:** A Vector 2 has X and Y values. You can use a Vector 2 for coordinates in 2D spaces.</br> **Vector 3:** A Vector 3 has X, Y, and Z values. You can use a Vector 3 for coordinates in 3D spaces.</br> **Vector 4:** A Vector 4 has X, Y, Z, and W values. You can use a Vector 4 for coordinates in 4D spaces, such as parameters for shaders. |
+| **GameObject** | A GameObject is the basic entity used in Unity scenes. All GameObjects have a name, a transform for their position and rotation in the scene, and a list of components. |
+| **List** | A list is an ordered collection of elements. The elements in a list can each have their own type or all have the same type. <br/>Visual Scripting indexes items in a list with the first position at 0. This means that the first element of a list is at the `0` index of the list. The second item is at the `1` index, the third is at the `2` index, and so on. |
+| **Dictionary** | A dictionary is a collection of elements. Each element has a unique key and a value. Use a key to access and assign the values for an element in a dictionary. <br/>For example, you can use a dictionary to organize the names and ages of a group of people. The person's name is the key to the value of their age. A single element in the dictionary can be `John` and `33`. |
+| **Object** | An Object is a special type in Unity. If a data input port on a node has its type set to `Object`, the node doesn't need a specific type as an input. |
 
 ## Supported type conversions 
 

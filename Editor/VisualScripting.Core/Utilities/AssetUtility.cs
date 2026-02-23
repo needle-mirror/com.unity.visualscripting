@@ -6,6 +6,9 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 using UnityObject = UnityEngine.Object;
+#if UNITY_6000_5_OR_NEWER
+using UnityEngine.Assemblies;
+#endif
 
 namespace Unity.VisualScripting
 {
@@ -114,7 +117,11 @@ namespace Unity.VisualScripting
         {
             Ensure.That(nameof(plugin)).IsNotNull(plugin);
 
+#if UNITY_6000_5_OR_NEWER
+            return AssetDatabase.AssetPathToGUID(PathUtility.FromProject(plugin.runtimeAssembly.GetLoadedAssemblyPath()));
+#else
             return AssetDatabase.AssetPathToGUID(PathUtility.FromProject(plugin.runtimeAssembly.Location));
+#endif
         }
 
         public static bool TryLoadIfExists<T>(string path, out T asset) where T : ScriptableObject

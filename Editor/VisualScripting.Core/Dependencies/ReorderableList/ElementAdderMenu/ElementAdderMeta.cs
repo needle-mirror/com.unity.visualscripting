@@ -4,6 +4,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+#if UNITY_6000_5_OR_NEWER
+using UnityEngine.Assemblies;
+#endif
 
 namespace Unity.VisualScripting.ReorderableList.Element_Adder_Menu
 {
@@ -19,8 +22,13 @@ namespace Unity.VisualScripting.ReorderableList.Element_Adder_Menu
 
         private static IEnumerable<Type> GetMenuCommandTypes<TContext>()
         {
+#if UNITY_6000_5_OR_NEWER
+            return
+                from a in CurrentAssemblies.GetLoadedAssemblies()
+#else
             return
                 from a in AppDomain.CurrentDomain.GetAssemblies()
+#endif
                 from t in a.GetTypesSafely()
                 where t.IsClass && !t.IsAbstract && t.IsDefined(typeof(ElementAdderMenuCommandAttribute), false)
                 where typeof(IElementAdderMenuCommand<TContext>).IsAssignableFrom(t)
@@ -119,8 +127,13 @@ namespace Unity.VisualScripting.ReorderableList.Element_Adder_Menu
             Type[] concreteTypes;
             if (!s_ConcreteElementTypes.TryGetValue(contractType, out concreteTypes))
             {
+#if UNITY_6000_5_OR_NEWER
+                concreteTypes =
+                    (from a in CurrentAssemblies.GetLoadedAssemblies()
+#else
                 concreteTypes =
                     (from a in AppDomain.CurrentDomain.GetAssemblies()
+#endif
                      from t in a.GetTypesSafely()
                      where t.IsClass && !t.IsAbstract && contractType.IsAssignableFrom(t)
                      orderby t.Name

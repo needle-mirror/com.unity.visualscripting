@@ -19,7 +19,7 @@ In accordance with the Unity convention:
 
 When in live mode, Visual Scripting displays the flow as droplets on connections.
 
-![Visual Scripting in live mode displays flows as droplets on connections.](images/vs-live-editing-droplets.png)
+![An example of a script graph in live mode](images/vs-live-editing-droplets.png)
 
 To disable these animations on either the value connections, the control connections, or both,  deselect the **Animate Control Connections** or the **Animate Value Connections** from the editor preferences window (**Edit** > **Preferences** > **Visual Scripting** > **Script Graphs**).
 

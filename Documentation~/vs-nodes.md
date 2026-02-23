@@ -25,7 +25,7 @@ Select a node in your graph, the Visual Scripting [Graph Inspector](vs-interface
 
 Connect a port from one node to a compatible port on another node to create an edge. Edges form the logic flow in a Visual Scripting graph. Click any port to create a new edge. 
 
-Edges are color-coded: edges that control the logic flow in your graph are white. Data edges are colored based on their type. For more information about types, see [Object types](vs-types.md).
+Edges are color-coded: edges that control the logic flow in your graph are white. Data edges are colored based on their type. For more information about types, refer to [Object types](vs-types.md).
 
 When you create a new edge, Visual Scripting highlights ports on any other nodes in a graph where you can make a valid connection. If you enable **Dim Incompatible Nodes**, Visual Scripting also dims any nodes or ports without a valid connection. 
 
@@ -52,27 +52,11 @@ More complex nodes can have more complex or specialized ports, outside of the po
 
 A node might have additional controls that display on its header or in the [Graph Inspector](vs-interface-overview.md#the-graph-inspector). Controls can change the available ports or behavior of a node. Some ports might also use inline values. 
 
-<table>
-<thead>
-<tr>
-<th><strong>Element</strong></th>
-<th><strong>Example</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Control</strong></td>
-<td> <img src="images\vs-node-container-type.png" alt="Game Object control dropdown"></td>
-<td>A control appears as a dropdown option on the header of a node. For example, a Container Type control might tell a node to expect to receive a GameObject instead of a Script Machine.</td>
-</tr>
-<tr>
-<td><strong>Inline Value</strong></td>
-<td> <img src="images\vs-node-inline-value.png" alt="Inline value field"></td>
-<td>An inline value appears as an object picker field next to a port. You can use an inline value instead of a node connection to specify a value for a node. Not all Visual Scripting types support inline values.</td>
-</tr>
-</tbody>
-</table>
+| **Element** | **Example** | **Description**|
+| :--- | :--- | :--- |
+| **Control** | <img src="images\vs-node-container-type.png"> | A control appears as a dropdown option on the header of a node. For example, a Container Type control might tell a node to expect to receive a GameObject instead of a Script Machine. |
+| **Inline Value** | <img src="images\vs-node-inline-value.png"> | An inline value appears as an object picker field next to a port. You can use an inline value instead of a node connection to specify a value for a node. Not all Visual Scripting types support inline values. |
+
  
 ## Node overloads 
 

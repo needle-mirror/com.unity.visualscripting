@@ -2,7 +2,7 @@
 
 You can open a graph file from multiple locations, based on the graph type and its source type. 
 
-For information on how to create a new graph file, see [Create a new graph file](vs-create-graph.md).
+For information on how to create a new graph file, refer to [Create a new graph file](vs-create-graph.md).
 
 ## From the Project window 
 
@@ -21,11 +21,13 @@ To open a graph from the Project window:
 If you have a nested or embedded graph inside another graph file, you can open it from the Graph Inspector.
 
 1. In the Graph window, select the node that represents the graph you want to edit. 
+    
     This node could be a transition, Super State, Subgraph, or State Unit. 
 
 1. Open the [Graph Inspector](vs-interface-overview.md#the-graph-inspector).
 
 2. In the Graph Inspector, select **Edit Graph**. 
+    
     The graph opens in the same Graph window. 
 
 ![An image of a graph open in the Graph Inspector, with a Subgraph node selected.](images/vs-existing-graph-example-subgraph.png)

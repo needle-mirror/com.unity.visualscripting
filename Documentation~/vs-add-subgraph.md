@@ -29,7 +29,7 @@ To add an existing graph file as a Subgraph in a Script Graph:
 > [!NOTE]
 > You can't nest a Script Graph as a Subgraph in its own graph file. 
 
-1. [!include[vs-with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]. Go to **Nesting** and select **Subgraph**. 
+1. [!include[vs-with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)] Go to **Nesting** and select **Subgraph**. 
 
 2. In the Graph Inspector, set your **Source** to **Graph**. 
    <br/>

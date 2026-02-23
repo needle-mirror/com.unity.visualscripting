@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.9.10] - 2026-02-23
+### Changed
+- Replaced internal use of InstanceIDs with the new EntityId (Unity 6.4+).
+- Migrate Mono APIs to CoreCLR-compatible APIs available in Unity 6000.5 and above.
+### Fixed
+- Fixed loading icon showing on the Visual Scripting components in the inspector during play mode when the editor is compiling.
+
 ## [1.9.8] - 2025-06-11
 ### Fixed
 - Fixed broken links to example codes in API documentation.

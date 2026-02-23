@@ -40,124 +40,44 @@ You can also configure some additional settings that control how nodes display i
 
 ![An image of the Graph toolbar](images/vs-toolbar.png)
 
-<table>
-<thead>
-<tr>
-<th><strong>Property</strong></th>
-<th colspan="2"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Lock</strong></td>
-<td colspan="2">Lock the current Script Graph or State Graph to the Graph window. Visual Scripting keeps the current graph open, even if you select another GameObject with a graph file in the <a href="https://docs.unity3d.com/Manual/Hierarchy.html">Hierarchy window</a>.</td>
-</tr>
-<tr>
-<td><strong>Graph Inspector</strong></td>
-<td colspan="2">Display or hide <a href="#the-graph-inspector">the Graph Inspector</a>.</td>
-</tr>
-<tr>
-<td><strong>Blackboard</strong></td>
-<td colspan="2">Display or hide <a href="#the-blackboard">the Blackboard</a>.</td>
-</tr>
-<tr>
-<td><strong>Breadcrumb Location</strong></td>
-<td colspan="2">Displays the name of the current graph. If you open a <a href="vs-nesting-subgraphs-state-units.md">Subgraph or State Unit</a>, or a <a href="vs-graph-types.md#state-graphs">State node</a> inside a State Graph, use the breadcrumbs to navigate back to the parent graph.</td>
-</tr>
-<tr>
-<td><strong>Zoom</strong></td>
-<td colspan="2">Set a zoom level for your view of the Graph Editor.</td>
-</tr>
-<tr>
-<td><strong>Relations</strong></td>
-<td colspan="2">Enable <strong>Relations</strong> to display inner flow connections for Script Graph nodes. For example, on a standard <code>Multiply</code> node, the <strong>Relations</strong> setting draws a line from each input port that merges into a single line on the output port. The lines display the flow of data inside the node. <br/>Disable <strong>Relations</strong> to hide these inner connections.</td>
-</tr>
-<tr>
-<td><strong>Values</strong></td>
-<td colspan="2">Enable <strong>Values</strong> to display the input and output values sent between nodes while the Unity Editor is in Play mode. This can make it easier to debug your scripts. <br/>Disable <strong>Values</strong> to hide input and output values while in Play mode. <br/>For more information on Play mode, see <a href="https://docs.unity3d.com/Manual/GameView.html">The Game view</a> in the Unity User Manual. <div class="NOTE"><h5>NOTE</h5><p>This setting corresponds to the <strong>Show Connection Values</strong> setting in the Preferences window for Visual Scripting. For more information on this preference, see <a href="vs-set-preferences.md#script-graphs-preferences">Configure your preferences</a>.</p></div></td>
-</tr>
-<tr>
-<td><strong>Dim</strong></td>
-<td colspan="2">Enable <strong>Dim</strong> to dim any nodes in the Graph Editor that aren't yet connected to the control flow in your graph. The <strong>Dim</strong> setting provides you with a visual cue that a node isn't used in the current configuration of your graph. <br/>Disable <strong>Dim</strong> to display all nodes as active regardless of their connection state. <div class="NOTE"><h5>NOTE</h5><p>This setting corresponds to the <strong>Dim Inactive Nodes</strong> setting in the Preferences window for Visual Scripting. For more information on this preference, see <a href="vs-set-preferences.md#core-preferences">Configure your preferences</a>.</p></div></td>
-</tr>
-<tr>
-<td><strong>Carry</strong></td>
-<td colspan="2">Enable <strong>Carry</strong> to move all connected child nodes when you move a parent node. Disable <strong>Carry</strong> to only move the currently selected node.<div class="NOTE"><h5>NOTE</h5><p>This setting corresponds to the <strong>Carry Children</strong> setting in the Preferences window for Visual Scripting. For more information on this preference, see <a href="vs-set-preferences.md#core-preferences">Configure your preferences</a>.</p></div></td>
-</tr>
-<tr>
-<td rowspan="7"><strong>Align</strong></td>
-<td colspan="2">Choose an alignment option to align any nodes in your current selection.</td>
-</tr>
-<tr>
-<td><strong>Align Left Edges</strong></td>
-<td>Align all nodes in the selection based on their left edge.</td>
-</tr>
-<tr>
-<td><strong>Align Centers</strong></td>
-<td>Align all nodes in the selection based on their vertical centers.</td>
-</tr>
-<tr>
-<td><strong>Align Right Edges</strong></td>
-<td>Align all nodes in the selection based on their right edges.</td>
-</tr>
-<tr>
-<td><strong>Align Top Edges</strong></td>
-<td>Align all nodes in the selection based on their top edges.</td>
-</tr>
-<tr>
-<td><strong>Align Middles</strong></td>
-<td>Align all nodes in the selection based on their horizontal middles.</td>
-</tr>
-<tr>
-<td><strong>Align Bottom Edges</strong></td>
-<td>Align all nodes in the selection based on their bottom edges.</td>
-</tr>
-<tr>
-<td rowspan="9"><strong>Distribute</strong></td>
-<td colspan="2">Choose a distribution option to evenly distribute space between any nodes in your current selection.</td>
-</tr>
-<tr>
-<td><strong>Distribute Left Edges</strong></td>
-<td>Distribute all nodes in the selection to leave an equal distance between the left edges of each node.</td>
-</tr>
-<tr>
-<td><strong>Distribute Centers</strong></td>
-<td>Distribute all nodes in the selection to leave an equal distance between the vertical centers of each node.</td>
-</tr>
-<tr>
-<td><strong>Distribute Right Edges</strong></td>
-<td>Distribute all nodes in the selection to leave an equal distance between the right edges of each node.</td>
-</tr>
-<tr>
-<td><strong>Distribute Horizontal Gaps</strong></td>
-<td>Distribute all nodes in the selection to leave an equal-sized horizontal gap between each node. This distribution affects the space between the left and right edges of nodes.</td>
-</tr>
-<tr>
-<td><strong>Distribute Top Edges</strong></td>
-<td>Distribute all nodes in the selection to leave an equal distance between the top edges of each node.</td>
-</tr>
-<tr>
-<td><strong>Distribute Middles</strong></td>
-<td>Distribute all nodes in the selection to leave an equal distance between the horizontal middles of each node.</td>
-</tr>
-<tr>
-<td><strong>Distribute Bottom Edges</strong></td>
-<td>Distribute all nodes in the selection to leave an equal distance between the bottom edges of each node.</td>
-</tr>
-<tr>
-<td><strong>Distribute Vertical Gaps</strong></td>
-<td>Distribute all nodes in the selection to leave an equal-sized vertical gap between each node. This distribution affects the space between the top and bottom edges of nodes.</td>
-</tr>
-<tr>
-<td><strong>Overview</strong></td>
-<td colspan="2">Select <strong>Overview</strong> to automatically pan and zoom to fit all elements of your current graph within the Graph Editor.</td>
-</tr>
-<tr>
-<td><strong>Full Screen</strong></td>
-<td colspan="2">Select <strong>Full Screen</strong> when the Graph window is docked in the Unity Editor to maximize the Graph window to the full size of the Editor window.</td>
-</tr>
-</tbody>
-</table>
+| **Property** | **Description** |
+|----------|-------------|
+| **Lock** | Lock the current Script Graph or State Graph to the Graph window. Visual Scripting keeps the current graph open, even if you select another GameObject with a graph file in the [Hierarchy window](https://docs.unity3d.com/Manual/Hierarchy.html). |
+| **Graph Inspector** | Display or hide [the Graph Inspector](#the-graph-inspector). |
+| **Blackboard** | Display or hide [the Blackboard](#the-blackboard). |
+| **Breadcrumb Location** | Displays the name of the current graph. If you open a [Subgraph or State Unit](vs-nesting-subgraphs-state-units.md), or a [State node](vs-graph-types.md#state-graphs) inside a State Graph, use the breadcrumbs to navigate back to the parent graph. |
+| **Zoom** | Set a zoom level for your view of the Graph Editor. |
+| **Relations** | Enable **Relations** to display inner flow connections for Script Graph nodes. For example, on a standard `Multiply` node, the **     Relations** setting draws a line from each input port that merges into a single line on the output port. The lines display the flow of data inside the node. Disable **Relations** to hide these inner connections. |
+| **Values** | Enable **Values** to display the input and output values sent between nodes while the Unity Editor is in Play mode. This can make it easier to debug your scripts. Disable **Values** to hide input and output values while in Play mode. For more information on Play mode, see [The Game view](https://docs.unity3d.com/Manual/GameView.html) in the Unity User Manual. <div class="NOTE"><h5>NOTE</h5><p>This setting corresponds to the **Show Connection Values** setting in the Preferences window for Visual Scripting. For more information on this preference, see [Configure your preferences](vs-set-preferences.md#script-graphs-preferences).</p></div> |
+| **Dim** | Enable **Dim** to dim any nodes in the Graph Editor that aren't yet connected to the control flow in your graph. The **Dim** setting provides you with a visual cue that a node isn't used in the current configuration of your graph. Disable **Dim** to display all nodes as active regardless of their connection state. <div class="NOTE"><h5>NOTE</h5><p>This setting corresponds to the **Dim Inactive Nodes** setting in the Preferences window for Visual Scripting. For more information on this preference, see [Configure your preferences](vs-set-preferences.md#core-preferences).</p></div> |
+| **Carry** | Enable **Carry** to move all connected child nodes when you move a parent node. Disable **Carry** to only move the currently selected node.<div class="NOTE"><h5>NOTE</h5><p>This setting corresponds to the **Carry Children** setting in the Preferences window for Visual Scripting. For more information on this preference, see [Configure your preferences](vs-set-preferences.md#core-preferences).</p></div> |
+| **Overview** | Select **Overview** to automatically pan and zoom to fit all elements of your current graph within the Graph Editor. |
+| **Full Screen** | Select **Full Screen** when the Graph window is docked in the Unity Editor to maximize the Graph window to the full size of the Editor window. |
+
+Choose an alignment option to align any nodes in your current selection.
+
+| **Property** | **Description** |
+|----------|-------------|
+| **Align Left Edges** | Align all nodes in the selection based on their left edge. |
+| **Align Centers** | Align all nodes in the selection based on their vertical centers. |
+| **Align Right Edges** | Align all nodes in the selection based on their right edges. |
+| **Align Top Edges** | Align all nodes in the selection based on their top edges. |
+| **Align Middles** | Align all nodes in the selection based on their horizontal middles. |
+| **Align Bottom Edges** | Align all nodes in the selection based on their bottom edges. |
+
+Choose a distribution option to evenly distribute space between any nodes in your current selection.
+
+| **Property** | **Description** |
+|----------|-------------|
+| **Distribute Left Edges** | Distribute all nodes in the selection to leave an equal distance between the left edges of each node. |
+| Distribute Centers | Distribute all nodes in the selection to leave an equal distance between the vertical centers of each node. |
+| **Distribute Right Edges** | Distribute all nodes in the selection to leave an equal distance between the right edges of each node. |
+| **Distribute Horizontal Gaps** | Distribute all nodes in the selection to leave an equal-sized horizontal gap between each node. This distribution affects the space between the left and right edges of nodes. |
+| **Distribute Top Edges** | Distribute all nodes in the selection to leave an equal distance between the top edges of each node. |
+| **Distribute Middles** | Distribute all nodes in the selection to leave an equal distance between the horizontal middles of each node. |
+| **Distribute Bottom Edges** | Distribute all nodes in the selection to leave an equal distance between the bottom edges of each node. |
+| **Distribute Vertical Gaps** | Distribute all nodes in the selection to leave an equal-sized vertical gap between each node. This distribution affects the space between the top and bottom edges of nodes. |
+
 
 Your Visual Scripting preferences can change some settings in the Graph toolbar or change how these settings behave. For example, you can control how fast the Graph Editor zooms in and out when you set a zoom level. For more information, see [Configure your preferences](vs-set-preferences.md).
 

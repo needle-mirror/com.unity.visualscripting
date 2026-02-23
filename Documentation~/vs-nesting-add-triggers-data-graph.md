@@ -10,77 +10,68 @@ For more information about Subgraphs, see [Subgraphs and State Units](vs-nesting
 
 To add a Trigger Input, Trigger Output, Data Input, or Data Output port to a Script Graph:
 
-<ol>
-<li><p><a href="vs-open-graph-edit.md">Open the Script Graph</a> you want to edit in the Graph window.</p></li>
-<li><p>With no nodes or groups selected in the graph, open the <a href="vs-interface-overview.md#the-graph-inspector">Graph Inspector</a>.</p></li>
-<li><p>Select <strong>Add</strong> (+) under the port type you want to add:</p>
-<ul>
-    <li><p><strong>Trigger Inputs</strong></p></li>
-    <li><p><strong>Trigger Outputs</strong></p></li>
-    <li><p><strong>Data Inputs</strong></p></li>
-    <li><p><strong>Data Outputs</strong></p></li>
-</ul></li>
-<li><p>In the <strong>Key</strong> field, enter a unique key name for the port. The Key value can't match the Key of any existing ports on the current Script Graph.</p></li>
-    <div class="NOTE"><h5>NOTE</h5><p>If two <strong>Key</strong> values are the same on the same graph, Visual Scripting ignores the second port definition and displays a warning in the Graph Inspector. If you change the <strong>Key</strong> value for a port after you've made a connection to that port in a graph, the connections break and you must reconnect them.</p></div>
-<li><p>In the <strong>Label</strong> field, enter a label to display for the port. The label displays on the Subgraph node and its Input or Output node.</p></li>
-    <div class="NOTE"><h5>NOTE</h5><p>If you don't set a <strong>Label</strong>, Visual Scripting uses the value from the <strong>Key</strong> field.</p></div>
-<li><p>In the <strong>Summary</strong> field, enter a brief summary of the port to display in the Graph Inspector when you select the Subgraph node, Input node, or Output node.</p></li>
-<li><p>Toggle <strong>Hide Label</strong> to do the following:</p>
-<ul>
-    <li><p>Enable <strong>Hide Label</strong> to hide the port label on any Subgraph node, Input node, or Output node.</p></li> 
-    <li><p>Disable <strong>Hide Label</strong> to display the data from the <strong>Label</strong> field.</p></li>
-</ul></li>
-<li><p>(Data Inputs and Data Outputs Only) Set a data type for the port:</p>
-<ol type="a">
-    <li><p>Select the <strong>Type</strong> list to open the Type menu.</p></li>
-    <li><p>Select a data type from the list to set the data type the port accepts.</p></li>
-</ol>
-</li>
-<li><p>(Data Inputs Only) Enable <strong>Has Default Value</strong> to display the <strong>Default Value</strong> field. Disable <strong>Has Default Value</strong> to hide the <strong>Default Value</strong> field.</p>
-<ol type="a">
-    <li><p>In the <strong>Default Value</strong> field, enter the default value the port uses if it doesn't receive a data input while the Script Graph runs.</p></li>
-</ol>
-</li>
-</ol>
+1. [Open the Script Graph](vs-open-graph-edit.md) you want to edit in the Graph window.
+2. With no nodes or groups selected in the graph, open the [Graph Inspector](vs-interface-overview.md#the-graph-inspector).
+3. Select **Add** (+) under the port type you want to add:
+
+   - **Trigger Inputs**
+   - **Trigger Outputs**
+   - **Data Inputs**
+   - **Data Outputs**
+4. In the **Key** field, enter a unique key name for the port. The Key value can't match the Key of any existing ports on the current Script Graph.
+
+    > [!NOTE] 
+    > If two **Key** values are the same on the same graph, Visual Scripting ignores the second port definition and displays a warning in the Graph Inspector. If you change the **Key** value for a port after you've made a connection to that port in a graph, the connections break and you must reconnect them.
+5. In the **Label** field, enter a label to display for the port. The label displays on the Subgraph node and its Input or Output node.
+
+    > [!NOTE] 
+    > If you don't set a **Label**, Visual Scripting uses the value from the **Key** field.
+6. In the **Summary** field, enter a brief summary of the port to display in the Graph Inspector when you select the Subgraph node, Input node, or Output node.
+7. Toggle **Hide Label** to do the following:
+   - Enable **Hide Label** to hide the port label on any Subgraph node, Input node, or Output node.
+   - Disable **Hide Label** to display the data from the **Label** field.
+8. (Data Inputs and Data Outputs Only) Set a data type for the port:
+   1. Select the **Type** list to open the Type menu.
+   1. Select a data type from the list to set the data type the port accepts.
+9. (Data Inputs Only) Enable **Has Default Value** to display the **Default Value** field. Disable **Has Default Value** to hide the **Default Value** field.
+
+    In the **Default Value** field, enter the default value the port uses if it doesn't receive a data input while the Script Graph runs.
 
 ## Add ports with Input and Output nodes
 
 You can also use an [Input node](vs-nesting-input-node.md) or an [Output node](vs-nesting-output-node.md) to define ports on a Script Graph:
 
-<ol>
-<li><p><a href="vs-open-graph-edit.md">Open the Script Graph</a> you want to edit in the Graph window.</p></li>
-<li><p>[!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]</p></li>
-<li><p>Go to <strong>Nesting</strong>.</p></li> 
-<li><p>Do one of the following:</p>
-    <ul>
-        <li><p>To add a Trigger Input or Data Input port to the graph, select <strong>Input</strong>.</p></li>
-        <li><p>To add a Trigger Output or Data Output port to the graph, select <strong>Output</strong>.</p></li>
-    </ul>
-</li>
-<li><p>Select the new Input or Output node in the graph.</p></li>
-<li><p>Open the <a href="vs-interface-overview.md#the-graph-inspector">Graph Inspector</a>.</p></li>
-<li><p>In the <strong>Key</strong> field, enter a unique key name for the port. The Key value can't match the Key of any existing ports on the current Script Graph.</p></li>
-    <div class="NOTE"><h5>NOTE</h5><p>If two <strong>Key</strong> values are the same on the same graph, Visual Scripting ignores the second port definition and displays a warning in the Graph Inspector. If you change the <strong>Key</strong> value for a port after you've made a connection to that port in a graph, the connections break and you must reconnect them.</p></div>
-<li><p>In the <strong>Label</strong> field, enter a label to display for the port. The label displays on the Subgraph node and its Input or Output node.</p></li>
-    <div class="NOTE"><h5>NOTE</h5><p>If you don't set a <strong>Label</strong>, Visual Scripting uses the value from the <strong>Key</strong> field.</p></div>
-<li><p>In the <strong>Summary</strong> field, enter a brief summary of the port to display in the Graph Inspector when you select the Subgraph node, Input node, or Output node.</p></li>
-<li><p>Toggle <strong>Hide Label</strong> to do the following:</p>
-<ul>
-    <li><p>Enable <strong>Hide Label</strong> to hide the port label on any Subgraph node, Input node, or Output node.</p></li> 
-    <li><p>Disable <strong>Hide Label</strong> to display the data from the <strong>Label</strong> field.</p></li>
-</ul></li>
-<li><p>(Data Inputs and Data Outputs Only) Set a data type for the port:</p>
-<ol type="a">
-    <li><p>Select the <strong>Type</strong> list to open the Type menu.</p></li>
-    <li><p>Select a data type from the list to set the data type the port accepts.</p></li>
-</ol>
-</li>
-<li><p>(Data Inputs Only) Enable <strong>Has Default Value</strong> to display the <strong>Default Value</strong> field. Disable <strong>Has Default Value</strong> to hide the <strong>Default Value</strong> field.</p>
-<ol type="a">
-    <li><p>In the <strong>Default Value</strong> field, enter the default value the port uses if it doesn't receive a data input while the Script Graph runs.</p></li>
-</ol>
-</li>
-</ol>
+
+1. [Open the Script Graph](vs-open-graph-edit.md) you want to edit in the Graph window.
+1. [!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]
+1. Go to **Nesting**.
+1. Do one of the following:
+
+    * To add a Trigger Input or Data Input port to the graph, select **Input**.
+    * To add a Trigger Output or Data Output port to the graph, select **Output**.
+
+1. Select the new Input or Output node in the graph.
+1. Open the [Graph Inspector](vs-interface-overview.md#the-graph-inspector).
+1. In the **Key** field, enter a unique key name for the port. The Key value can't match the Key of any existing ports on the current Script Graph.
+
+    > [!NOTE]
+    > If two **Key** values are the same on the same graph, Visual Scripting ignores the second port definition and displays a warning in the Graph Inspector. If you change the **Key** value for a port after you've made a connection to that port in a graph, the connections break and you must reconnect them.
+1. In the **Label** field, enter a label to display for the port. The label displays on the Subgraph node and its Input or Output node.
+    
+    > [!NOTE]
+    > If you don't set a **Label**, Visual Scripting uses the value from the **Key** field.
+1. In the **Summary** field, enter a brief summary of the port to display in the Graph Inspector when you select the Subgraph node, Input node, or Output node.
+1. Toggle **Hide Label** to do the following:
+
+    * Enable **Hide Label** to hide the port label on any Subgraph node, Input node, or Output node.
+    * Disable **Hide Label** to display the data from the **Label** field.
+1. (Data Inputs and Data Outputs Only) Set a data type for the port:
+
+    * Select the **Type** list to open the Type menu.
+    * Select a data type from the list to set the data type the port accepts.
+1. (Data Inputs Only) Enable **Has Default Value** to display the **Default Value** field. Disable **Has Default Value** to hide the **Default Value** field.
+
+    In the **Default Value** field, enter the default value the port uses if it doesn't receive a data input while the Script Graph runs.
 
 ## Next steps
 

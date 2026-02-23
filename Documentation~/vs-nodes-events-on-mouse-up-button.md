@@ -26,35 +26,13 @@ The On Mouse Up As Button [!include[nodes-single-input](./snippets/nodes-single-
 
 The On Mouse Up As Button [!include[nodes-additional-settings](./snippets/nodes-additional-settings.md)]
 
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-[!include[nodes-coroutine](./snippets/nodes-coroutine.md)]
-</tbody>
-</table>
+[!include[nodes-coroutine](./snippets/nodes-coroutine.md)
 
 ## Outputs
 
 The On Mouse Up As Button [!include[nodes-single-output](./snippets/nodes-single-output.md)] 
 
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
 [!include[nodes-input-output-trigger](./snippets/input-manager/nodes-input-output-trigger.md)]
-</tbody>
-</table>
 
 ## Example graph usage 
 

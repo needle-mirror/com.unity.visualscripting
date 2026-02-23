@@ -13,58 +13,16 @@ You can use the Set State Graph node to assign a State Graph to a specific State
 
 ![The Set State Graph node](images/VS-set-state-graph-node.png)
 
-<table>
-<thead>
-<tr>
-<th colspan="2"><strong>Item</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td colspan="2"><strong>Node Parameters</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-A.png" alt="The letter A in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Container Type</strong></td>
-<td>Specifies whether the <b>Target</b> is a GameObject or State Machine.</td>
-</tr>
-<tr>
-<td colspan="2"><strong>Input Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-B.png" alt="The letter B in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Enter</strong></td>
-<td>(Input Trigger) The execution input trigger for the node.</td>
-</tr>
-<tr>
-<td><img src="images\Label-C.png" alt="The letter C in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Target</strong></td>
-<td>(GameObject or State Machine) The GameObject or State Machine where the node sets the <b>Graph</b>.</td>
-</tr>
-<tr>
-<td><img src="images\Label-D.png" alt="The letter D in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Graph</strong></td>
-<td>(State Graph Asset) The State Graph the node sets on the <b>Target</b>.</td>
-</tr>
-<tr>
-<td colspan="2"><strong>Output Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-E.png" alt="The letter E in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Exit</strong></td>
-<td>(Output Trigger) The execution output trigger.</td>
-</tr>
-<tr>
-<td><img src="images\Label-F.png" alt="The letter F in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Graph</strong></td>
-<td>(State Graph Asset; Optional) Outputs the <b>Graph</b>.</td>
-</tr>
-</tbody>
-</table>
+| **Label** | **Item** | **Description** |
+| :--- | :--- | :--- |
+| ![The letter A in a blue circle, matching the label on the Set State Graph node image.](images/Label-A.png) | Node Parameters > **Container Type** | Specifies whether the Target is a GameObject or State Machine. |
+| ![The letter B in a blue circle, matching the label on the Set State Graph node image.](images/Label-B.png) | Input Ports > **Enter** | (Input Trigger) The execution input trigger for the node. |
+| ![The letter C in a blue circle, matching the label on the Set State Graph node image.](images/Label-C.png) | Input Ports > **Target** | (GameObject or State Machine) The GameObject or State Machine where the node sets the Graph. |
+| ![The letter D in a blue circle, matching the label on the Set State Graph node image.](images/Label-D.png) | Input Ports > **Graph** | (State Graph Asset) The State Graph the node sets on the Target. |
+| ![The letter E in a blue circle, matching the label on the Set State Graph node image.](images/Label-E.png) | Output Ports > **Exit** | (Output Trigger) The execution output trigger. |
+| ![The letter F in a blue circle, matching the label on the Set State Graph node image.](images/Label-F.png) | Output Ports > **Graph** | (State Graph Asset; Optional) Outputs the Graph. |
+
+
 
 ### Setting the required node parameters and inputs
 
@@ -78,8 +36,8 @@ Depending on which **Container Type** you select, the icon displayed next to the
 
 | **Container Type** | **Target Icon** |
 | :--- | :--- |
-| __GameObject__ | ![The GameObject icon](images/vs-gameobject-icon.png)|
-| __State Machine__ | ![The State Machine icon](images/vs-state-machine-icon.png)|
+| **GameObject** | ![The GameObject icon](images/vs-gameobject-icon.png)|
+| **State Machine** | ![The State Machine icon](images/vs-state-machine-icon.png)|
 
 The node has three input ports, located on the left side. The first port, **Enter**, connects to the node that should start the execution of the Set State Graph node.
 
@@ -103,58 +61,14 @@ The Has State Graph node allows you to determine whether a GameObject or State M
 
 ![The Has State Graph node](images/VS-has-state-graph-node.png)
 
-<table>
-<thead>
-<tr>
-<th colspan="2"><strong>Item</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td colspan="2"><strong>Node Parameters</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-A.png" alt="The letter A in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Container Type</strong></td>
-<td>Specify whether the <b>Target</b> is a GameObject or State Machine.</td>
-</tr>
-<tr>
-<td colspan="2"><strong>Input Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-B.png" alt="The letter B in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Enter</strong></td>
-<td>(Input Trigger) The execution input trigger for the node.</td>
-</tr>
-<tr>
-<td><img src="images\Label-C.png" alt="The letter C in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Target</strong></td>
-<td>(GameObject or State Machine) The GameObject or State Machine where the node should check for the <b>Graph</b>.</td>
-</tr>
-<tr>
-<td><img src="images\Label-D.png" alt="The letter D in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Graph</strong></td>
-<td>(State Graph Asset) The State Graph to search for on the GameObject or State Machine.</td>
-</tr>
-<tr>
-<td colspan="2"><strong>Output Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-E.png" alt="The letter E in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Exit</strong></td>
-<td>(Output Trigger) The execution output trigger, which starts execution of the next node in the flow after checking for the specified State Graph.</td>
-</tr>
-<tr>
-<td><img src="images\Label-F.png" alt="The letter F in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Has Graph</strong></td>
-<td>(Boolean) Outputs <code>true</code> if the node found the specified State Graph, <code>false</code> if not.</td>
-</tr>
-</tbody>
-</table>
+|**Label** | **Item** | **Description** |
+| :--- | :--- | :--- |
+| ![The letter A in a blue circle, matching the label on the Has State Graph node image.](images/Label-A.png) | Node Parameters > **Container Type** | Specify whether the Target is a GameObject or State Machine. |
+| ![The letter B in a blue circle, matching the label on the Has State Graph node image.](images/Label-B.png) | Input Ports > **Enter** | (Input Trigger) The execution input trigger for the node. |
+| ![The letter C in a blue circle, matching the label on the Has State Graph node image.](images/Label-C.png) | Input Ports > **Target** | (GameObject or State Machine) The GameObject or State Machine where the node should check for the Graph. |
+| ![The letter D in a blue circle, matching the label on the Has State Graph node image.](images/Label-D.png) | Input Ports > **Graph** | (State Graph Asset) The State Graph to search for on the GameObject or State Machine. |
+| ![The letter E in a blue circle, matching the label on the Has State Graph node image.](images/Label-E.png) | Output Ports > **Exit** | (Output Trigger) The execution output trigger, which starts execution of the next node in the flow after checking for the specified State Graph. |
+| ![The letter F in a blue circle, matching the label on the Has State Graph node image.](images/Label-F.png) | Output Ports > **Has Graph** | (Boolean) Outputs `true` if the node found the specified State Graph, `false` if not. |
 
 ### Setting the required node parameters and inputs
 
@@ -168,8 +82,8 @@ Depending on which **Container Type** you select, the icon displayed next to the
 
 | **Container Type** | **Target Icon** |
 | :--- | :--- |
-| __GameObject__ | ![The GameObject icon](images/vs-gameobject-icon.png)|
-| __State Machine__ | ![The State Machine icon](images/vs-state-machine-icon.png)|
+| **GameObject** | ![The GameObject icon](images/vs-gameobject-icon.png)|
+| **State Machine** | ![The State Machine icon](images/vs-state-machine-icon.png)|
 
 The node has three input ports, located on the left side. The first port, **Enter**, connects to the node that should start the execution of the Has State Graph node.
 
@@ -191,33 +105,11 @@ The Get State Graph node returns the first State Graph set on a GameObject.
 
 ![The Get State Graph node](images/VS-get-state-graph-node.png)
 
-<table>
-<thead>
-<tr>
-<th colspan="2"><strong>Item</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<td colspan="2"><strong>Input Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-A.png" alt="The letter A in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>GameObject</strong></td>
-<td>(GameObject) The GameObject where the node should retrieve a set State Graph.</td>
-</tr>
-<tr>
-<td colspan="2"><strong>Output Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-B.png" alt="The letter B in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Graph</strong></td>
-<td>(State Graph Asset) Outputs the first or only State Graph set on the GameObject, or null if there is no set State Graph.</td>
-</tr>
-</tbody>
-</table>
+| **Label** | **Item** | **Description** |
+| :--- | :--- | :--- |
+| ![The letter A in a blue circle, matching the label on the Get State Graph node image.](images/Label-A.png) | Input Ports > **GameObject** | (GameObject) The GameObject where the node should retrieve a set State Graph. |
+| ![The letter B in a blue circle, matching the label on the Get State Graph node image.](images/Label-B.png) | Output Ports > **Graph** | (State Graph Asset) Outputs the first or only State Graph set on the GameObject, or `null` if there is no set State Graph. |
+
 
 ### Setting the required node parameters and inputs
 
@@ -241,33 +133,11 @@ The Get State Graphs node returns a list of all State Graphs set on a GameObject
 
 ![The Get State Graphs node](images/VS-get-state-graphs-node.png)
 
-<table>
-<thead>
-<tr>
-<th colspan="2"><strong>Item</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<td colspan="2"><strong>Input Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-A.png" alt="The letter A in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>GameObject</strong></td>
-<td>(GameObject) The GameObject where the node should retrieve a list of set State Graphs.</td>
-</tr>
-<tr>
-<td colspan="2"><strong>Output Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-B.png" alt="The letter B in a blue circle, matching the label on the Set State Graph node image."></td>
-<td><strong>Graphs</strong></td>
-<td>(List of State Graph Assets) Outputs a list of all State Graphs set on the GameObject, or an empty list if there are no set State Graphs.</td>
-</tr>
-</tbody>
-</table>
+| **Label** | **Item** | **Description** |
+| :--- | :--- | :--- |
+| ![The letter A in a blue circle, matching the label on the Get State Graphs node image.](images/Label-A.png) | Input Ports > **GameObject** | (GameObject) The GameObject where the node should retrieve a list of set State Graphs. |
+| ![The letter B in a blue circle, matching the label on the Get State Graphs node image.](images/Label-B.png) | Output Ports > **Graphs** | (List of State Graph Assets) Outputs a list of all State Graphs set on the GameObject, or an empty list if there are no set State Graphs. |
+
 
 ### Setting the required node parameters and inputs
 

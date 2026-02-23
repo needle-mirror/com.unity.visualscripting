@@ -13,58 +13,15 @@ You can use the Set Script Graph node to assign a Script Graph to a specific Scr
 
 ![The Set Script Graph node](images/VS-set-script-graph-node.png)
 
-<table>
-<thead>
-<tr>
-<th colspan="2"><strong>Item</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td colspan="2"><strong>Node Parameters</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-A.png" alt="The letter A in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Container Type</strong></td>
-<td>Specifies whether the <b>Target</b> is a GameObject or Script Machine.</td>
-</tr>
-<tr>
-<td colspan="2"><strong>Input Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-B.png" alt="The letter B in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Enter</strong></td>
-<td>(Input Trigger) The execution input trigger for the node.</td>
-</tr>
-<tr>
-<td><img src="images\Label-C.png" alt="The letter C in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Target</strong></td>
-<td>(GameObject or Script Machine) The GameObject or Script Machine where the node sets the <b>Graph</b>.</td>
-</tr>
-<tr>
-<td><img src="images\Label-D.png" alt="The letter D in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Graph</strong></td>
-<td>(Script Graph Asset) The Script Graph the node sets on the <b>Target</b>.</td>
-</tr>
-<tr>
-<td colspan="2"><strong>Output Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-E.png" alt="The letter E in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Exit</strong></td>
-<td>(Output Trigger) The execution output trigger.</td>
-</tr>
-<tr>
-<td><img src="images\Label-F.png" alt="The letter F in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Graph</strong></td>
-<td>(Script Graph Asset; Optional) Outputs the <b>Graph</b>.</td>
-</tr>
-</tbody>
-</table>
+| **Label** | **Item** | **Description** |
+| :--- | :--- | :--- |
+| ![The letter A in a blue circle, matching the label on the Set Script Graph node image.](images/Label-A.png) | Node Parameters > **Container type** | Specifies whether the Target is a GameObject or Script Machine. |
+| ![The letter B in a blue circle, matching the label on the Set Script Graph node image.](images/Label-B.png) | Input Ports > **Enter** | (Input Trigger) The execution input trigger for the node. |
+| ![The letter C in a blue circle, matching the label on the Set Script Graph node image.](images/Label-C.png) | Input Ports > **Target** | (GameObject or Script Machine) The GameObject or Script Machine where the node sets the Graph. |
+| ![The letter D in a blue circle, matching the label on the Set Script Graph node image.](images/Label-D.png) | Input Ports > **Graph** | (Script Graph Asset) The Script Graph the node sets on the Target. |
+| ![The letter E in a blue circle, matching the label on the Set Script Graph node image.](images/Label-E.png) | Output Ports > **Exit** | (Output Trigger) The execution output trigger. |
+| ![The letter F in a blue circle, matching the label on the Set Script Graph node image.](images/Label-F.png) | Output Ports > **Graph** | (Script Graph Asset; Optional) Outputs the Graph. |
+
 
 ### Setting the required node parameters and inputs
 
@@ -103,58 +60,17 @@ The Has Script Graph node allows you to determine whether a GameObject or Script
 
 ![The Has Script Graph node](images/VS-has-script-graph-node.png)
 
-<table>
-<thead>
-<tr>
-<th colspan="2"><strong>Item</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td colspan="2"><strong>Node Parameters</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-A.png" alt="The letter A in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Container Type</strong></td>
-<td>Specify whether the <b>Target</b> is a GameObject or Script Machine.</td>
-</tr>
-<tr>
-<td colspan="2"><strong>Input Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-B.png" alt="The letter B in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Enter</strong></td>
-<td>(Input Trigger) The execution input trigger for the node.</td>
-</tr>
-<tr>
-<td><img src="images\Label-C.png" alt="The letter C in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Target</strong></td>
-<td>(GameObject or Script Machine) The GameObject or Script Machine where the node should check for the <b>Graph</b>.</td>
-</tr>
-<tr>
-<td><img src="images\Label-D.png" alt="The letter D in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Graph</strong></td>
-<td>(Script Graph Asset) The Script Graph to search for on the GameObject or Script Machine.</td>
-</tr>
-<tr>
-<td colspan="2"><strong>Output Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-E.png" alt="The letter E in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Exit</strong></td>
-<td>(Output Trigger) The execution output trigger, which starts execution of the next node in the flow after checking for the specified Script Graph.</td>
-</tr>
-<tr>
-<td><img src="images\Label-F.png" alt="The letter F in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Has Graph</strong></td>
-<td>(Boolean) Outputs <code>true</code> if the node found the specified Script Graph, <code>false</code> if not.</td>
-</tr>
-</tbody>
-</table>
+
+| **Label** | **Item** | **Description** |
+| :--- | :--- | :--- |
+| ![The letter A in a blue circle, matching the label on the Has Script Graph node image.](images/Label-A.png) | Node Parameters > **Container type** | Specifies whether the Target is a GameObject or Script Machine. |
+| ![The letter B in a blue circle, matching the label on the Has Script Graph node image.](images/Label-B.png) | Input Ports > **Enter** | (Input Trigger) The execution input trigger for the node. |
+| ![The letter C in a blue circle, matching the label on the Has Script Graph node image.](images/Label-C.png) | Input Ports > **Target** | (GameObject or Script Machine) The GameObject or Script Machine where the node sets the Graph. |
+| ![The letter D in a blue circle, matching the label on the Has Script Graph node image.](images/Label-D.png) | Input Ports > **Graph** | (Script Graph Asset) The Script Graph the node sets on the Target. |
+| ![The letter E in a blue circle, matching the label on the Has Script Graph node image.](images/Label-E.png) | Output Ports > **Exit** | (Output Trigger) The execution output trigger. |
+| ![The letter F in a blue circle, matching the label on the Has Script Graph node image.](images/Label-F.png) | Output Ports > **Graph** | (Script Graph Asset; Optional) Outputs the Graph. |
+
+
 
 ### Setting the required node parameters and inputs
 
@@ -191,33 +107,11 @@ The Get Script Graph node returns the first Script Graph set on a GameObject.
 
 ![The Get Script Graph node](images/VS-get-script-graph-node.png)
 
-<table>
-<thead>
-<tr>
-<th colspan="2"><strong>Item</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<td colspan="2"><strong>Input Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-A.png" alt="The letter A in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>GameObject</strong></td>
-<td>(GameObject) The GameObject where the node should retrieve a set Script Graph.</td>
-</tr>
-<tr>
-<td colspan="2"><strong>Output Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-B.png" alt="The letter B in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Graph</strong></td>
-<td>(Script Graph Asset) Outputs the first or only Script Graph set on the GameObject, or null if there is no set Script Graph.</td>
-</tr>
-</tbody>
-</table>
+| **Label** | **Item** | **Description** |
+| :--- | :--- | :--- |
+| ![The letter A in a blue circle, matching the label on the Get Script Graph node image.](images/Label-A.png) | Input Ports > **GameObject** | (GameObject) The GameObject where the node should retrieve a set Script Graph. |
+| ![The letter B in a blue circle, matching the label on the Get Script Graph node image.](images/Label-B.png) | Output Ports >  **Graph** | (Script Graph Asset) Outputs the first or only Script Graph set on the GameObject, or null if there is no set Script Graph. |
+
 
 ### Setting the required node parameters and inputs
 
@@ -241,33 +135,12 @@ The Get Script Graphs node returns a list of all Script Graphs set on a GameObje
 
 ![The Get Script Graphs node](images/VS-get-script-graphs-node.png)
 
-<table>
-<thead>
-<tr>
-<th colspan="2"><strong>Item</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<td colspan="2"><strong>Input Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-A.png" alt="The letter A in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>GameObject</strong></td>
-<td>(GameObject) The GameObject where the node should retrieve a list of set Script Graphs.</td>
-</tr>
-<tr>
-<td colspan="2"><strong>Output Ports</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="images\Label-B.png" alt="The letter B in a blue circle, matching the label on the Set Script Graph node image."></td>
-<td><strong>Graphs</strong></td>
-<td>(List of Script Graph Assets) Outputs a list of all Script Graphs set on the GameObject, or an empty list if there are no set Script Graphs.</td>
-</tr>
-</tbody>
-</table>
+
+| **Label** | **Item** | **Description** |
+| :--- | :--- | :--- |
+| ![The letter A in a blue circle, matching the label on the Get Script Graph node image.](images/Label-A.png) | Input Ports > **GameObject** | (GameObject) The GameObject where the node should retrieve a list of set Script Graph. |
+| ![The letter B in a blue circle, matching the label on the Get Script Graph node image.](images/Label-B.png) | Output Ports >  **Graph** | (List of Script Graph Asset) Outputs a list of all Script Graphs set on the GameObject, or an empty list if there are no set Script Graphs. |
+
 
 ### Setting the required node parameters and inputs
 

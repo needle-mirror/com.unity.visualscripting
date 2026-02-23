@@ -9,6 +9,7 @@ Unity Visual Scripting (UVS) doesn't support preprocessor directives, so the use
 `/<ProjectPath>/<CSharpFile>.cs: error CS0103: The name '<MissingApiName>' does not exist in the current context.`
 
 The following code sample is an example of preprocessor directives for Unity Editor scripts :
+
 ```
 #if UNITY_EDITOR
 public static List<Type> GetAllVolumeComponents()

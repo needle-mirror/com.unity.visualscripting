@@ -22,13 +22,13 @@ A single method call is needed to trigger a custom event. Pass as many arguments
 CustomEvent.Trigger(targetGameObject, argument1, argument2, ...)
 ```
 
-For example, this custom event node:
+For example, you can trigger this custom event node:
 
 
-![](images/vs-events-custom-event-node.png)
+![A custom event node](images/vs-events-custom-event-node.png)
 
 
-Can be triggered with this line of code.
+With this line of code.
 
 ```
 CustomEvent.Trigger(enemy, "On Damage", 30);

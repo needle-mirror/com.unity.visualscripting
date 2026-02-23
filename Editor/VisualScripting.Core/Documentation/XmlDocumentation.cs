@@ -5,6 +5,9 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
 using UnityEngine;
+#if UNITY_6000_5_OR_NEWER
+using UnityEngine.Assemblies;
+#endif
 
 namespace Unity.VisualScripting
 {
@@ -112,7 +115,11 @@ namespace Unity.VisualScripting
 
         private static Dictionary<string, XmlDocumentationTags> GetDocumentationUncached(Assembly assembly)
         {
+#if UNITY_6000_5_OR_NEWER
+            var assemblyPath = assembly.GetLoadedAssemblyPath();
+#else
             var assemblyPath = assembly.Location;
+#endif
 
             var documentationPath = Path.ChangeExtension(assemblyPath, ".xml");
 

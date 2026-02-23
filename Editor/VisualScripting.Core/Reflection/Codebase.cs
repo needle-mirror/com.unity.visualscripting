@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using UnityEngine;
 using UnityObject = UnityEngine.Object;
+#if UNITY_6000_5_OR_NEWER
+using UnityEngine.Assemblies;
+#endif
 
 namespace Unity.VisualScripting
 {
@@ -29,7 +33,11 @@ namespace Unity.VisualScripting
                 _ludiqRuntimeTypes = new List<Type>();
                 _ludiqEditorTypes = new List<Type>();
 
+#if UNITY_6000_5_OR_NEWER
+                foreach (var assembly in CurrentAssemblies.GetLoadedAssemblies())
+#else
                 foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+#endif
                 {
                     try
                     {
@@ -416,7 +424,11 @@ namespace Unity.VisualScripting
         {
             dependency = null;
 
+#if UNITY_6000_5_OR_NEWER
+            var assemblyLocation = assembly.GetLoadedAssemblyPath();
+#else
             var assemblyLocation = assembly.Location;
+#endif
             var directory = System.IO.Path.GetDirectoryName(assemblyLocation);
             if (directory == null)
                 return false;
@@ -427,7 +439,11 @@ namespace Unity.VisualScripting
 
             try
             {
+#if UNITY_6000_5_OR_NEWER
+                dependency = CurrentAssemblies.LoadFromPath(dependencyPath);
+#else
                 dependency = Assembly.LoadFrom(dependencyPath);
+#endif
                 return true;
             }
             catch (Exception)

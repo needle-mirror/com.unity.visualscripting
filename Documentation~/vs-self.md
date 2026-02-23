@@ -4,7 +4,7 @@ Use a This node to return a GameObject with a Script Machine component that has 
 
 Many nodes default their target to **This**. For example, the following Transform nodes are the same:
 
-![Two Transform nodes, one with a This node, and one with a This inline value.](images/vs-this-self-node-example.png)
+![A Transform node connected to a This node, and a Transform node with a default target This.](images/vs-this-self-node-example.png)
 
 Not all nodes support the **This** inline value. Any node that doesn't support the **This** inline value displays **None** instead of **This** in the default value field. For example, the Destroy node displays **None**. 
 

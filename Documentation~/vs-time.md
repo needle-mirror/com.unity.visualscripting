@@ -11,8 +11,7 @@ Wait nodes delay the execution of the rest of the script. The delay can be a set
 
 Asynchronicity (delayed execution) in Unity is handled by [coroutines](https://docs.unity3d.com/Manual/Coroutines.html) (not multithreading). You need to inform visual scripting to run the script as a coroutine in order to support wait nodes. To do this enable the **Coroutine checkbox** on the initial event that starts the script. Do this in the graph inspector.
 
-![A small dual-arrow icon appears on the event, indicating that it runs as a coroutine.
-](images/vs-time-coroutine-wait-nodes.png)
+![An event node with the coroutine checkbox selected in the graph inspector. A small dual-arrow icon on the event node indicates that it runs as a coroutine.](images/vs-time-coroutine-wait-nodes.png)
 
 A small dual-arrow icon appears on the event, indicating that it runs as a coroutine.
 
@@ -91,4 +90,4 @@ As soon as the timer finishes, the Completed port is triggered.
 For example, a simple autodestroy mechanic on a sprite that is progressively colored red before being destroyed.
 
 
-![A Timer changes the color of a sprite as it prepares to destroy it.](images/vs-time-timer-node-example.png)
+![A Timer node with a Duration value of `1` setting the color by % Elapsed and destroying it when Completed.](images/vs-time-timer-node-example.png)

@@ -17,7 +17,7 @@ New script machines start with both these events by default.
 
 ![A new script machine with the two default events: On Start and On Update.](images/vs-new-graph-starter-nodes.png)
 
-## Inputs &amp; Outputs
+## Inputs and Outputs
 
 
 All events have a single Trigger control output that starts the script when they are triggered.
@@ -39,7 +39,7 @@ For example, to create a custom event called On Damage that gets called so the c
 
 
 
-![A custom event with one argument - an integer indicating damage amount.](images/vs-events-custom-event-node.png)
+![A custom event with one argument: an integer indicating the amount of damage to inflict](images/vs-events-custom-event-node.png)
 
 > [!NOTE]
 > Indices are zero-based, so the first argument is labeled Arg. 0.  
@@ -49,9 +49,9 @@ To trigger the event from elsewhere, use the Trigger Custom Event node, located 
 For example, to create a script machine on a boulder that could hit the player, use the force of the impact as the damage. 
 
 
-![The damage integer gets a value from the Magnitude node.](images/vs-events-trigger-custom-event-example.png)
+![A script machine for a boulder that could hit a GameObject. It uses a Vector 3 Magnitude node to convert the force of the impact to the damage. The script machine has 3 nodes: an On Collision event node, a Vector 3 magnitude node, and a Trigger Custom event node. The Trigger output port of the On Collision event node connects to the Enter input port on the Trigger Custom event node. The Collider output port of the On Collision event node connects to the Target input port on the Trigger Custom event node. The Impulse output port on the On Collision event node connects to the  Vector input port on the Vector 3 Magnitude node. And the Result output port  on the Vector 3 Magnitude node connects to the Argument input port Trigger Custom event node. ](images/vs-events-trigger-custom-event-example.png)
 
-The collider that hit with the boulder is the target of our trigger; the On Damage event is  triggered on all machines attached to that collider. Use the damage value to subtract health from the receiver object.
+The collider that's hit by the boulder is the target of our trigger; the On Damage event is triggered on all machines attached to that collider. Use the damage value to subtract health from the receiver object.
 
 
 ![The Get Variable node provides the current health to the Subtract node, which outputs a new health value to the Set Variable node.](images/vs-events-custom-event-example.png)
@@ -65,9 +65,9 @@ Use animation events to trigger script graphs when you reach a certain point in 
 
 ![The Add Animation button in the Animation window.](images/vs-events-animation-window-add-event.png)
 
-With the event selected, choose TriggerAnimationEvent as the function from the inspector.
+With the event selected, choose TriggerAnimationEvent as the function from the Inspector.
 
-Use any parameter from the inspector.
+Use any parameter from the Inspector.
 
 In your script graph, add an Animation Event node (under **Events** &gt;**Animation**).  
 
@@ -76,9 +76,10 @@ There are two types of events:
 - a global animation event, and 
 - a named animation event.
 
-![An Animation Event node that listens to all animation events on the object, and an Animation Event Node that listens to a specified event.](images/vs-events-animation-event-nodes.png)
 
-The difference is that the first type listens to all animation events on the object and return the string parameter. The second type's trigger is the string parameter that is equal to the specified name input.
+![On the left, a global animation event node listens to all animation events on the object. On the right, a named animation event node with MyAction as the input.](images/vs-events-animation-event-nodes.png)
+
+The difference is that the first type listens to all animation events on the object and returns the string parameter. The second type's trigger is the string parameter that is equal to the specified name input.
 
 ## Unity Events
 
@@ -110,13 +111,13 @@ A single method call is needed to trigger a custom event. Pass as many arguments
 CustomEvent.Trigger(targetGameObject, argument1, argument2, ...)
 ```
 
-For example, this custom event node:
+For example, you can trigger this custom event node:
 
 
-![A Custom Event node from the Enemy graph. It outputs a value for damage.](images/vs-events-custom-event-node-blank.png)
+![A custom event node](images/vs-events-custom-event-node-blank.png)
 
 
-Can be triggered with this line of code.
+With this line of code.
 
 
 

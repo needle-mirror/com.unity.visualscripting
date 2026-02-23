@@ -34,36 +34,15 @@ You can also set this control from the [Graph Inspector](vs-interface-overview.m
 
 The On Input System Event Button [!include[nodes-additional-settings](./snippets/nodes-additional-settings.md)]
 
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
 [!include[nodes-coroutine](./snippets/nodes-coroutine.md)]
-</tbody>
-</table>
 
 
 ## Outputs 
 
 The On Input System Event Button [!include[nodes-single-output](./snippets/nodes-single-output.md)]
 
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
 [!include[nodes-input-system-output-trigger-port](./snippets/input-system/nodes-input-system-output-trigger-port.md)]
-</tbody>
-</table>
+
 
 
 ## Example graph usage 

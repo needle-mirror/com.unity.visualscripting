@@ -5,34 +5,41 @@
 
 To create a basic Script Graph that uses the Input Manager to capture input: 
 
-<ol>
-<li><p><a href="vs-open-graph-edit.md">Open</a> or <a href="vs-create-graph.md">create</a> a Script Graph attached to the GameObject that you want your users to move.</p></li>
-<li><p>If there isn't an <strong>On Update</strong> or similar Event node in your graph:</p>
-    <ol type="a">
-        <li><p>[!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]</p></li>
-        <li><p>Go to <strong>Events</strong> &gt; <strong>Lifecycle</strong>, or enter <strong>On Update</strong> in the search field.</p></li>
-        <li><p>Select the <strong>On Update</strong> Event node to add it to the graph.</p></li>
-    </ol>
-</li>
-<li><p>[!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]</p></li>
-<div class="TIP"><h5>TIP</h5><p>If you right-click and the context menu appears, select <strong>Add Node</strong> to open the fuzzy finder.</p></div>
-<li><p>Go to <strong>Codebase</strong> &gt; <strong>Unity Engine</strong> &gt; <strong>Input</strong>, or enter <strong>Get Axis</strong> in the search field.</p></li>
-<li><p>Select <strong>Get Axis (Axis Name)</strong> to add the Get Axis node to the graph.</p></li>
-<li><p>Repeat Steps 3 through 5 to create a second <strong>Get Axis (Axis Name)</strong> node.</p></li>
-<li><p>On the first Get Axis node, in the <strong>Axis Name</strong> input field, enter <code>Horizontal</code>.</p></li>
-<li><p>On the second Get Axis node, in the <strong>Axis Name</strong> input field, enter <code>Vertical</code>.</p></li>
-<div class="NOTE"><h5>NOTE</h5><p>If an Axis Name doesn't match the name in the Input Manager's Project Settings, Visual Scripting displays an error in the Graph Inspector. When you enter Play mode, the Unity Editor also displays an error in the Console window.</p></div>
-<li><p>[!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]</p></li>
-<li><p>Go to <strong>Codebase</strong> &gt; <strong>Unity Engine</strong> &gt; <strong>Transform</strong> or search for <strong>Translate</strong>.</p></li>
-<li><p>Select <strong>Translate (X, Y, Z)</strong> to add a Translate node to the graph.</p></li>
-<li><p>Select the <strong>Result</strong> float output port on the <code>Horizontal</code> Get Axis node.</p></li>
-<li><p><a href="vs-creating-connections.md">Make a connection</a> to the <strong>X</strong> input port on the <strong>Translate</strong> node.</p></li>
-<li><p>Select the <strong>Result</strong> float output port on the <code>Vertical</code> Get Axis node.</p></li>
-<li><p><a href="vs-creating-connections.md">Make a connection</a> to the <strong>Z</strong> input port on the <strong>Translate</strong> node. <br/>The finished graph looks similar to the following image:</p></li>
-<p><img src="images/vs-input-old-system-example.png" alt="An image of the Graph window, that displays the final result of a simple input capture graph using the Input Manager. An On Update node connects to the Trigger input port on a Transform Translate node. The Result port on an Input Get Axis node with an Axis Name of Horizontal connects to the X input port on the Translate node. The Result port on another Input Get Axis node with an Axis Name of Vertical connects to the Z input port."></p>
-<li><p>To enter Play mode, select <strong>Play</strong> from the <a href="https://docs.unity3d.com/Manual/Toolbar.html">Unity Editor's Toolbar</a>.</p></li>
-<li><p>While in the <a href="https://docs.unity3d.com/Manual/GameView.html">Game view</a>, press a key mapped as a <strong>Negative Button</strong> or <strong>Positive Button</strong> from the <a href="https://docs.unity3d.com/Documentation/Manual/class-InputManager.html">Input Manager's virtual axes</a>.</p></li>
-</ol>
+1. [Open](vs-open-graph-edit.md) or [create](vs-create-graph.md) a Script Graph attached to the GameObject that you want your users to move.
+1. If there isn't an **On Update** or similar Event node in your graph:
+   
+   1. [!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]
+   1. Go to **Events** > **Lifecycle**, or enter **On Update** in the search field.
+   1. Select the **On Update** Event node to add it to the graph.
+    
+1. [!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]
+
+    > [!TIP]
+    > If you right-click and the context menu appears, select **Add Node** to open the fuzzy finder.
+
+1. Go to **Codebase** &gt; **Unity Engine** &gt; **Input**, or enter **Get Axis** in the search field.
+1. Select **Get Axis (Axis Name)** to add the Get Axis node to the graph.
+1. Repeat Steps 3 through 5 to create a second **Get Axis (Axis Name)** node.
+1. On the first Get Axis node, in the **Axis Name** input field, enter `Horizontal`.
+1. On the second Get Axis node, in the **Axis Name** input field, enter `Vertical`.
+
+    > [!NOTE]
+    > If an Axis Name doesn't match the name in the Input Manager's Project Settings, Visual Scripting displays an error in the Graph Inspector. When you enter Play mode, the Unity Editor also displays an error in the Console window.
+
+1. [!include[vs-open-fuzzy-finder](./snippets/vs-open-fuzzy-finder.md)]
+1. Go to **Codebase** &gt; **Unity Engine** &gt; **Transform** or search for **Translate**.
+1. Select **Translate (X, Y, Z)** to add a Translate node to the graph.
+1. Select the **Result** float output port on the `Horizontal` Get Axis node.
+1. [Make a connection](vs-creating-connections.md) to the **X** input port on the **Translate** node.
+1. Select the **Result** float output port on the `Vertical` Get Axis node.
+1. [Make a connection](vs-creating-connections.md) to the **Z** input port on the **Translate** node. 
+    
+    The finished graph looks similar to the following image:
+
+    <img src="images/vs-input-old-system-example.png" alt="An image of the Graph window, that displays the final result of a simple input capture graph using the Input Manager. An On Update node connects to the Trigger input port on a Transform Translate node. The Result port on an Input Get Axis node with an Axis Name of Horizontal connects to the X input port on the Translate node. The Result port on another Input Get Axis node with an Axis Name of Vertical connects to the Z input port.">
+1. To enter Play mode, select **Play** from the [Unity Editor's Toolbar](https://docs.unity3d.com/Manual/Toolbar.html).
+1. While in the [Game view](https://docs.unity3d.com/Manual/GameView.html), press a key mapped as a **Negative Button** or **Positive Button** from the [Input Manager's virtual axes](https://docs.unity3d.com/Documentation/Manual/class-InputManager.html).
+
 
 The GameObject moves along the X or Z axis in the Game view, based on the key pressed and the [Input Manager Project Settings](https://docs.unity3d.com/Documentation/Manual/class-InputManager.html). 
 

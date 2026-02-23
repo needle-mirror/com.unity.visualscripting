@@ -15,74 +15,23 @@ The On Button Input node is in the **Events** &gt; **Input** category in the fuz
 
 The On Button Input [!include[nodes-inputs](./snippets/nodes-inputs.md)] 
 
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Type</strong></th>
-<th colspan="2"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Name</strong></td>
-<td>String</td>
-<td colspan="2">The name of the button the node listens to for an Input event, as it appears in the Input Manager.</td>
-</tr>
-<tr>
-<td rowspan="4"><strong>Action</strong></td>
-<td rowspan="4">Press State</td>
-<td colspan="2">The specific press state of the button that the node listens for.</td>
-</tr>
-<tr>
-<td><strong>Hold</strong></td>
-<td>The user holds down the button.</td>
-</tr>
-<tr>
-<td><strong>Down</strong></td>
-<td>The user presses the button.</td>
-</tr>
-<tr>
-<td><strong>Up</strong></td>
-<td>The user releases the button.</td>
-</tr>
-</tbody>
-</table>
+| Name | Type | Description |
+|---|---|---|
+| **Name** | String | The name of the button the node listens to for an Input event, as it appears in the Input Manager. |
+| **Action** | Press State | The specific press state of the button that the node listens for. The options are: <ul><li>**Hold:** The user holds down the button.</li><li> **Down:** The user presses the button.</li><li> **Up:** The User releases the button. </li></ul>|
 
 
 ## Additional node settings 
 
 The On Button Input [!include[nodes-additional-settings](./snippets/nodes-additional-settings.md)]
 
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-[!include[nodes-coroutine](./snippets/nodes-coroutine.md)]
-</tbody>
-</table>
+[!include[nodes-coroutine](./snippets/nodes-coroutine.md)
 
 ## Outputs
 
 The On Button Input [!include[nodes-single-output](./snippets/nodes-single-output.md)]
 
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
 [!include[nodes-input-output-trigger](./snippets/input-manager/nodes-input-output-trigger.md)]
-</tbody>
-</table>
 
 ## Example graph usage 
 

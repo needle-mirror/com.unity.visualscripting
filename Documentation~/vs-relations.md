@@ -8,7 +8,7 @@ Relations are a useful tool to understand the dependencies between each port of 
 
 Visual scripting uses this information in the background for Predictive Debugging. For example, if you tried to get the value of A + B without providing a value for A, the node would show up as orange to indicate that it fails in play mode.
 
-![An Add node that's missing an input shows up in orange in the Graph Inspector.](images/vs-relations-debugging-predictive.png)
+![The Add Inputs node with an orange header, and an error message in the Graph Inspector.](images/vs-relations-debugging-predictive.png)
 
 
 When that happens, you can use the warnings shown in the Graph Inspector to know what is missing.

@@ -26,7 +26,7 @@ namespace Unity.VisualScripting
 
             public override void OnGUI()
             {
-                if (EditorApplication.isCompiling)
+                if (EditorApplication.isCompiling && !EditorApplication.isPlaying)
                 {
                     LudiqGUI.CenterLoader();
                     return;

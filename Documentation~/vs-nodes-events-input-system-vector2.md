@@ -32,18 +32,7 @@ You can also set this control from the [Graph Inspector](vs-interface-overview.m
 
 The On Input System Event Vector 2 [!include[nodes-additional-settings](./snippets/nodes-additional-settings.md)]
 
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-[!include[nodes-coroutine](./snippets/nodes-coroutine.md)]
-</tbody>
-</table>
+[!include[nodes-coroutine](./snippets/nodes-coroutine.md)
 
 ## Outputs 
 

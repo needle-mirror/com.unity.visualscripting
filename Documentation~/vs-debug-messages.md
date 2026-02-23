@@ -1,5 +1,3 @@
-
-
 # Working with debug messages
 
 You can use debug nodes to see the result of a code segment inside the Unity console. For example, attaching a Debug node to a Variable node outputs the value of the variable.
@@ -37,6 +35,6 @@ Whenever the graph is run and the Event is fired, the debug node executes and th
 > [!NOTE]
 > The debug bar indicates the number of messages of each debug type (in the following order Message, Error, Warning).
 
-![The debug bar show a count of zero messages, two errors, and zero warnings.](images/vs-unity-console-w-warnings.png)
+![The Console window with the debug bar in the upper right corner displaying a count of zero messages, two errors, and zero warnings](images/vs-unity-console-w-warnings.png)
 
 

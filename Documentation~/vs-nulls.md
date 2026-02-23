@@ -16,7 +16,7 @@ The null check is a shortcut for a branch on an equality comparison with null. I
 
 For example, it can be used to handle a situation differently whether a transform has a parent in the hierarchy or not.
 
-![The Null Check node triggers different actions, depending on whether the value is null or not.](images/vs-nulls-null-check-node.png)
+![A Null Check node activates a different node depending on the result of the Get Parent node.](images/vs-nulls-null-check-node.png)
 
 ## Null Coalesce
 

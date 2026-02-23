@@ -4,247 +4,98 @@ You can configure specific preferences in Visual Scripting to control the behavi
 
 To configure your preferences for Visual Scripting: 
 
-1. Go to **Edit** &gt; **Preferences**. 
+1. Go to **Edit** > **Preferences**. 
 1. Select **Visual Scripting**. 
 
 ## Core preferences
 
 The following preferences control general behaviors across all graph types in Visual Scripting. 
 
-<table>
-<thead>
-<tr>
-<th><strong>Preference</strong></th>
-<th colspan="2"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Dim Inactive Nodes</strong></td>
-<td colspan="2">Enable <strong>Dim Inactive Nodes</strong> to dim any nodes in the <a href="vs-interface-overview.md#the-graph-editor">Graph Editor</a> that aren't connected to the logic flow in a graph. This provides you with a visual cue that a dimmed node isn't used in the graph in its current configuration. <br/>Disable <strong>Dim Inactive Nodes</strong> to display all nodes as active, regardless of their connection state. <div class="NOTE"><h5>NOTE</h5><p>You can also control this preference from the Graph toolbar. For more information, see <a href="vs-interface-overview.md#the-graph-toolbar">The interface</a>.</p></div></td>
-</tr>
-<tr>
-<td><strong>Dim Incompatible Nodes</strong></td>
-<td colspan="2">Enable <strong>Dim Incompatible Nodes</strong> to dim all nodes that don't have a compatible connection port when you create a new edge. <br/>Disable <strong>Dim Incompatible Nodes</strong> to display all nodes as active for a new edge.</td>
-</tr>
-<tr>
-<td><strong>Show Variables Help</strong></td>
-<td colspan="2">Enable <strong>Show Variables Help</strong> to display a brief explanation of the selected variable scope in the <a href="vs-interface-overview.md#the-blackboard">Blackboard</a>. <br/>Disable <strong>Show Variables Help</strong> to hide these explanations.</td>
-</tr>
-<tr>
-<td><strong>Create Scene Variables</strong></td>
-<td colspan="2">Enable <strong>Create Scene Variables</strong> to automatically create a <strong>Scene Variables</strong> GameObject with a <strong>Variables</strong> component and a Scene Variables script component after you create a <a href="vs-variables.md#variable-scopes">Scene variable</a>. A GameObject with these components is required to use Scene variables in a project. <br/>Disable <strong>Create Scene Variables</strong> to create these components on a GameObject manually.</td>
-</tr>
-<tr>
-<td><strong>Show Grid</strong></td>
-<td colspan="2">Enable <strong>Show Grid</strong> to display a grid on the background of the <a href="vs-interface-overview.md#the-graph-editor">Graph Editor</a>. <br/>Disable <strong>Show Grid</strong> to hide the grid.</td>
-</tr>
-<tr>
-<td><strong>Snap to Grid</strong></td>
-<td colspan="2">Enable <strong>Snap to Grid</strong> to force nodes to stick or snap to points on a grid in the <a href="vs-interface-overview.md#the-graph-editor">Graph Editor</a>. <br/>Disable <strong>Snap to Grid</strong> to move nodes freely and disable the snap-to-point behavior.</td>
-</tr>
-<tr>
-<td><strong>Pan Speed</strong></td>
-<td colspan="2">Set a <strong>Pan Speed</strong> to control how quickly the view in the <a href="vs-interface-overview.md#the-graph-editor">Graph Editor</a> moves when you pan vertically with the scroll wheel.</td>
-</tr>
-<tr>
-<td><strong>Drag Pan Speed</strong></td>
-<td colspan="2">Set a <strong>Drag Pan Speed</strong> to control how quickly the view in the <a href="vs-interface-overview.md#the-graph-editor">Graph Editor</a> moves when you move a node to the edge of the Graph window.</td>
-</tr>
-<tr>
-<td><strong>Zoom Speed</strong></td>
-<td colspan="2">Set a <strong>Zoom Speed</strong> to control how quickly the <a href="vs-interface-overview.md#the-graph-editor">Graph Editor</a> zooms in or zooms out while you change the zoom level in the Graph window. For more information on how to change the zoom level in the Graph Editor, see <a href="vs-control-schemes.md#zoom-inzoom-out">Choose a control scheme</a>.</td>
-</tr>
-<tr>
-<td><strong>Overview Smoothing</strong></td>
-<td colspan="2">Set an <strong>Overview Smoothing</strong> to control how gradually the <a href="vs-interface-overview.md#the-graph-editor">Graph Editor</a> zooms or pans after you select the <strong>Overview</strong> option in the <a href="vs-interface-overview.md#the-graph-toolbar">Graph toolbar</a>.</td>
-</tr>
-<tr>
-<td><strong>Carry Children</strong></td>
-<td colspan="2">Enable <strong>Carry Children</strong> to move all connected child nodes when you move a parent node in the <a href="vs-interface-overview.md#the-graph-editor">Graph Editor</a>. <br/>Disable <strong>Carry Children</strong> to only move the currently selected node in the Graph Editor. <br/> <div class="NOTE"><h5>NOTE</h5><p>You can also change this setting from the Graph toolbar in the Graph window. For more information, see <a href="vs-interface-overview.md#the-graph-toolbar">The interface</a>.</p></div></td>
-</tr>
-<tr>
-<td><strong>Disable Playmode Tint</strong></td>
-<td colspan="2">Enable <strong>Disable Playmode Tint</strong> to display all nodes in the Graph window as normal while the Unity Editor is in Play mode. <br/>Disable <strong>Disable Playmode Tint</strong> to add a tint to all nodes in the Graph window while the Editor is in Play mode. For more information on Play mode, see <a href="https://docs.unity3d.com/Manual/GameView.html">The Game view</a> in the Unity User Manual.</td>
-</tr>
-<tr>
-<td rowspan="3"><strong>Control Scheme</strong></td>
-<td colspan="2">Select a Visual Scripting control scheme. For more information, see <a href="vs-control-schemes.md">Choose a control scheme</a>.</td>
-</tr>
-<tr>
-<td><strong>Default</strong></td>
-<td>Use the Default Visual Scripting control scheme.</td>
-</tr>
-<tr>
-<td><strong>Alternate</strong></td>
-<td>Use the Alternate Visual Scripting control scheme.</td>
-</tr>
-<tr>
-<td><strong>Clear Graph Selection</strong></td>
-<td colspan="2">Enable <strong>Clear Graph Selection</strong> to clear any graph displayed in the Graph window after you select a GameObject with no set graph or graphs. <br/>Disable <strong>Clear Graph Window</strong> to keep the last displayed graph if the selected GameObject has no set graph assets.<br/> <div class="NOTE"><h5>NOTE</h5><p>Visual Scripting always updates the Graph window to display the set graph on a selected GameObject, regardless of your chosen <strong>Clear Graph Selection</strong> setting.</p></td>
-</tr>
-<tr>
-<td><strong>Human Naming</strong></td>
-<td colspan="2">Enable <strong>Human Naming</strong> to convert all displayed method names from camel case to title case. For example, <code>camelCase</code> becomes <code>Camel Case</code>. <br/>Disable <strong>Human Naming</strong> to leave all names in camel case.</td>
-</tr>
-<tr>
-<td><strong>Max Search Results</strong></td>
-<td colspan="2">Set a <strong>Max Search Results</strong> value to specify the maximum number of search results returned by <a href="vs-interface-overview.md#the-fuzzy-finder">the fuzzy finder</a> after you use the search bar.</td>
-</tr>
-<tr>
-<td><strong>Group Inherited Members</strong></td>
-<td colspan="2">Enable <strong>Group Inherited Members</strong> to group together inherited nodes from a parent or base class to your current search term in <a href="vs-interface-overview.md#the-fuzzy-finder">the fuzzy finder</a>. <br/>For example, an <code>Audio Source</code> is a <code>Component</code>: it has its own specific methods and nodes, but you can interact with it as a <code>Component</code> with <code>Component</code> nodes. While you perform a search in the fuzzy finder, Visual Scripting groups the nodes inherited from <code>Component</code> and displays them in grey. <br/>Disable <strong>Group Inherited Members</strong> to display nodes in the search results without grouping these inherited nodes.</td>
-</tr>
-<tr>
-<td><strong>Developer Mode</strong></td>
-<td colspan="2">Enable <strong>Developer Mode</strong> to display additional preferences in the Preferences window and add additional features in the Graph window and other areas of the Unity Editor. For more information on the additional Developer Mode preferences, see <a href="#additional-developer-mode-preferences">Additional Developer Mode preferences</a>.</td>
-</tr>
-<tr>
-<td><strong>AOT Safe Mode</strong></td>
-<td colspan="2">Enable <strong>AOT Safe Mode</strong> to exclude nodes from search results in <a href="vs-interface-overview.md#the-fuzzy-finder">the fuzzy finder</a> that might cause problems for platforms that require ahead of time (AOT) compilation. For example, Visual Scripting excludes nodes that use the <code>Generic</code> type. <br/>Disable <strong>AOT Safe Mode</strong> to display all nodes and types in the fuzzy finder.</td>
-</tr>
-</tbody>
-</table>
+| **Preference** | **Description** |
+|:---|:---|
+| **Dim Inactive Nodes** | Enable to dim any nodes in the [Graph Editor](vs-interface-overview.md#the-graph-editor) that aren't connected to the logic flow in a graph. This provides you with a visual cue that a dimmed node isn't used in the graph in its current configuration. Disable to display all nodes as active, regardless of their connection state. Note: You can also control this preference from the Graph toolbar. For more information, see [The interface](vs-interface-overview.md#the-graph-toolbar). |
+| **Dim Incompatible Nodes** | Enable to dim all nodes that don't have a compatible connection port when you create a new edge. Disable to display all nodes as active for a new edge. |
+| **Show Variables Help** | Enable to display a brief explanation of the selected variable scope in the [Blackboard](vs-interface-overview.md#the-blackboard). Disable to hide these explanations. |
+| **Create Scene Variables** | Enable to automatically create a **Scene Variables** GameObject with a **Variables** component and a Scene Variables script component after you create a [Scene variable](vs-variables.md#variable-scopes). A GameObject with these components is required to use Scene variables in a project. Disable to create these components on a GameObject manually. |
+| **Show Grid** | Enable to display a grid on the background of the [Graph Editor](vs-interface-overview.md#the-graph-editor). Disable to hide the grid. |
+| **Snap to Grid** | Enable to force nodes to stick or snap to points on a grid in the [Graph Editor](vs-interface-overview.md#the-graph-editor). Disable to move nodes freely and disable the snap-to-point behavior. |
+| **Pan Speed** | Set a value to control how quickly the view in the [Graph Editor](vs-interface-overview.md#the-graph-editor) moves when you pan vertically with the scroll wheel. |
+| **Drag Pan Speed** | Set a value to control how quickly the view in the [Graph Editor](vs-interface-overview.md#the-graph-editor) moves when you move a node to the edge of the Graph window. |
+| **Zoom Speed** | Set a value to control how quickly the [Graph Editor](vs-interface-overview.md#the-graph-editor) zooms in or zooms out while you change the zoom level in the Graph window. For more information on how to change the zoom level in the Graph Editor, see [Choose a control scheme](vs-control-schemes.md#zoom-inzoom-out). |
+| **Overview Smoothing** | Set a value to control how gradually the [Graph Editor](vs-interface-overview.md#the-graph-editor) zooms or pans after you select the **Overview** option in the [Graph toolbar](vs-interface-overview.md#the-graph-toolbar). |
+| **Carry Children** | Enable to move all connected child nodes when you move a parent node in the [Graph Editor](vs-interface-overview.md#the-graph-editor). Disable to only move the currently selected node in the Graph Editor. Note: You can also change this setting from the Graph toolbar in the Graph window. For more information, refer to [The interface](vs-interface-overview.md#the-graph-toolbar). |
+| **Disable Playmode Tint** | Enable to display all nodes in the Graph window as normal while the Unity Editor is in Play mode. Disable to add a tint to all nodes in the Graph window while the Editor is in Play mode. For more information on Play mode, see [The Game view](https://docs.unity3d.com/Manual/GameView.html) in the Unity User Manual. | 
+| **Control Scheme** | Select a Visual Scripting control scheme. For more information, refer to [Choose a control scheme](vs-control-schemes.md). <ul><li>**Default**: Use the Default Visual Scripting control scheme.</li><li>**Alternate**: Use the Alternate Visual Scripting control scheme.</li></ul> |
+| **Clear Graph Selection** | Enable to clear any graph displayed in the Graph window after you select a GameObject with no set graph or graphs. Disable to keep the last displayed graph if the selected GameObject has no set graph assets. Note: Visual Scripting always updates the Graph window to display the set graph on a selected GameObject, regardless of your chosen Clear Graph Selection setting. |
+| **Human Naming** | Enable to convert all displayed method names from camel case to title case. For example, `camelCase` becomes `Camel Case`. Disable to leave all names in camel case. |
+| **Max Search Results** | Set a value to specify the maximum number of search results returned by [the fuzzy finder](vs-interface-overview.md#the-fuzzy-finder) after you use the search bar. |
+| **Group Inherited Members** | Enable to group together inherited nodes from a parent or base class to your current search term in [the fuzzy finder](vs-interface-overview
+| **Developer Mode** | Enable to display additional preferences in the Preferences window and add additional features in the Graph window and other areas of the Unity Editor. For more information on the additional Developer Mode preferences, refer to [Additional Developer Mode preferences](#additional-developer-mode-preferences). |
+| **AOT Safe Mode** | Enable to exclude nodes from search results in [the fuzzy finder](vs-interface-overview.md#the-fuzzy-finder) that might cause problems for platforms that require ahead of time (AOT) compilation. For example, Visual Scripting excludes nodes that use the `Generic` type. Disable to display all nodes and types in the fuzzy finder. |
 
 
 ## Script Graphs preferences 
 
 The following preferences change the behavior of Script Graphs in the Graph window.
 
-<table>
-<thead>
-<tr>
-<th><strong>Preference</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Update Nodes Automatically</strong></td>
-<td><div class="NOTE"><h5>NOTE</h5><p>This feature is experimental.</p></div>Enable <strong>Update Nodes Automatically</strong> to let Visual Scripting automatically update your Node Library when it detects a change in any script inside your project's <strong>Assets</strong> folder. <br/>Disable <strong>Update Nodes Automatically</strong> to manually regenerate your Node Library after you make a change to a script. For more information on how to regenerate your Node Library, see <a href="vs-configuration.md">Configure project settings</a>.</td>
-</tr>
-<tr>
-<td><strong>Predict Potential Null References</strong></td>
-<td>A predictive debugging feature. Enable <strong>Predict Potential Null References</strong> to display warnings about potential <code>null</code> value inputs in your graphs. <br/>Disable <strong>Predict Potential Null References</strong> to disable these warnings. <br/> <div class="NOTE"><h5>NOTE</h5><p>Sometimes, predictive debugging might return false positive results when you enable this setting.</p></div></td>
-</tr>
-<tr>
-<td><strong>Predict Potential Missing Components</strong></td>
-<td>A predictive debugging feature. Enable <strong>Predict Potential Missing Components</strong> to display warnings about potential missing components in your graphs, such as a missing node input. <br/>Disable <strong>Predict Potential Missing Components</strong> to disable these warnings. <br/> <div class="NOTE"><h5>NOTE</h5><p>Sometimes, predictive debugging might return false positive results when you enable this setting.</p></div></td>
-</tr>
-<tr>
-<td><strong>Show Connection Values</strong></td>
-<td>Enable <strong>Show Connection Values</strong> to display the input and output values sent between nodes while the Editor is in Play mode. This can make it easier to debug your scripts. <br/>Disable <strong>Show Connection Values</strong> to hide these value labels while in Play mode. For more information on Play mode, see <a href="https://docs.unity3d.com/Manual/GameView.html">The Game view</a> in the User Manual. <div class="NOTE"><h5>NOTE</h5><p>You can also control this preference from the Graph toolbar. For more information, see <a href="vs-interface-overview.md#the-graph-toolbar">The interface</a>.</p></div></td>
-</tr>
-<tr>
-<td><strong>Predict Connection Values</strong></td>
-<td>Enable <strong>Predict Connection Values</strong> to have the Graph Editor predict what input and output values your graph sends between nodes while the Unity Editor is in Play mode. For example, Visual Scripting would display the value currently set for a variable in your script, though that value might change before it's used by a node. <br/>Disable <strong>Predict Connection Values</strong> to hide these predicted input and output values.</td>
-</tr>
-<tr>
-<td><strong>Hide Port Labels</strong></td>
-<td>Enable <strong>Hide Port Labels</strong> to hide the name labels for node input and output ports. <br/>Disable <strong>Hide Port Labels</strong> to display these name labels.</td>
-</tr>
-<tr>
-<td><strong>Animate Control Connections</strong></td>
-<td>Enable <strong>Animate Control Connections</strong> to display a droplet animation across node control port edges while the Editor is in Play mode. <br/>Disable <strong>Animate Control Connections</strong> to disable the animations. For more information about the different node port types and edges, see <a href="vs-nodes.md">Nodes</a>. For more information on Play mode, see <a href="https://docs.unity3d.com/Manual/GameView.html">The Game view</a> in the User Manual.</td>
-</tr>
-<tr>
-<td><strong>Animate Value Connections</strong></td>
-<td>Enable <strong>Animate Value Connections</strong> to display a droplet animation across node data port edges while the Editor is in Play mode. <br/>Disable <strong>Animate Value Connections</strong> to disable the animations. For more information about the different node port types and edges, see <a href="vs-nodes.md">Nodes</a>. For more information on Play mode, see <a href="https://docs.unity3d.com/Manual/GameView.html">The Game view</a> in the User Manual.</td>
-</tr>
-<tr>
-<td><strong>Skip Context Menu</strong></td>
-<td>Enable <strong>Skip Context Menu</strong> to always open <a href="vs-interface-overview.md#the-fuzzy-finder">the fuzzy finder</a> when you right-click in the Graph Editor. To access the context menu, use Shift+right-click. <br/>Disable <strong>Skip Context Menu</strong> to open the fuzzy finder when you right-click with no nodes or groups selected in the Graph Editor. The context menu opens when you right-click with a node or group selected.</td>
-</tr>
-</tbody>
-</table>
-
+| **Preference** | **Description** |
+| :--- | :--- |
+| **Update Nodes Automatically** |<div class="NOTE"><h5>NOTE</h5><p>This feature is experimental.</p></div>Enable **Update Nodes Automatically** to let Visual Scripting automatically update your Node Library when it detects a change in any script inside your project's **Assets** folder. <br/>Disable **Update Nodes Automatically** to manually regenerate your Node Library after you make a change to a script. For more information on how to regenerate your Node Library, refer to <a href="vs-configuration.md">Configure project settings</a>.|
+| **Predict Potential Null References** | A predictive debugging feature. Enable **Predict Potential Null References** to display warnings about potential `null` value inputs in your graphs. <br/>Disable **Predict Potential Null References** to disable these warnings. <br/> <div class="NOTE"><h5>NOTE</h5><p>Sometimes, predictive debugging might return false positive results when you enable this setting.</p></div> |
+| **Predict Potential Missing Components** | A predictive debugging feature. Enable **Predict Potential Missing Components** to display warnings about potential missing components in your graphs, such as a missing node input. <br/>Disable **Predict Potential Missing Components** to disable these warnings. <br/> <div class="NOTE"><h5>NOTE</h5><p>Sometimes, predictive debugging might return false positive results when you enable this setting.</p></div> |
+| **Show Connection Values** | Enable **Show Connection Values** to display the input and output values sent between nodes while the Editor is in Play mode. This can make it easier to debug your scripts. <br/>Disable **Show Connection Values** to hide these value labels while in Play mode. For more information on Play mode, refer to <a href="https://docs.unity3d.com/Manual/GameView.html">The Game view</a> in the User Manual. <div class="NOTE"><h5>NOTE</h5><p>You can also control this preference from the Graph toolbar. For more information, refer to <a href="vs-interface-overview.md#the-graph-toolbar">The interface</a>.</p></div> |
+| **Predict Connection Values** | Enable **Predict Connection Values** to have the Graph Editor predict what input and output values your graph sends between nodes while the Unity Editor is in Play mode. For example, Visual Scripting would display the value currently set for a variable in your script, though that value might change before it's used by a node. <br/>Disable **Predict Connection Values** to hide these predicted input and output values. |
+| **Hide Port Labels** | Enable **Hide Port Labels** to hide the name labels for node input and output ports. <br/>Disable **Hide Port Labels** to display these name labels. |
+| **Animate Control Connections** | Enable **Animate Control Connections** to display a droplet animation across node control port edges while the Editor is in Play mode. <br/>Disable **Animate Control Connections** to disable the animations. For more information about the different node port types and edges, refer to <a href="vs-nodes.md">Nodes</a>. For more information on Play mode, refer to <a href="https://docs.unity3d.com/Manual/GameView.html">The Game view</a> in the User Manual. |
+| **Animate Value Connections** | Enable **Animate Value Connections** to display a droplet animation across node data port edges while the Editor is in Play mode. <br/>Disable **Animate Value Connections** to disable the animations. For more information about the different node port types and edges, refer to <a href="vs-nodes.md">Nodes</a>. For more information on Play mode, refer to <a href="https://docs.unity3d.com/Manual/GameView.html">The Game view</a> in the User Manual. | 
+| **Skip Context Menu** | Enable **Skip Context Menu** to always open <a href="vs-interface-overview.md#the-fuzzy-finder">the fuzzy finder</a> when you right-click in the Graph Editor. To access the context menu, use Shift+right-click. <br/>Disable **Skip Context Menu** to open the fuzzy finder when you right-click with no nodes or groups selected in the Graph Editor. The context menu opens when you right-click with a node or group selected. |
 
 ## State Graphs preferences
 
 The following preferences change the behavior of State Graphs in the Graph window. 
-<table>
-<thead>
-<tr>
-<th><strong>Preference</strong></th>
-<th colspan="2"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td rowspan="8"><strong>States Reveal</strong></td>
-<td colspan="2">Use the dropdown to choose when a Script State node displays a list of events from its graph.<br/>
-If you have many Script State nodes in a State Graph, you might want to change this setting.</td>
-</tr>
-<tr>
-<td><strong>Never</strong></td>
-<td>Script State nodes never display their list of events.</td>
-</tr>
-<tr>
-<td><strong>Always</strong></td>
-<td>Script State nodes always display their list of events.</td>
-</tr>
-<tr>
-<td><strong>On Hover</strong></td>
-<td>Script State nodes only display their list of events when you hover over the node in the Graph window.</td>
-</tr>
-<tr>
-<td><strong>On Hover with Alt</strong></td>
-<td>Script State nodes only display their list of events when you hover over the node while you hold Alt.</td>
-</tr>
-<tr>
-<td><strong>When Selected</strong></td>
-<td>Script State nodes only display their list of events when you select the node in the Graph window.</td>
-</tr>
-<tr>
-<td><strong>On Hover or Selected</strong></td>
-<td>Script State nodes display their list of events when you hover over the node, or when you select the node in the Graph window.</td>
-</tr>
-<tr>
-<td><strong>On Hover with Alt or Selected</strong></td>
-<td>Script State nodes display their list of events when you hover over the node while you hold Alt, or when you select the node in the Graph window.</td>
-</tr>
-<tr>
-<td rowspan="8"><strong>Transitions Reveal</strong></td>
-<td colspan="2">Use the dropdown to choose when a transition displays a list of events from its graph.<br/>
-If you have many transitions in a State Graph, you might want to change this setting.</td>
-</tr>
-<tr>
-<td><strong>Never</strong></td>
-<td>Transitions never display a list of events.</td>
-</tr>
-<tr>
-<td><strong>Always</strong></td>
-<td>Transitions always display a list of events.</td>
-</tr>
-<tr>
-<td><strong>On Hover</strong></td>
-<td>Transitions only display a list of events when you hover over the transition in the Graph window.</td>
-</tr>
-<tr>
-<td><strong>On Hover with Alt</strong></td>
-<td>Transitions only display a list of events when you hover over the transition while you hold Alt.</td>
-</tr>
-<tr>
-<td><strong>When Selected</strong></td>
-<td>Transitions only display a list of events when you select the transition in the Graph window.</td>
-</tr>
-<tr>
-<td><strong>On Hover or Selected</strong></td>
-<td>Transitions display a list of events when you hover over the transition, or when you select the transition in the Graph window.</td>
-</tr>
-<tr>
-<td><strong>On Hover with Alt or Selected</strong></td>
-<td>Transitions display a list of events when you hover over the transition while you hold Alt, or when you select the transition in the Graph window.</td>
-<tr>
-<td><strong>Transitions End Arrow</strong></td>
-<td colspan="2">Enable <strong>Transitions End Arrow</strong> to add an arrow to the end of each transition edge in a State Graph. Disable <strong>Transitions End Arrow</strong> to display edges between transitions as simple lines. <br/>If you have many transitions in your State Graphs, you might want to disable this setting.</td>
-</tr>
-<tr>
-<td><strong>Animate Transitions</strong></td>
-<td colspan="2">Enable <strong>Animate Transitions</strong> to display a droplet animation across transition edges when the Editor is in Play mode. Disable <strong>Animate Transitions</strong> to disable the animations. For more information on Play mode, see <a href="https://docs.unity3d.com/Manual/GameView.html">The Game view</a> in the User Manual.</td>
-</tr>
-</tbody>
-</table>
+
+
+### State reveal
+
+Use the dropdown to choose when a Script State node displays a list of events from its graph.
+
+If you have many Script State nodes in a State Graph, you might want to change this setting.
+
+| **Preference** | **Description** |
+| :--- | :--- |
+| **Never** | Script State nodes never display their list of events. |
+| **Always** | Script State nodes always display their list of events. |
+| **On Hover** | Script State nodes only display their list of events when you hover over the node in the Graph window. |
+| **On Hover with Alt** | Script State nodes only display their list of events when you hover over the node while you hold Alt. |
+| **When Selected** | Script State nodes only display their list of events when you select the node in the Graph window. |
+| **On Hover or Selected** | Script State nodes display their list of events when you hover over the node, or when you select the node in the Graph window. |
+| **On Hover with Alt or Selected** | Script State nodes display their list of events when you hover over the node while you hold Alt, or when you select the node in the Graph window. |
+
+### Transitions Reveal
+
+Use the dropdown to choose when a transition displays a list of events from its graph.
+
+If you have many transitions in a State Graph, you might want to change this setting.
+
+| **Preference** | **Description** |
+| :--- | :--- |
+| **Never** | Transitions never display a list of events. |
+| **Always** | Transitions always display a list of events. |
+| **On Hover** | Transitions only display a list of events when you hover over the transition in the Graph window. |
+| **On Hover with Alt** | Transitions only display a list of events when you hover over the transition while you hold Alt. |
+| **When Selected** | Transitions only display a list of events when you select the transition in the Graph window. |
+| **On Hover or Selected** | Transitions display a list of events when you hover over the transition, or when you select the transition in the Graph window. |
+| **On Hover with Alt or Selected** | Transitions display a list of events when you hover over the transition while you hold Alt, or when you select the transition in the Graph window. |
+
+### Transitions End Arrow
+
+Enable **Transitions End Arrow** to add an arrow to the end of each transition edge in a State Graph. Disable **Transitions End Arrow** to display edges between transitions as simple lines. 
+
+If you have many transitions in your State Graphs, you might want to disable this setting.
+
+### Animate Transitions
+
+Enable **Animate Transitions** to display a droplet animation across transition edges when the Editor is in Play mode. Disable **Animate Transitions** to disable the animations. For more information on Play mode, refer to <a href="https://docs.unity3d.com/Manual/GameView.html">The Game view</a> in the User Manual.
 
 ## Additional Developer Mode preferences
 

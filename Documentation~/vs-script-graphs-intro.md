@@ -4,7 +4,7 @@ Use Script Graphs to create interactions and logic in your project.
 
 ## Create a graph file 
 
-Create a graph file to get started. For more information, see [Create a new graph file](vs-create-graph.md).
+Create a graph file to get started. For more information, refer to [Create a new graph file](vs-create-graph.md).
 
 ## Add and connect nodes 
 

@@ -8,28 +8,20 @@ You can add a new State Graph to a State Unit node, or use an existing State Gra
 
 To add a new blank State Graph as a State Unit node to a Script Graph: 
 
-<ol>
-<li><p>[!include[vs-with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]</p></li>
-<li><p>Go to <strong>Nesting</strong>.</p></li>
-<li><p>Select <strong>State Unit</strong> to add a State Unit node to the graph.</p></li>
-<li><p>Open the <a href="vs-interface-overview.md#the-graph-inspector">Graph Inspector</a>.</p></li>
-<li><p>In the Graph Inspector, choose the source for the State Unit:</p>
-<ul>
-    <li><p><strong>Embed</strong>: The State Graph only exists on the State Unit node. You can only change the State Graph from the node in its parent graph.</p></li>
-    <li><p><strong>Graph</strong>: The State Graph exists in a separate file. You can change the State Graph outside of its parent graph and reuse the graph in other areas of an application.</p></li>
-</ul>
-</li>
-<li><p>If you chose <strong>Graph</strong>:</p>
-<ol type="a">
-    <li><p>In the Graph Inspector, select <strong>New</strong>.</p></li>
-    <li><p>Enter a name for the graph file.</p></li>
-    <li><p>Choose where you want to save the graph file in the project.</p></li>
-    <li><p>Select <strong>Save</strong>.</p></li>
-</ol>
-</li>
-</ol>
+1. [!include[vs-with-graph-open-ff](./snippets/vs-with-graph-open-ff.md)]
+2. Go to **Nesting**.
+3. Select **State Unit** to add a State Unit node to the graph.
+4. Open the [Graph Inspector](vs-interface-overview.md#the-graph-inspector).
+5. In the Graph Inspector, choose the source for the State Unit:
+    - **Embed**: The State Graph only exists on the State Unit node. You can only change the State Graph from the node in its parent graph.
+    - **Graph**: The State Graph exists in a separate file. You can change the State Graph outside of its parent graph and reuse the graph in other areas of an application.
+6. If you chose **Graph**:
+    1. In the Graph Inspector, select **New**.
+    1. Enter a name for the graph file.
+    1. Choose where you want to save the graph file in the project.
+    1. Select **Save**.
 
-![An image of the Graph window that displays a new blank State Unit node added to a Script Graph.](images/vs-state-unit-new-state-graph.png)
+![The Graph window with a new blank State Unit node added to a Script Graph.](images/vs-state-unit-new-state-graph.png)
 
 ## Add an existing State Graph as a State Unit node
 

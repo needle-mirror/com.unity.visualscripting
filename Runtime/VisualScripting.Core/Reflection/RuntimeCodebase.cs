@@ -7,6 +7,9 @@ using Unity.VisualScripting.AssemblyQualifiedNameParser;
 using UnityEngine;
 using Exception = System.Exception;
 using Unity.VisualScripting;
+#if UNITY_6000_5_OR_NEWER
+using UnityEngine.Assemblies;
+#endif
 
 [assembly: Unity.VisualScripting.RenamedNamespace("Bolt", "Unity.VisualScripting")]
 [assembly: Unity.VisualScripting.RenamedNamespace("Ludiq", "Unity.VisualScripting")]
@@ -61,7 +64,11 @@ namespace Unity.VisualScripting
         {
             lock (@lock)
             {
+#if UNITY_6000_5_OR_NEWER
+                foreach (var assembly in CurrentAssemblies.GetLoadedAssemblies())
+#else
                 foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+#endif
                 {
                     _assemblies.Add(assembly);
 

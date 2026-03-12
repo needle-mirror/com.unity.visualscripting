@@ -80,10 +80,10 @@ namespace Unity.VisualScripting
 
         private static T[] FindObjectsOfType()
         {
-#if UNITY_2023_1_OR_NEWER
-            return UnityObject.FindObjectsByType<T>(FindObjectsSortMode.None);
+#if UNITY_6000_4_OR_NEWER
+            return UnityObject.FindObjectsByType<T>();
 #else
-            return UnityObject.FindObjectsOfType<T>();
+            return UnityObject.FindObjectsByType<T>(FindObjectsSortMode.None);
 #endif
         }
 

@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.9.11] - 2026-03-12
+### Changed
+- Replaced remaining internal use of InstanceIDs with the new EntityId (Unity 6.4+).
+- Replaced internal calls to the deprecated `FindObjectsByType<T>(FindObjectsSortMode)` method (Unity 6.4+).
+
 ## [1.9.10] - 2026-02-23
 ### Changed
 - Replaced internal use of InstanceIDs with the new EntityId (Unity 6.4+).

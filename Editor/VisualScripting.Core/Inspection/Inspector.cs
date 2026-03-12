@@ -9,14 +9,24 @@ using UnityEngine;
 using Debug = UnityEngine.Debug;
 using UnityObject = UnityEngine.Object;
 
+#if UNITY_6000_3_OR_NEWER
+using UObjectID = UnityEngine.EntityId;
+#else
+using UObjectID = System.Int32;
+#endif
+
 namespace Unity.VisualScripting
 {
     public abstract class Inspector : IDisposable
     {
         [OnOpenAsset(Int32.MinValue)]
-        public static bool OnOpenVFX(int instanceID, int line)
+        public static bool OnOpenVFX(UObjectID objectID, int line)
         {
-            UnityObject obj = EditorUtility.InstanceIDToObject(instanceID);
+#if UNITY_6000_3_OR_NEWER
+            UnityObject obj = EditorUtility.EntityIdToObject(objectID);
+#else
+            UnityObject obj = EditorUtility.InstanceIDToObject(objectID);
+#endif
             GraphReference reference = null;
             if (obj is IMacro macro)
                 reference = GraphReference.New(macro, true);

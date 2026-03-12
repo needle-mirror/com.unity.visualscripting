@@ -70,7 +70,13 @@ namespace Unity.VisualScripting
 
                 foreach (var objectReferenceNode in objectReferencesNode.Children.Cast<YamlScalarNode>())
                 {
+#if UNITY_6000_4_OR_NEWER
+                    objectReferences.Add(EditorUtility.EntityIdToObject(EntityId.FromULong(ulong.Parse(objectReferenceNode.Value))));
+#elif UNITY_6000_3_OR_NEWER
+                    objectReferences.Add(EditorUtility.EntityIdToObject(int.Parse(objectReferenceNode.Value)));
+#else
                     objectReferences.Add(EditorUtility.InstanceIDToObject(int.Parse(objectReferenceNode.Value)));
+#endif
                 }
 
                 // Return the final serialization data

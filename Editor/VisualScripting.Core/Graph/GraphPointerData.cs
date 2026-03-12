@@ -41,7 +41,7 @@ namespace Unity.VisualScripting
         {
             UnityEngine.Object obj;
 
-#if UNITY_6000_4_OR_NEWER
+#if UNITY_6000_3_OR_NEWER
             obj = EditorUtility.EntityIdToObject(rootObjectInstanceID);
 #else
             obj = EditorUtility.InstanceIDToObject(rootObjectInstanceID);

@@ -354,6 +354,19 @@ namespace Unity.VisualScripting
             }
         }
 
+#if UNITY_EDITOR
+        // Runs at BeforeSceneLoad, strictly after ReferenceCollector.ResetStaticsOnLoad
+        // (AfterAssembliesLoaded) so re-subscribing here cannot be clobbered by that reset.
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void ResetStaticsOnLoad()
+        {
+            internPool.Clear();
+            // Re-subscribe (idempotently) since ReferenceCollector cleared its event handlers on reset.
+            ReferenceCollector.onSceneUnloaded -= FreeInvalidInterns;
+            ReferenceCollector.onSceneUnloaded += FreeInvalidInterns;
+        }
+#endif
+
         public static void FreeInvalidInterns()
         {
             var invalidHashes = ListPool<int>.New();

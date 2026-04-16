@@ -222,6 +222,14 @@ namespace Unity.VisualScripting.FullSerializer
             }
         }
 
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            ClearCache();
+        }
+#endif
+
         private static void CollectProperties(fsConfig config, List<fsMetaProperty> properties, Type reflectedType)
         {
             // do we require a [SerializeField] or [fsProperty] attribute?

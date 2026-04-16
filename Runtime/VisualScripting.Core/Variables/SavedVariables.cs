@@ -183,5 +183,15 @@ namespace Unity.VisualScripting
         }
 
         #endregion
+
+#if UNITY_EDITOR
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            _asset = null;
+            saved = null;
+            merged = null;
+        }
+#endif
     }
 }

@@ -47,16 +47,19 @@ namespace Unity.VisualScripting
 
         public static bool safeMode { get; set; }
 
-        internal static void OnRuntimeMethodLoad()
-        {
-            safeMode = Application.isEditor || Debug.isDebugBuild;
-        }
-
         public static void ClearCache()
         {
             fieldAccessors.Clear();
             propertyAccessors.Clear();
             methodInvokers.Clear();
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            ClearCache();
+            _useJitIfAvailable = true;
+            safeMode = Application.isEditor || Debug.isDebugBuild;
         }
 
         internal static void VerifyStaticTarget(Type targetType, object target)

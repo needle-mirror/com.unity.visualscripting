@@ -41,6 +41,11 @@ namespace Unity.VisualScripting.FullSerializer
 
             if (UseInt64(instanceType))
             {
+                if (instance is ulong ulongValue && ulongValue > long.MaxValue)
+                {
+                    serialized = new fsData(ulongValue.ToString());
+                    return fsResult.Success;
+                }
                 serialized = new fsData((Int64)Convert.ChangeType(instance, typeof(Int64)));
                 return fsResult.Success;
             }
@@ -101,8 +106,13 @@ namespace Unity.VisualScripting.FullSerializer
                 {
                     instance = Convert.ChangeType(storage.AsInt64, storageType);
                 }
-                else if (Serializer.Config.Serialize64BitIntegerAsString && storage.IsString &&
-                         (storageType == typeof(Int64) || storageType == typeof(UInt64)))
+                else if (storage.IsString && storageType == typeof(UInt64))
+                {
+                    instance = ulong.Parse(storage.AsString);
+                }
+                else if (Serializer.Config.Serialize64BitIntegerAsString &&
+                         storage.IsString &&
+                         storageType == typeof(Int64))
                 {
                     instance = Convert.ChangeType(storage.AsString, storageType);
                 }

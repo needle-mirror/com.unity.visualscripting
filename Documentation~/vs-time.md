@@ -72,7 +72,7 @@ For example, a simple cooldown firing mechanic with a masked sprite and text tha
 
 The Timer node implements and monitors a time pausable progression.  
 
-The Duration port determines how long it takes for the cooldown to become available again. Checking Unscaled makes it ignore the [time scale](https://docs.unity3d.com/ScriptReference/Time-timeScale.html).  
+The Duration port determines how long it takes for the timer to complete. If you select Unscaled, the Timer node ignores the [time scale](https://docs.unity3d.com/ScriptReference/Time-timeScale.html).
 
 A timer is started by triggering the Start input, which in turn triggers the Started output.
 

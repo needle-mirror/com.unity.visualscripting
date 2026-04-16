@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Threading;
+using UnityEngine;
 using UnityEngine.Profiling;
 
 namespace Unity.VisualScripting
@@ -10,6 +11,14 @@ namespace Unity.VisualScripting
         {
             currentSegment = rootSegment = new ProfiledSegment(null, "Root");
         }
+
+#if UNITY_EDITOR
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            currentSegment = rootSegment = new ProfiledSegment(null, "Root");
+        }
+#endif
 
         private static readonly object @lock = new object();
 

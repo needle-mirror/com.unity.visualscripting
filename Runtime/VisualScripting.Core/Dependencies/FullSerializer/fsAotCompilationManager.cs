@@ -13,6 +13,15 @@ namespace Unity.VisualScripting.FullSerializer
         private static Dictionary<Type, string> _computedAotCompilations = new Dictionary<Type, string>();
         private static List<AotCompilation> _uncomputedAotCompilations = new List<AotCompilation>();
 
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            _computedAotCompilations = new Dictionary<Type, string>();
+            _uncomputedAotCompilations = new List<AotCompilation>();
+        }
+#endif
+
         /// <summary>
         /// Ahead of time compilations that are available. The type maps to the
         /// object type the generated converter will serialize/deserialize, and

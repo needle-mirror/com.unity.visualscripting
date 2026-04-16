@@ -80,6 +80,12 @@ namespace Unity.VisualScripting
 
         #region Serialization
 
+        /// <summary>
+        /// This flag is set after deserializing dependencies and unset once all elements have been added to the graph.
+        /// </summary>
+        [DoNotSerialize]
+        internal bool isAddingElementsPostDeserialization { get; private set; }
+
         public IEnumerable<ISerializationDependency> deserializationDependencies => _elements.SelectMany(e => e.deserializationDependencies);
 
         public virtual void OnBeforeSerialize()
@@ -95,34 +101,44 @@ namespace Unity.VisualScripting
 
         public virtual void OnAfterDependenciesDeserialized()
         {
-            elements.Clear();
+            isAddingElementsPostDeserialization = true;
 
-            // _elements.OrderBy(e => e.dependencyOrder)
-            var sortedElements = ListPool<IGraphElement>.New();
-            foreach (var element in _elements)
+            try
             {
-                sortedElements.Add(element);
-            }
-            sortedElements.Sort((a, b) => a.dependencyOrder.CompareTo(b.dependencyOrder));
+                elements.Clear();
 
-            foreach (var element in sortedElements)
-            {
-                try
+                // _elements.OrderBy(e => e.dependencyOrder)
+                var sortedElements = ListPool<IGraphElement>.New();
+                foreach (var element in _elements)
                 {
-                    if (!element.HandleDependencies())
+                    sortedElements.Add(element);
+                }
+
+                sortedElements.Sort((a, b) => a.dependencyOrder.CompareTo(b.dependencyOrder));
+
+                foreach (var element in sortedElements)
+                {
+                    try
                     {
-                        continue;
+                        if (!element.HandleDependencies())
+                        {
+                            continue;
+                        }
+
+                        elements.Add(element);
                     }
+                    catch (Exception ex)
+                    {
+                        Debug.LogWarning($"Failed to add element to graph during deserialization: {element}\n{ex}");
+                    }
+                }
 
-                    elements.Add(element);
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogWarning($"Failed to add element to graph during deserialization: {element}\n{ex}");
-                }
+                ListPool<IGraphElement>.Free(sortedElements);
             }
-
-            ListPool<IGraphElement>.Free(sortedElements);
+            finally
+            {
+                isAddingElementsPostDeserialization = false;
+            }
         }
 
         #endregion

@@ -172,5 +172,18 @@ namespace Unity.VisualScripting
                 throw new UnityException($"Trying to destroy invalid instance of '{typeof(T)}' singleton.");
             }
         }
+
+#if UNITY_EDITOR
+        // Generic types are not auto-invoked by [RuntimeInitializeOnLoadMethod];
+        // this method must be called explicitly for any closed generic instantiation that needs reset.
+        internal static void ResetStaticsOnLoad()
+        {
+            lock (_lock)
+            {
+                _instance = null;
+                awoken.Clear();
+            }
+        }
+#endif
     }
 }

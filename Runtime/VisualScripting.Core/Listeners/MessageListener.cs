@@ -50,5 +50,13 @@ namespace Unity.VisualScripting
 #endif
                 gameObject.AddComponent(messageListenerType);
         }
+
+#if UNITY_EDITOR
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            _listenerTypes = null;
+        }
+#endif
     }
 }

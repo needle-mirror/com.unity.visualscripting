@@ -55,5 +55,14 @@ namespace Unity.VisualScripting
         {
             runtime = null;
         }
+
+#if UNITY_EDITOR
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            _asset = null;
+            runtime = null;
+        }
+#endif
     }
 }

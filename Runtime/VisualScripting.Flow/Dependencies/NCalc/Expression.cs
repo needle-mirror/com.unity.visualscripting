@@ -247,6 +247,15 @@ namespace Unity.VisualScripting.Dependencies.NCalc
         private static Dictionary<string, WeakReference> _compiledExpressions = new Dictionary<string, WeakReference>();
         private static readonly ReaderWriterLock Rwl = new ReaderWriterLock();
 
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            _cacheEnabled = true;
+            _compiledExpressions = new Dictionary<string, WeakReference>();
+        }
+#endif
+
         public static bool CacheEnabled
         {
             get

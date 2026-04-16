@@ -101,6 +101,17 @@ namespace Unity.VisualScripting.FullSerializer
             _success = true
         };
 
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            Success = new fsResult
+            {
+                _success = true
+            };
+        }
+#endif
+
         /// <summary>
         /// Create a result that is successful but contains the given warning
         /// message.

@@ -42,6 +42,14 @@ namespace Unity.VisualScripting
         private static readonly Dictionary<EventHook, HashSet<Delegate>> events;
         internal static Dictionary<EventHook, HashSet<Delegate>> testAccessEvents => events;
 
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            events.Clear();
+        }
+#endif
+
         public static void Register<TArgs>(EventHook hook, Action<TArgs> handler)
         {
             if (!events.TryGetValue(hook, out var handlers))

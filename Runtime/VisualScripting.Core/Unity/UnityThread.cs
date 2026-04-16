@@ -15,9 +15,12 @@ namespace Unity.VisualScripting
 
         public static ConcurrentQueue<Action> pendingQueue = new ConcurrentQueue<Action>();
 
-        internal static void RuntimeInitialize()
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
         {
             thread = Thread.CurrentThread;
+            editorAsync = null;
+            pendingQueue = new ConcurrentQueue<Action>();
         }
 
         [Conditional("UNITY_EDITOR")]

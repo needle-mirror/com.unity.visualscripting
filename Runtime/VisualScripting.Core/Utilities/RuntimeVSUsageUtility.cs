@@ -7,14 +7,6 @@ namespace Unity.VisualScripting
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void RuntimeInitializeOnLoadBeforeSceneLoad()
         {
-            UnityThread.RuntimeInitialize();
-
-            Ensure.OnRuntimeMethodLoad();
-
-            Recursion.OnRuntimeMethodLoad();
-
-            OptimizedReflection.OnRuntimeMethodLoad();
-
             SavedVariables.OnEnterPlayMode();
 
             ApplicationVariables.OnEnterPlayMode();

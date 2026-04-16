@@ -19,6 +19,20 @@ namespace Unity.VisualScripting
             busyOperations = new HashSet<SerializationOperation>();
         }
 
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            lock (@lock)
+            {
+                freeOperations.Clear();
+                busyOperations.Clear();
+                awaitingDependers.Clear();
+                isUnitySerializing = false;
+            }
+        }
+#endif
+
         public const string ConstructorWarning = "This parameterless constructor is only made public for serialization. Use another constructor instead.";
 
         private static readonly HashSet<SerializationOperation> freeOperations;

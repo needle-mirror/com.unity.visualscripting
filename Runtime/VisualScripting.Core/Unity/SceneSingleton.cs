@@ -208,5 +208,14 @@ namespace Unity.VisualScripting
                 throw new UnityException($"Trying to destroy invalid instance of '{typeof(T)}' singleton in scene '{scene.name}'.");
             }
         }
+
+#if UNITY_EDITOR
+        // Generic types are not auto-invoked by [RuntimeInitializeOnLoadMethod];
+        // this method must be called explicitly for any closed generic instantiation that needs reset.
+        internal static void ResetStaticsOnLoad()
+        {
+            instances = new Dictionary<Scene, T>();
+        }
+#endif
     }
 }

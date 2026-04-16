@@ -55,7 +55,7 @@ namespace Unity.VisualScripting.FullSerializer.Internal
     /// </summary>
     public static class fsPortableReflection
     {
-        public static Type[] EmptyTypes = { };
+        public static Type[] EmptyTypes = Type.EmptyTypes;
 
         #region Attribute Queries
 
@@ -187,6 +187,15 @@ namespace Unity.VisualScripting.FullSerializer.Internal
 
         private static IDictionary<AttributeQuery, Attribute> _cachedAttributeQueries =
             new Dictionary<AttributeQuery, Attribute>(new AttributeQueryComparator());
+
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            EmptyTypes = Type.EmptyTypes;
+            _cachedAttributeQueries = new Dictionary<AttributeQuery, Attribute>(new AttributeQueryComparator());
+        }
+#endif
 
         private class AttributeQueryComparator : IEqualityComparer<AttributeQuery>
         {

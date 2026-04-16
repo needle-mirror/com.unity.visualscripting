@@ -18,5 +18,14 @@ namespace Unity.VisualScripting
             frameBinding = () => Time.frameCount;
             timeBinding = () => Time.time;
         }
+
+#if UNITY_EDITOR
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            frameBinding = () => Time.frameCount;
+            timeBinding = () => Time.time;
+        }
+#endif
     }
 }

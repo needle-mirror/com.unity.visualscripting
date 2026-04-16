@@ -143,8 +143,10 @@ namespace Unity.VisualScripting
 
         public static bool safeMode { get; set; }
 
-        internal static void OnRuntimeMethodLoad()
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
         {
+            defaultMaxDepth = 100;
             safeMode = Application.isEditor || Debug.isDebugBuild;
         }
 

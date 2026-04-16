@@ -1066,6 +1066,21 @@ namespace Unity.VisualScripting.FullSerializer
             };
         }
 
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            _reservedKeywords = new HashSet<string>
+            {
+                Key_ObjectReference,
+                Key_ObjectDefinition,
+                Key_InstanceType,
+                Key_Version,
+                Key_Content
+            };
+        }
+#endif
+
         /// <summary>
         /// Returns true if the given key is a special keyword that full
         /// serializer uses to add additional metadata on top of the emitted

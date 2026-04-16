@@ -93,6 +93,14 @@ namespace Unity.VisualScripting
 
         public bool isInspected => isInspectedBinding?.Invoke(stack) ?? false;
 
+#if UNITY_EDITOR
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            isInspectedBinding = null;
+        }
+#endif
+
 
         #region Lifecycle
 

@@ -12,6 +12,18 @@ namespace Unity.VisualScripting
 
         private static readonly Dictionary<IGraphParent, HashSet<GraphReference>> byParent = new Dictionary<IGraphParent, HashSet<GraphReference>>();
 
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            lock (@lock)
+            {
+                byGraph.Clear();
+                byParent.Clear();
+            }
+        }
+#endif
+
         public static void Instantiate(GraphReference instance)
         {
             lock (@lock)

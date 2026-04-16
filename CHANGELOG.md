@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.9.12] - 2026-04-16
+### Changed
+- Added resets for static variables via `[RuntimeInitializeOnLoadMethod]` to support Fast Enter Play Mode.
+### Fixed
+- Fixed a bug where changes to graph connections in Play Mode were not being listened to by the graph. [UUM-130106](https://issuetracker.unity3d.com/product/unity/issues/guid/UUM-130106)
+- Fixed an OverflowException thrown when regenerating nodes for methods whose `ulong` parameters have default values exceeding `Int64.MaxValue`. [UUM-130107](https://issuetracker.unity3d.com/product/unity/issues/guid/UUM-130107)
+
 ## [1.9.11] - 2026-03-12
 ### Changed
 - Replaced remaining internal use of InstanceIDs with the new EntityId (Unity 6.4+).

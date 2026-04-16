@@ -80,6 +80,24 @@ namespace Unity.VisualScripting
             }
         }
 
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            // _types and _assemblies reflect the current AppDomain and remain valid
+            // when domain reload is disabled, so they are intentionally not cleared.
+            lock (@lock)
+            {
+                disallowedAssemblies.Clear();
+                typeSerializations.Clear();
+                _renamedTypes = null;
+                _renamedNamespaces = null;
+                _renamedAssemblies = null;
+                _renamedMembers.Clear();
+            }
+        }
+#endif
+
         #region Assembly Attributes
 
         public static IEnumerable<Attribute> GetAssemblyAttributes(Type attributeType)

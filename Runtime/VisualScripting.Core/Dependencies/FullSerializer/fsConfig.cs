@@ -26,6 +26,16 @@ namespace Unity.VisualScripting.FullSerializer
         /// FullSerializer.
         /// </summary>
         public static string InternalFieldPrefix = "$";
+
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            IsCaseSensitive = true;
+            AllowInternalExceptions = true;
+            InternalFieldPrefix = "$";
+        }
+#endif
     }
 
     /// <summary>

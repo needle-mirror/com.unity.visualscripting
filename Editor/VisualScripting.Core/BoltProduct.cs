@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using UnityEditor;
+#if UNITY_6000_6_OR_NEWER
+using UnityEditor.AssetPackage;
+#endif
 
 namespace Unity.VisualScripting
 {
@@ -86,7 +89,15 @@ namespace Unity.VisualScripting
                 PathUtility.GetPackageRootPath()
             };
 
+#if UNITY_6000_6_OR_NEWER
+            Package.Export(new ExportPackageParameters(
+                paths.ToArray(),
+                exportPath,
+                CloudProjectSettings.organizationKey,
+                ExportPackageOptions.Recurse));
+#else
             AssetDatabase.ExportPackage(paths.ToArray(), exportPath, ExportPackageOptions.Recurse);
+#endif
 
             if (EditorUtility.DisplayDialog("Export Release Package", "Release package export complete.\nOpen containing folder?", "Open Folder", "Close"))
             {

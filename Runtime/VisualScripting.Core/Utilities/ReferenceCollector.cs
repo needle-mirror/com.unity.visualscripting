@@ -12,5 +12,13 @@ namespace Unity.VisualScripting
         {
             SceneManager.sceneUnloaded += scene => onSceneUnloaded?.Invoke();
         }
+
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void ResetStaticsOnLoad()
+        {
+            onSceneUnloaded = null;
+        }
+#endif
     }
 }

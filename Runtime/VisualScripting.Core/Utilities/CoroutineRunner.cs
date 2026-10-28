@@ -21,5 +21,13 @@ namespace Unity.VisualScripting
         }
 
         public static CoroutineRunner instance => Singleton<CoroutineRunner>.instance;
+
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetSingletonOnLoad()
+        {
+            Singleton<CoroutineRunner>.ResetStaticsOnLoad();
+        }
+#endif
     }
 }

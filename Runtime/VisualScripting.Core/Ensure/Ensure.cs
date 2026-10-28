@@ -18,7 +18,7 @@ namespace Unity.VisualScripting
             return instance;
         }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetStaticsOnLoad()
         {
             IsActive = Application.isEditor || Debug.isDebugBuild;

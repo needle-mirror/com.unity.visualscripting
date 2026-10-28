@@ -51,5 +51,13 @@ namespace Unity.VisualScripting
             // Call the singleton getter to force instantiation
             var instance = Singleton<GlobalMessageListener>.instance;
         }
+
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetSingletonOnLoad()
+        {
+            Singleton<GlobalMessageListener>.ResetStaticsOnLoad();
+        }
+#endif
     }
 }

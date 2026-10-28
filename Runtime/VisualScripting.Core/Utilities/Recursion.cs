@@ -143,7 +143,7 @@ namespace Unity.VisualScripting
 
         public static bool safeMode { get; set; }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetStaticsOnLoad()
         {
             defaultMaxDepth = 100;

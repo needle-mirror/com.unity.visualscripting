@@ -43,5 +43,13 @@ namespace Unity.VisualScripting
         public static VariablesSaver instance => Singleton<VariablesSaver>.instance;
 
         public static void Instantiate() => Singleton<VariablesSaver>.Instantiate();
+
+#if UNITY_EDITOR
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetSingletonOnLoad()
+        {
+            Singleton<VariablesSaver>.ResetStaticsOnLoad();
+        }
+#endif
     }
 }

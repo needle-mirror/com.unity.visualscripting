@@ -356,7 +356,7 @@ namespace Unity.VisualScripting
 
 #if UNITY_EDITOR
         // Runs at BeforeSceneLoad, strictly after ReferenceCollector.ResetStaticsOnLoad
-        // (AfterAssembliesLoaded) so re-subscribing here cannot be clobbered by that reset.
+        // (AfterAssembliesLoaded) so re-subscribing here cannot be cleared by that reset.
         [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void ResetStaticsOnLoad()
         {

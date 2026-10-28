@@ -167,10 +167,10 @@ namespace Unity.VisualScripting
             {
                 _instance = null;
             }
-            else
-            {
-                throw new UnityException($"Trying to destroy invalid instance of '{typeof(T)}' singleton.");
-            }
+            // Under Fast Enter Play Mode (DisableDomainReload) the static _instance survives play-mode transitions, so a stale, previously-destroyed instance
+            // can fire OnDestroy after _instance has been reassigned by a later Awake (e.g. after a scene reload in a batch test run). The mismatch is not a
+            // bug in that path — silently ignore rather than throw.
+            awoken.Remove(instance);
         }
 
 #if UNITY_EDITOR

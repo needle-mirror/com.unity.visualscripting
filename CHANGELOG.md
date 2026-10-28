@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [1.9.13] - 2026-10-28
+### Fixed
+- Fixed `Singleton` throwing "Trying to destroy invalid instance" when a stale instance is destroyed after entering Play Mode with Fast Enter Play Mode (domain reload disabled).
+- Fixed a duplicate `SceneManager.sceneUnloaded` handler being added on each Play Mode entry with Fast Enter Play Mode (domain reload disabled).
+- Fixed the `CoroutineRunner`, `GlobalMessageListener` and `VariablesSaver` singletons, and other runtime statics, not being reset when entering Play Mode with Fast Enter Play Mode (domain reload disabled).
+
 ## [1.9.12] - 2026-04-16
 ### Changed
 - Added resets for static variables via `[RuntimeInitializeOnLoadMethod]` to support Fast Enter Play Mode.
